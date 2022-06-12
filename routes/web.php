@@ -13,6 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ROUTE LANDING PAGE
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.index');
 });
+
+Route::get('/about', function () {
+    return view('layouts.about');
+});
+
+Route::get('/booking', function () {
+    return view('layouts.booking');
+});
+
+Route::get('/contact', function () {
+    return view('layouts.contact');
+});
+
+Route::get('/room', function () {
+    return view('layouts.room');
+});
+
+Route::get('/service', function () {
+    return view('layouts.service');
+});
+
+Route::get('/team', function () {
+    return view('layouts.team');
+});
+
+Route::get('/testimonial', function () {
+    return view('layouts.testimonial');
+});
+// ./ROUTE LANDING PAGE
+
+// ROUTE ADMIN
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+// ./ROUTE ADMIN
