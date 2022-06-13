@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\GedungController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('admin-gedung', GedungController::class);
 // ROUTE LANDING PAGE
 Route::get('/', function () {
     return view('layouts.index');
@@ -50,10 +51,6 @@ Route::get('/testimonial', function () {
 // ROUTE ADMIN
 Route::get('/admin', function () {
     return view('admin.index');
-});
-
-Route::get('/admin-gedung', function () {
-    return view('admin-gedung.index');
 });
 
 Route::get('/admin-gedung-form', function () {
