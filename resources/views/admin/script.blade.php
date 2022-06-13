@@ -28,3 +28,14 @@
 
 
     <script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script>
+
+    {{-- plugins datatable --}}
+    <script src="{{ asset('plugins/tables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/tables/js/datatable-init/datatable-basic.min.js') }}"></script>
+    {{-- ./plugins datatable --}}
+
+    {{-- plugins form-val --}}
+    <script src="./plugins/validation/jquery.validate.min.js"></script>
+    <script src="./plugins/validation/jquery.validate-init.js"></script>
+    {{-- ./plugins form-val --}}

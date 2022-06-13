@@ -51,4 +51,12 @@ Route::get('/testimonial', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
+
+Route::get('/admin-gedung', function () {
+    return view('admin-gedung.index');
+});
+
+Route::get('/admin-gedung-form', function () {
+    return view('admin-gedung.create');
+});
 // ./ROUTE ADMIN
