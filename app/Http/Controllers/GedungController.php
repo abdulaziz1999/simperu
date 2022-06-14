@@ -49,10 +49,8 @@ class GedungController extends Controller
         ]);
 
         $data = Gedung::create($request->all());
+        // dd($data);
         if ($request->hasFile('foto')) {
-            if ($request->oldImage) {
-                Storage::delete($request->oldImage);
-            }
             $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
             $data->foto = $request->file('foto')->getClientOriginalName();
             $data->save();
