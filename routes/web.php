@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +19,7 @@ use App\Http\Controllers\GedungController;
 // });
 
 Route::resource('gedung', GedungController::class);
+Route::resource('kategoriRuangan', KategoriRuanganController::class);
 
 Route::get('/dashboard', function () {
     //return view('welcome');
@@ -68,4 +68,3 @@ Route::get('/testimonial', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
-

@@ -12,8 +12,8 @@
                         <ul aria-expanded="true">
                             <li class="active"><a href="{{ url('/gedung')}}" ><i class="fa fa-table" aria-hidden="true"></i> Daftar Gedung</a></li>
                             <li><a href="#"><i class="fa fa-table" aria-hidden="true"></i> Daftar Ruangan</a></li>
+                            <li><a href="{{ url('/kategoriRuangan')}}"><i class="fa fa-table" aria-hidden="true"></i> Kategori Ruangan </a></li>
                             <li><a href="#"><i class="fa fa-table" aria-hidden="true"></i> Daftar Fasilitas</a></li>
-                            <li><a href="#"><i class="fa fa-table" aria-hidden="true"></i> Daftar Gedung</a></li>
                         </ul>
                     </li>
                     <li>
