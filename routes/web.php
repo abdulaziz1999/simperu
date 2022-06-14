@@ -17,13 +17,13 @@ use App\Http\Controllers\FasilitasController;
 
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
+Route::resource('kategoriRuangan', KategoriRuanganController::class);
 
 // ROUTE ADMIN
 Route::get('/admin', function () {
     return view('admin.index');
 });
 // ./ROUTE ADMIN
-Route::resource('kategoriRuangan', KategoriRuanganController::class);
 
 Route::get('/dashboard', function () {
     //return view('welcome');
