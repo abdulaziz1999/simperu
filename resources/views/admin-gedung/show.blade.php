@@ -9,55 +9,58 @@
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/admin')}}" class="text-primary">Master Data</a></li>
-                        <li class="breadcrumb-item"><a href="{{ url('/admin-gedung')}}" class="text-primary">Daftar Gedung</a></li>
-                        <li class="breadcrumb-item">Tambah Data Gedung</li>
+                        <li class="breadcrumb-item"><a href="{{ route('gedung.index')}}" class="text-primary">Daftar Gedung</a></li>
+                        <li class="breadcrumb-item">Detail Data Gedung</li>
                     </ol>
                 </div>
             </div>
             <!-- row -->
-
+            
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="form-validation">
-                                    <form class="form-valide" action="#" method="post">
-                                        <div class="form-group row">
-                                            <div class="col-12 d-flex justify-content-between">
-                                                <span class="h3 font-weight-bold">Detail Data Gedung</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="val-kode">Kode <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="val-kode" disabled value="{{ $gedung->kode }}" placeholder="Enter a username..">
-                                            </div>
-                                            <label class="col-lg-2 col-form-label" for="val-kode">Nama <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="val-kode" disabled value="{{ $gedung->nama_gedung }}" placeholder="Enter a username..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="val-suggestions">Alamat <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <textarea class="form-control" id="val-suggestions" name="val-suggestions" disabled rows="5" placeholder="What would you like to see?"> {{ $gedung->alamat }}</textarea>
-                                            </div>
-                                            <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="file" class="form-control" id="val-kode" name="val-kode" placeholder="Enter a username..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <!-- <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-success text-white font-weight-bold py-3 px-5">Simpan</button>
-                                            </div> -->
-                                        </div>
-                                    </form>
+                                <div class="row mb-5">
+                                    <div class="col-12 d-flex justify-content-between flex-row-reverse align-content-center">
+                                        <span class="h3 font-weight-bold">Detail Data Gedung</span>
+                                        <a href="{{ route('gedung.index')}}" class="btn btn-lg btn-danger font-weight-bold"><i class="fa fa-arrow-circle-left "></i> Kembali</a>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <img class="img-fluid w-50 py-2 px-2 shadow border" src="{{ asset('storage/post-image/'.$gedung->foto) }}" alt="{{ $gedung->nama_gedung}}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <span class="h3 font-weight-light text-black-50">
+                                            Kode Gedung:
+                                        </span>
+                                        <span class="h3 font-weight-bold">
+                                            {{ $gedung->kode}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <span class="h3 font-weight-light text-black-50">
+                                            Nama Gedung :
+                                        </span>
+                                        <span class="h3 font-weight-bold">
+                                            {{ $gedung->nama_gedung}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <span class="h3 font-weight-light text-black-50">
+                                            Alamat Gedung :
+                                        </span><br />
+                                        <span class="h3 font-weight-bold">
+                                            {{ $gedung->alamat}}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
