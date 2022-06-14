@@ -10,10 +10,17 @@
                             <i class="fa fa-tachometer" aria-hidden="true"></i> <span class="nav-text">Master Data</span>
                         </a>
                         <ul aria-expanded="true">
+<<<<<<< HEAD
                             <li class="active"><a href="{{route('gedung.index')}}" ><i class="fa fa-table" aria-hidden="true"></i> Daftar Gedung</a></li>
                             <li class=""><a href="#"><i class="fa fa-table" aria-hidden="true"></i> Daftar Ruangan</a></li>
                             <li class=""><a href="{{ route('fasilitas.index') }}"><i class="fa fa-table" aria-hidden="true"></i> Daftar Fasilitas</a></li>
                             <li class=""><a href="#"><i class="fa fa-table" aria-hidden="true"></i> Daftar Kategori</a></li>
+=======
+                            <li class="active"><a href="{{ url('/gedung')}}" ><i class="fa fa-table" aria-hidden="true"></i> Daftar Gedung</a></li>
+                            <li><a href="#"><i class="fa fa-table" aria-hidden="true"></i> Daftar Ruangan</a></li>
+                            <li><a href="{{ url('/kategoriRuangan')}}"><i class="fa fa-table" aria-hidden="true"></i> Kategori Ruangan </a></li>
+                            <li><a href="#"><i class="fa fa-table" aria-hidden="true"></i> Daftar Fasilitas</a></li>
+>>>>>>> 02a0444a2992dab473c6c0dedff27825452e1364
                         </ul>
                     </li>
                     <li>
