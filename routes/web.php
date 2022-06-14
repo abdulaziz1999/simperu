@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\KategoriRuanganController;
+use App\Http\Controllers\GedungController;
+use App\Http\Controllers\FasilitasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// ROUTE LANDING PAGE
+Route::resource('gedung', GedungController::class);
+Route::resource('fasilitas', FasilitasController::class);
+Route::resource('kategoriRuangan', KategoriRuanganController::class);
+
+// ROUTE ADMIN
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+// ./ROUTE ADMIN
+
+Route::get('/dashboard', function () {
+    //return view('welcome');
+    return view('layouts_2.home');
+});
+
+Route::get('/', function () {
+    //return view('welcome');
+    return view('welcome');
+});
+
 Route::get('/', function () {
     return view('layouts.index');
 });
@@ -51,12 +72,3 @@ Route::get('/testimonial', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
-
-Route::get('/admin-gedung', function () {
-    return view('admin-gedung.index');
-});
-
-Route::get('/admin-gedung-form', function () {
-    return view('admin-gedung.create');
-});
-// ./ROUTE ADMIN

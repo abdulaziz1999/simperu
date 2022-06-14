@@ -22,12 +22,13 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
-                                        <div class="d-flex justify-content-between">
-                                            <span class="h3 font-weight-bold">Daftar Gedung</span>
-                                            <a href="{{ url('/admin-gedung-form') }}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
+                                        <div class="d-flex justify-content-between flex-row-reverse align-content-center">
+                                            <span class="h3 font-weight-bold">Daftar Gedung </span>
+                                            <a href="{{route('gedung.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
                                         </div>
                                         <thead>
                                             <tr>
+                                                <th>No</th>
                                                 <th>Kode</th>
                                                 <th>Nama</th>
                                                 <th>Alamat</th>
@@ -36,46 +37,24 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($gedung as $row)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $row->kode }}</td>
+                                                <td>{{ $row->nama_gedung }}</td>
+                                                <td>{{ $row->alamat }}</td>
+                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px" src="{{ asset('storage/post-image/'.$row->foto) }}" alt="{{ $row->nama_gedung }}"></td>
+                                                <td>
+                                                <form class="d-flex justify-content-center align-items-center" action="{{ route('gedung.destroy',$row->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-info text-white font-weight-bold mx-1 my-1" href="{{ route('gedung.show',$row->id) }}"><i class="fa fa-eye"></i> Detail</a>
+                                                    <a class="btn btn-sm btn-warning text-white font-weight-bold mx-1 my-1" href="{{ route('gedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Ubah</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger text-white font-weight-bold mx-1 my-1"><i class="fa fa-trash"></i> Hapus</button>
+                                                </form>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
