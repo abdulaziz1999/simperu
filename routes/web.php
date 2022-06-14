@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GedungController;
+use App\Http\Controllers\FasilitasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +14,14 @@ use App\Http\Controllers\GedungController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::resource('gedung', GedungController::class);
+Route::resource('fasilitas', FasilitasController::class);
+
+// ROUTE ADMIN
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+// ./ROUTE ADMIN
 
 Route::get('/dashboard', function () {
     //return view('welcome');
@@ -61,12 +65,3 @@ Route::get('/testimonial', function () {
     return view('layouts.testimonial');
 });
 // ./ROUTE LANDING PAGE
-
-// ROUTE ADMIN
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-
-// Route::get('/gedung', function () {
-//     return view('admin-gedung.index');
-// });
