@@ -32,7 +32,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
+<<<<<<< HEAD
                                     <form class="form-valide" action="{{ route('admin-gedung.store') }}" method="post">
+=======
+                                    <form class="form-valide" action="{{ route('gedung.store') }}" method="post">
+>>>>>>> 64c5af523f8bd0e2ded10d2c342848378dc48624
                                     @csrf
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-between">

@@ -12,12 +12,9 @@ class GedungController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-        $gedung = Gedung::all();
-        // return view('gedung.index', compact('gedung'));
-        return view('admin-gedung.index', compact('gedung'));
+    public function index(){
+        $gedung = Gedung::latest()->paginate(5);
+        return view('admin-gedung.index', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -44,10 +41,9 @@ class GedungController extends Controller
             'kode' => 'required',
             'nama_gedung' => 'required',
             'alamat' => 'required',
-            'foto' => 'required',
         ]);
         Gedung::create($request->all());
-        return redirect('/admingedung');
+        return redirect('/gedung')->with('success', 'Data Gedung Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -61,6 +57,7 @@ class GedungController extends Controller
         //
         $gedung = Gedung::find($gedung->id);
         return view('admin-gedung.show', compact('gedung'));
+        return view('admin-gedung.show')->with('gedung', $gedung);
     }
 
     /**
@@ -90,10 +87,9 @@ class GedungController extends Controller
             'kode' => 'required',
             'nama_gedung' => 'required',
             'alamat' => 'required',
-            'foto' => 'required',
         ]);
         $gedung->update($request->all());
-        return redirect('/admingedung');
+        return redirect('/gedung')->with('success', 'Data Gedung Berhasil Diubah');
     }
 
     /**
@@ -106,6 +102,6 @@ class GedungController extends Controller
     {
         //
         $gedung->delete();
-        return redirect('/admingedung');
+        return redirect('/gedung')->with('success', 'Data Gedung Berhasil Dihapus');
     }
 }

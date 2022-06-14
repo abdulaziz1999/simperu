@@ -13,8 +13,22 @@ use App\Http\Controllers\GedungController;
 |
 */
 
-Route::resource('admingedung', GedungController::class);
-// ROUTE LANDING PAGE
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::resource('gedung', GedungController::class);
+
+Route::get('/dashboard', function () {
+    //return view('welcome');
+    return view('layouts_2.home');
+});
+
+Route::get('/', function () {
+    //return view('welcome');
+    return view('welcome');
+});
+
 Route::get('/', function () {
     return view('layouts.index');
 });
