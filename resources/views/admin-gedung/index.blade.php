@@ -24,11 +24,7 @@
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <div class="d-flex justify-content-between">
                                             <span class="h3 font-weight-bold">Daftar Gedung </span>
-<<<<<<< HEAD
-                                            <a href="{{ url('/admin-gedung-form') }}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
-=======
                                             <a href="{{route('gedung.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
->>>>>>> 64c5af523f8bd0e2ded10d2c342848378dc48624
                                         </div>
                                         <thead>
                                             <tr>
@@ -48,15 +44,9 @@
                                                 <td>{{ $row->alamat }}</td>
                                                 <td><img src="{{ asset('storage/'.$row->foto) }}" alt="{{ $row->nama_gedung }}" width="100"></td>
                                                 <td>
-<<<<<<< HEAD
-                                                <form action="{{ route('admingedung.destroy',$row->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-info" href="{{ route('admingedung.show',$row->id) }}"><i class="fa fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-warning" href="{{ route('admingedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Edit</a>
-=======
                                                 <form action="{{ route('gedung.destroy',$row->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-info" href="{{ route('gedung.show',$row->id) }}"><i class="fa fa-eye"></i> Show</a>
                                                     <a class="btn btn-sm btn-warning" href="{{ route('gedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Edit</a>
->>>>>>> 64c5af523f8bd0e2ded10d2c342848378dc48624
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
