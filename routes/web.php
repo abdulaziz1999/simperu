@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\GedungController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// ROUTE LANDING PAGE
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::resource('gedung', GedungController::class);
+
+Route::get('/dashboard', function () {
+    //return view('welcome');
+    return view('layouts_2.home');
+});
+
+Route::get('/', function () {
+    //return view('welcome');
+    return view('welcome');
+});
+
 Route::get('/', function () {
     return view('layouts.index');
 });
@@ -52,11 +69,3 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
-Route::get('/admin-gedung', function () {
-    return view('admin-gedung.index');
-});
-
-Route::get('/admin-gedung-form', function () {
-    return view('admin-gedung.create');
-});
-// ./ROUTE ADMIN
