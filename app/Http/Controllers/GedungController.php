@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gedung;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GedungController extends Controller
 {
@@ -15,8 +16,8 @@ class GedungController extends Controller
     public function index()
     {
         //get all data gedung
-        $gedung = Gedung::latest()->paginate(5);
-        return view('admin-gedung.index', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $gedung = Gedung::all();
+        return view('admin-gedung.index', compact('gedung'))->with('i');
     }
 
     /**
@@ -39,14 +40,24 @@ class GedungController extends Controller
     public function store(Request $request)
     {
         //
+
         $request->validate([
             'kode' => 'required',
             'nama_gedung' => 'required',
-            'foto' => 'required',
+            'foto' => 'required|image|file|max:1024',
             'alamat' => 'required',
         ]);
-        Gedung::create($request->all());
-        return redirect('/gedung')->with('success', 'Data Gedung Baru Berhasil Ditambahkan');
+
+        $data = Gedung::create($request->all());
+        if ($request->hasFile('foto')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
+            $data->foto = $request->file('foto')->getClientOriginalName();
+            $data->save();
+        }
+        return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -58,8 +69,7 @@ class GedungController extends Controller
     public function show(Gedung $gedung)
     {
         //
-        $gedung = Gedung::find($gedung->id);
-        return view('admin-gedung.show')->with('gedung', $gedung);
+        return view('admin-gedung.show', compact('gedung'));
     }
 
     /**
@@ -71,7 +81,7 @@ class GedungController extends Controller
     public function edit(Gedung $gedung)
     {
         //
-        $gedung = Gedung::find($gedung->id);
+        // $gedung = Gedung::find($gedung->id);
         return view('admin-gedung.edit', compact('gedung'));
     }
 
@@ -91,7 +101,7 @@ class GedungController extends Controller
             'alamat' => 'required',
         ]);
         $gedung->update($request->all());
-        return redirect('/gedung')->with('success', 'Data Gedung Berhasil Diubah');
+        return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Diubah');
     }
 
     /**
@@ -102,8 +112,10 @@ class GedungController extends Controller
      */
     public function destroy(Gedung $gedung)
     {
-        //
+        $oldFoto = 'post-image/' . $gedung->foto;
+        Storage::delete($oldFoto);
+
         $gedung->delete();
-        return redirect('/gedung')->with('success', 'Data Gedung Berhasil Dihapus');
+        return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Dihapus');
     }
 }

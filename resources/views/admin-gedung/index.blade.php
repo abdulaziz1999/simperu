@@ -22,12 +22,13 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
-                                        <div class="d-flex justify-content-between">
+                                        <div class="d-flex justify-content-between flex-row-reverse align-content-center">
                                             <span class="h3 font-weight-bold">Daftar Gedung </span>
                                             <a href="{{route('gedung.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
                                         </div>
                                         <thead>
                                             <tr>
+                                                <th>No</th>
                                                 <th>Kode</th>
                                                 <th>Nama</th>
                                                 <th>Alamat</th>
@@ -36,25 +37,24 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- @if (is_array($gedung ?? '') || is_object($gedung ?? '')): -->
-                                            @foreach($gedung as $row):
+                                            @foreach($gedung as $row)
                                             <tr>
+                                                <td>{{ ++$i }}</td>
                                                 <td>{{ $row->kode }}</td>
                                                 <td>{{ $row->nama_gedung }}</td>
                                                 <td>{{ $row->alamat }}</td>
-                                                <td><img src="{{ asset('storage/'.$row->foto) }}" alt="{{ $row->nama_gedung }}" width="100"></td>
+                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px" src="{{ asset('storage/post-image/'.$row->foto) }}" alt="{{ $row->nama_gedung }}"></td>
                                                 <td>
-                                                <form action="{{ route('gedung.destroy',$row->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-info" href="{{ route('gedung.show',$row->id) }}"><i class="fa fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-warning" href="{{ route('gedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Edit</a>
+                                                <form class="d-flex justify-content-center align-items-center" action="{{ route('gedung.destroy',$row->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-info text-white font-weight-bold mx-1 my-1" href="{{ route('gedung.show',$row->id) }}"><i class="fa fa-eye"></i> Detail</a>
+                                                    <a class="btn btn-sm btn-warning text-white font-weight-bold mx-1 my-1" href="{{ route('gedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Ubah</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
-                                            </form>
+                                                    <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger text-white font-weight-bold mx-1 my-1"><i class="fa fa-trash"></i> Hapus</button>
+                                                </form>
                                                 </td>
                                             </tr>
                                             @endforeach
-                                            <!-- @endif -->
                                         </tbody>
                                     </table>
                                 </div>

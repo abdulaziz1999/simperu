@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\GedungController;
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +67,6 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
+// Route::get('/gedung', function () {
+//     return view('admin-gedung.index');
+// });
