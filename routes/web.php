@@ -13,7 +13,7 @@ use App\Http\Controllers\GedungController;
 |
 */
 
-Route::resource('admin-gedung', GedungController::class);
+Route::resource('admingedung', GedungController::class);
 // ROUTE LANDING PAGE
 Route::get('/', function () {
     return view('layouts.index');

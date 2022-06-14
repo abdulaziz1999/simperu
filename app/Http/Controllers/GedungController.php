@@ -47,7 +47,7 @@ class GedungController extends Controller
             'foto' => 'required',
         ]);
         Gedung::create($request->all());
-        return redirect('/admin-gedung');
+        return redirect('/admingedung');
     }
 
     /**
@@ -59,7 +59,7 @@ class GedungController extends Controller
     public function show(Gedung $gedung)
     {
         //
-        $gedung = Gedung::find($gedung->id_gedung);
+        $gedung = Gedung::find($gedung->id);
         return view('admin-gedung.show', compact('gedung'));
     }
 
@@ -72,7 +72,7 @@ class GedungController extends Controller
     public function edit(Gedung $gedung)
     {
         //
-        $gedung = Gedung::find($gedung->id_gedung);
+        $gedung = Gedung::find($gedung->id);
         return view('admin-gedung.edit', compact('gedung'));
     }
 
@@ -93,7 +93,7 @@ class GedungController extends Controller
             'foto' => 'required',
         ]);
         $gedung->update($request->all());
-        return redirect('/admin-gedung');
+        return redirect('/admingedung');
     }
 
     /**
@@ -106,6 +106,6 @@ class GedungController extends Controller
     {
         //
         $gedung->delete();
-        return redirect()->route('admin-gedung.index');
+        return redirect('/admingedung');
     }
 }

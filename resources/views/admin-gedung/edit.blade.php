@@ -32,7 +32,7 @@
                                             <label class="col-lg-2 col-form-label" for="val-kode">Kode <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="val-kode" placeholder="Enter a username..">
+                                                <input type="tel" class="form-control" id="val-kode" name="val-kode" value="" placeholder="Enter a username..">
                                             </div>
                                             <label class="col-lg-2 col-form-label" for="val-kode">Nama <span class="text-danger">*</span>
                                             </label>

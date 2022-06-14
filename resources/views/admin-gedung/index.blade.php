@@ -44,9 +44,9 @@
                                                 <td>{{ $row->alamat }}</td>
                                                 <td><img src="{{ asset('storage/'.$row->foto) }}" alt="{{ $row->nama_gedung }}" width="100"></td>
                                                 <td>
-                                                <form action="{{ route('admin-gedung.destroy',$row->id_gedung) }}" method="POST">
-                                                    <a class="btn btn-sm btn-info" href="{{ route('admin-gedung.show',$row->id_gedung) }}"><i class="fa fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-warning" href="{{ route('admin-gedung.edit',$row->id_gedung) }}"><i class="fa fa-pencil"></i> Edit</a>
+                                                <form action="{{ route('admingedung.destroy',$row->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-info" href="{{ route('admingedung.show',$row->id) }}"><i class="fa fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-warning" href="{{ route('admingedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
