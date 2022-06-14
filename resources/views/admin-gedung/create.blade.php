@@ -35,38 +35,42 @@
                                     <form class="form-valide" action="{{ route('gedung.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                         <div class="form-group row">
-                                            <div class="col-12 d-flex justify-content-end align-content-center">
+                                            <div class="col-12 d-flex justify-content-start align-content-center">
                                                 <span class="h3 font-weight-bold">Tambah Data Gedung</span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-kode">Kode <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="kode" placeholder="Masukan Kode Gedung...">
-                                            </div>
-                                            <label class="col-lg-2 col-form-label" for="val-nama">Nama <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-nama" name="nama_gedung" placeholder="Masukan Nama Gedung...">
-                                            </div>
+                                        </label>
+                                        <div class="col-lg-10">
+                                            <input type="tel" class="form-control input-default" id="val-kode" name="kode" placeholder="Masukan Kode Gedung...">
                                         </div>
+                                        </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-2 col-form-label" for="val-nama">Nama <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-10">
+                                            <input type="tel" class="form-control input-default" id="val-nama" name="nama_gedung" placeholder="Masukan Nama Gedung...">
+                                        </div>
+                                    </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Alamat <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-4">
-                                                <textarea class="form-control" id="val-alamat" name="alamat" rows="5" placeholder="Masukan Alamat Gedung..."></textarea>
-                                            </div>
-                                            <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                                <input class="form-control" type="file" id="foto" name="foto" onchange="previewImage()">
+                                            <div class="col-lg-10">
+                                                <textarea class="form-control input-default" id="val-alamat" name="alamat" rows="5" placeholder="Masukan Alamat Gedung..."></textarea>
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                        <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-4">
+                                            <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
+                                            <input class="form-control input-default" type="file" id="foto" name="foto" onchange="previewImage()">
+                                        </div>
+                                        </div>
                                         <div class="form-group row mt-5">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-success text-white font-weight-bold py-3 px-5">Simpan</button>
+                                            <div class="col-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-md btn-block btn-primary text-white font-weight-bold py-3 px-5">Simpan</button>
                                             </div>
                                         </div>
                                     </form>

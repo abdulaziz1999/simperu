@@ -38,7 +38,6 @@ class GedungController extends Controller
     public function store(Request $request)
     {
         //
-
         $request->validate([
             'kode' => 'required',
             'nama_gedung' => 'required',
@@ -55,7 +54,7 @@ class GedungController extends Controller
             $data->foto = $request->file('foto')->getClientOriginalName();
             $data->save();
         }
-        return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil Ditambahkan');
+        return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil ÷Ditambahkan');
     }
 
     /**
