@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,32 +17,25 @@ use App\Http\Controllers\FasilitasController;
 |
 */
 
+// Route::resource('simperu', SimperuController::class);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
+Route::resource('kategoriRuangan', KategoriRuanganController::class);
 
 // ROUTE ADMIN
 Route::get('/admin', function () {
     return view('admin.index');
 });
 // ./ROUTE ADMIN
-Route::resource('kategoriRuangan', KategoriRuanganController::class);
+
+// Route::get('/', 'SimperuController@index')->name('index');
+
+// Auth::routes();
+// Route::get('/beranda', 'SimperuController@index')->name('index');
 
 Route::get('/dashboard', function () {
     //return view('welcome');
     return view('layouts_2.home');
-});
-
-Route::get('/', function () {
-    //return view('welcome');
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return view('layouts.index');
-});
-
-Route::get('/about', function () {
-    return view('layouts.about');
 });
 
 Route::get('/booking', function () {
@@ -67,8 +62,3 @@ Route::get('/testimonial', function () {
     return view('layouts.testimonial');
 });
 // ./ROUTE LANDING PAGE
-
-// ROUTE ADMIN
-Route::get('/admin', function () {
-    return view('admin.index');
-});
