@@ -10,9 +10,12 @@ class Fasilitas extends Model
     use HasFactory;
     protected $table = 'fasilitas';
 
-    protected $fillable = [
-        'nama_fasilitas',
-        'keterangan',
-        'ruangan_id',
-    ];
+    protected $guarded = ['id'];
+
+    // Relasi many to one
+    // banyak fasilitas dimemiliki satu ruangan
+    public function ruangan()
+    {
+        return $this->belongsTo(Ruangan::class);
+    }
 }

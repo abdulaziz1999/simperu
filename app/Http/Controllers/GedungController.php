@@ -18,7 +18,6 @@ class GedungController extends Controller
         $gedung = Gedung::orderBy('id','desc')->get();
         return view('admin-gedung.index', compact('gedung'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -47,12 +46,13 @@ class GedungController extends Controller
         ]);
 
         $data = Gedung::create($request->all());
-        // dd($data);
+
         if ($request->hasFile('foto')) {
             $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
             $data->foto = $request->file('foto')->getClientOriginalName();
             $data->save();
         }
+
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil ÷Ditambahkan');
     }
 
@@ -64,7 +64,6 @@ class GedungController extends Controller
      */
     public function show(Gedung $gedung)
     {
-        //
         return view('admin-gedung.show', compact('gedung'));
     }
 
@@ -76,8 +75,6 @@ class GedungController extends Controller
      */
     public function edit(Gedung $gedung)
     {
-        //
-        // $gedung = Gedung::find($gedung->id);
         return view('admin-gedung.edit', compact('gedung'));
     }
 
@@ -94,15 +91,18 @@ class GedungController extends Controller
         $request->validate([
             'kode' => 'required',
             'nama_gedung' => 'required',
-            'alamat' => 'required',
+            'foto' => 'required|image|file|max:1024',
+            'alamat' => 'required'
         ]);
-        //edit foto unlink old file
+
+
         if ($request->hasFile('foto')) {
-            Storage::delete('post-image/' . $gedung->foto);
             $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
             $gedung->foto = $request->file('foto')->getClientOriginalName();
-        }        
+        }
+
         $gedung->update($request->all());
+
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Diubah');
     }
 
@@ -118,6 +118,7 @@ class GedungController extends Controller
         Storage::delete($oldFoto);
 
         $gedung->delete();
+
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Dihapus');
     }
 }
