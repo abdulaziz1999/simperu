@@ -96,7 +96,12 @@ class GedungController extends Controller
             'nama_gedung' => 'required',
             'alamat' => 'required',
         ]);
-        //
+        //edit foto unlink old file
+        if ($request->hasFile('foto')) {
+            Storage::delete('post-image/' . $gedung->foto);
+            $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
+            $gedung->foto = $request->file('foto')->getClientOriginalName();
+        }        
         $gedung->update($request->all());
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Diubah');
     }

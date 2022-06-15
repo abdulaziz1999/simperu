@@ -43,7 +43,7 @@
                                             <label class="col-lg-2 col-form-label" for="val-kode">Kode <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-10">
-                                            <input type="tel" class="form-control input-default" id="val-kode" name="kode" placeholder="Masukan Kode Gedung...">
+                                            <input type="number" class="form-control input-default" id="val-kode" name="kode" placeholder="Masukan Kode Gedung...">
                                         </div>
                                         </div>
                                     <div class="form-group row">
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="form-group row mt-5">
                                             <div class="col-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-md btn-block btn-primary text-white font-weight-bold py-3 px-5">Simpan</button>
+                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold py-3 px-5">Simpan</button>
                                             </div>
                                         </div>
                                     </form>

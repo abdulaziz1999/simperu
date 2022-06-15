@@ -55,8 +55,11 @@
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-10">
-                                                <input type="text" class="form-control input-default" id="val-kode" name="foto" value="{{ $gedung->foto }}" placeholder="Enter a username..">
+                                            <div class="col-lg-5">
+                                            <img src="{{asset('storage/post-image/'.$gedung->foto)}}" class="img-preview img-fluid mb-3">
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <input type="file" class="form-control input-default" id="val-kode" name="foto" value="{{ $gedung->foto }}" placeholder="Enter a username..">
                                             </div>
                                         </div>
                                         <div class="form-group row">
