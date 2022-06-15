@@ -14,8 +14,9 @@ class GedungController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $gedung = Gedung::latest()->paginate(5);
-        return view('admin-gedung.index', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
+        //get all data gedung order by id desc
+        $gedung = Gedung::orderBy('id','desc')->get();
+        return view('admin-gedung.index', compact('gedung'));
     }
 
     /**
