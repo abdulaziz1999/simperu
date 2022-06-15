@@ -96,6 +96,7 @@ class GedungController extends Controller
             'nama_gedung' => 'required',
             'alamat' => 'required',
         ]);
+        //
         $gedung->update($request->all());
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Diubah');
     }
