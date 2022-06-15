@@ -14,10 +14,8 @@ class KategoriRuangan extends Model
         'keterangan',
     ];
 
-    // Relasi ane to many
-    // 1 kategoriRuangan memiliki banyak ruangan
-    public function kategoriRuangan()
+    public function ruangan()
     {
-        return $this->hasMany(KategoriRuangan::class);
+        return $this->hasMany(Ruangan::class);
     }
 }

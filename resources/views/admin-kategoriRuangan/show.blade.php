@@ -21,27 +21,34 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="form-validation">
-                                    <form class="form-valide" action="#" method="post">
-                                        <div class="form-group row">
-                                            <div class="col-12 d-flex justify-content-between">
-                                                <span class="h3 font-weight-bold">Detail Data kategori Ruangan</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="val-kode">Nama Kategori<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="val-kode" disabled value="{{ $kategoriRuangan->nama_kategori }}" placeholder="Enter a username..">
-                                            </div>
-                                            <label class="col-lg-2 col-form-label" for="val-kode">Keterangan <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="val-kode" disabled value="{{  $kategoriRuangan->keterangan }}" placeholder="Enter a username..">
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div class="row mb-5">
+                                    <div class="col-12 d-flex justify-content-between flex-row-reverse align-content-center">
+                                        <span class="h4 font-weight-bold">Detail Data kategori Ruangan</span>
+                                        <a href="{{ route('ruangan.index')}}" class="btn btn-lg btn-danger font-weight-bold"><i class="fa fa-arrow-circle-left "></i> Kembali</a>
+                                    </div>
                                 </div>
+                            
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <span class="h4 font-weight-light text-black-50">
+                                            Nama Kategori : 
+                                        </span>
+                                        <span class="h4 font-weight-bold">
+                                            {{ $kategoriRuangan->nama_kategori }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <span class="h4 font-weight-light text-black-50">
+                                            Keterangan :
+                                        </span>
+                                        <span class="h4 font-weight-bold">
+                                            {{ $kategoriRuangan->keterangan}}
+                                        </span>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

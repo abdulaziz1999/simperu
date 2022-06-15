@@ -86,7 +86,8 @@ class FasilitasController extends Controller
      */
     public function edit(Fasilitas $fasilita)
     {
-        return view('admin-fasilitas.edit', compact('fasilita'));
+        $ruangan = Ruangan::all();
+        return view('admin-fasilitas.edit', compact('fasilita', 'ruangan'));
     }
 
     /**
@@ -96,22 +97,22 @@ class FasilitasController extends Controller
      * @param  \App\Models\Fasilitas  $fasilitas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fasilitas $fasilitas)
+    public function update(Request $request, Fasilitas $fasilita)
     {
         //
         $request->validate([
             'nama_fasilitas' => 'required',
-            'foto' => 'required|image|file|max:1024',
+            // 'foto' => 'required|image|file|max:1024',
             'keterangan' => 'required',
             'ruangan_id' => 'required'
         ]);
 
         if ($request->hasFile('foto')) {
             $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
-            $fasilitas->foto = $request->file('foto')->getClientOriginalName();
+            $fasilita->foto = $request->file('foto')->getClientOriginalName();
         }
 
-        $fasilitas->update($request->all());
+        $fasilita->update($request->all());
 
         return redirect()->route('fasilitas.index')->with('success', 'Data fasilitas Berhasil Diubah');
     }

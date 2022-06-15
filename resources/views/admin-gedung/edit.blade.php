@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-primary btn-md btn-block text-white font-weight-bold py-3 px-5">Edit</button>
+                                                <button type="submit" class="btn btn-primary btn-md text-white font-weight-bold">Edit</button>
                                             </div>
                                         </div>
                                     </form>

@@ -43,19 +43,19 @@
                                             <label class="col-lg-2 col-form-label" for="val-kode">Nama Kategori<span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="tel" class="form-control" id="val-kode" name="nama_kategori" placeholder="Nama Kategori">
+                                                <input type="tel" class="form-control input-default" id="val-kode" name="nama_kategori" placeholder="Nama Kategori">
                                             </div>
                                             </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-kode">Keterangan <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="tel" class="form-control" id="val-kode" name="keterangan" placeholder="Keterangan">
+                                                <input type="tel" class="form-control input-default" id="val-kode" name="keterangan" placeholder="Keterangan">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-success text-white font-weight-bold py-3 px-5">Simpan</button>
+                                            <div class="col-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary text-white font-weight-bold py-2 px-4">Simpan</button>
                                             </div>
                                         </div>
                                     </form>

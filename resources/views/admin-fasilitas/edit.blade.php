@@ -32,8 +32,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="{{ route('fasilitas.update') }}" method="post" enctype="multipart/form-data">
+                                    <form class="form-valide" action="{{ route('fasilitas.update',$fasilita->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="id" value="{{$fasilita->id}}">
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-start align-content-center">
                                                 <span class="h3 font-weight-bold">Ubah Data Fasilitas</span>
@@ -43,35 +45,35 @@
                                             <label class="col-lg-2 col-form-label">Nama Fasilitas <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control input-default" name="nama_fasilitas" value="{{ $fasilitas->nama_fasilitas}}">
+                                                <input type="text" class="form-control input-default" name="nama_fasilitas" value="{{ $fasilita->nama_fasilitas}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label">Foto <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-4">
-                                                <img src="{{ asset('storage/post-image/'.$fasilitas->foto) }}" class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
-                                                <input class="form-control input-default" type="file" value="{{ $fasilitas->foto }}" id="foto" name="foto" onchange="previewImage()" >
+                                                <img src="{{ asset('storage/post-image/'.$fasilita->foto) }}" class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                                <input class="form-control input-default" type="file" value="{{ $fasilita->foto }}" id="foto" name="foto" onchange="previewImage()" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label">Keterangan Fasilitas<span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <textarea class="form-control input-default" name="keterangan" rows="5">{{ $fasilitas->keterangan}}</textarea>
+                                                <textarea class="form-control input-default" name="keterangan" rows="5">{{ $fasilita->keterangan}}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label">Ruangan <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                {{-- <select class="form-control form-select" aria-label="Default select example" name="ruangan_id">
-                                                    <option disabled>Pilih Ruangan</option>
-                                                    <option value="">{{ $fasilitas->ruangan_id}}</option>
+                                                <select class="form-control form-select" aria-label="Default select example" name="ruangan_id">
+                                                    <option disabled>Pilih Ruangan </option>
                                                     @foreach ($ruangan as $r)
-                                                        <option value="{{$r->id}}">{{$r->nama_ruangan}}</option>
+                                                        @php $selectedValue = $r->id == $fasilita->ruangan_id ? 'selected' : '' @endphp
+                                                        <option value="{{$r->id}}" {{$selectedValue}} > {{$r->nama_ruangan}}</option>
                                                     @endforeach
-                                                </select> --}}
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-5">
