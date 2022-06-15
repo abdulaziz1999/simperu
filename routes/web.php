@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\RuanganController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,15 +16,17 @@ use App\Http\Controllers\FasilitasController;
 |
 */
 
+Route::resource('kategoriRuangan', KategoriRuanganController::class);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
+Route::resource('ruangan', RuanganController::class);
 
 // ROUTE ADMIN
 Route::get('/admin', function () {
     return view('admin.index');
 });
 // ./ROUTE ADMIN
-Route::resource('kategoriRuangan', KategoriRuanganController::class);
+
 
 Route::get('/dashboard', function () {
     //return view('welcome');

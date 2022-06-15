@@ -13,7 +13,8 @@ class GedungController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         $gedung = Gedung::latest()->paginate(5);
         return view('admin-gedung.index', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

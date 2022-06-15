@@ -17,4 +17,8 @@ class Gedung extends Model
         'alamat',
 
     ];
+    public function ruangan()
+    {
+        return $this->hasMany(Ruangan::class);
+    }
 }

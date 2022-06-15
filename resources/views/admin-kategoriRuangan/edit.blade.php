@@ -46,18 +46,21 @@
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-kode">Nama Kategori<span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="nama_kategori" value="{{ $kategoriRuangan->nama_kategori }}" placeholder="Enter a username..">
-                                            </div>
-                                            <label class="col-lg-2 col-form-label" for="val-kode">Keterangan <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="keterangan" value="{{ $kategoriRuangan->keterangan}}" placeholder="Enter a username..">
+                                            <div class="col-lg-10">
+                                                <input type="tel" class="form-control" id="val-kode" name="nama_kategori" value="{{ $kategoriRuangan->nama_kategori }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-success text-white font-weight-bold py-3 px-5">Simpan</button>
+                                            <label class="col-lg-2 col-form-label" for="val-kode">Keterangan <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-10">
+                                                <input type="tel" class="form-control" id="val-kode" name="keterangan" value="{{ $kategoriRuangan->keterangan}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary text-white font-weight-bold py-2 px-4">Simpan</button>
                                             </div>
                                         </div>
                                     </form>
