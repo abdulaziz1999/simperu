@@ -17,111 +17,27 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-4">
-                    <div class="col-md-4 wow zoomIn">
+                    @if (count($gedung)>0)
+                        @foreach ($gedung as $g)
+                    <div class="col-md-6 col-lg-4 wow zoomIn hvr-grow">
                             <div class="card p-0 shadow border rounded-3 h-100">
+                                <a href="#">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('storage/post-image/gedung_1.jpg')}}" alt="">
+                                    <img class="img-fluid rounded-3" src="{{ asset('storage/post-image/'.$g->foto)}}" alt="{{$g->nama_gedung}}">
                                 </div>
                                 <div class="card-body">
                                     <h4 class="font-weight-bold mb-3">
-                                        Lorem, ipsum dolor.
+                                        {{ $g->nama_gedung }}
                                     </h4>
                                     <p class="text-body">
-                                        Lorem ipsum dolor sit.
+                                        {{ $g->alamat }}
                                     </p>
                                 </div>
+                                </a>
                             </div>
                         </div>
-                    <div class="col-md-4 wow zoomIn">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('storage/post-image/gedung_2.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="font-weight-bold mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h4>
-                                    <p class="text-body">
-                                        Lorem ipsum dolor sit.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-4 wow zoomIn">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('storage/post-image/gedung_3.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="font-weight-bold mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h4>
-                                    <p class="text-body">
-                                        Lorem ipsum dolor sit.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-4 wow zoomIn">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="font-weight-bold mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h4>
-                                    <p class="text-body">
-                                        Lorem ipsum dolor sit.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-4 wow zoomIn">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="font-weight-bold mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h4>
-                                    <p class="text-body">
-                                        Lorem ipsum dolor sit.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-4 wow zoomIn">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="font-weight-bold mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h4>
-                                    <p class="text-body">
-                                        Lorem ipsum dolor sit.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-4 wow zoomIn">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="font-weight-bold mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h4>
-                                    <p class="text-body">
-                                        Lorem ipsum dolor sit.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

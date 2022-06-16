@@ -95,7 +95,7 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <button class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill"><i class="fa fa-search"></i>  Cari Ruangan</button>
+                            <button class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill hvr-icon-back"><i class="fa fa-search hvr-icon"></i>  Cari Ruangan</button>
                         </div>
                     </div>
                 </div>
@@ -108,99 +108,96 @@
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-center text-primary text-uppercase">
-                        PENYEWAAN RUANG KERJA SATU-SATUNYA
+                        CARI RUANGAN SESUAI KEBUTUHANMU
                     </h6>
-                    <h1 class="mb-5"><span class="text-primary">Ruang Kerja</span> Kami</h1>
+                    <h1 class="mb-5"><span class="text-primary">Ruangan</span> Kami</h1>
                 </div>
 
-                <div class="row border g-4">
-                    {{-- <div class="d-flex justify-content-around"> --}}
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
+                <div class="row g-4">
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border rounded-3 h-100">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
+                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_1.jpg')}}" alt="">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
+                                        Hot Desk
                                     </h3>
                                     <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
+                                        Meja kerja bersama yang dapat disewa untuk keperluan pribadi dan dapat dipesan per 5 jam, harian, bulanan, atau bahkan tahunan.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border rounded-3 h-100">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-2.jpg')}}" alt="">
+                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_2.jpg')}}" alt="">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
+                                        Shared Desk.
                                     </h3>
                                     <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
+                                        Shared desk merupakan tempat kerja berbagi di mana satu workstation dapat ditempati oleh lebih dari satu orang. Nikmati efektifitas bekerja dalam kelompok dan tim anda lewat kolaborasi di shared desk yang dapat disewa bulanan.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border rounded-3 h-100">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-3.jpg')}}" alt="">
+                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_3.jpg')}}" alt="">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
+                                       Meeting Room.
                                     </h3>
                                     <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
+                                       Ruang meeting kami dapat digunakan untuk bertemu dan berdiskusi dengan kolega anda. Lokasinya menyebar di Jakarta dan Tangerang. Dapatkan berbagai pilihan ruangan sesuai dengan jumlah peserta meeting.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border rounded-3 h-100">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-3.jpg')}}" alt="">
+                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_4.jpg')}}" alt="">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
+                                        Private Office.
                                     </h3>
                                     <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
+                                        Untuk kebutuhan ruang kerja dengan privasi, Anda bisa menyewa ruang kantor pribadi atau private office. Temukan harga terbaik untuk kantor Anda sesuai dengan kapasitas yang dibutuhkan, di lokasi paling nyaman untuk anda dan team, yang dapat dipesan harian maupun bulanan.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border rounded-3 h-100">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-2.jpg')}}" alt="">
+                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_5.jpg')}}" alt="">
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h3>
+                                    <h3 class="font-weight-bold text-center mb-3">Event Space</h3>
                                     <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
+                                        Manfaatkan ruang serbaguna kami untuk berbagai acara kantor ataupun organisasi anda. Service ini dapat dipesan berikut dengan makan siang dan coffee break.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border rounded-3 h-100">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
+                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_6.jpg')}}" alt="">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
+                                        Training Space.
                                     </h3>
                                     <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
+                                        Sewa ruang co-training kami untuk pelatihan dan webinar dengan fasilitas terbaik sangat cocok bagi Anda yang menjadi host webinar. Event dan acara Anda otomatis akan dipromosikan di aplikasi dan media sosial kami.
                                     </p>
                                 </div>
                             </div>
@@ -216,11 +213,10 @@
             <div class="container">
                 <div class="col-md-12 bg-dark d-flex align-items-center">
                     <div class="p-5 m-5">
-                        <h6 class="section-title text-start text-white text-uppercase mb-3">Luxury Living</h6>
-                        <h1 class="text-white mb-4">Discover A Brand Luxurious Hotel</h1>
-                        <p class="text-white mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Our Rooms</a>
-                        <a href="" class="btn btn-light py-md-3 px-md-5">Book A Room</a>
+                        <h6 class="section-title text-start text-white text-uppercase mb-3">Quote</h6>
+                        <h1 class="text-white mb-4">
+                            <span class="font-weight-bold display-1">"</span>Saudara tidak harus selalu berbicara satu sama lain- mereka bisa duduk di sebuah ruangan dan merasa nyaman sepenuhnya satu sama lain.</h1>
+                        <p class="text-white mb-4 text-end">- Leonardo Dicaprio</p>
                     </div>
                 </div>
             </div>

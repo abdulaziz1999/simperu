@@ -5,6 +5,7 @@ use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\BerandaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,10 @@ Route::resource('kategoriRuangan', KategoriRuanganController::class);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
 Route::resource('ruangan', RuanganController::class);
+Route::get('/', [BerandaController::class, 'index']);
+Route::get('/simperu', [BerandaController::class, 'index']);
+Route::get('/beranda', [BerandaController::class, 'index']);
+Route::get('/simperu/gedung', [BerandaController::class, 'gedung']);
 
 // ROUTE ADMIN
 Route::get('/admin', function () {

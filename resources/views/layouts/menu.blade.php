@@ -17,17 +17,17 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{ url('/simperu') }}" class="nav-item nav-link active">Beranda</a>
-                                <a href="{{ url('/simperu/gedung') }}" class="nav-item nav-link">Gedung</a>
+                                {{-- <a href="{{ url('/simperu/gedung') }}" class="nav-item nav-link">Gedung</a> --}}
                                 {{-- <a href="{{ url('/service') }}" class="nav-item nav-link">Ruangan</a> --}}
                                 {{-- <a href="{{ url('/room') }}" class="nav-item nav-link">Ruangan</a> --}}
-                                {{-- <div class="nav-item dropdown">
-                                    <a href="{{ url('/pages') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                                <div class="nav-item dropdown">
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Properti</a>
                                     <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{ url('/booking') }}" class="dropdown-item">Booking</a>
-                                        <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a>
-                                        <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a>
+                                        <a href="{{ url('/simperu/gedung') }}" class="dropdown-item">Daftar Gedung</a>
+                                        {{-- <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a> --}}
+                                        {{-- <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a> --}}
                                     </div>
-                                </div> --}}
+                                </div>
                                 <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
                             </div>
                             <a href="{{ url('/admin') }}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Masuk<i class="fa fa-arrow-right ms-3"></i></a>

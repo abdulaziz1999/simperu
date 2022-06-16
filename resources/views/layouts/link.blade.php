@@ -15,3 +15,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {{-- hover-third-part --}}
+    <link href="{{ asset('css/hover.css') }}" rel="stylesheet">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css/>

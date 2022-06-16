@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Simperu;
+use App\Models\Beranda;
 use Illuminate\Http\Request;
 
-class SimperuController extends Controller
+class BerandaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,18 @@ class SimperuController extends Controller
      */
     public function index()
     {
-        return view('layouts.index');
+        //
+        $beranda = Beranda::all();
+        // dd($beranda);
+        return view('layouts.index', compact('beranda'));
     }
 
     public function gedung()
     {
-        $simperu = Simperu::all();
-        return view('layouts.gedung', compact('simperu'));
+        //
+        $gedung = Beranda::all();
+        // dd($beranda);
+        return view('layouts.gedung', compact('gedung'));
     }
 
     /**
@@ -47,10 +52,10 @@ class SimperuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Simperu  $simperu
+     * @param  \App\Models\Beranda  $beranda
      * @return \Illuminate\Http\Response
      */
-    public function show(Simperu $simperu)
+    public function show(Beranda $beranda)
     {
         //
     }
@@ -58,10 +63,10 @@ class SimperuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Simperu  $simperu
+     * @param  \App\Models\Beranda  $beranda
      * @return \Illuminate\Http\Response
      */
-    public function edit(Simperu $simperu)
+    public function edit(Beranda $beranda)
     {
         //
     }
@@ -70,10 +75,10 @@ class SimperuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Simperu  $simperu
+     * @param  \App\Models\Beranda  $beranda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Simperu $simperu)
+    public function update(Request $request, Beranda $beranda)
     {
         //
     }
@@ -81,10 +86,10 @@ class SimperuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Simperu  $simperu
+     * @param  \App\Models\Beranda  $beranda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Simperu $simperu)
+    public function destroy(Beranda $beranda)
     {
         //
     }
