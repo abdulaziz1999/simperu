@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
-use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\RuanganController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +16,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::resource('simperu', SimperuController::class);
+Route::resource('kategoriRuangan', KategoriRuanganController::class);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
-Route::resource('kategoriRuangan', KategoriRuanganController::class);
+Route::resource('ruangan', RuanganController::class);
 
 // ROUTE ADMIN
 Route::get('/admin', function () {
@@ -28,10 +27,6 @@ Route::get('/admin', function () {
 });
 // ./ROUTE ADMIN
 
-// Route::get('/', 'SimperuController@index')->name('index');
-
-// Auth::routes();
-// Route::get('/beranda', 'SimperuController@index')->name('index');
 
 Route::get('/dashboard', function () {
     //return view('welcome');

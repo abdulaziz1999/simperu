@@ -20,4 +20,9 @@ class KategoriRuangan extends Model
     {
         return $this->hasMany(KategoriRuangan::class);
     }
+
+    public function ruangan()
+    {
+        return $this->hasMany(Ruangan::class);
+    }
 }
