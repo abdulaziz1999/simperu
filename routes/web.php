@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
-use Illuminate\Support\Facades\Auth;
-
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\SimperuController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +31,9 @@ Route::get('/admin', function () {
 // ./ROUTE ADMIN
 
 // Route::get('/', 'SimperuController@index')->name('index');
+Route::get('/', 'App\Http\Controllers\SimperuController@index');
+Route::get('/viewGedung', 'App\Http\Controllers\SimperuController@gedung');
+
 
 // Auth::routes();
 // Route::get('/beranda', 'SimperuController@index')->name('index');

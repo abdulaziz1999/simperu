@@ -51,8 +51,7 @@ class RuanganController extends Controller
             'foto1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required',
             'harga' => 'required|numeric',
-
-
+            'keterangan' => 'text',
         ]);
 
         $input = $request->all();
@@ -92,8 +91,10 @@ class RuanganController extends Controller
      */
     public function edit(Ruangan $ruangan)
     {
+        $kategoriRuangan = KategoriRuangan::all();
+        $gedung = Gedung::all();
         $ruangan = Ruangan::find($ruangan->id);
-        return view('admin-ruangan.edit', compact('ruangan'));
+        return view('admin-ruangan.edit', compact('ruangan', 'kategoriRuangan', 'gedung'));
     }
 
     /**
@@ -114,9 +115,11 @@ class RuanganController extends Controller
             'foto1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required',
             'harga' => 'required|numeric',
+        //     'keterangan' => 'text',
         ]);
         $ruangan->update($request->all());
-        return redirect('/ruangan')->with('success', 'Data Ruangan Berhasil Diubah');
+        dd($ruangan);
+        // return redirect('/ruangan')->with('success', 'Data Ruangan Berhasil Diubah');
     }
 
     /**

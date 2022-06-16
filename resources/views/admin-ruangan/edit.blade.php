@@ -47,7 +47,8 @@
                                                 <select class="form-control" name="kategori_ruangan_id">
                                                     <option value="">- Pilih Kategori Ruangan -</option>
                                                     @foreach($kategoriRuangan as $kat)
-                                                    <option value="{{$kat->id}}">{{$kat->nama_kategori}}</option>
+                                                    @php $selectedKat = $kat->id == $ruangan->kategori_ruangan_id ? 'selected' : '' @endphp
+                                                    <option value="{{$kat->id}}" {{ $selectedKat }}>{{$kat->nama_kategori}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -59,7 +60,8 @@
                                                 <select class="form-control" name="gedung_id">
                                                     <option value="">- Pilih Gedung -</option>
                                                     @foreach($gedung as $g)
-                                                    <option value="{{$g->id}}" selected="{{$gedung->}}">{{$g->nama_gedung}}</option>
+                                                    @php $selectedG = $g->id == $ruangan->gedung_id ? 'selected' : '' @endphp
+                                                    <option value="{{$g->id}}" {{ $selectedG }} >{{$g->nama_gedung}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -84,8 +86,16 @@
                                         <div class="col-lg-10">
                                             <select class="form-control" name="status">
                                                 <option value="">- Pilih Status -</option>
+                                                @php if($ruangan->status == 'Tersedia'): @endphp
+                                                <option value="Tersedia" selected>Tersedia</option>
+                                                <option value="Dipinjam"> Dipinjam</option>
+                                                @php elseif($ruangan->status == 'Dipinjam'): @endphp
+                                                <option value="Tersedia">Tersedia</option>
+                                                <option value="Dipinjam" selected>Dipinjam</option>
+                                                @php else: @endphp
                                                 <option value="Tersedia">Tersedia</option>
                                                 <option value="Dipinjam">Dipinjam</option>
+                                                @php endif; @endphp
                                             </select>
                                         </div>
                                     </div>
