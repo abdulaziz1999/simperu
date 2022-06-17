@@ -48,19 +48,22 @@ class RuanganController extends Controller
             'gedung_id' => 'required',
             'kapasitas' => 'required|numeric',
             'lantai' => 'required|numeric',
-            'foto1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required',
             'harga' => 'required|numeric',
-            'keterangan' => 'text',
         ]);
 
         $input = $request->all();
 
-        if ($image = $request->file('foto1')) {
+        if ($image = $request->file('foto1', 'foto2', 'foto3')) {
             $destinationPath = 'img/ruangan/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['foto1'] = "$profileImage";
+            $input['foto2'] = "$profileImage";
+            $input['foto3'] = "$profileImage";
         }
 
         Ruangan::create($input);
@@ -112,14 +115,30 @@ class RuanganController extends Controller
             'gedung_id' => 'required',
             'kapasitas' => 'required|numeric',
             'lantai' => 'required|numeric',
-            'foto1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required',
             'harga' => 'required|numeric',
-        //     'keterangan' => 'text',
         ]);
-        $ruangan->update($request->all());
-        dd($ruangan);
-        // return redirect('/ruangan')->with('success', 'Data Ruangan Berhasil Diubah');
+
+        $input = $request->all();
+
+        if ($image = $request->file('foto1', 'foto2', 'foto3')) {
+            $destinationPath = 'img/ruangan/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['foto1'] = "$profileImage";
+            $input['foto2'] = "$profileImage";
+            $input['foto3'] = "$profileImage";
+        } else {
+            unset($input['foto1']);
+            unset($input['foto2']);
+            unset($input['foto3']);
+        }
+
+        $ruangan->update($input);
+        return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Diubah');
     }
 
     /**
@@ -131,6 +150,6 @@ class RuanganController extends Controller
     public function destroy(Ruangan $ruangan)
     {
         $ruangan->delete();
-        return redirect('/ruangan')->with('success', 'Data Ruangan Berhasil Dihapus');
+        return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Dihapus');
     }
 }

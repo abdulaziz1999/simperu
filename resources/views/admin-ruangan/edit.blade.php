@@ -22,9 +22,22 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form  action="{{route('ruangan.update',$ruangan->id)}}" method="post" autocomplete="off">
+
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                    <form  action="{{route('ruangan.update',$ruangan->id)}}" method="post" enctype="multipart/form-data" autocomplete="off">
                                     @csrf
                                     @method('PUT')
+
                                     <input type="hidden" name="id" value="{{$ruangan->id}}">
 
                                         <div class="form-group row">
@@ -118,7 +131,7 @@
                                         </label>
                                         <div class="col-lg-4">
                                             <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                            <input class="form-control input-default" type="file" name="foto1" onchange="previewImage()">
+                                            <input class="form-control input-default" type="file" name="foto1" onchange="previewImage()"> <img src="/img/ruangan/{{ $ruangan->foto1 }}" width="300px">
                                         </div>
                                         </div>
                                         <div class="form-group row">
@@ -126,7 +139,7 @@
                                             </label>
                                             <div class="col-lg-4">
                                                 <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                                <input class="form-control input-default" type="file" name="foto2" onchange="previewImage()">
+                                                <input class="form-control input-default" type="file" name="foto2" onchange="previewImage()"><img src="/img/ruangan/{{ $ruangan->foto2 }}" width="300px">
                                             </div>
                                             </div>
                                             <div class="form-group row">
@@ -134,7 +147,7 @@
                                                 </label>
                                                 <div class="col-lg-4">
                                                     <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                                    <input class="form-control input-default" type="file" name="foto3" onchange="previewImage()">
+                                                    <input class="form-control input-default" type="file" name="foto3" onchange="previewImage()"><img src="/img/ruangan/{{ $ruangan->foto3 }}" width="300px">
                                                 </div>
                                                 </div>
 
