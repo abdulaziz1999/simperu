@@ -144,6 +144,11 @@
     background: rgba(15, 23, 43, .7);
 }
 
+.page-header-inner-gedung {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
 .breadcrumb-item+.breadcrumb-item::before {
     color: var(--light);
 }
@@ -489,4 +494,16 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+/* custom */
+.spesial-list {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    list-style-type: none;
+    list-style-image: url('../img/icon-ceklis.png');
+    list-style-position: inside;
+    font-size: 1.5rem;
+
 }

@@ -1,9 +1,4 @@
-{{-- 
-    Catatan : 
-    - Masih ada yang belum terlink
-    --}}
-<!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer wow fadeIn mt-5" data-wow-delay="0.1s">
+        <div class="container-fluid bg-dark text-light footer wow fadeIn mt-1" data-wow-delay="0.1s">
             <div class="container pb-5">
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-4">
@@ -48,8 +43,7 @@
             <div class="container">
                 <div class="copyright">
                     <div class="row">
-                        <div class="col-12 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="{{ url('/') }}">SIMPERU</a>, All Right Reserved. 
+                        <div class="col-12 text-center mb-3 mb-md-0">Develop by team <a class="border-bottom text-decoration-none" href="{{ url('/') }}">SIMPERU</a> with 💖
                         </div>
                     </div>
                 </div>
@@ -59,4 +53,4 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fas fa-arrow-up"></i></a>

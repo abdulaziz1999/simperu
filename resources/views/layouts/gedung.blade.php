@@ -2,10 +2,10 @@
 @section('content')
             <!-- Page Header Start -->
         <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ asset('img/carousel-1.jpg') }});">
-            <div class="container-fluid page-header-inner py-5">
+            <div class="container-fluid page-header-inner-gedung py-5">
                 <div class="container text-center pb-5">
-                    <h1 class="display-3 text-white mb-5 animated slideInDown">Gedung</h1>
-                    <p class=" text-white-50 px-5">
+                    <h1 class="display-3 mb-5 animated slideInDown text-dark">Gedung</h1>
+                    <p class="text-secondary px-5">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate atque molestias quod repudiandae asperiores inventore aspernatur, ducimus eos quas aperiam odit! Vitae consequuntur, ea ratione, deleniti dignissimos eaque officia illo vero nemo officiis incidunt? In provident eveniet, optio labore veritatis nobis pariatur laborum cumque. Magnam ipsam dolor ab ad suscipit, sunt quasi minus aspernatur quam dolore, odit aut, non mollitia. Quos laboriosam vel voluptas qui minima adipisci, laborum assumenda vero sapiente facilis nobis excepturi distinctio aliquam quas necessitatibus, dignissimos ipsum esse laudantium fugit asperiores architecto quisquam. Officia rerum reprehenderit labore possimus quidem placeat explicabo totam, unde laborum nulla earum nostrum!
                     </p>
                 </div>
@@ -19,7 +19,7 @@
                 <div class="row g-4">
                     @if (count($gedung)>0)
                         @foreach ($gedung as $g)
-                    <div class="col-md-6 col-lg-4 wow zoomIn hvr-grow">
+                    <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
                             <div class="card p-0 shadow border rounded-3 h-100">
                                 <a href="#">
                                 <div class="card-header p-0 border-0">

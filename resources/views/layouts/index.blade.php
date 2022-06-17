@@ -75,18 +75,22 @@
                                     <label>Lokasi</label>
                                     <select class="form-select form-select-lg rounded-3" aria-placeholder="Cari Tempat..">
                                         <option selected disabled>Pilih Lokasi</option>
-                                        <option value="1">Adult 1</option>
-                                        <option value="2">Adult 2</option>
-                                        <option value="3">Adult 3</option>
+                                        @if (count($gedung)>0)
+                                            @foreach ($gedung as $g)
+                                        <option value="{{$g->id}}">{{$g->nama_gedung}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Kategori</label>
                                     <select class="form-select form-select-lg rounded-3">
                                         <option selected disabled>Pilih Kategori</option>
-                                        <option value="1">Child 1</option>
-                                        <option value="2">Child 2</option>
-                                        <option value="3">Child 3</option>
+                                        @if (count($kategoriRuangan)>0)
+                                            @foreach ($kategoriRuangan as $kr)
+                                        <option value="{{$kr->id}}">{{$kr->nama_kategori}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -114,109 +118,46 @@
                 </div>
 
                 <div class="row g-4">
+                    @if (count($kategoriRuangan)>0)
+                        @foreach ($kategoriRuangan as $kr)
                         <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_1.jpg')}}" alt="">
+                            <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
+                                <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
+                                    <img class="img-fluid w-100" src="{{ asset('img/fasilitas_'.++$i.'.jpg')}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        Hot Desk
+                                        {{$kr->nama_kategori}}
                                     </h3>
                                     <p class="text-body text-center">
-                                        Meja kerja bersama yang dapat disewa untuk keperluan pribadi dan dapat dipesan per 5 jam, harian, bulanan, atau bahkan tahunan.
+                                        {{ $kr->keterangan }}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_2.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Shared Desk.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Shared desk merupakan tempat kerja berbagi di mana satu workstation dapat ditempati oleh lebih dari satu orang. Nikmati efektifitas bekerja dalam kelompok dan tim anda lewat kolaborasi di shared desk yang dapat disewa bulanan.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_3.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                       Meeting Room.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                       Ruang meeting kami dapat digunakan untuk bertemu dan berdiskusi dengan kolega anda. Lokasinya menyebar di Jakarta dan Tangerang. Dapatkan berbagai pilihan ruangan sesuai dengan jumlah peserta meeting.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_4.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Private Office.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Untuk kebutuhan ruang kerja dengan privasi, Anda bisa menyewa ruang kantor pribadi atau private office. Temukan harga terbaik untuk kantor Anda sesuai dengan kapasitas yang dibutuhkan, di lokasi paling nyaman untuk anda dan team, yang dapat dipesan harian maupun bulanan.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_5.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">Event Space</h3>
-                                    <p class="text-body text-center">
-                                        Manfaatkan ruang serbaguna kami untuk berbagai acara kantor ataupun organisasi anda. Service ini dapat dipesan berikut dengan makan siang dan coffee break.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3 w-100" src="{{ asset('img/fasilitas_6.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Training Space.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Sewa ruang co-training kami untuk pelatihan dan webinar dengan fasilitas terbaik sangat cocok bagi Anda yang menjadi host webinar. Event dan acara Anda otomatis akan dipromosikan di aplikasi dan media sosial kami.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                    @endif
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Room End -->
+        </div
+            <!-- Room End -->
 
 
         <!-- Fasilitas Start -->
-        <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+        <div class="container-xxl testimonial py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" style="margin-bottom: 90px;">
             <div class="container">
                 <div class="col-md-12 bg-dark d-flex align-items-center">
-                    <div class="p-5 m-5">
+                    <div class="m-2 m-sm-5">
                         <h6 class="section-title text-start text-white text-uppercase mb-3">Quote</h6>
-                        <h1 class="text-white mb-4">
-                            <span class="font-weight-bold display-1">"</span>Saudara tidak harus selalu berbicara satu sama lain- mereka bisa duduk di sebuah ruangan dan merasa nyaman sepenuhnya satu sama lain.</h1>
-                        <p class="text-white mb-4 text-end">- Leonardo Dicaprio</p>
+                        <div class="d-flex text-white">
+                            <div class="font-weight-bold display-1 pe-3">"</div>
+                            <div>
+                                <h1 class="text-white mb-4 text-center">Saudara tidak harus selalu berbicara satu sama lain- mereka bisa duduk di sebuah ruangan dan merasa nyaman sepenuhnya satu sama lain.</h1>
+                                <p class="text-white mb-4 text-end">- Leonardo Dicaprio</p>
+                            </div>
+                            <div class="font-weight-bold display-1 ps-3">"</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,140 +169,52 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
-                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
+                    <h6 class="section-title text-center text-primary text-uppercase">Fasilitas yang kami tawarkan</h6>
+                    <h1 class="mb-5"><span class="text-primary">Fasilitas</span> Kami</h1>
                 </div>
                 <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-hotel fa-2x text-primary"></i>
+                    @if (count($fasilitasGroup)> 0 )
+                        @foreach ($fasilitasGroup as $f)
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="service-item bg-dark hvr-float shadow w-100 h-100" href="" style="border-radius: 1rem">
+                                <div class="service-icon bg-transparent p-1">
+                                    <div class="rounded d-flex align-items-center justify-content-center">
+                                        <i class="fa fa-wifi fa-2x text-primary"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <h5 class="mb-3">Rooms & Appartment</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-utensils fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Food & Restaurant</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-spa fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Spa & Fitness</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-swimmer fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Sports & Gaming</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-glass-cheers fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Event & Party</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-dumbbell fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">GYM & Yoga</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
+                                <h5 class="text-white mb-3">{{$f->nama_fasilitas}}</h5>
+                                <p class="text-white mb-0">{{$f->keterangan}}</p>
+                            </a>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
         <!-- Service End -->
-
-
-        <!-- Testimonial Start -->
-        {{-- <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="owl-carousel testimonial-carousel py-5">
-                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-1.jpg') }}" style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6 class="fw-bold mb-1">Client Name</h6>
-                                <small>Profession</small>
-                            </div>
-                        </div>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                    </div>
-                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}" style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6 class="fw-bold mb-1">Client Name</h6>
-                                <small>Profession</small>
-                            </div>
-                        </div>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                    </div>
-                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-3.jpg') }}" style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6 class="fw-bold mb-1">Client Name</h6>
-                                <small>Profession</small>
-                            </div>
-                        </div>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <!-- Testimonial End -->
-
-
         <!-- Team Start -->
-        <div class="container-xxl py-5">
+        <div class="container-xxl pt-5 pb-0 mb-0">
             <div class="container">
                 <div class="row g-4">
-                    <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center">
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h6 class="section-title text-center text-primary text-uppercase">Komintas Tim</h6>
-                            <h1 class="mb-5">Apa kata mereka tentang <span class="text-primary text-uppercase">Simperu ?</span></h1>
-                            <p class="text-body">
-                                Kami benci spam! Kami memastikan hanya membagikan informasi terkini tentang Barang Bagus terkait dengan tren di dunia kerja dan komunitas aktivitas sebagai Onyva Member.
-                            </p>
+                            <h6 class="section-title text-center text-primary text-uppercase">Mengapa memilh kami</h6>
+                            <h1 class="mb-5">Keunggulan <span class="text-primary text-uppercase">Simperu</span></h1>
+                            <ul class="spesial-list">
+                                <li>
+                                    Kehidupan yang terinspirasi hotel
+                                </li>
+                                <li>
+                                    Fasilitas dan layanan terintegrasi
+                                </li>
+                                <li>
+                                    Kontrak dan pembayaran yang fleksibel
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-md-6 d-flex">
-                        <img class="img-fluid w-100" src="{{ asset('img/team-1.jpg')}}" alt="">
+                    <div class="col-lg-6 d-flex">
+                        <img class="img-fluid w-100" src="{{ asset('img/team-1.png')}}" alt="">
                     </div>
                 </div>
             </div>

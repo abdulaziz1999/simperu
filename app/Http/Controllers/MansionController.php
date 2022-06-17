@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beranda;
+use App\Models\Gedung;
 use Illuminate\Http\Request;
 
-class BerandaController extends Controller
+class MansionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +14,8 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        //
-        $beranda = Beranda::all();
-        // dd($beranda);
-        return view('layouts.index', compact('beranda'));
-    }
-
-    public function gedung()
-    {
-        //
-        $gedung = Beranda::all();
-        // dd($beranda);
-        return view('layouts.gedung', compact('gedung'));
+        $gedung = Gedung::latest()->paginate(6);
+        return view('layouts.gedung', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -52,45 +42,45 @@ class BerandaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Beranda  $beranda
+     * @param  \App\Models\Mansion  $mansion
      * @return \Illuminate\Http\Response
      */
-    public function show(Beranda $beranda)
-    {
-        //
-    }
+    // public function show(Mansion $mansion)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Beranda  $beranda
+     * @param  \App\Models\Mansion  $mansion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Beranda $beranda)
-    {
-        //
-    }
+    // public function edit(Mansion $mansion)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Beranda  $beranda
+     * @param  \App\Models\Mansion  $mansion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Beranda $beranda)
-    {
-        //
-    }
+    // public function update(Request $request, Mansion $mansion)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Beranda  $beranda
+     * @param  \App\Models\Mansion  $mansion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Beranda $beranda)
-    {
-        //
-    }
+    // public function destroy(Mansion $mansion)
+    // {
+    //     //
+    // }
 }

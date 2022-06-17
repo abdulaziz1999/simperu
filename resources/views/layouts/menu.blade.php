@@ -2,13 +2,13 @@
         <div class="container-fluid bg-dark px-0">
             <div class="row gx-0">
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
-                    <a href="{{ url('/simperu') }}" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <a href="{{ url('/') }}" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
                         <h1 class="m-0 text-primary text-uppercase">Simperu</h1>
                     </a>
                 </div>
                 <div class="col-lg-9">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-                        <a href="{{ url('/simperu') }}" class="navbar-brand d-block d-lg-none">
+                        <a href="{{ url('/') }}" class="navbar-brand d-block d-lg-none">
                             <h1 class="m-0 text-primary text-uppercase">Simperu</h1>
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -16,15 +16,14 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="{{ url('/simperu') }}" class="nav-item nav-link active">Beranda</a>
-                                {{-- <a href="{{ url('/simperu/gedung') }}" class="nav-item nav-link">Gedung</a> --}}
+                                <a href="{{ route('mansion.index') }}" class="nav-item nav-link">Mansion</a>
                                 {{-- <a href="{{ url('/service') }}" class="nav-item nav-link">Ruangan</a> --}}
                                 {{-- <a href="{{ url('/room') }}" class="nav-item nav-link">Ruangan</a> --}}
                                 <div class="nav-item dropdown">
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Properti</a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         <a href="{{ url('/simperu/gedung') }}" class="dropdown-item">Daftar Gedung</a>
-                                        {{-- <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a> --}}
+                                        <a href="{{ url('/simperu/ruangan') }}" class="dropdown-item">Daftar Ruangan</a>
                                         {{-- <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a> --}}
                                     </div>
                                 </div>
