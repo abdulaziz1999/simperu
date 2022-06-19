@@ -35,9 +35,15 @@ Route::get('/admin', function () {
 // ./ROUTE ADMIN
 
 
-Route::get('/dashboard', function () {
-    //return view('welcome');
-    return view('layouts_2.home');
+// ./ROUTE LANDING PAGE
+Route::get('/alur-pemilihan-ruangan-1', function () {
+    return view('mansion.page2');
+});
+Route::get('/alur-pemilihan-ruangan-2', function () {
+    return view('mansion.page3');
+});
+Route::get('/alur-checkout-1', function () {
+    return view('check-out.alur-checkout-1');
 });
 
 Route::get('/booking', function () {

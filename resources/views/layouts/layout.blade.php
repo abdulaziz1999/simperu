@@ -7,7 +7,7 @@
     @include('layouts.link')
 </head>
 
-<body>
+<body class="bg-white">
     <div class="container-xxl bg-white p-0">
         @include('layouts.menu')
         @yield('content')

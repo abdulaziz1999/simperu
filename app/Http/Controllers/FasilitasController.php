@@ -80,7 +80,6 @@ class FasilitasController extends Controller
         // Disini saya mengganti 'fasilitas' dengan 'fasilita'
         // Untuk mengetahuinya bisa me-list route dengan command 
         // php artisan route:list
-        // $ruangan = Ruangan::all();
         return view('admin-fasilitas.show', compact('fasilita'));
     }
 

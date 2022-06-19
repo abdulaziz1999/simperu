@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gedung;
+use App\Models\Mansion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MansionController extends Controller
 {
@@ -16,6 +18,20 @@ class MansionController extends Controller
     {
         $gedung = Gedung::latest()->paginate(6);
         return view('layouts.gedung', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        dd();
+        // $searchRuangan = Mansion::where('gedung_id', '=', $mansion->id);
+        // dd($searchRuangan->nama_ruangan);
+        // return view('mansion.index', compact('searchRuangan'));
     }
 
     /**

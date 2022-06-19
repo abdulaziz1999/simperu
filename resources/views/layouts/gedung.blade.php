@@ -20,10 +20,10 @@
                     @if (count($gedung)>0)
                         @foreach ($gedung as $g)
                     <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
-                            <div class="card p-0 shadow border rounded-3 h-100">
-                                <a href="#">
+                            <div class="card p-0 shadow border h-100" style="border-radius: 1rem">
+                                    <a href="{{ route('mansion.show', $g->id) }}">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('storage/post-image/'.$g->foto)}}" alt="{{$g->nama_gedung}}">
+                                    <img class="img-fluid" src="{{ asset('storage/post-image/'.$g->foto)}}" alt="{{$g->nama_gedung}}" style="border-radius: 1rem">
                                 </div>
                                 <div class="card-body">
                                     <h4 class="font-weight-bold mb-3">
