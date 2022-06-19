@@ -17,7 +17,7 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <div class="nav-item dropdown">
-                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-target="dropdown">All Pages Gedung</a>
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Pages Gedung</a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         <a href="{{ route('mansion.index') }}" class="dropdown-item">Alur Pemilihan Ruangan 1</a>
                                         <a href="{{ url('/alur-pemilihan-ruangan-1') }}" class="dropdown-item">Alur Pemilihan Ruangan 2</a>
@@ -25,20 +25,18 @@
                                         {{-- <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a> --}}
                                     </div>
                                 </div>
-                                <a href="{{ route('mansion.index') }}" class="nav-item nav-link">Mansion</a>
-                                {{-- <a href="{{ url('/service') }}" class="nav-item nav-link">Ruangan</a> --}}
-                                {{-- <a href="{{ url('/room') }}" class="nav-item nav-link">Ruangan</a> --}}
                                 <div class="nav-item dropdown">
-                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Properti</a>
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Pages Checkout</a>
                                     <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{ url('/simperu/gedung') }}" class="dropdown-item">Daftar Gedung</a>
-                                        <a href="{{ url('/simperu/ruangan') }}" class="dropdown-item">Daftar Ruangan</a>
-                                        {{-- <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a> --}}
+                                        <a href="{{ url('/alur-checkout-1') }}" class="dropdown-item">Alur Checkout 1</a>
                                     </div>
                                 </div>
                                 <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
                             </div>
-                            <a href="{{ url('/admin') }}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Masuk<i class="fa fa-arrow-right ms-3"></i></a>
+                            <div class="me-3 me-lg-5">
+                                <a href="{{ url('/admin') }}" class="btn btn-outline-primary rounded-3 me-lg-2 me-5 py-lg-2 px-lg-2">Sign-up</a>
+                                <a href="{{ url('/admin') }}" class="btn btn-primary rounded-3 py-lg-2 px-lg-2">Login</a>
+                            </div>
                         </div>
                     </nav>
                 </div>
