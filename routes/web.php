@@ -24,16 +24,9 @@ Route::resource('fasilitas', FasilitasController::class);
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
 Route::resource('ruangan', RuanganController::class);
 
-// ROUTE ADMIN
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-// ./ROUTE ADMIN
-
 // Route::get('/', 'SimperuController@index')->name('index');
 Route::get('/', 'App\Http\Controllers\SimperuController@index');
 Route::get('/viewGedung', 'App\Http\Controllers\SimperuController@gedung');
-
 
 // Auth::routes();
 // Route::get('/beranda', 'SimperuController@index')->name('index');
@@ -69,9 +62,7 @@ Route::get('/testimonial', function () {
 // ./ROUTE LANDING PAGE
 
 // ROUTE ADMIN
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+
 
 Route::middleware([
     'auth:sanctum',
@@ -81,4 +72,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/admin', function () {
+        return view('admin.index');
+    });
+    
 });

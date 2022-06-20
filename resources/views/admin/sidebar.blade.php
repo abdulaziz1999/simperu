@@ -6,6 +6,11 @@
                 <ul class="metismenu" id="menu">
                     {{-- <li class="nav-label font-weight-bold">Role : Admin</li> --}}
                     <li>
+                        <a href="{{ url('/admin') }}" aria-expanded="false">
+                            <i class="fa fa-home" aria-hidden="true"></i> <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-tachometer" aria-hidden="true"></i> <span class="nav-text">Master Data</span>
                         </a>
