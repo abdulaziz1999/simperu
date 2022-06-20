@@ -15,6 +15,7 @@
             </div>
             <!-- row -->
 
+           
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
@@ -22,16 +23,10 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
-                                        <div class="d-flex justify-content-between">
-                                            <span class="h3 font-weight-bold">Daftar Kategori Ruangan </span>
+                                        <div class="d-flex justify-content-between flex-row-reverse align-content-center mx-4">
                                             <a href="{{route('kategoriRuangan.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
+                                            <span class="h3 font-weight-bold">Daftar Kategori Ruangan </span>
                                         </div>
-
-                                        @if ($message = Session::get('success'))
-                                        <div class="alert alert-success m-2">
-                                            <p>{{ $message }}</p>
-                                        </div>
-                                    @endif
 
                                         <thead>
                                             <tr>

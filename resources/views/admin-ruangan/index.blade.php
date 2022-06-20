@@ -22,9 +22,9 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
-                                        <div class="d-flex justify-content-between flex-row-reverse align-content-center">
-                                            <span class="h3 font-weight-bold">Daftar Ruangan </span>
+                                        <div class="d-flex justify-content-between flex-row-reverse align-content-center mx-4">
                                             <a href="{{route('ruangan.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
+                                            <span class="h3 font-weight-bold">Daftar Ruangan </span>
                                         </div>
                                         <thead>
                                             <tr>
