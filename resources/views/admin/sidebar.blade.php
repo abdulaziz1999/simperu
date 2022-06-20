@@ -4,7 +4,6 @@
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
-                    {{-- <li class="nav-label font-weight-bold">Role : Admin</li> --}}
                     <li>
                         <a href="{{ url('/admin') }}" aria-expanded="false">
                             <i class="fa fa-home" aria-hidden="true"></i> <span class="nav-text">Dashboard</span>
@@ -22,17 +21,17 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:void()" aria-expanded="false">
+                        <a class="font-weight-bold" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-exchange" aria-hidden="true"></i> <span class="nav-text">Transaksi</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void()" aria-expanded="false">
+                        <a class="font-weight-bold" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-book" aria-hidden="true"></i> <span class="nav-text">Laporan Monitor</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void()" aria-expanded="false">
+                        <a class="font-weight-bold" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-gear" aria-hidden="true"></i> <span class="nav-text">Pengaturan</span>
                         </a>
                     </li>

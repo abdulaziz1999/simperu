@@ -18,7 +18,7 @@ class FasilitasController extends Controller
     {
         $fasilitas = Fasilitas::all();
         $ruangan = Ruangan::all();
-        return view('admin-fasilitas.index', compact('fasilitas', 'ruangan'))->with('i');
+        return view('admin-fasilitas.index', compact('fasilitas', 'ruangan'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -52,9 +52,15 @@ class FasilitasController extends Controller
         $data = Fasilitas::create($request->all());
 
         if ($request->hasFile('foto')) {
-            $image = $request->file('foto');
-            $image->storeAs('post-image', $image->getClientOriginalName());
-            $data->foto = $image->getClientOriginalName();
+            // 1. Mengambil nama dari foto
+            $image = $request->file('foto')->getClientOriginalName();
+            // 2. Membuat profil nama untuk foto
+            $profileImage = date('YmdHis') . "." . $image;
+            // 3. Mengupload ke lokal public/storage/post-image
+            $request->file('foto')->storeAs('post-image', $profileImage);
+            // 4. Mengganti nilai foto dengan nama profilIMage
+            $data->foto = $profileImage;
+            // 5. Menyimpan kembali
             $data->save();
         }
 
@@ -74,7 +80,6 @@ class FasilitasController extends Controller
         // Disini saya mengganti 'fasilitas' dengan 'fasilita'
         // Untuk mengetahuinya bisa me-list route dengan command 
         // php artisan route:list
-        // $ruangan = Ruangan::all();
         return view('admin-fasilitas.show', compact('fasilita'));
     }
 
@@ -106,15 +111,26 @@ class FasilitasController extends Controller
             'keterangan' => 'required',
             'ruangan_id' => 'required'
         ]);
-
+        // 1. Mengambil semua nilai request
+        $input = $request->all();
+        // 2. Mengecek apabila ada file dengan name 'foto'
         if ($request->hasFile('foto')) {
-            $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
-            $fasilita->foto = $request->file('foto')->getClientOriginalName();
+            // 3. Mengambil nama dari foto
+            $image = $request->file('foto')->getClientOriginalName();
+            // 4. Membuat profil nama untuk foto
+            $profileImage = date('YmdHis') . "." . $image;
+            // 5. Hapus foto lama
+            $oldFoto = 'post-image/' . $input['old-image'];
+            Storage::delete($oldFoto);
+            // 5. Mengupload ke lokal public/storage/post-image
+            $request->file('foto')->storeAs('post-image', $profileImage);
+            // 6. Mengganti nilai foto dengan nama profil foto sebelum di update
+            $input['foto'] = $profileImage;
         }
+        // 7. lalu update;
+        $fasilita->update($input);
 
-        $fasilita->update($request->all());
-
-        return redirect()->route('fasilitas.index')->with('success', 'Data fasilitas Berhasil Diubah');
+        return redirect('/fasilitas')->with('success', 'Data fasilitas Berhasil Diubah');
     }
 
     /**
@@ -125,9 +141,11 @@ class FasilitasController extends Controller
      */
     public function destroy(Fasilitas $fasilita)
     {
+        // 1. Membuat path+namafoto sebagai pathnya.
         $oldFoto = 'post-image/' . $fasilita->foto;
+        // 2. Mengahapus file di lokal
         Storage::delete($oldFoto);
-
+        // 3. Menghapus data di database
         $fasilita->delete();
 
         return redirect()->route('fasilitas.index')->with('success', 'Data fasilitas Berhasil Dihapus');

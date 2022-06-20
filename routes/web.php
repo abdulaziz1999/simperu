@@ -7,6 +7,8 @@ use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\SimperuController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\MansionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,17 +25,41 @@ Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
 Route::resource('ruangan', RuanganController::class);
+Route::resource('mansion', MansionController::class);
+Route::get('/', [LandingPageController::class, 'index_landing_page']);
 
-// Route::get('/', 'SimperuController@index')->name('index');
-Route::get('/', 'App\Http\Controllers\SimperuController@index');
-Route::get('/viewGedung', 'App\Http\Controllers\SimperuController@gedung');
+// ROUTE ADMIN aziz
+Route::get('/admin', function () {
+    return view('admin.index');
+});
 
-// Auth::routes();
-// Route::get('/beranda', 'SimperuController@index')->name('index');
+// ./ROUTE LANDING PAGE
+//Ayu
+Route::get('/list-gedung', function () {
+    return view('mansion.page2');
+});
 
-Route::get('/dash', function () {
-    //return view('welcome');
-    return view('layouts_2.home');
+Route::get('/list-gedung/{id}', function () {
+    return view('mansion.page2');
+});
+
+//Aziz
+Route::get('/search', function () {
+    return view('mansion.page2');
+});
+
+//ficri
+Route::get('/list-ruangan', function () {
+    return view('mansion.page2');
+});
+
+Route::get('/detail-ruangan/{id}', function () {
+    return view('mansion.page3');
+});
+
+//---------------
+Route::get('/alur-checkout-1', function () {
+    return view('check-out.alur-checkout-1');
 });
 
 Route::get('/booking', function () {

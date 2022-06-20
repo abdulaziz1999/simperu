@@ -75,18 +75,22 @@
                                     <label>Lokasi</label>
                                     <select class="form-select form-select-lg rounded-3" aria-placeholder="Cari Tempat..">
                                         <option selected disabled>Pilih Lokasi</option>
-                                        <option value="1">Adult 1</option>
-                                        <option value="2">Adult 2</option>
-                                        <option value="3">Adult 3</option>
+                                        @if (count($gedung)>0)
+                                            @foreach ($gedung as $g)
+                                        <option value="{{$g->id}}">{{$g->nama_gedung}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Kategori</label>
                                     <select class="form-select form-select-lg rounded-3">
                                         <option selected disabled>Pilih Kategori</option>
-                                        <option value="1">Child 1</option>
-                                        <option value="2">Child 2</option>
-                                        <option value="3">Child 3</option>
+                                        @if (count($kategoriRuangan)>0)
+                                            @foreach ($kategoriRuangan as $kr)
+                                        <option value="{{$kr->id}}">{{$kr->nama_kategori}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -95,7 +99,7 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <button class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill"><i class="fa fa-search"></i>  Cari Ruangan</button>
+                            <button class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill hvr-icon-back"><i class="fa fa-search hvr-icon"></i>  Cari Ruangan</button>
                         </div>
                     </div>
                 </div>
@@ -108,208 +112,39 @@
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-center text-primary text-uppercase">
-                        PENYEWAAN RUANG KERJA SATU-SATUNYA
+                        CARI RUANGAN SESUAI KEBUTUHANMU
                     </h6>
-                    <h1 class="mb-5"><span class="text-primary">Ruang Kerja</span> Kami</h1>
+                    <h1 class="mb-5"><span class="text-primary">Ruangan</span> Kami</h1>
                 </div>
 
-                <div class="row border g-4">
-                    {{-- <div class="d-flex justify-content-around"> --}}
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-2.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-3.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-3.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-2.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow zoomIn ">
-                            <div class="card p-0 shadow border rounded-3">
-                                <div class="card-header p-0 border-0">
-                                    <img class="img-fluid rounded-3" src="{{ asset('img/room-1.jpg')}}" alt="">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="font-weight-bold text-center mb-3">
-                                        Lorem, ipsum dolor.
-                                    </h3>
-                                    <p class="text-body text-center">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem delectus amet aut fuga, quisquam suscipit mollitia distinctio reiciendis harum hic?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <!-- Room End -->
-
-
-        <!-- Fasilitas Start -->
-        <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" style="margin-bottom: 90px;">
-            <div class="container">
-                <div class="col-md-12 bg-dark d-flex align-items-center">
-                    <div class="p-5 m-5">
-                        <h6 class="section-title text-start text-white text-uppercase mb-3">Luxury Living</h6>
-                        <h1 class="text-white mb-4">Discover A Brand Luxurious Hotel</h1>
-                        <p class="text-white mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Our Rooms</a>
-                        <a href="" class="btn btn-light py-md-3 px-md-5">Book A Room</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ./Fasilitas Start -->
-
-
-        <!-- Service Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
-                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
-                </div>
                 <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-hotel fa-2x text-primary"></i>
+                    @if (count($kategoriRuangan)>0)
+                        @foreach ($kategoriRuangan as $kr)
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
+                                <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
+                                    <img class="img-fluid w-100" src="{{ asset('img/fasilitas_'.++$i.'.jpg')}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="font-weight-bold text-center mb-3">
+                                        {{$kr->nama_kategori}}
+                                    </h3>
+                                    <p class="text-body text-center">
+                                        {{ $kr->keterangan }}
+                                    </p>
                                 </div>
                             </div>
-                            <h5 class="mb-3">Rooms & Appartment</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-utensils fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Food & Restaurant</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-spa fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Spa & Fitness</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-swimmer fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Sports & Gaming</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-glass-cheers fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">Event & Party</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <a class="service-item rounded" href="">
-                            <div class="service-icon bg-transparent border rounded p-1">
-                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-dumbbell fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <h5 class="mb-3">GYM & Yoga</h5>
-                            <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                        </a>
+                        </div>
+                        @endforeach
+                    @endif
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Service End -->
-
+        </div
+        
 
         <!-- Testimonial Start -->
-        {{-- <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
+        <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" style="margin-bottom: 90px;">
             <div class="container">
                 <div class="owl-carousel testimonial-carousel py-5">
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
@@ -347,25 +182,60 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- Testimonial End -->
 
 
-        <!-- Team Start -->
+        <!-- Service Start -->
         <div class="container-xxl py-5">
             <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">Fasilitas yang kami tawarkan</h6>
+                    <h1 class="mb-5"><span class="text-primary">Fasilitas</span> Kami</h1>
+                </div>
                 <div class="row g-4">
-                    <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    @if (count($fasilitasGroup)> 0 )
+                        @foreach ($fasilitasGroup as $f)
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="service-item bg-dark hvr-float shadow w-100 h-100" href="" style="border-radius: 1rem">
+                                <div class="service-icon bg-transparent p-1">
+                                    <div class="rounded d-flex align-items-center justify-content-center">
+                                        <i class="fa fa-wifi fa-2x text-primary"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-white mb-3">{{$f->nama_fasilitas}}</h5>
+                                <p class="text-white mb-0">{{$f->keterangan}}</p>
+                            </a>
+                        </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        <!-- Team Start -->
+        <div class="container-xxl pt-5 pb-0 mb-0">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center">
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h6 class="section-title text-center text-primary text-uppercase">Komintas Tim</h6>
-                            <h1 class="mb-5">Apa kata mereka tentang <span class="text-primary text-uppercase">Simperu ?</span></h1>
-                            <p class="text-body">
-                                Kami benci spam! Kami memastikan hanya membagikan informasi terkini tentang Barang Bagus terkait dengan tren di dunia kerja dan komunitas aktivitas sebagai Onyva Member.
-                            </p>
+                            <h6 class="section-title text-center text-primary text-uppercase">Mengapa memilh kami</h6>
+                            <h1 class="mb-5">Keunggulan <span class="text-primary text-uppercase">Simperu</span></h1>
+                            <ul class="spesial-list">
+                                <li>
+                                    Kehidupan yang terinspirasi hotel
+                                </li>
+                                <li>
+                                    Fasilitas dan layanan terintegrasi
+                                </li>
+                                <li>
+                                    Kontrak dan pembayaran yang fleksibel
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-md-6 d-flex">
-                        <img class="img-fluid w-100" src="{{ asset('img/team-1.jpg')}}" alt="">
+                    <div class="col-lg-6 d-flex">
+                        <img class="img-fluid w-100" src="{{ asset('img/team-1.png')}}" alt="">
                     </div>
                 </div>
             </div>

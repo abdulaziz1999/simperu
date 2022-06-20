@@ -4,24 +4,25 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
+            <div class="row page-titles mx-0 d-flex align-items-center">
+                <div class="col-md-2">
+                    <a href="{{ route('fasilitas.index') }}" class="btn" style="font-size: 1.2rem"><i class="fa fa-arrow-left"></i></a>
+                </div>
+                <div class="col-md-10 p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/admin')}}" class="text-primary">Master Data</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('fasilitas.index')}}" class="text-primary">Daftar Fasilitas</a></li>
                         <li class="breadcrumb-item">Ubah Data Fasilitas</li>
                     </ol>
                 </div>
-            </div>
-            <!-- row -->
+            </div>            <!-- row -->
 
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                     @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>😲</strong> Ada yang salah dengan inputan anda!<br><br>
+                    <strong>Whoops!</strong> Ada beberapa masalah dengan masukan Anda.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -32,13 +33,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="{{ route('fasilitas.update',$fasilita->id) }}" method="post" enctype="multipart/form-data">
+                                    <form class="form-valide" action="{{ route('fasilitas.update', $fasilita->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    <input type="hidden" name="id" value="{{$fasilita->id}}">
+                                        <input type="hidden" name="old-image" value="{{$fasilita->foto}}">
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-start align-content-center">
-                                                <span class="h3 font-weight-bold">Ubah Data Fasilitas</span>
+                                                <span class="h3 font-weight-bold text-primary">Ubah Data Fasilitas</span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -68,17 +69,26 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <select class="form-control form-select" aria-label="Default select example" name="ruangan_id">
+<<<<<<< HEAD
                                                     <option disabled>Pilih Ruangan </option>
                                                     @foreach ($ruangan as $r)
                                                         @php $selectedValue = $r->id == $fasilita->ruangan_id ? 'selected' : '' @endphp
                                                         <option value="{{$r->id}}" {{$selectedValue}} > {{$r->nama_ruangan}}</option>
+=======
+                                                    <option disabled>Pilih Ruangan</option>
+                                                    @foreach ($ruangan as $r)
+                                                        <option value="{{$r->id}}" {{ ($fasilita->ruangan_id == $r->id) ? 'selected': '';}}>{{$r->nama_ruangan}}</option>
+>>>>>>> 1d5f11803edba27ed79caef3cc08b77a8dab9ea8
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-5">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold py-3 px-5">Simpan</button>
+                                            <div class="col-lg-2">
+                                                {{-- spasi --}}
+                                            </div>
+                                            <div class="col-lg-10 d-flex justify-content-center justify-content-lg-start">
+                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold">Simpan</button>
                                             </div>
                                         </div>
                                     </form>

@@ -5,12 +5,15 @@
         ***********************************-->
         <div class="content-body">
 
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
+            <div class="row page-titles mx-0 d-flex align-items-center">
+                <div class="col-md-2">
+                    <a href="{{ route('fasilitas.index') }}" class="btn" style="font-size: 1.2rem"><i class="fa fa-arrow-left"></i></a>
+                </div>
+                <div class="col-md-10 p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/admin')}}" class="text-primary">Master Data</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('fasilitas.index')}}" class="text-primary">Daftar Gedung</a></li>
-                        <li class="breadcrumb-item">Tambah Data Gedung</li>
+                        <li class="breadcrumb-item"><a href="{{ route('fasilitas.index')}}" class="text-primary">Daftar Fasilitas</a></li>
+                        <li class="breadcrumb-item">Tambah Data Fasilitas</li>
                     </ol>
                 </div>
             </div>
@@ -21,7 +24,7 @@
                     <div class="col-lg-12">
                     @if ($errors->any())
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Whoops!</strong> Ada beberapa masalah dengan masukan Anda.<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -36,7 +39,7 @@
                                     @csrf
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-start align-content-center">
-                                                <span class="h3 font-weight-bold">Tambah Data Fasilitas</span>
+                                                <span class="h3 font-weight-bold text-primary">Tambah Data Fasilitas</span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -74,8 +77,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group row mt-5">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold py-3 px-5">Simpan</button>
+                                            <div class="col-lg-2">
+                                                {{-- spasi --}}
+                                            </div>
+                                            <div class="col-lg-10 d-flex justify-content-center justify-content-lg-start">
+                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold">Simpan</button>
                                             </div>
                                         </div>
                                     </form>

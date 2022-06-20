@@ -8,18 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Ruangan extends Model
 {
     use HasFactory;
+
     protected $table = 'ruangan';
+    protected $guarded = ['id'];
 
-    protected $guarded = [
-        'id'
-    ];
+    // 1 ruangan memiliki banyak fasilitas
+    public function fasilitas()
+    {
+        return $this->hasMany(Fasilitas::class);
+    }
 
-    // 1 ruangan merujuk/merefer ke sebuah gedung 
+    // Banyak ruangan dimemiliki 1 gedung
     public function gedung()
     {
         return $this->belongsTo(Gedung::class);
     }
 
+    // Banyak ruangan dimemiliki 1 kategori
     public function kategoriRuangan()
     {
         return $this->belongsTo(KategoriRuangan::class);

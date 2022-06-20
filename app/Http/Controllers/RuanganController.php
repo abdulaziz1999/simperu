@@ -55,7 +55,7 @@ class RuanganController extends Controller
             'harga' => 'required|numeric',
         ]);
 
-        $input = $request->all();
+                $input = $request->all();
 
         if ($image = $request->file('foto1', 'foto2', 'foto3')) {
             $destinationPath = 'img/ruangan/';
@@ -66,7 +66,7 @@ class RuanganController extends Controller
             $input['foto3'] = "$profileImage";
         }
 
-        Ruangan::create($input);
+                Ruangan::create($input);
 
         return redirect()->route('ruangan.index')
             ->with('success', 'Ruangan created successfully.');
