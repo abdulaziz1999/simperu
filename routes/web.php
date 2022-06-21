@@ -23,12 +23,9 @@ Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
 Route::resource('ruangan', RuanganController::class);
-<<<<<<< HEAD
-=======
 Route::resource('mansion', MansionController::class);
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
->>>>>>> f77fa4023156a848e7a9488a53f32209f168a13d
 
 // ROUTE ADMIN
 Route::get('/admin', function () {
@@ -41,10 +38,6 @@ Route::get('/', 'App\Http\Controllers\SimperuController@index');
 Route::get('/viewGedung', 'App\Http\Controllers\SimperuController@gedung');
 
 
-<<<<<<< HEAD
-// Auth::routes();
-// Route::get('/beranda', 'SimperuController@index')->name('index');
-=======
 //Aziz
 // Route::get('/search', function () {
 //     return view('mansion.page2');
@@ -54,7 +47,6 @@ Route::get('/viewGedung', 'App\Http\Controllers\SimperuController@gedung');
 Route::get('/list-ruangan', function () {
     return view('mansion.page2');
 });
->>>>>>> f77fa4023156a848e7a9488a53f32209f168a13d
 
 Route::get('/dash', function () {
     //return view('welcome');
