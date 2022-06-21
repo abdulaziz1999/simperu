@@ -15,6 +15,12 @@ class Gedung extends Model
         'nama_gedung',
         'foto',
         'alamat',
-
     ];
+
+    // Relasi ane to many
+    // 1 gedung memiliki banyak ruangan
+    public function ruangan()
+    {
+        return $this->hasMany(Ruangan::class);
+    }
 }

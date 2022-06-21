@@ -21,11 +21,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
+                                    <div class="d-flex justify-content-between flex-row-reverse align-content-center mr-4 ml-4">
+                                        <a href="{{route('gedung.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
+                                        <span class="h3 font-weight-bold">Daftar Gedung </span>
+                                    </div>
                                     <table class="table table-striped table-bordered zero-configuration">
-                                        <div class="d-flex justify-content-between flex-row-reverse align-content-center">
-                                            <span class="h3 font-weight-bold">Daftar Gedung </span>
-                                            <a href="{{route('gedung.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
-                                        </div>
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -37,9 +37,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php $no=1; @endphp
                                             @foreach($gedung as $row)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $no++ }}</td>
                                                 <td>{{ $row->kode }}</td>
                                                 <td>{{ $row->nama_gedung }}</td>
                                                 <td>{{ $row->alamat }}</td>

@@ -1,27 +1,4 @@
-{{-- 
-    Catatan : 
-    - Masih ada yang belum terlink
-    
-    --}}
-<!-- Newsletter Start -->
-        <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 border rounded p-1">
-                    <div class="border rounded text-center p-1">
-                        <div class="bg-white rounded text-center p-5">
-                            <h4 class="mb-4">Subscribe Our <span class="text-primary text-uppercase">Newsletter</span></h4>
-                            <div class="position-relative mx-auto" style="max-width: 400px;">
-                                <input class="form-control w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
-                                <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Newsletter Start -->
-<!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+        <div class="container-fluid bg-dark text-light footer wow fadeIn mt-1" data-wow-delay="0.1s">
             <div class="container pb-5">
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-4">
@@ -66,8 +43,7 @@
             <div class="container">
                 <div class="copyright">
                     <div class="row">
-                        <div class="col-12 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="{{ url('/') }}">SIMPERU</a>, All Right Reserved. 
+                        <div class="col-12 text-center mb-3 mb-md-0">Develop by team <a class="border-bottom text-decoration-none" href="{{ url('/') }}">SIMPERU</a> with 💖
                         </div>
                     </div>
                 </div>
@@ -77,4 +53,4 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fas fa-arrow-up"></i></a>

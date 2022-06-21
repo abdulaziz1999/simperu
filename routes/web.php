@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\SimperuController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\MansionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,32 +20,46 @@ use App\Http\Controllers\FasilitasController;
 |
 */
 
+// Route::resource('simperu', SimperuController::class);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
+Route::resource('ruangan', RuanganController::class);
+Route::resource('mansion', MansionController::class);
+Route::get('/', [LandingPageController::class, 'index_landing_page']);
 
-// ROUTE ADMIN
+// ROUTE ADMIN aziz
 Route::get('/admin', function () {
     return view('admin.index');
 });
-// ./ROUTE ADMIN
 
-Route::get('/dashboard', function () {
-    //return view('welcome');
-    return view('layouts_2.home');
+// ./ROUTE LANDING PAGE
+//Ayu
+Route::get('/list-gedung', function () {
+    return view('mansion.page2');
 });
 
-Route::get('/', function () {
-    //return view('welcome');
-    return view('welcome');
+Route::get('/list-gedung/{id}', function () {
+    return view('mansion.page2');
 });
 
-Route::get('/', function () {
-    return view('layouts.index');
+//Aziz
+Route::get('/search', function () {
+    return view('mansion.page2');
 });
 
-Route::get('/about', function () {
-    return view('layouts.about');
+//ficri
+Route::get('/list-ruangan', function () {
+    return view('mansion.page2');
+});
+
+Route::get('/detail-ruangan/{id}', function () {
+    return view('mansion.page3');
+});
+
+//---------------
+Route::get('/alur-checkout-1', function () {
+    return view('check-out.alur-checkout-1');
 });
 
 Route::get('/booking', function () {
@@ -69,6 +88,18 @@ Route::get('/testimonial', function () {
 // ./ROUTE LANDING PAGE
 
 // ROUTE ADMIN
-Route::get('/admin', function () {
-    return view('admin.index');
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/admin', function () {
+        return view('admin.index');
+    });
+    
 });

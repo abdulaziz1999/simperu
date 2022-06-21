@@ -127,8 +127,18 @@
                                         <hr class="my-2">
                                         <li>
                                             <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                        </li> 
+                                        <li>
+                                        <form method="POST" action="{{ route('logout') }}" x-data>
+                                            @csrf
+                                            @method('POST')
+                                            <x-jet-dropdown-link href="{{ route('logout') }}"
+                                                    @click.prevent="$root.submit();">
+                                                <!-- {{ __('Log Out') }} -->
+                                            </x-jet-dropdown-link>
+                                        </form>
+                                            <!-- <a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a> -->
                                         </li>
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>

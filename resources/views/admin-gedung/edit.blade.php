@@ -34,30 +34,37 @@
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-kode">Kode <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="kode" value="{{ $gedung->kode }}" placeholder="Enter a username..">
+                                            <div class="col-lg-10">
+                                                <input type="tel" class="form-control input-default" id="val-kode" name="kode" value="{{ $gedung->kode }}" placeholder="Enter a username..">
                                             </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-kode">Nama <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-4">
-                                                <input type="tel" class="form-control" id="val-kode" name="nama_gedung" value="{{ $gedung->nama_gedung }}" placeholder="Enter a username..">
+                                            <div class="col-lg-10">
+                                                <input type="tel" class="form-control input-default" id="val-kode" name="nama_gedung" value="{{ $gedung->nama_gedung }}" placeholder="Enter a username..">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Alamat <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-4">
-                                                <textarea class="form-control" id="val-suggestions" name="alamat" rows="5" placeholder="What would you like to see?"> {{ $gedung->alamat }}</textarea>
+                                            <div class="col-lg-10">
+                                                <textarea class="form-control input-default" id="val-suggestions" name="alamat" rows="5" placeholder="What would you like to see?"> {{ $gedung->alamat }}</textarea>
                                             </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-4">
-                                                <input type="text" class="form-control" id="val-kode" name="foto" value="{{ $gedung->foto }}" placeholder="Enter a username..">
+                                            <div class="col-lg-5">
+                                            <img src="{{asset('storage/post-image/'.$gedung->foto)}}" class="img-preview img-fluid mb-3">
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <input type="file" class="form-control input-default" id="val-kode" name="foto" value="{{ $gedung->foto }}" placeholder="Enter a username..">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-success text-white font-weight-bold py-3 px-5">Simpan</button>
+                                                <button type="submit" class="btn btn-primary btn-md text-white font-weight-bold">Edit</button>
                                             </div>
                                         </div>
                                     </form>

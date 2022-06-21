@@ -12,6 +12,13 @@ class KategoriRuangan extends Model
     protected $fillable = [
         'nama_kategori',
         'keterangan',
-
     ];
+
+    // Relasi ane to many
+    // 1 kategoriRuangan memiliki banyak ruangan
+
+    public function ruangan()
+    {
+        return $this->hasMany(Ruangan::class);
+    }
 }
