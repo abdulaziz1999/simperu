@@ -70,6 +70,7 @@
                 <div class="bg-white shadow rounded-3" style="padding: 50px;">
                     <div class="row g-2">
                         <div class="col-12">
+<<<<<<< HEAD
                             <div class="row g-2">
                                 <div class="col-md-6">
                                     <label>Lokasi</label>
@@ -88,16 +89,46 @@
                                         <option value="2">Child 2</option>
                                         <option value="3">Child 3</option>
                                     </select>
+=======
+                            <form action="{{ url('search') }}" method="post">
+                                @csrf
+                                <div class="row g-2">
+                                    <div class="col-md-6">
+                                        <label>Gedung</label>
+                                        <select name="gedung" class="form-select form-select-lg rounded-3" aria-placeholder="Cari Tempat..">
+                                            <option selected disabled>Pilih Lokasi</option>
+                                            @if (count($gedung)>0)
+                                                @foreach ($gedung as $g)
+                                            <option value="{{$g->id}}">{{$g->nama_gedung}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Kategori</label>
+                                        <select name="kategori" class="form-select form-select-lg rounded-3">
+                                            <option selected disabled>Pilih Kategori</option>
+                                            @if (count($kategoriRuangan)>0)
+                                                @foreach ($kategoriRuangan as $kr)
+                                            <option value="{{$kr->id}}">{{$kr->nama_kategori}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+>>>>>>> f77fa4023156a848e7a9488a53f32209f168a13d
                                 </div>
-                            </div>
                         </div>
-                        
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-12 d-flex justify-content-center">
+<<<<<<< HEAD
                             <button class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill"><i class="fa fa-search"></i>  Cari Ruangan</button>
+=======
+                            <button type="submit" class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill hvr-icon-back"><i class="fa fa-search hvr-icon"></i>  Cari Ruangan</button>
+>>>>>>> f77fa4023156a848e7a9488a53f32209f168a13d
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
