@@ -1,0 +1,23 @@
+Backlog Task SIMPERU:
+	- Ruangan :✔️
+		Tampilan ruangan tersedia.
+		Tampilan ruangan tidak tersedia.
+	- Detail Ruangan :
+		gambarnya berapa piksell ✔️
+		Deskripsi ✔️
+		Fasilitas : Fieldnya jangan ✔️ unique
+		input foto icon fasilitas ✔️
+		slider 1/2✔️
+		Tampilan detail ruangan. ✔️
+		Tampilan Form Pilih Ruangan :
+			- input waktu dan tanggal
+			- input dokumen pdf
+			- input keperluan
+
+			
+	- Navbar & footer :
+		layar penuh ✔️
+	- Checkout :
+		Tampilan detail Checkout.
+	- Payment Gateway :
+		
