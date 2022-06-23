@@ -8,7 +8,10 @@ use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\SimperuController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\MansionController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +32,11 @@ Route::resource('mansion', MansionController::class);
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
 
+Route::resource('list-gedung', LandingGedungController::class);
+// Route::get('/list-gedung', [LandingGedungController::class, 'index']);
+// Route::get('/details-gedung/{id}', [LandingGedungController::class, 'tampil']);
+
+
 // ROUTE ADMIN aziz
 Route::get('/admin', function () {
     return view('admin.index');
@@ -36,13 +44,13 @@ Route::get('/admin', function () {
 
 // ./ROUTE LANDING PAGE
 //Ayu
-Route::get('/list-gedung', function () {
-    return view('mansion.page2');
-});
+// Route::get('/list-gedung', function () {
+//     return view('mansion.page2');
+// });
 
-Route::get('/list-gedung/{id}', function () {
-    return view('mansion.page2');
-});
+// Route::get('/list-gedung/{id}', function () {
+//     return view('mansion.page2');
+// });
 
 //Aziz
 // Route::get('/search', function () {
@@ -102,5 +110,4 @@ Route::middleware([
     Route::get('/admin', function () {
         return view('admin.index');
     });
-    
 });

@@ -13,9 +13,10 @@ class GedungController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         //get all data gedung order by id desc
-        $gedung = Gedung::orderBy('id','desc')->get();
+        $gedung = Gedung::orderBy('id', 'desc')->get();
         return view('admin-gedung.index', compact('gedung'));
     }
     /**
