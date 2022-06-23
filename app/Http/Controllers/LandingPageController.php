@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fasilitas;
-use App\Models\Gedung;
-use App\Models\KategoriRuangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Fasilitas;
+use App\Models\Gedung;
+use App\Models\Ruangan;
+use App\Models\KategoriRuangan;
 
 class LandingPageController extends Controller
 {
@@ -22,9 +23,14 @@ class LandingPageController extends Controller
         //data gedung dan data kategori ruangan
         $gedung = Gedung::all();
         //data gedung dan data kategori ruangan
-        $kategoriRuangan = KategoriRuangan::all();
+        $kategoriRuangan = Ruangan::join('gedung', 'ruangan.gedung_id', '=', 'gedung.id')
+                            ->join('kategori_ruangan', 'ruangan.kategori_ruangan_id', '=', 'kategori_ruangan.id')
+                            ->leftJoin('fasilitas', 'ruangan.id', '=', 'fasilitas.ruangan_id')
+                            ->limit(6)
+                            ->get();
+        $kategori = KategoriRuangan::all();
         // dd([$gedung, $kategoriRuangan]);
-        return view('layouts.index', compact('fasilitasGroup', 'gedung', 'kategoriRuangan'))->with('i');
+        return view('layouts.index', compact('fasilitasGroup', 'gedung', 'kategoriRuangan','kategori'))->with('i');
     }
 
     public function search(Request $request)
@@ -34,13 +40,13 @@ class LandingPageController extends Controller
         $kategori = $request->input('kategori');
         
         //query like data gedung dan data kategori ruangan
-        $data = DB::table('ruangan')
-            ->join('gedung', 'ruangan.gedung_id', '=', 'gedung.id')
+        $data = Ruangan::join('gedung', 'ruangan.gedung_id', '=', 'gedung.id')
             ->join('kategori_ruangan', 'ruangan.kategori_ruangan_id', '=', 'kategori_ruangan.id')
             ->where('ruangan.gedung_id', $gedung )
             ->where('ruangan.kategori_ruangan_id',$kategori )
             ->get();
-        dd($data);
+        // dd($data);
+        return view('layouts.list-search', compact('data'));
     }
     
 }

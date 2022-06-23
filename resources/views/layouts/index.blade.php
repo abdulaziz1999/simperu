@@ -75,7 +75,7 @@
                                 <div class="row g-2">
                                     <div class="col-md-6">
                                         <label>Gedung</label>
-                                        <select name="gedung" class="form-select form-select-lg rounded-3" aria-placeholder="Cari Tempat..">
+                                        <select name="gedung" class="form-select form-select-lg rounded-3" aria-placeholder="Cari Tempat.." required>
                                             <option selected disabled>Pilih Lokasi</option>
                                             @if (count($gedung)>0)
                                                 @foreach ($gedung as $g)
@@ -86,10 +86,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label>Kategori</label>
-                                        <select name="kategori" class="form-select form-select-lg rounded-3">
+                                        <select name="kategori" class="form-select form-select-lg rounded-3" required>
                                             <option selected disabled>Pilih Kategori</option>
-                                            @if (count($kategoriRuangan)>0)
-                                                @foreach ($kategoriRuangan as $kr)
+                                            @if (count($kategori)>0)
+                                                @foreach ($kategori as $kr)
                                             <option value="{{$kr->id}}">{{$kr->nama_kategori}}</option>
                                                 @endforeach
                                             @endif
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        {{$kr->nama_kategori}}
+                                        {{$kr->nama_ruangan}}
                                     </h3>
                                     <p class="text-body text-center">
                                         {{ $kr->keterangan }}
@@ -187,6 +187,39 @@
         </div>
         <!-- Testimonial End -->
 
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">
+                        CARI GEDUNG SESUAI KEBUTUHANMU
+                    </h6>
+                    <h1 class="mb-5"><span class="text-primary">Gedung</span> Kami</h1>
+                </div>
+
+                <div class="row g-4">
+                    @if (count($gedung)>0)
+                        @foreach ($gedung as $g)
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
+                                <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
+                                    <img class="img-fluid w-100" src="{{ asset('storage/post-image/'.$g->foto)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="font-weight-bold text-center mb-3">
+                                        {{$g->nama_gedung}}
+                                    </h3>
+                                    <p class="text-body text-center">
+                                        {{ $g->alamat }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    @endif
+                    </div>
+                </div>
+            </div>
+        </div
 
         <!-- Service Start -->
         <div class="container-xxl py-5">
