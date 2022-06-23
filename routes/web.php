@@ -27,6 +27,7 @@ Route::resource('kategoriRuangan', KategoriRuanganController::class);
 Route::resource('ruangan', RuanganController::class);
 Route::resource('mansion', MansionController::class);
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
+Route::post('/search', [LandingPageController::class, 'search']);
 
 // ROUTE ADMIN aziz
 Route::get('/admin', function () {
@@ -44,9 +45,9 @@ Route::get('/list-gedung/{id}', function () {
 });
 
 //Aziz
-Route::get('/search', function () {
-    return view('mansion.page2');
-});
+// Route::get('/search', function () {
+//     return view('mansion.page2');
+// });
 
 //ficri
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);

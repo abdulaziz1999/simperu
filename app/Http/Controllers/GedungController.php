@@ -45,15 +45,19 @@ class GedungController extends Controller
             'alamat' => 'required',
         ]);
 
-        $data = Gedung::create($request->all());
-
-        if ($request->hasFile('foto')) {
-            $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
-            $data->foto = $request->file('foto')->getClientOriginalName();
-            $data->save();
-        }
-
-        return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil ÷Ditambahkan');
+        try{
+            $data = Gedung::create($request->all());
+    
+            if ($request->hasFile('foto')) {
+                $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
+                $data->foto = $request->file('foto')->getClientOriginalName();
+                $data->save();
+            }
+            return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil Ditambahkan');
+        }catch (\Exception $e){
+            //return redirect()->back()
+            return redirect()->route('gedung.index')->with('error', 'Error during the creation!');
+        }    
     }
 
     /**
