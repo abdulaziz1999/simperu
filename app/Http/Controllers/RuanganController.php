@@ -59,34 +59,14 @@ class RuanganController extends Controller
 
         $data = Ruangan::create($request->all());
 
-        if ($request->hasFile('foto1')) {
-            // 1. Mengambil nama dari foto
-            $image = $request->file('foto1')->getClientOriginalName();
-            // 2. Membuat profil nama untuk foto
-            $profileImage = date('YmdHis') . "." . $image;
-            // 3. Mengupload ke lokal public/storage/post-image
-            $request->file('foto1')->storeAs('post-image', $profileImage);
-            // 4. Mengganti nilai foto dengan nama profilIMage
-            $data->foto1 = $profileImage;
-            // 5. Menyimpan kembali
-            $data->save();
-        }
+        // return dd($data);
 
-        return redirect()->route('ruangan.index')->with('success', 'Data Fasilitas Baru Berhasil Ditambahkan');
+        $data->foto1 = $this->upload_foto($request, 'foto1');
+        $data->foto2 = $this->upload_foto($request, 'foto2');
+        $data->foto3 = $this->upload_foto($request, 'foto3');
+        $data->save();
 
-        // //         $input = $request->all();
-
-        // // if ($image = $request->file('foto1', 'foto2', 'foto3')) {
-        // //     $destinationPath = 'img/ruangan/';
-        // //     $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        // //     $image->move($destinationPath, $profileImage);
-        // //     $input['foto1'] = "$profileImage";
-        // //     $input['foto2'] = "$profileImage";
-        // //     $input['foto3'] = "$profileImage";
-        // // }
-
-        //         Ruangan::create($input);
-
+        // return dd($data);
         return redirect()->route('ruangan.index')
             ->with('success', 'Ruangan created successfully.');
     }
@@ -143,18 +123,16 @@ class RuanganController extends Controller
 
         $input = $request->all();
 
-        if ($image = $request->file('foto1', 'foto2', 'foto3')) {
-            $destinationPath = 'img/ruangan/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['foto1'] = "$profileImage";
-            $input['foto2'] = "$profileImage";
-            $input['foto3'] = "$profileImage";
-        } else {
-            unset($input['foto1']);
-            unset($input['foto2']);
-            unset($input['foto3']);
+        if ($request->hasFile('foto1')) {
+            # code...
         }
+        // hapus foto lama.
+        $oldFoto1 = 'post-image/' . $input['oldimage1']->foto1;
+        $oldFoto2 = 'post-image/' . $input['oldimage2']->foto2;
+        $oldFoto3 = 'post-image/' . $input['oldimage3']->foto3;
+        // 2. Mengahapus file di lokal
+        Storage::delete([$oldFoto1, $oldFoto2, $oldFoto3]);
+
 
         $ruangan->update($input);
         return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Diubah');
@@ -168,7 +146,42 @@ class RuanganController extends Controller
      */
     public function destroy(Ruangan $ruangan)
     {
+        // 1. Membuat path+namafoto sebagai pathnya.
+        $oldFoto1 = 'post-image/' . $ruangan->foto1;
+        $oldFoto2 = 'post-image/' . $ruangan->foto2;
+        $oldFoto3 = 'post-image/' . $ruangan->foto3;
+        // 2. Mengahapus file di lokal
+        Storage::delete([$oldFoto1, $oldFoto2, $oldFoto3]);
+        // 3. Menghapus data di database
         $ruangan->delete();
         return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Dihapus');
+    }
+
+    public function upload_foto($request, $foto)
+    {
+        if ($request->hasFile($foto)) {
+            // 1. Mengambil nama dari foto
+            $image = $request->file($foto)->getClientOriginalName();
+            // 2. Membuat profil nama untuk foto
+            $profileImage = date('YmdHis') . "." . $image;
+            // 3. Mengupload ke lokal public/storage/post-image
+            $request->file($foto)->storeAs('post-image', $profileImage);
+        }
+        return $profileImage;
+    }
+
+    public function update_foto($request, $foto)
+    {
+        $input = $request->all();
+        if ($request->hasFile($foto)) {
+            // 1. Mengambil nama dari foto
+            $image = $request->file($foto)->getClientOriginalName();
+            // 2. Membuat profil nama untuk foto
+            $profileImage = date('YmdHis') . "." . $image;
+
+            // 3. Mengupload ke lokal public/storage/post-image
+            $request->file($foto)->storeAs('post-image', $profileImage);
+        }
+        return $profileImage;
     }
 }

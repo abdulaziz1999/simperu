@@ -21,8 +21,8 @@
                                 </div>
                                 <div class="col-lg-3 d-flex flex-row flex-lg-column justify-content-between px-0 px-lg-1">
                                     <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto1)}}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; max-height: auto;">
-                                    <img class="img-fluid img-pass" src="{{ asset('img/'.$ruangan->foto2)}}" alt="{{ $ruangan->foto2 }}" style="border-radius: 1rem; max-height: auto;">
-                                    <img class="img-fluid img-pass" src="{{ asset('img/'.$ruangan->foto3)}}" alt="{{ $ruangan->foto3 }}" style="border-radius: 1rem; max-height: auto;">
+                                    <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto2)}}" alt="{{ $ruangan->foto2 }}" style="border-radius: 1rem; max-height: auto;">
+                                    <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto3)}}" alt="{{ $ruangan->foto3 }}" style="border-radius: 1rem; max-height: auto;">
                                 </div>
                             </div>
                             <hr/>
@@ -31,7 +31,7 @@
                                     Deskripsi
                                 </h1>
                                 <p class="text-start text-secondary">
-                                    {{$ruangan->kategoriRuangan->keterangan}}
+                                    {{$ruangan->keterangan}}
                                 </p>
                             </div>
                             <hr/>

@@ -34,7 +34,6 @@
                                 <div class="form-validation">
                                     <form class="form-valide" action="{{ route('ruangan.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-start align-content-center">
                                                 <span class="h3 font-weight-bold">Tambah Data ruangan</span>
@@ -115,24 +114,24 @@
                                         <label class="col-lg-2 col-form-label" for="val-suggestions">Foto1<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-4">
-                                            <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview1 img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                            <input class="form-control input-default" type="file" name="foto1" id="foto1" onchange="previewImage()">
+                                            <img src="{{asset('storage/post-image/default.jpg')}}" id="foto1" class="img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
+                                            <input class="foto form-control input-default" type="file" name="foto1">
                                         </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto2
                                             </label>
                                             <div class="col-lg-4">
-                                                <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview2 img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                                <input class="form-control input-default" type="file" name="foto2" id="foto2" onchange="previewImage2()">
+                                                <img src="{{asset('storage/post-image/default.jpg')}}" id="foto2" class="img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
+                                                <input class="foto form-control input-default" type="file" name="foto2" >
                                             </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" for="val-suggestions">Foto3
                                                 </label>
                                                 <div class="col-lg-4">
-                                                    <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview3 img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                                    <input class="form-control input-default" type="file" name="foto3" id="foto3" onchange="previewImage3()">
+                                                    <img src="{{asset('storage/post-image/default.jpg')}}" id="foto3" class="img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
+                                                    <input class="foto form-control input-default" type="file" name="foto3">
                                                 </div>
                                                 </div>
                                         <div class="form-group row mt-5">
@@ -153,43 +152,17 @@
             Content body end
         ***********************************-->    
         <script>
-            function previewImage() {
-                const image = document.querySelector('#foto1');
-                const imgPreview = document.querySelector('.img-preview1');
+            document.querySelectorAll('.foto').forEach(function(item) {
+                item.addEventListener('change', function () {
+                    const imagePreview = document.querySelector(`#${this.getAttribute('name')}`); 
+                    imagePreview.style.display = 'block';
 
-                imgPreview.style.display = 'block';
-
-                const oFReader = new FileReader();
-                oFReader.readAsDataURL(image.files[0]);
-                oFReader.onload = function (oFREvent) {
-                    imgPreview.src = oFREvent.target.result;
-                }
-            }
-
-            function previewImage2() {
-                const image = document.querySelector('#foto2');
-                const imgPreview = document.querySelector('.img-preview2');
-
-                imgPreview.style.display = 'block';
-
-                const oFReader = new FileReader();
-                oFReader.readAsDataURL(image.files[0]);
-                oFReader.onload = function (oFREvent) {
-                    imgPreview.src = oFREvent.target.result;
-                }
-            }
-
-            function previewImage3() {
-                const image = document.querySelector('#foto3');
-                const imgPreview = document.querySelector('.img-preview3');
-
-                imgPreview.style.display = 'block';
-
-                const oFReader = new FileReader();
-                oFReader.readAsDataURL(image.files[0]);
-                oFReader.onload = function (oFREvent) {
-                    imgPreview.src = oFREvent.target.result;
-                }
-            }
+                    const oFReader = new FileReader();
+                    oFReader.readAsDataURL(this.files[0]);
+                    oFReader.onload = function (oFREvent) {
+                        imagePreview.src = oFREvent.target.result;
+                    }
+                });
+            });
         </script>
 @endsection
