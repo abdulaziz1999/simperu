@@ -9,6 +9,7 @@ use App\Http\Controllers\SimperuController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\MansionController;
+use App\Http\Controllers\PDFController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,8 @@ use App\Http\Controllers\MansionController;
 */
 
 // Route::resource('simperu', SimperuController::class);
+
+Route::get('gedungpdf', [GedungController::class, 'generatePDF']);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
