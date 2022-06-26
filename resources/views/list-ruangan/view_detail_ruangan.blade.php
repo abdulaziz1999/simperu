@@ -88,46 +88,37 @@
                                 </div>
                                 <div class="row my-2">
                                     <div class="col-12 mb-1">
-                                        <label class="text-start d-block">Tanggal dan Waktu Masuk</label>
+                                        <label class="text-start d-block">Tanggal Kegiatan</label>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="date" class="tgl form-select rounded-3 py-3" name="tanggal_masuk" id="tgl_masuk" value="{{ $dt_desc->tgl_selesai }}" min="{{ $dt_desc->tgl_selesai }}">
+                                        <div class="col-12">
+                                            <input type="date" class="tgl form-select rounded-3 py-3" name="tanggal_masuk" id="tgl_masuk" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}">
                                         </div>
-                                        <div class="col-md-6">
-                                            <select name="waktu_pinjam" class="form-select rounded-3 py-3">
-                                                @if (count($jam)>0)
-                                                @foreach ($jam as $j)
-                                                @if ($j < 10)
-                                                <option value="0{{$j}}:00">0{{$j}}:00 WIB</option>
-                                                @else
-                                                <option value="{{$j}}:00">{{$j}}:00 WIB</option>
-                                                @endif
-                                                @endforeach
-                                                @endif
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-12 mb-1">
+                                        <label class="text-start d-block">Waktu Mulai Kegiatan</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <select id="waktu_peminjaman" name="waktu_pinjam" class="form-select rounded-3 py-3">
+                                                {{-- data masuk --}}
+                                                
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row my-2">
                                     <div class="col-12">
-                                        <label class="text-start d-block mb-1">Tanggal dan Waktu Keluar</label>
+                                        <label class="text-start d-block mb-1">Durasi Kegiatan</label>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="date" class="tgl form-select rounded-3 py-3" name="tanggal_keluar" id="tgl_keluar" value="{{ $dt_desc->tgl_selesai }}" min="{{ $dt_desc->tgl_selesai }}">
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-12">
                                             <select name="waktu_keluar" class="form-select rounded-3 py-3">
-                                                @if (count($jam)>0)
-                                                @foreach ($jam as $j)
-                                                @if ($j < 10)
-                                                <option value="0{{$j}}:00">0{{$j}}:00 WIB</option>
-                                                @else
-                                                <option value="{{$j}}:00">{{$j}}:00 WIB</option>
-                                                @endif
-                                                @endforeach
-                                                @endif
+                                                @for ($i = 1; $i <= 11; $i++)
+                                                <option value="{{$i}}">{{$i}} Jam</option>
+                                                @endfor
                                             </select>
                                         </div>
                                     </div>
@@ -206,7 +197,8 @@
         </div>
         <!-- Room End -->
 
-
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             const oldImagePath = document.querySelector('#img-view').getAttribute('src');
             document.querySelectorAll('.img-pass').forEach(function (item){
@@ -217,10 +209,57 @@
                     document.querySelector('#img-view').setAttribute('src', oldImagePath);
                 });
             });
-
-            document.querySelector('#tgl_masuk').addEventListener('change', function(){
-                document.querySelector('#tgl_keluar').setAttribute('value', document.querySelector('#tgl_masuk').value);
-                document.querySelector('#tgl_keluar').setAttribute('min', document.querySelector('#tgl_masuk').value);
+            
+            $('#tgl_masuk').change(function(){
+                var id=$(this).val();
+                $.ajax({
+                    headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}",
+                        },
+                    url : "http://127.0.0.1:8000/list-ruangan/waktu/"+id,
+                    method : "POST",
+                    data : {id: id},
+                    async : false,
+                    dataType : 'json',
+                    success: function(data){
+                        var html = '<option disabled selected>Pilih Waktu</option>';
+                        var i;
+                        for(i=0; i<data.length; i++){
+                            html += '<option value="'+data[i]+'">'+data[i]+' WIB</option>';
+                        }
+                        $('#waktu_peminjaman').html(html);
+                    }
+                });
+            });
+            $( document ).ready(function() {
+                arrbulan = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+                var date = new Date();
+                var hari = date.getDay();
+                var tanggal = date.getDate();
+                var bulan = date.getMonth();
+                var tahun = date.getFullYear();
+                var tgl = tahun+"-"+arrbulan[bulan]+"-"+tanggal;
+                bebas(tgl);
+                function bebas(tgl) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}",
+                        },
+                    url : "http://127.0.0.1:8000/list-ruangan/waktu/"+tgl,
+                    method : "POST",
+                    data : {tgl: tgl},
+                    async : false,
+                    dataType : 'json',
+                    success: function(data){
+                        var html = '<option disabled selected>Pilih Waktu</option>';
+                        var i;
+                        for(i=0; i<data.length; i++){
+                            html += '<option value="'+data[i]+'">'+data[i]+' WIB</option>';
+                        }
+                        $('#waktu_peminjaman').html(html);
+                    }
+                    });
+                }
             });
         </script>
  @endsection

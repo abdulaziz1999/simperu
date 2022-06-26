@@ -38,26 +38,40 @@ class ListRuanganController extends Controller
             ['gedung_id', '=', $ruangan->gedung_id],
             ['status', '=', 'Tersedia']
         ])->get();
+
         // Me-Assign ulang data ke format rupiah
         foreach ($all_r as $item) {
             $item->harga = $this->formatRupiah($item->harga);
         }
 
+        // Menampilkan tanggal dan waktu peminjaman yang paling akhir
         $dt_not_avail = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->get(['waktu_peminjaman.*']);
-        $dt_desc = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->orderBy('tgl_selesai', 'desc')->first(['waktu_peminjaman.*']);
-        $dt_desc = isset($dt_desc) ? $dt_desc : date("Y-m-d");
-        // dd($dt_desc);
-        $jam = [];
+
+        // Menampilkan jam_mulai paling awal
+        $jam_mulai_paling_awal = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->orderBy('jam_mulai')->first(['waktu_peminjaman.jam_mulai']);
+
+        // Menampilkan jam_mulai dengan group sesuai dengan tanggalnya
+        $test_query = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->where('tgl_pinjam', '2022-06-25')->get(['waktu_peminjaman.*']);
+
+        return view('list-ruangan.view_detail_ruangan', compact('ruangan', 'all_r'))->with(['i' => 1]);
+    }
+
+    public function test(Request $reqeust, $ruangan)
+    {
+        $jam_masuk = [];
+
         // List jam
-        for ($i = 6; $i <= 22; $i++) {
-            array_push($jam, $i);
+        for ($i = 7; $i <= 17; $i++) {
+            array_push($jam_masuk, $i);
         }
 
-        foreach ($dt_not_avail as $item) {
-            array_splice($jam, (int)$item->jam_mulai - 6, count(range((int)$item->jam_mulai, (int)$item->jam_selesai)));
+        $test_query = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->where('tgl_pinjam', $ruangan)->get(['waktu_peminjaman.*']);
+
+        foreach ($test_query as $item) {
+            array_splice($jam_masuk, (int)$item->jam_mulai - 7, count(range((int)$item->jam_mulai, (int)$item->jam_selesai)) - 1);
         }
 
-        return view('list-ruangan.view_detail_ruangan', compact('ruangan', 'jam', 'all_r', 'dt_desc'))->with(['i' => 1]);
+        echo json_encode($jam_masuk);
     }
 
     public function checkout(Request $request, Ruangan $ruangan)
