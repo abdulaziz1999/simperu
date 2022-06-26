@@ -19,59 +19,37 @@
                     <h6 class="section-title text-center text-primary text-uppercase">Ruangan Kami</h6>
                     <h1 class="mb-5"><span class="text-primary">Ruangan</span> Tersedia</h1>
                 </div>
+               
+                 <!-- Gedung End -->
+        <div class="container-xxl py-5">
+            <div class="container">
                 <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp hvr-float" data-wow-delay="0.1s">
-                        <div class="p-0 shadow border h-100" style="border-radius: 1rem">
-                            <a href="#">
-                                <div class="position-relative">
-                                    <img class="img-fluid w-100"  src="/img/ruangan/{{ $ruangan->foto1 }}" alt="" style="border-radius: 1rem">
-                                    <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">Rp. 20,000 <span class="h6 text-primary fw-light">/ 5 Jam</span></div>
+                    @if (count($list_ruangan)>0)
+                        @foreach ($list_ruangan as $l)
+                    <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border h-100" style="border-radius: 1rem">
+                                <div class="card-header p-0 border-0">
+                                    <img class="img-fluid" src="{{ asset('img/ruangan/'.$l->foto1)}}" alt="{{$l->nama_ruangan}}" style="border-radius: 1rem">
                                 </div>
-                                <div class="p-4 mt-2">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <h5 class="mb-0">{{ $ruangan->nama_ruangan}}</h5>
-                                        <div class="d-sm-none h6 bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{ $ruangan->harga}}<span class="h6 text-primary fw-light">/ 1 hari</span></div>
-                                    </div>
-                                    <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
+                                <div class="card-body">
+                                    <h4 class="font-weight-bold mb-3">
+                                        {{ $l->nama_ruangan }}
+                                    </h4>
+                                    <p class="text-body">
+                                        Harga = {{ $l->harga }}
+                                    </p>
+                                    <p class="text-body">
+                                        Kapasitas = {{ $l->kapasitas }}
+                                    </p>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    </div>
-                    {{-- <div class="col-lg-4 col-md-6 wow fadeInUp hvr-float" data-wow-delay="0.1s">
-                        <div class="p-0 shadow border h-100" style="border-radius: 1rem">
-                            <a href="#">
-                                <div class="position-relative">
-                                    <img class="img-fluid w-100" src="{{asset('img/room-1.jpg')}}" alt="" style="border-radius: 1rem">
-                                    <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">Rp. 20,000 <span class="h6 text-primary fw-light">/ 5 Jam</span></div>
-                                </div>
-                                <div class="p-4 mt-2">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <h5 class="mb-0">Junior Suite</h5>
-                                        <div class="d-sm-none h6 bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">Rp. 20,000 <span class="h6 text-primary fw-light">/ 5 Jam</span></div>
-                                    </div>
-                                    <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp hvr-float" data-wow-delay="0.1s">
-                        <div class="p-0 shadow border h-100" style="border-radius: 1rem">
-                            <a href="#">
-                                <div class="position-relative">
-                                    <img class="img-fluid w-100" src="{{asset('img/room-1.jpg')}}" alt="" style="border-radius: 1rem">
-                                    <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">Rp. 20,000 <span class="h6 text-primary fw-light">/ 5 Jam</span></div>
-                                </div>
-                                <div class="p-4 mt-2">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <h5 class="mb-0">Junior Suite</h5>
-                                        <div class="d-sm-none h6 bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">Rp. 20,000 <span class="h6 text-primary fw-light">/ 5 Jam</span></div>
-                                    </div>
-                                    <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
+                        @endforeach
+                    @endif
                 </div>
+            </div>
+        </div>
+        <!-- ./Gedung End -->
 
             </div>
         </div>

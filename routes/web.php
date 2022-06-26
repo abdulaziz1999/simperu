@@ -34,7 +34,7 @@ Route::post('/search', [LandingPageController::class, 'search']);
 
 Route::resource('list-gedung', LandingGedungController::class);
 // Route::get('/list-gedung', [LandingGedungController::class, 'index']);
-// Route::get('/details-gedung/{id}', [LandingGedungController::class, 'tampil']);
+// Route::get('/details-gedung/{id}', [LandingGedungController::class, 'show']);
 
 
 // ROUTE ADMIN aziz
