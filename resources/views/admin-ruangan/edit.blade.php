@@ -38,8 +38,9 @@
                                     @csrf
                                     @method('PUT')
 
-                                    <input type="hidden" name="id" value="{{$ruangan->id}}">
-
+                                    <input type="hidden" name="old-image1" value="{{$ruangan->foto1}}">
+                                    <input type="hidden" name="old-image2" value="{{$ruangan->foto2}}">
+                                    <input type="hidden" name="old-image3" value="{{$ruangan->foto3}}">
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-between">
                                                 <span class="h3 font-weight-bold">Edit Data ruangan</span>
@@ -123,31 +124,31 @@
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Keterangan
                                             </label>
                                             <div class="col-lg-10">
-                                                <textarea class="form-control input-default" id="val-alamat" name="keterangan" rows="5" value="{{ $ruangan->keterangan }}"></textarea>
+                                                <textarea class="form-control input-default" name="keterangan" rows="5">{{$ruangan->keterangan}}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="col-lg-2 col-form-label" for="val-suggestions">Foto1<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-4">
-                                            <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                            <input class="form-control input-default" type="file" name="foto1" onchange="previewImage()"> <img src="/img/ruangan/{{ $ruangan->foto1 }}" width="300px">
+                                            <img alt="{{$ruangan->foto1}}" src="{{asset('storage/post-image/'.$ruangan->foto1)}}" id="foto1" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                            <input class="foto form-control input-default" type="file" name="foto1">
                                         </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto2
                                             </label>
                                             <div class="col-lg-4">
-                                                <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                                <input class="form-control input-default" type="file" name="foto2" onchange="previewImage()"><img src="/img/ruangan/{{ $ruangan->foto2 }}" width="300px">
+                                                <img alt="{{$ruangan->foto2}}" src="{{asset('storage/post-image/'.$ruangan->foto2)}}" id="foto2" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                                <input class="foto form-control input-default" type="file" name="foto2">
                                             </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" for="val-suggestions">Foto3
                                                 </label>
                                                 <div class="col-lg-4">
-                                                    <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                                    <input class="form-control input-default" type="file" name="foto3" onchange="previewImage()"><img src="/img/ruangan/{{ $ruangan->foto3 }}" width="300px">
+                                                    <img alt="{{$ruangan->foto3}}" src="{{asset('storage/post-image/'.$ruangan->foto3)}}" id="foto3" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                                    <input class="foto form-control input-default" type="file" name="foto3">
                                                 </div>
                                                 </div>
 
@@ -168,6 +169,19 @@
         <!--**********************************
             Content body end
         ***********************************-->    
+        <script>
+            document.querySelectorAll('.foto').forEach(function(item) {
+                item.addEventListener('change', function () {
+                    const imagePreview = document.querySelector(`#${this.getAttribute('name')}`); 
+                    imagePreview.style.display = 'block';
 
+                    const oFReader = new FileReader();
+                    oFReader.readAsDataURL(this.files[0]);
+                    oFReader.onload = function (oFREvent) {
+                        imagePreview.src = oFREvent.target.result;
+                    }
+                });
+            });
+        </script>
 
 @endsection
