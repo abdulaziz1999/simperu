@@ -69,9 +69,10 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <select class="form-control form-select" aria-label="Default select example" name="ruangan_id">
-                                                    <option disabled>Pilih Ruangan</option>
+                                                    <option disabled>Pilih Ruangan </option>
                                                     @foreach ($ruangan as $r)
-                                                        <option value="{{$r->id}}" {{ ($fasilita->ruangan_id == $r->id) ? 'selected': '';}}>{{$r->nama_ruangan}}</option>
+                                                        @php $selectedValue = $r->id == $fasilita->ruangan_id ? 'selected' : '' @endphp
+                                                        <option value="{{$r->id}}" {{$selectedValue}} > {{$r->nama_ruangan}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

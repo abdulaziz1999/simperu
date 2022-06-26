@@ -6,6 +6,7 @@ use App\Models\Fasilitas;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class FasilitasController extends Controller
 {
@@ -149,5 +150,12 @@ class FasilitasController extends Controller
         $fasilita->delete();
 
         return redirect()->route('fasilitas.index')->with('success', 'Data fasilitas Berhasil Dihapus');
+    }
+
+    public function generatePdf(){
+        $data = Fasilitas::all();
+        $pdf = PDF::loadView('admin-fasilitas/pdf', ['fasilitas' =>$data]);
+    
+        return $pdf->download('fasilitas.pdf');
     }
 }

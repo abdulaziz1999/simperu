@@ -23,6 +23,7 @@
                                 <div class="table-responsive">
                                     <div class="d-flex justify-content-between flex-row-reverse align-content-center mr-4 ml-4">
                                         <a href="{{route('gedung.create')}}" class="btn btn-success font-weight-bold text-white"><i class="fa fa-plus"></i> Tambah Data</a>
+                                        <a href="{{url('gedungpdf')}}" class="btn btn-danger font-weight-bold text-white"><i class="fa fa-plus"></i> PDF</a>
                                         <span class="h3 font-weight-bold">Daftar Gedung </span>
                                     </div>
                                     <table class="table table-striped table-bordered zero-configuration">

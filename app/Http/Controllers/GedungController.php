@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gedung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class GedungController extends Controller
 {
@@ -13,9 +14,10 @@ class GedungController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         //get all data gedung order by id desc
-        $gedung = Gedung::orderBy('id','desc')->get();
+        $gedung = Gedung::orderBy('id', 'desc')->get();
         return view('admin-gedung.index', compact('gedung'));
     }
     /**
@@ -49,8 +51,15 @@ class GedungController extends Controller
             $data = Gedung::create($request->all());
     
             if ($request->hasFile('foto')) {
-                $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
-                $data->foto = $request->file('foto')->getClientOriginalName();
+                // 1. Mengambil nama dari foto
+                $image = $request->file('foto')->getClientOriginalName();
+                // 2. Membuat profil nama untuk foto
+                $profileImage = date('YmdHis') . "." . $image;
+                // 3. Mengupload ke lokal public/storage/post-image
+                $request->file('foto')->storeAs('post-image', $profileImage);
+                // 4. Mengganti nilai foto dengan nama profilIMage
+                $data->foto = $profileImage;
+                // 5. Menyimpan kembali
                 $data->save();
             }
             return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil Ditambahkan');
@@ -99,13 +108,24 @@ class GedungController extends Controller
             'alamat' => 'required'
         ]);
 
-
-        if ($request->hasFile('foto')) {
-            $request->file('foto')->storeAs('post-image', $request->file('foto')->getClientOriginalName());
-            $gedung->foto = $request->file('foto')->getClientOriginalName();
-        }
-
-        $gedung->update($request->all());
+         // 1. Mengambil semua nilai request
+         $input = $request->all();
+         // 2. Mengecek apabila ada file dengan name 'foto'
+         if ($request->hasFile('foto')) {
+             // 3. Mengambil nama dari foto
+             $image = $request->file('foto')->getClientOriginalName();
+             // 4. Membuat profil nama untuk foto
+             $profileImage = date('YmdHis') . "." . $image;
+             // 5. Hapus foto lama
+             $oldFoto = 'post-image/' . $input['old-image'];
+             Storage::delete($oldFoto);
+             // 5. Mengupload ke lokal public/storage/post-image
+             $request->file('foto')->storeAs('post-image', $profileImage);
+             // 6. Mengganti nilai foto dengan nama profil foto sebelum di update
+             $input['foto'] = $profileImage;
+         }
+         // 7. lalu update;
+         $gedung->update($input);
 
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Diubah');
     }
@@ -124,5 +144,13 @@ class GedungController extends Controller
         $gedung->delete();
 
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Dihapus');
+    }
+
+    public function generatePDF()
+    {
+        $data = Gedung::orderBy('id','desc')->get();
+        $pdf = PDF::loadView('admin-gedung/pdf', ['gedung' =>$data]);
+    
+        return $pdf->download('gedung.pdf');
     }
 }
