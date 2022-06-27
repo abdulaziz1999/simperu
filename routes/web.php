@@ -5,13 +5,12 @@ use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\RuanganController;
-use App\Http\Controllers\SimperuController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\MansionController;
-
-
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ListRuanganController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +23,8 @@ use App\Http\Controllers\MansionController;
 */
 
 // Route::resource('simperu', SimperuController::class);
+Route::get('gedungexcel', [GedungController::class, 'generateExcel']);
+Route::get('gedungpdf', [GedungController::class, 'generatePDF']);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
@@ -58,9 +59,11 @@ Route::get('/admin', function () {
 // });
 
 //ficri
-Route::get('/list-ruangan', function () {
-    return view('mansion.page2');
-});
+Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
+Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
+Route::post('/list-ruangan/waktu/{ruangan}', [ListRuanganController::class, 'test']);
+Route::get('/list-ruangan/waktu/{ruangan}', [ListRuanganController::class, 'test']);
+Route::post('/list-ruangan/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
 Route::get('/detail-ruangan/{id}', function () {
     return view('mansion.page3');

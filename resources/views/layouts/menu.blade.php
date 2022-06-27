@@ -1,5 +1,5 @@
 <!-- Header Start -->
-        <div class="container-fluid bg-dark px-0">
+        <div class="container-fluid bg-dark">
             <div class="row gx-0">
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
                     <a href="{{ url('/') }}" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
@@ -20,7 +20,7 @@
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Pages Gedung</a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         <a href="{{ route('mansion.index') }}" class="dropdown-item">Alur Pemilihan Ruangan 1</a>
-                                        <a href="{{ url('/alur-pemilihan-ruangan-1') }}" class="dropdown-item">Alur Pemilihan Ruangan 2</a>
+                                        <a href="{{ url('/list-ruangan') }}" class="dropdown-item">list-ruangan</a>
                                         <a href="{{ url('/alur-pemilihan-ruangan-2') }}" class="dropdown-item">Alur Pemilihan Ruangan 3</a>
                                         {{-- <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a> --}}
                                     </div>
