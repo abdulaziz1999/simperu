@@ -6,6 +6,8 @@ use App\Models\Gedung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use PDF;
+use App\Exports\GedungExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GedungController extends Controller
 {
@@ -152,5 +154,10 @@ class GedungController extends Controller
         $pdf = PDF::loadView('admin-gedung/pdf', ['gedung' =>$data]);
     
         return $pdf->download('gedung.pdf');
+    }
+
+    public function generateExcel()
+    {
+        return Excel::download(new GedungExport, date('d-m-y') . '_gedung.xlsx');
     }
 }

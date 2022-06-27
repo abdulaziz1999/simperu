@@ -23,7 +23,7 @@ use App\Http\Controllers\ListRuanganController;
 */
 
 // Route::resource('simperu', SimperuController::class);
-
+Route::get('gedungexcel', [GedungController::class, 'generateExcel']);
 Route::get('gedungpdf', [GedungController::class, 'generatePDF']);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
