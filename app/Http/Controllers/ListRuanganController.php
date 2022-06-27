@@ -9,20 +9,16 @@ use Illuminate\Support\Facades\DB;
 
 class ListRuanganController extends Controller
 {
-    // Function formating ke rupiah
-    public function formatRupiah($val)
-    {
-        return 'Rp. ' . number_format($val, 0, '.', ',');
-    }
-
     public function list_ruangan()
     {
         // Nilai default orderBy adalah asc
         $r_OrderByStatusAsc = DB::table('ruangan')->orderBy('status', 'asc')->latest()->paginate(9);
+
         // Me-Assign ulang data ke format rupiah
         foreach ($r_OrderByStatusAsc->items() as $item) {
             $item->harga = $this->formatRupiah($item->harga);
         }
+
         return view('list-ruangan.view_list_ruangan', compact('r_OrderByStatusAsc'));
     }
 
@@ -44,19 +40,10 @@ class ListRuanganController extends Controller
             $item->harga = $this->formatRupiah($item->harga);
         }
 
-        // Menampilkan tanggal dan waktu peminjaman yang paling akhir
-        $dt_not_avail = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->get(['waktu_peminjaman.*']);
-
-        // Menampilkan jam_mulai paling awal
-        $jam_mulai_paling_awal = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->orderBy('jam_mulai')->first(['waktu_peminjaman.jam_mulai']);
-
-        // Menampilkan jam_mulai dengan group sesuai dengan tanggalnya
-        $test_query = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->where('tgl_pinjam', '2022-06-25')->get(['waktu_peminjaman.*']);
-
         return view('list-ruangan.view_detail_ruangan', compact('ruangan', 'all_r'))->with(['i' => 1]);
     }
 
-    public function test(Request $reqeust, $ruangan)
+    public function available_date(Request $reqeust, $ruangan)
     {
         $jam_masuk = [];
 
@@ -72,6 +59,12 @@ class ListRuanganController extends Controller
         }
 
         echo json_encode($jam_masuk);
+    }
+
+    // Function formating ke rupiah
+    public function formatRupiah($val)
+    {
+        return 'Rp. ' . number_format($val, 0, '.', ',');
     }
 
     public function checkout(Request $request, Ruangan $ruangan)

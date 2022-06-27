@@ -104,7 +104,6 @@
                                         <div class="col-12">
                                             <select id="waktu_peminjaman" name="waktu_pinjam" class="form-select rounded-3 py-3">
                                                 {{-- data masuk --}}
-                                                
                                             </select>
                                         </div>
                                     </div>
@@ -216,7 +215,7 @@
                     headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : "http://127.0.0.1:8000/list-ruangan/waktu/"+id,
+                    url : "http://127.0.0.1:8000/list-ruangan/available_date/"+id,
                     method : "POST",
                     data : {id: id},
                     async : false,
@@ -225,27 +224,32 @@
                         var html = '<option disabled selected>Pilih Waktu</option>';
                         var i;
                         for(i=0; i<data.length; i++){
-                            html += '<option value="'+data[i]+'">'+data[i]+' WIB</option>';
+                            if (data[i]<10) {
+                                html += '<option value="'+data[i]+'">0'+data[i]+':00 WIB</option>';
+                            } else {
+                                html += '<option value="'+data[i]+'">'+data[i]+':00 WIB</option>';
+                            }
                         }
                         $('#waktu_peminjaman').html(html);
                     }
                 });
             });
             $( document ).ready(function() {
-                arrbulan = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+                var arrbulan = ["1","2","3","4","5","6","7","8","9","10","11","12"];
                 var date = new Date();
                 var hari = date.getDay();
                 var tanggal = date.getDate();
                 var bulan = date.getMonth();
                 var tahun = date.getFullYear();
-                var tgl = tahun+"-"+arrbulan[bulan]+"-"+tanggal;
-                bebas(tgl);
-                function bebas(tgl) {
+                var tgl_skrng = tahun+"-"+arrbulan[bulan]+"-"+tanggal;
+                get_json(tgl_skrng);
+
+                function get_json(tgl) {
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : "http://127.0.0.1:8000/list-ruangan/waktu/"+tgl,
+                    url : "http://127.0.0.1:8000/list-ruangan/available_date/"+tgl,
                     method : "POST",
                     data : {tgl: tgl},
                     async : false,
@@ -254,9 +258,14 @@
                         var html = '<option disabled selected>Pilih Waktu</option>';
                         var i;
                         for(i=0; i<data.length; i++){
-                            html += '<option value="'+data[i]+'">'+data[i]+' WIB</option>';
+                            if (data[i]<10) {
+                                html += '<option value="'+data[i]+'">0'+data[i]+':00 WIB</option>';
+                            } else {
+                                html += '<option value="'+data[i]+'">'+data[i]+':00 WIB</option>';
+                            }
                         }
                         $('#waktu_peminjaman').html(html);
+                        console.log(data);
                     }
                     });
                 }

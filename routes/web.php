@@ -61,7 +61,7 @@ Route::get('/admin', function () {
 //ficri
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
-Route::post('/list-ruangan/waktu/{ruangan}', [ListRuanganController::class, 'test']);
+Route::post('/list-ruangan/available_date/{ruangan}', [ListRuanganController::class, 'available_date']);
 Route::post('/list-ruangan/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
 Route::get('/detail-ruangan/{id}', function () {
