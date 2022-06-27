@@ -11,6 +11,7 @@ use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\MansionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ListRuanganController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,14 +23,27 @@ use App\Http\Controllers\ListRuanganController;
 |
 */
 
-// Route::resource('simperu', SimperuController::class);
+//route gedung admin
+Route::resource('gedung', GedungController::class);
 Route::get('gedungexcel', [GedungController::class, 'generateExcel']);
 Route::get('gedungpdf', [GedungController::class, 'generatePDF']);
-Route::resource('gedung', GedungController::class);
+
+//route fasilitas admin
 Route::resource('fasilitas', FasilitasController::class);
+Route::get('fasilitasexcel', [FasilitasController::class, 'generateExcel']);
+Route::get('fasilitaspdf', [FasilitasController::class, 'generatePDF']);
+
+//route kategori ruangan admin
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
+Route::get('kategoriRuanganexcel', [KategoriRuanganController::class, 'generateExcel']);
+Route::get('kategoriRuanganpdf', [KategoriRuanganController::class, 'generatePDF']);
+
+//route ruangan admin
 Route::resource('ruangan', RuanganController::class);
-Route::resource('mansion', MansionController::class);
+Route::get('ruanganexcel', [RuanganController::class, 'generateExcel']);
+Route::get('ruanganpdf', [RuanganController::class, 'generatePDF']);
+
+//landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
 
@@ -37,26 +51,6 @@ Route::resource('list-gedung', LandingGedungController::class);
 // Route::get('/list-gedung', [LandingGedungController::class, 'index']);
 // Route::get('/details-gedung/{id}', [LandingGedungController::class, 'show']);
 
-
-// ROUTE ADMIN aziz
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-
-// ./ROUTE LANDING PAGE
-//Ayu
-// Route::get('/list-gedung', function () {
-//     return view('mansion.page2');
-// });
-
-// Route::get('/list-gedung/{id}', function () {
-//     return view('mansion.page2');
-// });
-
-//Aziz
-// Route::get('/search', function () {
-//     return view('mansion.page2');
-// });
 
 //ficri
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
@@ -100,17 +94,7 @@ Route::get('/testimonial', function () {
 // ./ROUTE LANDING PAGE
 
 // ROUTE ADMIN
-
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/admin', function () {
-        return view('admin.index');
-    });
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+    Route::get('/admin', [DashboardController::class, 'index']);
 });
