@@ -7,7 +7,9 @@ use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\RuanganController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\MansionController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ListRuanganController;
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ use App\Http\Controllers\ListRuanganController;
 */
 
 // Route::resource('simperu', SimperuController::class);
+
+Route::get('gedungpdf', [GedungController::class, 'generatePDF']);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
 Route::resource('kategoriRuangan', KategoriRuanganController::class);
@@ -29,6 +33,11 @@ Route::resource('mansion', MansionController::class);
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
 
+Route::resource('list-gedung', LandingGedungController::class);
+// Route::get('/list-gedung', [LandingGedungController::class, 'index']);
+// Route::get('/details-gedung/{id}', [LandingGedungController::class, 'show']);
+
+
 // ROUTE ADMIN aziz
 Route::get('/admin', function () {
     return view('admin.index');
@@ -36,13 +45,13 @@ Route::get('/admin', function () {
 
 // ./ROUTE LANDING PAGE
 //Ayu
-Route::get('/list-gedung', function () {
-    return view('mansion.page2');
-});
+// Route::get('/list-gedung', function () {
+//     return view('mansion.page2');
+// });
 
-Route::get('/list-gedung/{id}', function () {
-    return view('mansion.page2');
-});
+// Route::get('/list-gedung/{id}', function () {
+//     return view('mansion.page2');
+// });
 
 //Aziz
 // Route::get('/search', function () {
@@ -52,6 +61,7 @@ Route::get('/list-gedung/{id}', function () {
 //ficri
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
+Route::post('/list-ruangan/available_date/{ruangan}', [ListRuanganController::class, 'available_date']);
 Route::post('/list-ruangan/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
 Route::get('/detail-ruangan/{id}', function () {
