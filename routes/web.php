@@ -23,7 +23,7 @@ use App\Http\Controllers\ListRuanganController;
 */
 
 // Route::resource('simperu', SimperuController::class);
-
+Route::get('gedungexcel', [GedungController::class, 'generateExcel']);
 Route::get('gedungpdf', [GedungController::class, 'generatePDF']);
 Route::resource('gedung', GedungController::class);
 Route::resource('fasilitas', FasilitasController::class);
@@ -61,8 +61,9 @@ Route::get('/admin', function () {
 //ficri
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
-Route::post('/list-ruangan/available_date/{ruangan}', [ListRuanganController::class, 'available_date']);
-Route::post('/list-ruangan/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
+Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
+Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
+Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
 Route::get('/detail-ruangan/{id}', function () {
     return view('mansion.page3');

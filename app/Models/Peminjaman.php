@@ -13,7 +13,7 @@ class Peminjaman extends Model
     protected $guarded = ['id'];
 
     // banyak fasilitas dimemiliki satu ruangan
-    public function peminjaman()
+    public function ruangan()
     {
         return $this->belongsTo(Ruangan::class);
     }
