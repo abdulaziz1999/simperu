@@ -72,9 +72,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 pb-5 wow bounceInDown">
-                            {{-- form --}}
-                            <form action="{{ url('/list-ruangan/checkout/'.$ruangan->id) }}" method="POST" class="shadow border p-3 sticky-top" style="border-radius: 1rem; top: 1rem;">
+                        <div class="col-lg-4 pb-5 wow bounceInDown mt-3 mt-lg-0">
+                            <form action="{{ url('/checkout'.'/'.$ruangan->id) }}" method="POST" class="shadow border p-3 sticky-top" style="border-radius: 1rem; top: 1rem;" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 class="text-start text-primary" style="font-weight: 500">
@@ -88,44 +88,28 @@
                                 </div>
                                 <div class="row my-2">
                                     <div class="col-12 mb-1">
-                                        <label class="text-start d-block">Tanggal Kegiatan</label>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <input type="date" class="tgl form-select rounded-3 py-3" name="tanggal_masuk" id="tgl_masuk" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}">
-                                        </div>
+                                        <label class="text-start d-block mb-1">Tanggal Kegiatan</label>
+                                        <input type="date" class="tgl form-select rounded-3 py-3" name="tgl_pinjam" id="tgl_masuk" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}">
                                     </div>
                                 </div>
                                 <div class="row my-2">
-                                    <div class="col-12 mb-1">
-                                        <label class="text-start d-block">Waktu Mulai Kegiatan</label>
+                                    <div class="col-6 mb-1">
+                                        <label class="text-start d-block mb-1">Waktu Kegiatan</label>
+                                        <select id="waktu_peminjaman" name="jam_mulai" class="form-select rounded-3 py-3">
+                                            {{-- data masuk --}}
+                                        </select>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <select id="waktu_peminjaman" name="waktu_pinjam" class="form-select rounded-3 py-3">
-                                                {{-- data masuk --}}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <label class="text-start d-block mb-1">Durasi Kegiatan</label>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <select name="waktu_keluar" class="form-select rounded-3 py-3">
-                                                @for ($i = 1; $i <= 11; $i++)
-                                                <option value="{{$i}}">{{$i}} Jam</option>
-                                                @endfor
-                                            </select>
-                                        </div>
+                                        <select id="durasi" name="durasi" class="form-select rounded-3 py-3">
+                                            <option disabled selected>Pilih Durasi</option>
+                                        </select>
                                     </div>
                                 </div>
                                     <div class="col-12 my-1">
                                         <div class="my-2">
                                             <label class="text-start d-block mb-2">Upload File</label>
-                                            <input type="file" class="form-control rounded-3 py-3">
+                                            <input name="dokumen" type="file" class="form-control rounded-3 py-3">
                                         </div>
                                     </div>
                                     <div class="col-12 my-1">
@@ -215,25 +199,48 @@
                     headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : "http://127.0.0.1:8000/list-ruangan/available_date/"+id,
+                    url : "http://127.0.0.1:8000/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
                     method : "POST",
                     data : {id: id},
                     async : false,
                     dataType : 'json',
                     success: function(data){
-                        var html = '<option disabled selected>Pilih Waktu</option>';
-                        var i;
-                        for(i=0; i<data.length; i++){
-                            if (data[i]<10) {
-                                html += '<option value="'+data[i]+'">0'+data[i]+':00 WIB</option>';
+                        var jam = '<option disabled selected>Pilih Waktu</option>';
+                        data.forEach(element => {
+                            if (element['jam']<10) {
+                                jam += '<option value="'+element['jam']+'">0'+element['jam']+':00 WIB</option>';
                             } else {
-                                html += '<option value="'+data[i]+'">'+data[i]+':00 WIB</option>';
+                                jam += '<option value="'+element['jam']+'">'+element['jam']+':00 WIB</option>';
                             }
-                        }
-                        $('#waktu_peminjaman').html(html);
+                        });
+                        $('#waktu_peminjaman').html(jam);
                     }
                 });
             });
+
+            $('#waktu_peminjaman').change(function () {
+                var id = $('#tgl_masuk').val();
+                var this_jam = $(this).val();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{csrf_token()}}",
+                    },
+                    url : "http://127.0.0.1:8000/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
+                    method : "POST",
+                    data : {id: id},
+                    async : false,
+                    dataType : 'json',
+                    success: function(data){
+                        var durasi = '';
+                        const index = data.map(object => object.jam).indexOf(parseInt(this_jam));
+                        for (let i = 1; i <= data[index].durasi; i++) {
+                            durasi += `<option value="${i}">${i} Jam</option>`;
+                        };
+                        $('#durasi').html(durasi);
+                    }
+                });
+            });
+
             $( document ).ready(function() {
                 var arrbulan = ["1","2","3","4","5","6","7","8","9","10","11","12"];
                 var date = new Date();
@@ -242,6 +249,7 @@
                 var bulan = date.getMonth();
                 var tahun = date.getFullYear();
                 var tgl_skrng = tahun+"-"+arrbulan[bulan]+"-"+tanggal;
+
                 get_json(tgl_skrng);
 
                 function get_json(tgl) {
@@ -249,24 +257,22 @@
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : "http://127.0.0.1:8000/list-ruangan/available_date/"+tgl,
+                    url : "http://127.0.0.1:8000/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+tgl,
                     method : "POST",
                     data : {tgl: tgl},
                     async : false,
                     dataType : 'json',
                     success: function(data){
-                        var html = '<option disabled selected>Pilih Waktu</option>';
-                        var i;
-                        for(i=0; i<data.length; i++){
-                            if (data[i]<10) {
-                                html += '<option value="'+data[i]+'">0'+data[i]+':00 WIB</option>';
+                        var jam = '<option disabled selected>Pilih Waktu</option>';
+                        data.forEach(element => {
+                            if (element['jam']<10) {
+                                jam += '<option value="'+element['jam']+'">0'+element['jam']+':00 WIB</option>';
                             } else {
-                                html += '<option value="'+data[i]+'">'+data[i]+':00 WIB</option>';
+                                jam += '<option value="'+element['jam']+'">'+element['jam']+':00 WIB</option>';
                             }
+                        });
+                        $('#waktu_peminjaman').html(jam);
                         }
-                        $('#waktu_peminjaman').html(html);
-                        console.log(data);
-                    }
                     });
                 }
             });
