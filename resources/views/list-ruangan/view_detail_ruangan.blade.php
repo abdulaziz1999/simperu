@@ -225,7 +225,7 @@
                     headers: {
                         'X-CSRF-TOKEN': "{{csrf_token()}}",
                     },
-                    url : "http://127.0.0.1:8000/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
+                    url : "https://ficrihnp.nurulfikri.com/simperu/public/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
                     method : "POST",
                     data : {id: id},
                     async : false,
