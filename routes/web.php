@@ -23,24 +23,24 @@ use App\Http\Controllers\DashboardController;
 */
 
 //route gedung admin
-Route::resource('gedung', GedungController::class);
-Route::get('gedungexcel', [GedungController::class, 'generateExcel']);
-Route::get('gedungpdf', [GedungController::class, 'generatePDF']);
+Route::resource('gedung', GedungController::class)->middleware('checkRole:admin');
+Route::get('gedungexcel', [GedungController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('gedungpdf', [GedungController::class, 'generatePDF'])->middleware('checkRole:admin');
 
 //route fasilitas admin
-Route::resource('fasilitas', FasilitasController::class);
-Route::get('fasilitasexcel', [FasilitasController::class, 'generateExcel']);
-Route::get('fasilitaspdf', [FasilitasController::class, 'generatePDF']);
+Route::resource('fasilitas', FasilitasController::class)->middleware('checkRole:admin');
+Route::get('fasilitasexcel', [FasilitasController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('fasilitaspdf', [FasilitasController::class, 'generatePDF'])->middleware('checkRole:admin');
 
 //route kategori ruangan admin
-Route::resource('kategoriRuangan', KategoriRuanganController::class);
-Route::get('kategoriRuanganexcel', [KategoriRuanganController::class, 'generateExcel']);
-Route::get('kategoriRuanganpdf', [KategoriRuanganController::class, 'generatePDF']);
+Route::resource('kategoriRuangan', KategoriRuanganController::class)->middleware('checkRole:admin');
+Route::get('kategoriRuanganexcel', [KategoriRuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('kategoriRuanganpdf', [KategoriRuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
 
 //route ruangan admin
-Route::resource('ruangan', RuanganController::class);
-Route::get('ruanganexcel', [RuanganController::class, 'generateExcel']);
-Route::get('ruanganpdf', [RuanganController::class, 'generatePDF']);
+Route::resource('ruangan', RuanganController::class)->middleware('checkRole:admin');
+Route::get('ruanganexcel', [RuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('ruanganpdf', [RuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
 
 //landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
@@ -55,6 +55,7 @@ Route::resource('list-gedung', LandingGedungController::class);
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
 Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
+Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
 Route::any('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkoutDetail']);
 // Route::post('/checkout/{ruangan:id}/{peminjaman}/{dwp}/{dwp_plus}', [ListRuanganController::class, 'onCheckout']);
 // Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
@@ -88,15 +89,22 @@ Route::get('/team', function () {
     return view('layouts.team');
 });
 
-Route::get('/testimonial', function () {
-    return view('layouts.testimonial');
+Route::get('/tes', function () {
+    return view('auth.registerdev');
 });
-// ./ROUTE LANDING PAGE
 
-// ROUTE ADMIN
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/admin', [DashboardController::class, 'index']);
-});
+// Route::group(['checkRole' => ['admin']], function () {
+//     Route::get('home', 'HomeController@index');
+//    });
+Route::get('/admin', [DashboardController::class, 'index'])->middleware('checkRole:admin');
+
+Route::get('peminjam', function () {
+    return view('penjual');
+})->middleware(['checkRole:peminjam,admin']);
+Route::get('pembeli', function () {
+    return view('pembeli');
+})->middleware(['checkRole:pembeli,admin']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
