@@ -103,7 +103,13 @@
                         {{-- nama user --}}
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
-                                <span class="font-weight-bold">Nama user</span>
+                                <span class="font-weight-bold">
+                                @if(empty(Auth::user()->name))
+                                {{''}}
+                                @else
+                                {{ Auth::user()->name }}
+                                @endif
+                                </span>
                             </a>
                         </li>
                         {{-- ./nama user --}}
@@ -129,15 +135,14 @@
                                             <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
                                         </li> 
                                         <li>
-                                        <form method="POST" action="{{ route('logout') }}" x-data>
-                                            @csrf
-                                            @method('POST')
-                                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                    @click.prevent="$root.submit();">
-                                                <!-- {{ __('Log Out') }} -->
-                                            </x-jet-dropdown-link>
-                                        </form>
-                                            <!-- <a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a> -->
+                                            <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            <i class="icon-key"></i> <span>Logout</span>
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>
