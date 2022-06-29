@@ -19,7 +19,7 @@
                                 <div class="nav-item dropdown">
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Pages Gedung</a>
                                     <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{ route('mansion.index') }}" class="dropdown-item">Alur Pemilihan Ruangan 1</a>
+                                        {{-- <a href="{{ route('mansion.index') }}" class="dropdown-item">Alur Pemilihan Ruangan 1</a> --}}
                                         <a href="{{ url('/list-ruangan') }}" class="dropdown-item">list-ruangan</a>
                                         <a href="{{ url('/alur-pemilihan-ruangan-2') }}" class="dropdown-item">Alur Pemilihan Ruangan 3</a>
                                         {{-- <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a> --}}

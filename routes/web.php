@@ -8,7 +8,6 @@ use App\Http\Controllers\RuanganController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LandingGedungController;
-use App\Http\Controllers\MansionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ListRuanganController;
 use App\Http\Controllers\DashboardController;
@@ -55,13 +54,14 @@ Route::resource('list-gedung', LandingGedungController::class);
 //ficri
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
-Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
 Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
-Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
+Route::any('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkoutDetail']);
+// Route::post('/checkout/{ruangan:id}/{peminjaman}/{dwp}/{dwp_plus}', [ListRuanganController::class, 'onCheckout']);
+// Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
-Route::get('/detail-ruangan/{id}', function () {
-    return view('mansion.page3');
-});
+// Route::get('/detail-ruangan/{id}', function () {
+//     return view('mansion.page3');
+// });
 
 //---------------
 Route::get('/alur-checkout-1', function () {
@@ -94,7 +94,9 @@ Route::get('/testimonial', function () {
 // ./ROUTE LANDING PAGE
 
 // ROUTE ADMIN
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
     Route::get('/admin', [DashboardController::class, 'index']);
 });

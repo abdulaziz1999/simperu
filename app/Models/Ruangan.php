@@ -35,27 +35,4 @@ class Ruangan extends Model
     {
         return $this->hasMany(Peminjaman::class);
     }
-
-    public function test($tgl_pinjam)
-    {
-        $banyak_jam = 0;
-        $jam_masuk = [];
-
-        // List jam
-        for ($i = 7; $i <= 17; $i++) {
-            array_push($jam_masuk, $i);
-        }
-
-        $test_query = Ruangan::join('peminjaman', 'ruangan.id', '=', 'peminjaman.ruangan_id')->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')->where('tgl_pinjam', $tgl_pinjam)->get(['waktu_peminjaman.*']);
-
-        foreach ($test_query as $item) {
-            $banyak_jam += count(range((int)$item->jam_mulai, (int)$item->jam_selesai)) - 1;
-        }
-
-        foreach ($test_query as $item) {
-            array_splice($jam_masuk, (int)$item->jam_mulai - 7, $banyak_jam);
-        }
-
-        return $jam_masuk;
-    }
 }

@@ -1,19 +1,37 @@
  @extends('layouts.layout')
  @section('content')
+ 
  <!-- Page Header Start -->
         <div class="container-fluid page-header p-0"> {{-- background diambil dari foto gedung --}}
             <div class="container-fluid page-header-inner-gedung pt-5">
                 <div class="container text-center">
                     <div class="row">
                         <div class="col-lg-8 pb-0">
-                            <div class="row  wow fadeInUp">
-                                {{-- lokasi --}}
-                                <a class="text-start mt-3 mb-4 px-0" target="_blank" href="{{$ruangan->gedung->link_gmaps}}"><i class="fas fa-map-marker-alt"></i>{{ $ruangan->gedung->alamat}}</a>
+
+                            <div class="row wow fadeInUp d-flex align-items-center mb-3">
+                                {{-- button back and table available room --}}
+                                <div class="col-6 text-start mx-0 px-0">
+                                    <a class="fs-3 d-inline" href="{{url('/list-ruangan')}}"><i class="fas fa-arrow-left"></i></a>
+                                </div>
+                                <div class="col-6 text-end mx-0 px-0">
+                                    <button class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#detail_sewa">Detail Sewa</button>
+                                </div>
                             </div>
-                            <div class="row mb-5  wow fadeInUp">
+                            
+                            <div class="row mb-1  wow fadeInUp">
                                 {{-- Nama gedung --}}
-                                <span class="text-start px-0 h1 text-capitalize text-dark">{{$ruangan->kategoriRuangan->nama_kategori}}</span><br/> {{-- Kategori Ruangan --}}
+                                <span class="text-start px-0 h1 text-capitalize text-dark">{{$ruangan->nama_ruangan}}</span><br/> {{-- Kategori Ruangan --}}
                                 <span class="text-start px-0 h5 text-capitalize text-secondary" style="font-weight: 500">{{$ruangan->gedung->nama_gedung}}</span> {{-- Nama Ruangan --}}
+                            </div>
+                            <div class="row mb-5 wow fadeInUp">
+                                <div class="col-12 d-flex justify-content-start mx-0 px-0">
+                                    <button type="button" class="rounded-pill px-2 py-0 btn btn-dark border-0 me-1 hvr-float">
+                                        <span class="fw-light text-primary text-lowercase">kapasitas <span class="h6 text-lowercase text-primary">{{ $ruangan->kapasitas}}</span></span> 
+                                    </button>
+                                    <button type="button" class="rounded-pill px-2 py-0 btn btn-dark border-0 me-1 hvr-float">
+                                        <span class="fw-light text-primary text-lowercase">lantai <span class="h6 text-lowercase text-primary">{{ $ruangan->lantai}}</span></span> 
+                                    </button>
+                                </div>
                             </div>
                             <div class="row mb-5  wow fadeInUp">
                                 <div class="col-lg-9 shadow border px-0 mb-3 mb-lg-0" style="border-radius: 1rem; height: 400px;">
@@ -73,7 +91,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 pb-5 wow bounceInDown mt-3 mt-lg-0">
-                            <form action="{{ url('/checkout'.'/'.$ruangan->id) }}" method="POST" class="shadow border p-3 sticky-top" style="border-radius: 1rem; top: 1rem;" enctype="multipart/form-data">
+                            <form action="{{ url('/checkout'.'/'.$ruangan->id) }}" method="post" class="shadow border p-3 sticky-top" style="border-radius: 1rem; top: 1rem;" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
@@ -131,47 +149,39 @@
         <!-- Page Header End -->
 
         <!-- Room Start -->
-        <div class="container-xxl py-5">
+        <div class="container-xxl py-5 d-none d-md-block">
             <div class="container">
                 <div class="text-start wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-start text-primary text-uppercase">Ruangan Lainnya</h6>
-                    <h1 class="mb-5">Ruangan Lainnya di <span class="text-primary">Test</span></h1>
+                    <h1 class="mb-5">Ruangan Lainnya di <span class="text-primary">{{$ruangan->gedung->nama_gedung}}</span></h1>
                 </div>
                 <div class="row g-4 d-flex justify-content-between align-items-center">
-                    <div class="col-md-1 d-flex align-items-center">
-                        <button class="btn btn-transparant btn-lg mb-3 mr-1"  type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <div class="col-md-1 d-flex align-items-center p-0 m-0">
+                        <button class="btn btn-transparant btn-lg p-0 m-0"  type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                             <i class="fa fa-arrow-left fa-2x text-primary"></i>
                         </button>
                     </div>
                     <div class="col-md-10">
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    @if (count($all_r)>0)
-                                    @foreach ($all_r as $ar)
-                                    <div class="col-lg-4 col-md-6 hvr-float border shadow" style="border-radius: 1rem">
-                                        <a href="{{ url("/list-ruangan/detail/{$ar->id}-{$ar->nama_ruangan}")}}">
-                                            <div class="position-relative">
-                                                <img class="img-fluid w-100" src="{{asset('storage/post-image/'.$ar->foto1)}}" alt="{{$ar->nama_ruangan}}" style="border-radius: 1rem">
-                                                <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill"><span class="text-white" style="font-size: .8rem;">{{ $ar->status }}</span><br/>{{$ar->harga}}<span class="h6 text-primary fw-light"> / Jam</span></div>
-                                            </div>
-                                            <div class="p-4 mt-3">
-                                                <div class="d-flex justify-content-between mb-3">
-                                                    <h5 class="mb-0">{{ $ar->nama_ruangan }}</h5>
-                                                    <div class="d-sm-none h6 bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$ar->harga}}<span class="h6 text-primary fw-light">/ Jam</span></div>
-                                                </div>
-                                                <p class="text-body mb-3">#catatan : tambahkan Field Keterangan</p>
-                                            </div>
-                                        </a>
+                        <div class="row d-flex justify-content-start align-items-center">
+                            @if (count($all_r)>0)
+                            @foreach ($all_r as $ar)
+                            <div class="col-lg-3 col-md-6 hvr-float px-1" >
+                                <a href="{{ url("/list-ruangan/detail/{$ar->id}-{$ar->nama_ruangan}")}}" class="border shadow d-block" style="border-radius: 1rem">
+                                    <div class="position-relative">
+                                        <img class="img-fluid w-100" src="{{asset('storage/post-image/'.$ar->foto1)}}" alt="{{$ar->nama_ruangan}}" style="border-radius: 1rem">
+                                        <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$ar->harga}}<span class="h6 text-primary fw-light"> / Jam</span></div>
                                     </div>
-                                    @endforeach
-                                    @endif
-                                </div>
+                                    <div class="p-4 mt-3">
+                                        <p class="text-body mb-3">#catatan : tambahkan Field Keterangan</p>
+                                    </div>
+                                </a>
                             </div>
+                            @endforeach
+                            @endif
                         </div>
                     </div>
-                    <div class="col-md-1 d-flex align-items-center">
-                        <button class="btn btn-transparant btn-lg mb-3 mr-1"  type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <div class="col-md-1 d-flex align-items-center justify-content-end p-0 m-0">
+                        <button class="btn btn-transparant btn-lg  p-0 m-0"  type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                             <i class="fa fa-arrow-right fa-2x text-primary"></i>
                         </button>
                     </div>
@@ -180,8 +190,61 @@
         </div>
         <!-- Room End -->
 
-    
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        {{-- modal --}}
+        <div class="modal fade" id="detail_sewa" tabindex="-1" aria-labelledby="detail_sewa_label" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detail_sewa_label">Detail Sewa Ruangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="2">
+                                    Nama Ruangan :
+                                </th>
+                                <td colspan="2">
+                                    {{$ruangan->nama_ruangan}}
+                                </td>
+                                <th colspan="1">
+                                    Lantai :
+                                </th>
+                                <td colspan="1">
+                                    {{$ruangan->lantai}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                            </tr>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal Pinjam</th>
+                                <th>Tanggal Selesai</th>
+                                <th>Jam Mulai</th>
+                                <th>Jam Selesai</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($booked_rooms as $br)
+                            <tr>
+                                <td>{{$i++.'.'}}</td>
+                                <td>{{$br->tgl_pinjam}}</td>
+                                <td>{{$br->tgl_selesai}}</td>
+                                <td>{{$br->jam_mulai}}</td>
+                                <td>{{$br->jam_selesai}}</td>
+                                <td>{{$br->status}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script>
             const oldImagePath = document.querySelector('#img-view').getAttribute('src');
             document.querySelectorAll('.img-pass').forEach(function (item){
@@ -231,10 +294,10 @@
                     async : false,
                     dataType : 'json',
                     success: function(data){
-                        var durasi = '';
+                        var durasi = '<option disabled selected>Pilih Durasi</option>';
                         const index = data.map(object => object.jam).indexOf(parseInt(this_jam));
                         for (let i = 1; i <= data[index].durasi; i++) {
-                            durasi += `<option value="${i}">${i} Jam</option>`;
+                                durasi += `<option value="${i}">${i} Jam</option>`;
                         };
                         $('#durasi').html(durasi);
                     }
