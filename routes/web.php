@@ -8,7 +8,6 @@ use App\Http\Controllers\RuanganController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LandingGedungController;
-use App\Http\Controllers\MansionController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ListRuanganController;
 use App\Http\Controllers\DashboardController;
@@ -55,13 +54,15 @@ Route::resource('list-gedung', LandingGedungController::class);
 //ficri
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
-Route::post('/list-ruangan/waktu/{ruangan}', [ListRuanganController::class, 'test']);
-Route::get('/list-ruangan/waktu/{ruangan}', [ListRuanganController::class, 'test']);
-Route::post('/list-ruangan/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
+Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
+Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
+Route::any('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkoutDetail']);
+// Route::post('/checkout/{ruangan:id}/{peminjaman}/{dwp}/{dwp_plus}', [ListRuanganController::class, 'onCheckout']);
+// Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
-Route::get('/detail-ruangan/{id}', function () {
-    return view('mansion.page3');
-});
+// Route::get('/detail-ruangan/{id}', function () {
+//     return view('mansion.page3');
+// });
 
 //---------------
 Route::get('/alur-checkout-1', function () {
@@ -97,8 +98,12 @@ Route::get('/tes', function () {
 //    });
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('checkRole:admin');
 
-Route::get('peminjam', function () { return view('penjual'); })->middleware(['checkRole:peminjam,admin']);
-Route::get('pembeli', function () { return view('pembeli'); })->middleware(['checkRole:pembeli,admin']);
+Route::get('peminjam', function () {
+    return view('penjual');
+})->middleware(['checkRole:peminjam,admin']);
+Route::get('pembeli', function () {
+    return view('pembeli');
+})->middleware(['checkRole:pembeli,admin']);
 
 Auth::routes();
 
