@@ -1,16 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\RuanganController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ListRuanganController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +44,18 @@ Route::get('kategoriRuanganpdf', [KategoriRuanganController::class, 'generatePDF
 Route::resource('ruangan', RuanganController::class)->middleware('checkRole:admin');
 Route::get('ruanganexcel', [RuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
 Route::get('ruanganpdf', [RuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
+
+//route user admin
+Route::resource('user', UserController::class)->middleware('checkRole:admin');
+
+//route profile
+Route::get('profile', [UserController::class, 'profile'])->middleware('checkRole:admin');
+
+//route peminjaman
+// Route::resource('peminjaman', [PeminjamanController::class])->middleware('checkRole:admin');
+
+//route laporan
+// Route::resource('laporan', [LaporanController::class])->middleware('checkRole:admin');
 
 //landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
@@ -98,12 +113,8 @@ Route::get('/tes', function () {
 //    });
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('checkRole:admin');
 
-Route::get('peminjam', function () {
-    return view('penjual');
-})->middleware(['checkRole:peminjam,admin']);
-Route::get('pembeli', function () {
-    return view('pembeli');
-})->middleware(['checkRole:pembeli,admin']);
+Route::get('peminjam', function () {return view('penjual');})->middleware(['checkRole:peminjam,admin']);
+Route::get('pembeli', function () {return view('pembeli');})->middleware(['checkRole:pembeli,admin']);
 
 Auth::routes();
 
