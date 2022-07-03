@@ -7,6 +7,8 @@ use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use PDF;
+use App\Exports\FasilitasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FasilitasController extends Controller
 {
@@ -158,4 +160,11 @@ class FasilitasController extends Controller
     
         return $pdf->download('fasilitas.pdf');
     }
+
+    public function generateExcel()
+    {
+        return Excel::download(new FasilitasExport, date('d-m-y') . '_fasilitas.xlsx');
+    }
+
+
 }
