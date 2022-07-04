@@ -5,7 +5,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-6 d-flex justify-content-end">
-                    <div class="w-75">
+                    <div class="w-75 border">
                         {{-- button back and table available room --}}
                         <div class="col-12 text-start mx-0 px-0 mb-3">
                             <a class="fs-3 d-inline" href="{{url('/list-ruangan/detail/'.$ruangan->id.'-'.$ruangan->nama_ruangan)}}"><i class="fas fa-arrow-left"></i></a>
@@ -20,33 +20,32 @@
                             <h2>{{$dwp_plus['harga_ruangan']}} <span class="text-secondary h5" style="font-weight: 500">/ Jam</span></h2>
                         </div>
                         <div class="col-12 mt-3 text-start">
-                            <h5 class="text-dark mb-3">Informasi Tamu</h5>
+                            <h5 class="text-dark mb-3">Informasi Peminjam</h5>
                         </div>
-                        <div class="col-12">
-                            {{-- <form action="" class="text-start" method=""> --}}
-                                {{-- @csrf --}}
-                                {{-- Ambill dari session --}}
-                                <div class="row mb-3">
-                                    <label>Nama Tamu</label>
-                                    <input type="text" class="form-control rounded-3" value="Bangef"/>
+                        <div class="col-12 border">
+                            <form action="{{url('/notif'.'/'.$pembayaran->id)}}" class="text-start border" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label class="text-start mx-0 px-0">Nama Peminjam</label>
+                                    <input required type="text" name="nama" class="form-control rounded-3" value="{{Auth::user()->name}}"/>
                                 </div>
-                                <div class="row mb-3">
-                                    <label>Email Tamu</label>
-                                    <input type="email" class="form-control rounded-3" value="Bangef@gmail.com"/>
+                                <div class="mb-3">
+                                    <label class="text-start mx-0 px-0">Email Peminjam</label>
+                                    <input required type="email" name="email" class="form-control rounded-3" value="{{Auth::user()->email}}"/>
                                 </div>
-                                <div class="row mb-3">
-                                    <label>Nomer Telefon Tamu</label>
-                                    <input type="tel" class="form-control rounded-3" value="+628899778855"/>
+                                <div class="mb-3">
+                                    <label class="text-start mx-0 px-0">Nomer Telefon Peminjam</label>
+                                    <input required type="tel" name="nomer_tel" class="form-control rounded-3" placeholder="Masukan Nomer Anda..."/>
                                 </div>
-                                <div class="row">
+                                <div>
                                     <span class="text-danger mb-3">*Pada proses check-in, wajib menunjukan KTP yang sesuai dengan data diatas</span>
                                 </div>
-                                <div class="row">
+                                <div>
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button id="pay-button" class="btn btn-primary rounded-3 hvr-icon-forward">Selanjutnya <i class="fas fa-arrow-right hvr-icon"></i></button>
+                                        <button type="submit" class="btn btn-primary rounded-3 hvr-icon-forward">Selanjutnya <i class="fas fa-arrow-right hvr-icon"></i></button>
                                     </div>
                                 </div>
-                            {{-- </form> --}}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -115,14 +114,4 @@
         </div>
     </div>
 </div>
-        
-<script type="text/javascript">
-      // For example trigger on button clicked, or any time you need
-      var payButton = document.getElementById('pay-button');
-      payButton.addEventListener('click', function () {
-        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        window.snap.pay('{{$snap_token}}');
-        // customer will be redirected after completing payment pop-up
-      });
-    </script>
  @endsection

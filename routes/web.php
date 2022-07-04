@@ -55,9 +55,9 @@ Route::resource('list-gedung', LandingGedungController::class);
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
 Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
-Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
-Route::any('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkoutDetail']);
-// Route::post('/checkout/{ruangan:id}/{peminjaman}/{dwp}/{dwp_plus}', [ListRuanganController::class, 'onCheckout']);
+Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkoutDetail']);
+Route::post('/notif/{pembayaran:id}', [ListRuanganController::class, 'notif_pay']);
+// Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
 // Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
 // Route::get('/detail-ruangan/{id}', function () {

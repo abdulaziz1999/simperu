@@ -149,23 +149,18 @@
         <!-- Page Header End -->
 
         <!-- Room Start -->
-        <div class="container-xxl py-5 d-none d-md-block">
+        <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-start wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-start text-primary text-uppercase">Ruangan Lainnya</h6>
                     <h1 class="mb-5">Ruangan Lainnya di <span class="text-primary">{{$ruangan->gedung->nama_gedung}}</span></h1>
+                    <h6 class="section-title text-start text-primary text-uppercase">Ruangan Lainnya</h6>
                 </div>
-                <div class="row g-4 d-flex justify-content-between align-items-center">
-                    <div class="col-md-1 d-flex align-items-center p-0 m-0">
-                        <button class="btn btn-transparant btn-lg p-0 m-0"  type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                            <i class="fa fa-arrow-left fa-2x text-primary"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="row d-flex justify-content-start align-items-center">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-12">
+                        <div class="owl-carousel owl-thame">
                             @if (count($all_r)>0)
                             @foreach ($all_r as $ar)
-                            <div class="col-lg-3 col-md-6 hvr-float px-1" >
+                            <div class="py-3 hvr-float px-1 bgw-white">
                                 <a href="{{ url("/list-ruangan/detail/{$ar->id}-{$ar->nama_ruangan}")}}" class="border shadow d-block" style="border-radius: 1rem">
                                     <div class="position-relative">
                                         <img class="img-fluid w-100" src="{{asset('storage/post-image/'.$ar->foto1)}}" alt="{{$ar->nama_ruangan}}" style="border-radius: 1rem">
@@ -180,15 +175,19 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-1 d-flex align-items-center justify-content-end p-0 m-0">
-                        <button class="btn btn-transparant btn-lg  p-0 m-0"  type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                            <i class="fa fa-arrow-right fa-2x text-primary"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
         <!-- Room End -->
+
+        <!-- Testimonial Start -->
+        <div class="container-xxl my-5 py-5 wow zoomIn" data-wow-delay="0.1s">
+            <div class="container">
+                
+            </div>
+        </div>
+        <!-- Testimonial End -->
+       
 
         {{-- modal --}}
         <div class="modal fade" id="detail_sewa" tabindex="-1" aria-labelledby="detail_sewa_label" aria-hidden="true">
@@ -303,7 +302,7 @@
                 });
             });
 
-            $( document ).ready(function() {
+            $(document ).ready(function() {
                 var arrbulan = ["1","2","3","4","5","6","7","8","9","10","11","12"];
                 var date = new Date();
                 var hari = date.getDay();
@@ -313,7 +312,7 @@
                 var tgl_skrng = tahun+"-"+arrbulan[bulan]+"-"+tanggal;
 
                 get_json(tgl_skrng);
-
+                
                 function get_json(tgl) {
                     $.ajax({
                         headers: {
