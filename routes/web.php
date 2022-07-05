@@ -1,14 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\RuanganController;
-use App\Http\Controllers\SimperuController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\MansionController;
+use App\Http\Controllers\LandingGedungController;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ListRuanganController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,42 +25,59 @@ use App\Http\Controllers\MansionController;
 |
 */
 
-// Route::resource('simperu', SimperuController::class);
-Route::resource('gedung', GedungController::class);
-Route::resource('fasilitas', FasilitasController::class);
-Route::resource('kategoriRuangan', KategoriRuanganController::class);
-Route::resource('ruangan', RuanganController::class);
-Route::resource('mansion', MansionController::class);
+//route gedung admin
+Route::resource('gedung', GedungController::class)->middleware('checkRole:admin');
+Route::get('gedungexcel', [GedungController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('gedungpdf', [GedungController::class, 'generatePDF'])->middleware('checkRole:admin');
+
+//route fasilitas admin
+Route::resource('fasilitas', FasilitasController::class)->middleware('checkRole:admin');
+Route::get('fasilitasexcel', [FasilitasController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('fasilitaspdf', [FasilitasController::class, 'generatePDF'])->middleware('checkRole:admin');
+
+//route kategori ruangan admin
+Route::resource('kategoriRuangan', KategoriRuanganController::class)->middleware('checkRole:admin');
+Route::get('kategoriRuanganexcel', [KategoriRuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('kategoriRuanganpdf', [KategoriRuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
+
+//route ruangan admin
+Route::resource('ruangan', RuanganController::class)->middleware('checkRole:admin');
+Route::get('ruanganexcel', [RuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('ruanganpdf', [RuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
+
+//route user admin
+Route::resource('user', UserController::class)->middleware('checkRole:admin');
+
+//route profile
+Route::get('profile', [UserController::class, 'profile'])->middleware('checkRole:admin');
+
+//route peminjaman
+// Route::resource('peminjaman', [PeminjamanController::class])->middleware('checkRole:admin');
+
+//route laporan
+// Route::resource('laporan', [LaporanController::class])->middleware('checkRole:admin');
+
+//landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
+Route::post('/search', [LandingPageController::class, 'search']);
 
-// ROUTE ADMIN aziz
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::resource('list-gedung', LandingGedungController::class);
+// Route::get('/list-gedung', [LandingGedungController::class, 'index']);
+// Route::get('/details-gedung/{id}', [LandingGedungController::class, 'show']);
 
-// ./ROUTE LANDING PAGE
-//Ayu
-Route::get('/list-gedung', function () {
-    return view('mansion.page2');
-});
-
-Route::get('/list-gedung/{id}', function () {
-    return view('mansion.page2');
-});
-
-//Aziz
-Route::get('/search', function () {
-    return view('mansion.page2');
-});
 
 //ficri
-Route::get('/list-ruangan', function () {
-    return view('mansion.page2');
-});
+Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
+Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
+Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
+Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
+Route::any('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkoutDetail']);
+// Route::post('/checkout/{ruangan:id}/{peminjaman}/{dwp}/{dwp_plus}', [ListRuanganController::class, 'onCheckout']);
+// Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
 
-Route::get('/detail-ruangan/{id}', function () {
-    return view('mansion.page3');
-});
+// Route::get('/detail-ruangan/{id}', function () {
+//     return view('mansion.page3');
+// });
 
 //---------------
 Route::get('/alur-checkout-1', function () {
@@ -82,24 +104,18 @@ Route::get('/team', function () {
     return view('layouts.team');
 });
 
-Route::get('/testimonial', function () {
-    return view('layouts.testimonial');
+Route::get('/tes', function () {
+    return view('auth.registerdev');
 });
-// ./ROUTE LANDING PAGE
 
-// ROUTE ADMIN
+// Route::group(['checkRole' => ['admin']], function () {
+//     Route::get('home', 'HomeController@index');
+//    });
+Route::get('/admin', [DashboardController::class, 'index'])->middleware('checkRole:admin');
 
+Route::get('peminjam', function () {return view('penjual');})->middleware(['checkRole:peminjam,admin']);
+Route::get('pembeli', function () {return view('pembeli');})->middleware(['checkRole:pembeli,admin']);
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/admin', function () {
-        return view('admin.index');
-    });
-    
-});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -8,11 +8,11 @@
 </head>
 
 <body class="bg-white">
+    @include('layouts.menu')
     <div class="container-xxl bg-white p-0">
-        @include('layouts.menu')
         @yield('content')
-        @include('layouts.footer')
     </div>
+    @include('layouts.footer')
     @include('layouts.script')
 </body>
 

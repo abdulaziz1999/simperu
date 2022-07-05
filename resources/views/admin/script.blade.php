@@ -38,4 +38,5 @@
     {{-- plugins form-val --}}
     <script src="./plugins/validation/jquery.validate.min.js"></script>
     <script src="./plugins/validation/jquery.validate-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     {{-- ./plugins form-val --}}

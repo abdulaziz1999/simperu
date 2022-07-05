@@ -6,6 +6,9 @@ use App\Models\Fasilitas;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PDF;
+use App\Exports\FasilitasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FasilitasController extends Controller
 {
@@ -150,4 +153,18 @@ class FasilitasController extends Controller
 
         return redirect()->route('fasilitas.index')->with('success', 'Data fasilitas Berhasil Dihapus');
     }
+
+    public function generatePdf(){
+        $data = Fasilitas::all();
+        $pdf = PDF::loadView('admin-fasilitas/pdf', ['fasilitas' =>$data]);
+    
+        return $pdf->download('fasilitas.pdf');
+    }
+
+    public function generateExcel()
+    {
+        return Excel::download(new FasilitasExport, date('d-m-y') . '_fasilitas.xlsx');
+    }
+
+
 }

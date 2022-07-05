@@ -70,38 +70,40 @@
                 <div class="bg-white shadow rounded-3" style="padding: 50px;">
                     <div class="row g-2">
                         <div class="col-12">
-                            <div class="row g-2">
-                                <div class="col-md-6">
-                                    <label>Lokasi</label>
-                                    <select class="form-select form-select-lg rounded-3" aria-placeholder="Cari Tempat..">
-                                        <option selected disabled>Pilih Lokasi</option>
-                                        @if (count($gedung)>0)
-                                            @foreach ($gedung as $g)
-                                        <option value="{{$g->id}}">{{$g->nama_gedung}}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
+                            <form action="{{ url('search') }}" method="post">
+                                @csrf
+                                <div class="row g-2">
+                                    <div class="col-md-6">
+                                        <label>Gedung</label>
+                                        <select name="gedung" class="form-select form-select-lg rounded-3" aria-placeholder="Cari Tempat.." required>
+                                            <option selected disabled>Pilih Lokasi</option>
+                                            @if (count($gedung)>0)
+                                                @foreach ($gedung as $g)
+                                            <option value="{{$g->id}}">{{$g->nama_gedung}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Kategori</label>
+                                        <select name="kategori" class="form-select form-select-lg rounded-3" required>
+                                            <option selected disabled>Pilih Kategori</option>
+                                            @if (count($kategori)>0)
+                                                @foreach ($kategori as $kr)
+                                            <option value="{{$kr->id}}">{{$kr->nama_kategori}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label>Kategori</label>
-                                    <select class="form-select form-select-lg rounded-3">
-                                        <option selected disabled>Pilih Kategori</option>
-                                        @if (count($kategoriRuangan)>0)
-                                            @foreach ($kategoriRuangan as $kr)
-                                        <option value="{{$kr->id}}">{{$kr->nama_kategori}}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                </div>
-                            </div>
                         </div>
-                        
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <button class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill hvr-icon-back"><i class="fa fa-search hvr-icon"></i>  Cari Ruangan</button>
+                            <button type="submit" class="btn btn-primary font-weight-bold py-3 px-5 rounded-pill hvr-icon-back"><i class="fa fa-search hvr-icon"></i>  Cari Ruangan</button>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -127,7 +129,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        {{$kr->nama_kategori}}
+                                        {{$kr->nama_ruangan}}
                                     </h3>
                                     <p class="text-body text-center">
                                         {{ $kr->keterangan }}
@@ -185,6 +187,39 @@
         </div>
         <!-- Testimonial End -->
 
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">
+                        CARI GEDUNG SESUAI KEBUTUHANMU
+                    </h6>
+                    <h1 class="mb-5"><span class="text-primary">Gedung</span> Kami</h1>
+                </div>
+
+                <div class="row g-4">
+                    @if (count($gedung)>0)
+                        @foreach ($gedung as $g)
+                        <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
+                            <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
+                                <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
+                                    <img class="img-fluid w-100" src="{{ asset('storage/post-image/'.$g->foto)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="font-weight-bold text-center mb-3">
+                                        {{$g->nama_gedung}}
+                                    </h3>
+                                    <p class="text-body text-center">
+                                        {{ $g->alamat }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    @endif
+                    </div>
+                </div>
+            </div>
+        </div
 
         <!-- Service Start -->
         <div class="container-xxl py-5">
