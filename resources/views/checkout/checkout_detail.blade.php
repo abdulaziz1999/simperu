@@ -23,8 +23,9 @@
                             <h5 class="text-dark mb-3">Informasi Peminjam</h5>
                         </div>
                         <div class="col-12 border">
-                            <form action="{{url('/notif'.'/'.$pembayaran->id)}}" class="text-start border" method="POST">
+                            <form  method="post" action="{{url("/notif/$pembayaran->id/transfer")}}" class="text-start border">
                                 @csrf
+                                @method('PUT')
                                 <div class="mb-3">
                                     <label class="text-start mx-0 px-0">Nama Peminjam</label>
                                     <input required type="text" name="nama" class="form-control rounded-3" value="{{Auth::user()->name}}"/>

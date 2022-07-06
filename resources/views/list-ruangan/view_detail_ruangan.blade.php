@@ -1,6 +1,8 @@
  @extends('layouts.layout')
  @section('content')
- 
+ @php
+    date_default_timezone_set('Asia/Jakarta');
+ @endphp
  <!-- Page Header Start -->
         <div class="container-fluid page-header p-0"> {{-- background diambil dari foto gedung --}}
             <div class="container-fluid page-header-inner-gedung pt-5">
@@ -107,6 +109,7 @@
                                 <div class="row my-2">
                                     <div class="col-12 mb-1">
                                         <label class="text-start d-block mb-1">Tanggal Kegiatan</label>
+                                        
                                         <input type="date" class="tgl form-select rounded-3 py-3" name="tgl_pinjam" id="tgl_masuk" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}">
                                     </div>
                                 </div>
@@ -260,7 +263,7 @@
                     headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : "http://127.0.0.1:8000/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
+                    url : {{url('')}}+"/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
                     method : "POST",
                     data : {id: id},
                     async : false,
@@ -286,7 +289,7 @@
                     headers: {
                         'X-CSRF-TOKEN': "{{csrf_token()}}",
                     },
-                    url : "http://127.0.0.1:8000/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
+                    url : {{url('')}}+"/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
                     method : "POST",
                     data : {id: id},
                     async : false,
@@ -318,7 +321,7 @@
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : "http://127.0.0.1:8000/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+tgl,
+                    url : {{url('')}}+"/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+tgl,
                     method : "POST",
                     data : {tgl: tgl},
                     async : false,

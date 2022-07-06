@@ -18,6 +18,7 @@
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{ route('list-gedung.index')}}" class="nav-item nav-link">Daftar Gedung</a>
                                 <a href="{{ url('/list-ruangan') }}" class="nav-item nav-link">Daftar Ruangan</a>
+                                <a href="{{ url('/list-ruangan') }}" class="nav-item nav-link">PeminjamanKu</a>
                                 <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
                             </div>
                             <div class="me-3 me-lg-5">
@@ -34,15 +35,21 @@
                                 <div class="btn-group">
                                     <div class="nav-item dropdown">
                                         <a href="javascript:void(0)" class="nav-link position-relative" data-bs-toggle="dropdown">
-                                            <i class="fas fa-shopping-cart position-relative">
-                                                @if(session('status'))
+                                            <i class="fas fa-bell position-relative">
                                                 <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                                                 </span>
-                                                @endif
                                             </i> 
                                         </a>
                                         <div class="dropdown-menu rounded-0 m-0">
-                                            <a class="dropdown-item">Notif 1</a>
+                                            <a class="dropdown-item">
+                                                <span class="h5 fw-bold">
+                                                    Konfirmasi Pembayaran
+                                                </span>
+                                                <br>
+                                                <span>
+                                                    Lorem ipsum dolor sit amet...
+                                                </span>
+                                            </a>
                                             <a class="dropdown-item">Notif 1</a>
                                             <a class="dropdown-item">Notif 1</a>
                                             <a class="dropdown-item">Notif 1</a>

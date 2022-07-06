@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </div>
-        </div
+        </div>
         
 
         <!-- Testimonial Start -->
@@ -219,7 +219,7 @@
                     </div>
                 </div>
             </div>
-        </div
+        </div>
 
         <!-- Service Start -->
         <div class="container-xxl py-5">

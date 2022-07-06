@@ -25,6 +25,7 @@ class ListRuanganController extends Controller
 
     public function detail_ruangan(Ruangan $ruangan)
     {
+        date_default_timezone_set('Asia/Jakarta');
         $ruangan->foto1 = $ruangan->foto1 == null ? 'default.png' : $ruangan->foto1;
         $ruangan->foto2 = $ruangan->foto2 == null ? 'default.png' : $ruangan->foto2;
         $ruangan->foto3 = $ruangan->foto3 == null ? 'default.png' : $ruangan->foto3;
@@ -119,7 +120,7 @@ class ListRuanganController extends Controller
         echo json_encode($new_array);
     }
 
-    public function checkoutDetail(Request $request, Ruangan $ruangan)
+    public function checkout_detail(Request $request, Ruangan $ruangan)
     {
         $request->validate([
             'tgl_pinjam' => 'required',
@@ -141,7 +142,7 @@ class ListRuanganController extends Controller
         $data_peminjaman = new Peminjaman;
         $data_peminjaman->dokumen =  $request->dokumen;
         $data_peminjaman->keperluan =  $request->keperluan;
-        $data_peminjaman->peminjam_id =  Auth::user()->id;
+        $data_peminjaman->users_id =  Auth::user()->id;
         $data_peminjaman->ruangan_id =  $ruangan->id;
         $data_peminjaman->pembayaran_id =  $data_pembayaran->id;
         $data_peminjaman->save();
@@ -181,6 +182,18 @@ class ListRuanganController extends Controller
 
         $pembayaran->nomer_telefon = $request->nomer_telefon;
         $pembayaran->update();
-        return redirect('/');
+
+        return redirect()->url('');
+    }
+
+    public function bill_and_payment()
+    {
+        // expired transfer
+        date_default_timezone_set('Asia/Jakarta');
+        $date_now = date('Y-m-d H:i:s');
+        $date1 = str_replace('-', '/', $date_now);
+        $date_tomorrow = date('Y-m-d H:i:s', strtotime($date1 . "+1 days"));
+
+        return view('checkout.bill_and_payment', compact('date_now', 'date_tomorrow'));
     }
 }
