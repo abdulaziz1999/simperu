@@ -14,3 +14,5 @@ yarn-error.log
 /.idea
 /.vscode
 catatan.md
+composer.lock
+package-lock.json
