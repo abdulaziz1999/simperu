@@ -7,6 +7,7 @@ use App\Models\Ruangan;
 use App\Models\WaktuPeminjaman;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ListRuanganController extends Controller
@@ -24,6 +25,7 @@ class ListRuanganController extends Controller
 
     public function detail_ruangan(Ruangan $ruangan)
     {
+        date_default_timezone_set('Asia/Jakarta');
         $ruangan->foto1 = $ruangan->foto1 == null ? 'default.png' : $ruangan->foto1;
         $ruangan->foto2 = $ruangan->foto2 == null ? 'default.png' : $ruangan->foto2;
         $ruangan->foto3 = $ruangan->foto3 == null ? 'default.png' : $ruangan->foto3;
@@ -41,7 +43,13 @@ class ListRuanganController extends Controller
         }
 
         // Menampilkan jam_mulai dengan group sesuai dengan tanggalnyaruangannya.
-        $booked_rooms = Peminjaman::where('ruangan_id', $ruangan->id)->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')->join('waktu_peminjaman', 'waktu_peminjaman.peminjaman_id', '=', 'peminjaman.id')->orderBy('waktu_peminjaman.tgl_pinjam')->get(['peminjaman.status', 'waktu_peminjaman.*']);
+        $booked_rooms = Peminjaman::join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')
+            ->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')
+            ->orderBy('waktu_peminjaman.tgl_pinjam', 'ASC')
+            ->orderBy('waktu_peminjaman.jam_mulai', 'ASC')
+            ->where('ruangan_id', $ruangan->id)
+            ->where('waktu_peminjaman.tgl_pinjam', '>=', date('Y-m-d'))
+            ->get(['waktu_peminjaman.*', 'peminjaman.status', 'ruangan.nama_ruangan', 'ruangan.lantai']);
 
         return view('list-ruangan.view_detail_ruangan', compact('ruangan', 'all_r', 'booked_rooms'))->with(['i' => 1]);
     }
@@ -69,9 +77,13 @@ class ListRuanganController extends Controller
         for ($i = 7; $i <= 17; $i++) {
             array_push($jam_masuk, $i);
         }
+        $test_query = Peminjaman::join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')
+            ->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')
+            ->where('ruangan_id', $ruangan->id)
+            ->where('waktu_peminjaman.tgl_pinjam', $tgl)
+            ->get();
 
-        $test_query = Peminjaman::where('ruangan_id', $ruangan->id)->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')->join('waktu_peminjaman', 'waktu_peminjaman.peminjaman_id', '=', 'peminjaman.id')->where('tgl_pinjam', $tgl)->get(['waktu_peminjaman.*']);
-
+        // return ($test_query == $tgl);
         foreach ($test_query as $item) {
             array_splice($jam_masuk, array_search((int)$item->jam_mulai, $jam_masuk), count(range((int)$item->jam_mulai, (int)$item->jam_selesai)) - 1);
         }
@@ -94,7 +106,6 @@ class ListRuanganController extends Controller
             $previous = $number;
         }
         $result[] = $consecutiveArray;
-        // dd($test_query);
         $new_array = array();
         foreach ($result as $key => $value) {
             $iterasi = count($value) - 1;
@@ -109,7 +120,7 @@ class ListRuanganController extends Controller
         echo json_encode($new_array);
     }
 
-    public function checkoutDetail(Request $request, Ruangan $ruangan)
+    public function checkout_detail(Request $request, Ruangan $ruangan)
     {
         $request->validate([
             'tgl_pinjam' => 'required',
@@ -122,16 +133,19 @@ class ListRuanganController extends Controller
         // kumpulin data pembayaran
         $data_pembayaran = new Pembayaran;
         $data_pembayaran->bukti_pembayaran =  '';
-        // $data_pembayaran->save();
+        $data_pembayaran->jumlah_transaksi =  $request->durasi * $ruangan->harga;
+        $data_pembayaran->nomer_telefon =  0;
+
+        $data_pembayaran->save();
 
         // kumpulin data peminjaman
         $data_peminjaman = new Peminjaman;
         $data_peminjaman->dokumen =  $request->dokumen;
         $data_peminjaman->keperluan =  $request->keperluan;
-        // 'peminjam_id' => Session::get('id'),
-        $data_peminjaman->peminjam_id =  1;
+        $data_peminjaman->users_id =  Auth::user()->id;
         $data_peminjaman->ruangan_id =  $ruangan->id;
         $data_peminjaman->pembayaran_id =  $data_pembayaran->id;
+        $data_peminjaman->save();
 
         // kumpulin data waktu_peminjman
         $data_waktu_peminjaman = new WaktuPeminjaman;
@@ -139,38 +153,15 @@ class ListRuanganController extends Controller
         $data_waktu_peminjaman->tgl_selesai = $request->tgl_pinjam;
         $data_waktu_peminjaman->jam_mulai = $this->format_jam($request->jam_mulai);
         $data_waktu_peminjaman->jam_selesai = $this->format_jam($request->jam_mulai + $request->durasi);
-        $data_waktu_peminjaman->peminjam_id = $data_peminjaman->id;
+        $data_waktu_peminjaman->peminjaman_id = $data_peminjaman->id;
+        $data_waktu_peminjaman->save();
 
         // kumpulin data peminjam dengan id dari data peminjam
         $peminjaman = Peminjaman::find($data_peminjaman->id);
 
-
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-sm9Bf0VgzrUPlJ5krKguwfLA';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
-
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            ),
-            'customer_details' => array(
-                'first_name' => 'budi',
-                'last_name' => 'pratama',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-        );
-
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
         return view('checkout.checkout_detail', [
             'ruangan' => $ruangan,
+            'pembayaran' => $data_pembayaran,
             'peminjaman' => $peminjaman,
             'dwp' => $data_waktu_peminjaman,
             'dwp_plus' => [
@@ -178,7 +169,31 @@ class ListRuanganController extends Controller
                 'durasi' => $request->durasi,
                 'total_harga_ruangan' => $this->formatRupiah($request->durasi * $ruangan->harga)
             ],
-            'snap_token' => $snapToken
         ]);
+    }
+
+    public function notif_pay(Request $request, Pembayaran $pembayaran)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'nomer_telefon' => 'required',
+        ]);
+
+        $pembayaran->nomer_telefon = $request->nomer_telefon;
+        $pembayaran->update();
+
+        return redirect()->url('');
+    }
+
+    public function bill_and_payment()
+    {
+        // expired transfer
+        date_default_timezone_set('Asia/Jakarta');
+        $date_now = date('Y-m-d H:i:s');
+        $date1 = str_replace('-', '/', $date_now);
+        $date_tomorrow = date('Y-m-d H:i:s', strtotime($date1 . "+1 days"));
+
+        return view('checkout.bill_and_payment', compact('date_now', 'date_tomorrow'));
     }
 }

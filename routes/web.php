@@ -70,14 +70,10 @@ Route::resource('list-gedung', LandingGedungController::class);
 Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
 Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
 Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
-Route::get('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
-Route::any('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkoutDetail']);
-// Route::post('/checkout/{ruangan:id}/{peminjaman}/{dwp}/{dwp_plus}', [ListRuanganController::class, 'onCheckout']);
-// Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout']);
-
-// Route::get('/detail-ruangan/{id}', function () {
-//     return view('mansion.page3');
-// });
+Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout_detail']);
+Route::put('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
+Route::get('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
+// Route::get('/peminjamanku/{users:id}', [ListRuanganController::class, 'bill_and_payment']);
 
 //---------------
 Route::get('/alur-checkout-1', function () {
