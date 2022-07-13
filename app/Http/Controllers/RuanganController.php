@@ -7,6 +7,9 @@ use App\Models\KategoriRuangan;
 use App\Models\Gedung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PDF;
+use App\Exports\RuanganExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class RuanganController extends Controller
@@ -184,4 +187,23 @@ class RuanganController extends Controller
         }
         return $profileImage;
     }
+
+    public function generatePDF()
+    {
+        $data = Ruangan::all();
+        // dd($data);
+        $pdf = PDF::loadView('admin-ruangan/pdf', ['ruangan' => $data]);
+    
+        return $pdf->download('Ruangan.pdf');
+    }
+
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function generateExcel()
+    {
+        return Excel::download(new RuanganExport, date('d-m-y') . '_Ruangan.xlsx');
+    }
+
 }

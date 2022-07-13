@@ -1,16 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\KategoriRuanganController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\RuanganController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ListRuanganController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\List_ruangan_controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +47,18 @@ Route::resource('ruangan', RuanganController::class)->middleware('checkRole:admi
 Route::get('ruanganexcel', [RuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
 Route::get('ruanganpdf', [RuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
 
+//route user admin
+Route::resource('user', UserController::class)->middleware('checkRole:admin');
+
+//route profile
+Route::get('profile', [UserController::class, 'profile'])->middleware('checkRole:admin');
+
+//route peminjaman
+// Route::resource('peminjaman', [PeminjamanController::class])->middleware('checkRole:admin');
+
+//route laporan
+// Route::resource('laporan', [LaporanController::class])->middleware('checkRole:admin');
+
 //landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
@@ -52,12 +69,48 @@ Route::resource('list-gedung', LandingGedungController::class);
 
 
 //ficri
-Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
-Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
-Route::post('/list-ruangan/{ruangan:id}/available_date/{id}', [ListRuanganController::class, 'available_date']);
-Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout_detail']);
-Route::put('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
-Route::get('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
+// Fitur LIST-RUANGAN
+Route::get('list-ruangan', [
+    'uses' => 'App\Http\Controllers\ListRuanganController@showAllRoom',
+    'as' => 'list-ruangan.showAllRoom'
+]);
+Route::get('list-ruangan/{ruangan:id}', [
+    'uses' => 'App\Http\Controllers\ListRuanganController@detailRoomById',
+    'as' => 'list-ruangan.detailRoomById'
+]);
+Route::post('list-ruangan/{ruangan:id}', [
+    'uses' => 'App\Http\Controllers\ListRuanganController@store',
+    'as' => 'list-ruangan.store'
+]);
+Route::post('list-ruangan/{ruangan:id}/{tgl}', [
+    'uses' => 'App\Http\Controllers\ListRuanganController@availableDate',
+    'as' => 'list-ruangan.availableDate'
+]);
+
+// Fitur CHECKOUT
+Route::get('checkout/customer-detail', [
+    'uses' => 'App\Http\Controllers\CheckoutController@customerDetail',
+    'as' => 'checkout.customerDetail'
+]);
+Route::post('checkout/customer-detail', [
+    'uses' => 'App\Http\Controllers\CheckoutController@store',
+    'as' => 'checkout.store'
+]);
+Route::get('checkout/payment/{waktu_peminjaman:id}', [
+    'uses' => 'App\Http\Controllers\CheckoutController@payment',
+    'as' => 'checkout.payment'
+]);
+
+// Route::get('list-ruangan/{ruangan:id}/{tgl}', [
+//     'uses' => "$base_path\ListRuanganController@availableDate",
+//     'as' => 'list-ruangan.availableDate'
+// ]);
+
+// Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
+// Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
+// Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout_detail']);
+// Route::put('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
+// Route::get('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
 // Route::get('/peminjamanku/{users:id}', [ListRuanganController::class, 'bill_and_payment']);
 
 //---------------

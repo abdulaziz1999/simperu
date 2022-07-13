@@ -10,6 +10,7 @@
 <body class="bg-white">
     
     @include('layouts.menu')
+    @include('sweetalert::alert')
     <div class="container-xxl bg-white p-0">
         @yield('content')
     </div>

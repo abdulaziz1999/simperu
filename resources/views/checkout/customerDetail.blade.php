@@ -8,7 +8,7 @@
                     <div class="w-75 border">
                         {{-- button back and table available room --}}
                         <div class="col-12 text-start mx-0 px-0 mb-3">
-                            <a class="fs-3 d-inline" href="{{url('/list-ruangan/detail/'.$ruangan->id.'-'.$ruangan->nama_ruangan)}}"><i class="fas fa-arrow-left"></i></a>
+                            {{-- <a class="fs-3 d-inline" href="{{url('/list-ruangan/detail/'.$ruangan->id.'-'.$ruangan->nama_ruangan)}}"><i class="fas fa-arrow-left"></i></a> --}}
                         </div>
                         <div class="col-12 text-start mb-5">
                             <div class="w-fit-contet">
@@ -16,16 +16,15 @@
                             </div>
                         </div>
                         <div class="col-12 mt-3 text-start mb-5">
-                            <h5 class="text-primary mb-3">{{$ruangan->kategoriRuangan->nama_kategori}}</h5>
-                            <h2>{{$dwp_plus['harga_ruangan']}} <span class="text-secondary h5" style="font-weight: 500">/ Jam</span></h2>
+                            <h5 class="text-primary mb-3">{{$request->session()->get('ruangan')->kategoriRuangan->nama_kategori}}</h5>
+                            <h2>{{ $request->session()->get('harga_ruangan') }} <span class="text-secondary h5" style="font-weight: 500">/ Jam</span></h2>
                         </div>
                         <div class="col-12 mt-3 text-start">
                             <h5 class="text-dark mb-3">Informasi Peminjam</h5>
                         </div>
                         <div class="col-12 border">
-                            <form  method="post" action="{{url("/notif/$pembayaran->id/transfer")}}" class="text-start border">
+                            <form  method="post" action="{{ route('checkout.store') }}" class="text-start border">
                                 @csrf
-                                @method('PUT')
                                 <div class="mb-3">
                                     <label class="text-start mx-0 px-0">Nama Peminjam</label>
                                     <input required type="text" name="nama" class="form-control rounded-3" value="{{Auth::user()->name}}"/>
@@ -53,12 +52,12 @@
                 <div class="col-lg-6 d-flex justify-content-start align-items-center">
                     <div class="card w-75 shadow bg-body" style="border-radius: 1rem">
                         <div class="card-header p-0" style="border-radius: 1rem">
-                            <img class="img-fluid w-100" src="{{ asset('storage/post-image/'.$ruangan->foto1) }}" alt="{{$ruangan->foto1}}" style="border-radius: 1rem">
+                            <img class="img-fluid w-100" src="{{ asset('storage/post-image/'.$request->session()->get('ruangan')->foto1) }}" alt="{{$request->session()->get('ruangan')->foto1}}" style="border-radius: 1rem">
                         </div>
                         <div class="card-body">
                             <div class="text-start py-2">
-                                <span class="d-block font-weight-bold text-primary">{{$ruangan->gedung->nama_gedung}}</span>
-                                <h3 class="text-dark">{{$ruangan->nama_ruangan}}</h3>
+                                <span class="d-block font-weight-bold text-primary">{{$request->session()->get('ruangan')->gedung->nama_gedung}}</span>
+                                <h3 class="text-dark">{{$request->session()->get('ruangan')->nama_ruangan}}</h3>
                             </div>
                             <span class="d-block" style="border-bottom: 2px dashed rgba(0, 0, 0, .2)"/></span>
                             <div class="text-start py-2 my-2">
@@ -67,7 +66,7 @@
                                         <i class="text-primary fas fa-users"></i>
                                     </div>
                                     <div class="col-11">
-                                        <span class="d-block font-weight-bold text-secondary">{{$ruangan->kapasitas}} Orang</span>
+                                        <span class="d-block font-weight-bold text-secondary">{{$request->session()->get('ruangan')->kapasitas}} Orang</span>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -75,15 +74,15 @@
                                         <i class="text-primary fas fa-calendar-alt"></i>
                                     </div>
                                     <div class="col-4">
-                                        <span class="text-secondary">{{$dwp->tgl_pinjam}}</span><br/>
-                                        <span>{{$dwp->jam_mulai}}</span>
+                                        <span class="text-secondary">{{$request->session()->get('waktu_peminjaman')['tgl_pinjam']}}</span><br/>
+                                        <span>{{$request->session()->get('waktu_peminjaman')['jam_mulai']}}</span>
                                     </div>
                                     <div class="col-2">
                                         <i class="text-primary fas fa-arrow-right"></i>
                                     </div>
                                     <div class="col-4">
-                                        <span class="text-secondary">{{$dwp->tgl_selesai}}</span><br/>
-                                        <span>{{$dwp->jam_selesai}}</span>
+                                        <span class="text-secondary">{{$request->session()->get('waktu_peminjaman')['tgl_selesai']}}</span><br/>
+                                        <span>{{$request->session()->get('waktu_peminjaman')['jam_selesai']}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -91,10 +90,10 @@
                             <div class="text-start py-2 my-2">
                                 <div class="row mb-3">
                                     <div class="col-8">
-                                        <span>{{$dwp_plus['harga_ruangan']}} <i class="text-secondary fas fa-times"></i> {{$dwp_plus['durasi']}} Jam</span>
+                                        <span>{{ $request->session()->get('harga_ruangan') }} <i class="text-secondary fas fa-times"></i> {{  $request->session()->get('durasi') }} Jam</span>
                                     </div>
                                     <div class="col-4">
-                                        <span class="d-block font-weight-bold text-secondary"> {{$dwp_plus['total_harga_ruangan']}}</span>
+                                        <span class="d-block font-weight-bold text-secondary"> {{ $request->session()->get('total_harga_ruangan') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +103,7 @@
                                         <span class="h6">Total</span>
                                     </div>
                                     <div class="col-4">
-                                        <span class="h6">{{$dwp_plus['total_harga_ruangan']}}</span>
+                                        <span class="h6">{{$request->session()->get('total_harga_ruangan')}}</span>
                                     </div>
                                 </div>
                             </div>

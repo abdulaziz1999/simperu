@@ -6,6 +6,7 @@ use App\Models\Gedung;
 use App\Models\Ruangan;
 use App\Models\KategoriRuangan;
 use App\Models\Fasilitas;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,7 +17,8 @@ class DashboardController extends Controller
         $gedung = Gedung::all();
         $ruangan = Ruangan::all();
         $fasilitas = Fasilitas::all();
-        $kategoriRuangan = KategoriRuangan::all();
-        return view('admin-dashboard.index', compact('gedung','ruangan','kategoriRuangan','fasilitas'));
-    }
+        $kategoriRuangan = KategoriRuangan::all(); 
+        $feedback = Feedback::all();
+        return view('admin-dashboard.index', compact('gedung','ruangan','kategoriRuangan','fasilitas','feedback'));
+   }
 }

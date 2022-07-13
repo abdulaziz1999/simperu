@@ -158,6 +158,6 @@ class GedungController extends Controller
 
     public function generateExcel()
     {
-        return Excel::download(new GedungExport, date('d-m-y') . '_gedung.xlsx');
+        return Excel::download(new GedungExport, date('d-m-y') . '_Gedung.xlsx');
     }
 }

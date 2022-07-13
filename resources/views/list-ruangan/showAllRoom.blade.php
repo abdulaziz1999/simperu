@@ -19,7 +19,7 @@
                         @foreach ($r_OrderByStatusAsc as $r)
                         <div class="col-lg-4 col-md-6 wow fadeInUp hvr-float" data-wow-delay="0.1s">
                         <div class="p-0 shadow border h-100" style="border-radius: 1rem">
-                            <a href="{{ url("/list-ruangan/detail/{$r->id}-{$r->nama_ruangan}")}}">
+                            <a href="{{ route('list-ruangan.detailRoomById', [$r->id]) }}">
                                 <div class="position-relative">
                                     <img class="img-fluid w-100" src="{{asset('storage/post-image/'.$r->foto1)}}" alt="{{$r->nama_ruangan}}" style="border-radius: 1rem">
                                     <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$r->harga}}<span class="h6 text-primary fw-light"> / Jam</span></div>

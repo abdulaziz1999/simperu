@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Console\Kernel;
 use App\Models\KategoriRuangan;
 use Illuminate\Http\Request;
+use PDF;
+use App\Exports\KategoriRuanganExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KategoriRuanganController extends Controller
 {
@@ -97,4 +100,18 @@ class KategoriRuanganController extends Controller
         $kategoriRuangan->delete();
         return redirect('/kategoriRuangan')->with('success', 'Data Kategori Ruangan Berhasil Dihapus');
     }
+
+    public function generatePDF()
+    {
+        $data = KategoriRuangan::orderBy('id','desc')->get();
+        $pdf = PDF::loadView('admin-kategoriRuangan/pdf', ['kategori_ruangan' =>$data]);
+    
+        return $pdf->download('kategoriRuangan.pdf');
+    }
+
+    public function generateExcel()
+    {
+        return Excel::download(new KategoriRuanganExport, date('d-m-y') . '_KategoriRuangan.xlsx');
+    }
+
 }

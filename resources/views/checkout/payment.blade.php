@@ -1,8 +1,5 @@
  @extends('layouts.layout')
  @section('content')
- @php
-    date_default_timezone_set('Asia/Jakarta');
- @endphp
  <!-- Page Header Start -->
         <div class="container-fluid page-header p-0">
             <div class="container-fluid page-header-inner-gedung">
@@ -31,11 +28,11 @@
                         <div class="col-md-6 p-2 my-5 d-flex flex-column justify-content-center align-items-center">
                             <h5 class="text-primary mb-3">
                                 Berlaku dari :<br/>
-                                <span>{{$date_now}}</span>
+                                <span>{{$waktu_peminjaman->tgl_pinjam}}</span>
                             </h5>
                             <h5 class="text-primary mb-3">
                                 Samapai dengan :<br/>
-                                <span>{{$date_tomorrow}}</span>
+                                <span>{{$waktu_peminjaman->tgl_selesai}}</span>
                             </h5>
                             <a class="btn btn-md btn-primary rounded-3" href="{{url('')}}">
                                 Konfirmasi Pembayaran
