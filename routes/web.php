@@ -47,15 +47,13 @@ Route::get('ruanganpdf', [RuanganController::class, 'generatePDF'])->middleware(
 
 //route user admin
 Route::resource('user', UserController::class)->middleware('checkRole:admin');
+Route::resource('peminjaman', PeminjamanController::class)->middleware('checkRole:admin');
+Route::resource('laporan', LaporanController::class)->middleware('checkRole:admin');
 
 //route profile
 Route::get('profile', [UserController::class, 'profile'])->middleware('checkRole:admin');
 
-//route peminjaman
-// Route::resource('peminjaman', [PeminjamanController::class])->middleware('checkRole:admin');
 
-//route laporan
-// Route::resource('laporan', [LaporanController::class])->middleware('checkRole:admin');
 
 //landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);

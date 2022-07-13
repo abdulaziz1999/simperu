@@ -18,6 +18,11 @@ class UserController extends Controller
         return view('admin-user.index', compact('user'));
     }
 
+    public function profile(){
+        $user = User::all();
+        return view('admin-user.profile', compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
