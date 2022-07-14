@@ -19,7 +19,7 @@ class ListRuanganController extends Controller
     {
         return 'Rp. ' . number_format($val, 0, '.', ',');
     }
-    // Function formating ja
+    // Function formating jam
     public function format_jam($val)
     {
         if ($val < 10) {

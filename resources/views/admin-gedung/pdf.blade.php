@@ -7,7 +7,6 @@
     <title>Document</title>
 </head>
 <style>
-<style>
 #gedung {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;

@@ -7,9 +7,18 @@ use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+
 
 class PeminjamankuController extends Controller
 {
+    //FORMATER
+    // Function formating ke rupiah
+    public function formatRupiah($val)
+    {
+        return 'Rp. ' . number_format($val, 0, '.', ',');
+    }
+
     public function availableCountdown()
     {
         $peminjamanByUser = Peminjaman::where('users_id', '=', Auth::user()->id)
@@ -33,11 +42,7 @@ class PeminjamankuController extends Controller
 
         return $countDown;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $peminjamanByUser = Peminjaman::where('users_id', '=', Auth::user()->id)
@@ -50,56 +55,6 @@ class PeminjamankuController extends Controller
         return view('peminjamanku.index', compact('peminjamanByUser'))->with(['i' => 0, 'btnShowOrNot' => 0, 'modalBsTarget' => 0, 'modalId' => 0, 'modalAriaLabelledBy' => 0, 'modalTitleId' => 0]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Pembayaran $pembayaran)
     {
         $validator = Validator::make($request->all(), [
@@ -122,21 +77,27 @@ class PeminjamankuController extends Controller
             $pembayaran->bukti_pembayaran = $profileBp;
         }
 
-
         $pembayaran->status = 'Lunas';
         $pembayaran->update();
+        return dd($pembayaran);
 
         return redirect()->route('peminjamanku.index')->with('toast_success', 'Berhasil Upload Bukti Pembayaran');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function invoice(Pembayaran $pembayaran)
     {
-        //
+        $invoiceData = Peminjaman::where('users_id', '=', Auth::user()->id)
+            ->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')
+            ->join('gedung', 'ruangan.gedung_id', '=', 'gedung.id')
+            ->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')
+            ->join('pembayaran', 'peminjaman.pembayaran_id', '=', 'pembayaran.id')
+            ->where('pembayaran.id', '=', $pembayaran->id)
+            ->get();
+        $invoiceData[0]->harga = $this->formatRupiah((float)$invoiceData[0]->harga);
+        $invoiceData[0]->jumlah_transaksi = $this->formatRupiah((float)$invoiceData[0]->jumlah_transaksi);
+
+        $pdf = PDF::loadView('peminjamanku/pdf', ['invoice' => $invoiceData]);
+
+        return $pdf->download('invoice-booking-' . $pembayaran->id . '.pdf');
     }
 }

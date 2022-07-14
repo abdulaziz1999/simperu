@@ -28,29 +28,26 @@
                                             Tanggal : {{$pbu->tgl_pinjam}} s/d {{$pbu->tgl_selesai}}<br/>
                                             Jam : {{$pbu->jam_mulai}} s/d {{$pbu->jam_selesai}} WIB
                                         </p>
-                                        
-                                        @if ($pbu->bukti_pembayaran == null)
-                                        <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary" style="radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
+                                        <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary {{($pbu->status == 'Lunas') ? 'd-none':''}}" style="radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
                                             Upload Bukti Pembayaran
                                         </button>
-                                        @endif
                                     </div>
                                     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
                                         @if ($pbu->status != null && $pbu->status == 'Lunas')
                                         <h6 class="alert-success rounded-pill px-3 py-2 m-0">
                                             {{$pbu->status}}
                                         </h6>
-                                        <div class="btn btn-success rounded-pill ms-2">
+                                        <a href="{{route('peminjamanku.invoice', $pbu->id)}}" class="btn btn-success rounded-pill ms-2">
                                             <i class="fas fa-print"></i>
-                                        </div>
+                                        </a>
                                         @else
-                                        <h6 class="alert-danger rounded-pill px-3 py-2 m-0">
-                                            {{$pbu->status}}
-                                        </h6>
-                                        @endif
-                                        @if ($pbu->bukti_pembayaran == null)
-                                        <h3 class="text-white mt-1" id="countDown{{$i++}}">
-                                        </h3>
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <h6 class="alert-danger rounded-pill px-3 py-2 m-0">
+                                                {{$pbu->status}}
+                                            </h6>
+                                            <h3 class="text-white mt-1" id="countDown{{$i++}}">
+                                            </h3>
+                                        </div>
                                         @endif
                                     </div>
                                 </div>
@@ -146,7 +143,6 @@
                                     clearInterval(x);
                                     $(selector).html('<h6 class="alert-danger rounded-pill p-2 m-0">Waktu Habis</h6>');
                                     $(modalSelector).addClass('d-none');
-                                    console.log($(modalSelector).attr('class'));
                                 }else{
                                     $(selector).html(result);
                                 }

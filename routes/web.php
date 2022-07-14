@@ -109,6 +109,10 @@ Route::put('peminjamanku/{pembayaran:id}', [
     'uses' => 'App\Http\Controllers\PeminjamankuController@update',
     'as' => 'peminjamanku.update'
 ]);
+Route::get('peminjamanku/{pembayaran:id}/invoice', [
+    'uses' => 'App\Http\Controllers\PeminjamankuController@invoice',
+    'as' => 'peminjamanku.invoice'
+]);
 
 // Route::get('list-ruangan/{ruangan:id}/{tgl}', [
 //     'uses' => "$base_path\ListRuanganController@availableDate",
