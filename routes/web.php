@@ -9,12 +9,8 @@ use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\PDFController;
-use App\Http\Controllers\ListRuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PeminjamanController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\List_ruangan_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +95,19 @@ Route::post('checkout/customer-detail', [
 Route::get('checkout/payment/{waktu_peminjaman:id}', [
     'uses' => 'App\Http\Controllers\CheckoutController@payment',
     'as' => 'checkout.payment'
+]);
+// Fitur Peminjamanku
+Route::get('peminjamanku', [
+    'uses' => 'App\Http\Controllers\PeminjamankuController@index',
+    'as' => 'peminjamanku.index'
+]);
+Route::post('peminjamanku/available-countdown', [
+    'uses' => 'App\Http\Controllers\PeminjamankuController@availableCountdown',
+    'as' => 'peminjamanku.availableCountdown'
+]);
+Route::put('peminjamanku/{pembayaran:id}', [
+    'uses' => 'App\Http\Controllers\PeminjamankuController@update',
+    'as' => 'peminjamanku.update'
 ]);
 
 // Route::get('list-ruangan/{ruangan:id}/{tgl}', [

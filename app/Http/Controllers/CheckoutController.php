@@ -34,6 +34,7 @@ class CheckoutController extends Controller
 
         $request->session()->put('peminjaman.pembayaran_id', $pembayaran->id);
         $peminjaman = Peminjaman::create($request->session()->get('peminjaman'));
+        // return dd([$request->session()->all(), $pembayaran, $peminjaman]);
 
         // Table Waktu_Peminjaman
         $request->session()->put('waktu_peminjaman.peminjaman_id', $peminjaman->id);
@@ -53,7 +54,11 @@ class CheckoutController extends Controller
 
         $waktu_peminjaman = WaktuPeminjaman::find($waktu_peminjaman->id);
 
+        $countDown = [
+            'first' => date_format($waktu_peminjaman->created_at, 'Y-m-d H:i:s'),
+            'second' => date('Y-m-d H:i:s', strtotime(date_format($waktu_peminjaman->created_at, 'Y-m-d H:i:s') . '+6 hours'))
+        ];
 
-        return view('checkout.payment', compact('waktu_peminjaman'));
+        return view('checkout.payment', compact('waktu_peminjaman', 'countDown'));
     }
 }

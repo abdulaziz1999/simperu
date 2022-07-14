@@ -26,15 +26,17 @@
                             </h4>
                         </div>
                         <div class="col-md-6 p-2 my-5 d-flex flex-column justify-content-center align-items-center">
+                            <h1 class="text-white mb-3" id="countDown">
+                            </h1>
                             <h5 class="text-primary mb-3">
                                 Berlaku dari :<br/>
-                                <span>{{$waktu_peminjaman->tgl_pinjam}}</span>
+                                <span>{{$countDown['first']}}</span>
                             </h5>
                             <h5 class="text-primary mb-3">
                                 Samapai dengan :<br/>
-                                <span>{{$waktu_peminjaman->tgl_selesai}}</span>
+                                <span>{{$countDown['second']}}</span>
                             </h5>
-                            <a class="btn btn-md btn-primary rounded-3" href="{{url('')}}">
+                            <a class="btn btn-md btn-primary rounded-3" href="{{route('peminjamanku.index')}}">
                                 Konfirmasi Pembayaran
                             </a>
                         </div>
@@ -42,5 +44,8 @@
                 </div>
             </div>
         </div>
-        
+        <script>
+            // All Variabel
+            let varSecond = "{{$countDown['second']}}";
+        </script>
  @endsection

@@ -271,21 +271,19 @@
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : "{{url('')}}/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+tgl,
-                    method : "POST",
-                    data : {tgl: tgl},
-                    async : false,
-                    dataType : 'json',
-                    success: function(data){
-                        var jam = '<option disabled selected>Pilih Waktu</option>';
-                        data.forEach(element => {
-                            if (element['jam']<10) {
-                                jam += '<option value="'+element['jam']+'">0'+element['jam']+':00 WIB</option>';
-                            } else {
-                                jam += '<option value="'+element['jam']+'">'+element['jam']+':00 WIB</option>';
-                            }
-                        });
-                        $('#waktu_peminjaman').html(jam);
+                        dataType : 'json',
+                        url : "{{url('')}}/list-ruangan/{{ $ruangan->id }}/available_date/"+tgl,
+                        method : "POST",
+                        success: function(data){
+                            var jam = '<option disabled selected>Pilih Waktu</option>';
+                            data.forEach(element => {
+                                if (element['jam']<10) {
+                                    jam += '<option value="'+element['jam']+'">0'+element['jam']+':00 WIB</option>';
+                                } else {
+                                    jam += '<option value="'+element['jam']+'">'+element['jam']+':00 WIB</option>';
+                                }
+                            });
+                            $('#waktu_peminjaman').html(jam);
                         }
                     });
                 }
