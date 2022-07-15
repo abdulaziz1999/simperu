@@ -11,6 +11,8 @@ use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,57 +76,57 @@ Route::get('list-ruangan/{ruangan:id}', [
     'uses' => 'App\Http\Controllers\ListRuanganController@detailRoomById',
     'as' => 'list-ruangan.detailRoomById'
 ]);
-Route::post('list-ruangan/{ruangan:id}', [
-    'uses' => 'App\Http\Controllers\ListRuanganController@store',
-    'as' => 'list-ruangan.store'
-]);
 Route::post('list-ruangan/{ruangan:id}/{tgl}', [
     'uses' => 'App\Http\Controllers\ListRuanganController@availableDate',
     'as' => 'list-ruangan.availableDate'
 ]);
 
-// Fitur CHECKOUT
-Route::get('checkout/customer-detail', [
-    'uses' => 'App\Http\Controllers\CheckoutController@customerDetail',
-    'as' => 'checkout.customerDetail'
-]);
-Route::post('checkout/customer-detail', [
-    'uses' => 'App\Http\Controllers\CheckoutController@store',
-    'as' => 'checkout.store'
-]);
-Route::get('checkout/payment/{waktu_peminjaman:id}', [
-    'uses' => 'App\Http\Controllers\CheckoutController@payment',
-    'as' => 'checkout.payment'
-]);
-// Fitur Peminjamanku
-Route::get('peminjamanku', [
-    'uses' => 'App\Http\Controllers\PeminjamankuController@index',
-    'as' => 'peminjamanku.index'
-]);
-Route::post('peminjamanku/available-countdown', [
-    'uses' => 'App\Http\Controllers\PeminjamankuController@availableCountdown',
-    'as' => 'peminjamanku.availableCountdown'
-]);
-Route::put('peminjamanku/{pembayaran:id}', [
-    'uses' => 'App\Http\Controllers\PeminjamankuController@update',
-    'as' => 'peminjamanku.update'
-]);
-Route::get('peminjamanku/{pembayaran:id}/invoice', [
-    'uses' => 'App\Http\Controllers\PeminjamankuController@invoice',
-    'as' => 'peminjamanku.invoice'
-]);
+// Hak akses hanya untuk admin dan peminjaman
+Route::group(['middleware' => ['checkRole:admin,peminjam']], function () {
+    // Fitur LIST-RUANGAN
+    Route::post('list-ruangan/{ruangan:id}', [
+        'uses' => 'App\Http\Controllers\ListRuanganController@store',
+        'as' => 'list-ruangan.store'
+    ]);
 
-// Route::get('list-ruangan/{ruangan:id}/{tgl}', [
-//     'uses' => "$base_path\ListRuanganController@availableDate",
-//     'as' => 'list-ruangan.availableDate'
-// ]);
+    // Fitur CHECKOUT
+    Route::get('checkout/customer-detail', [
+        'uses' => 'App\Http\Controllers\CheckoutController@customerDetail',
+        'as' => 'checkout.customerDetail'
+    ]);
+    Route::post('checkout/customer-detail', [
+        'uses' => 'App\Http\Controllers\CheckoutController@store',
+        'as' => 'checkout.store'
+    ]);
+    Route::get('checkout/payment/{waktu_peminjaman:id}', [
+        'uses' => 'App\Http\Controllers\CheckoutController@payment',
+        'as' => 'checkout.payment'
+    ]);
 
-// Route::get('/list-ruangan', [ListRuanganController::class, 'list_ruangan']);
-// Route::get('/list-ruangan/detail/{ruangan:id}', [ListRuanganController::class, 'detail_ruangan']);
-// Route::post('/checkout/{ruangan:id}', [ListRuanganController::class, 'checkout_detail']);
-// Route::put('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
-// Route::get('/checkout/{ruangan:id}/bill-and-payment', [ListRuanganController::class, 'bill_and_payment']);
-// Route::get('/peminjamanku/{users:id}', [ListRuanganController::class, 'bill_and_payment']);
+    // Fitur PEMINJAMANKU
+    Route::get('peminjamanku', [
+        'uses' => 'App\Http\Controllers\PeminjamankuController@index',
+        'as' => 'peminjamanku.index'
+    ]);
+    Route::post('peminjamanku/available-countdown', [
+        'uses' => 'App\Http\Controllers\PeminjamankuController@availableCountdown',
+        'as' => 'peminjamanku.availableCountdown'
+    ]);
+    Route::put('peminjamanku/{pembayaran:id}', [
+        'uses' => 'App\Http\Controllers\PeminjamankuController@update',
+        'as' => 'peminjamanku.update'
+    ]);
+    Route::get('peminjamanku/{pembayaran:id}/invoice', [
+        'uses' => 'App\Http\Controllers\PeminjamankuController@invoice',
+        'as' => 'peminjamanku.invoice'
+    ]);
+});
+
+// 
+Route::get('/redirects', function () {
+    return redirect(Redirect::intended()->getTargetUrl());
+    return redirect()->back();
+});
 
 //---------------
 Route::get('/alur-checkout-1', function () {

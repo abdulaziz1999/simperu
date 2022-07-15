@@ -7,9 +7,9 @@ Sprint backlog Task SIMPERU:
 	- list-ruangan :
 		Membatasi detail sewa, hanya yang berstatus Lunas di Pembayaran yang masuk. [✔️]
 		Membatasi sewa hanya dapat dilakukan sehari sebelum peminjaman. [✔️]
-		Authentifikasi saat pemesanan, hanya pemnjam dan admin yang dapat melakukan pemesanan. []
+		Authentifikasi saat pemesanan, hanya pemnjam dan admin yang dapat melakukan pemesanan. [✔️] 
 	- Menu Navbar :
-		Menu Peminjamanku hanya dapat diakses ketika sudah login sebagai peminjam atau admin saja. []
+		Menu Peminjamanku hanya dapat diakses ketika sudah login sebagai peminjam atau admin saja. [✔️]
 	- Feedback :
 		Apabila peminjaman sudah selesai, peminjam dapat memberikan Feedback dan rating. []
 	- peminjamanku :

@@ -18,7 +18,9 @@
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{ route('list-gedung.index')}}" class="nav-item nav-link">Daftar Gedung</a>
                                 <a href="{{ route('list-ruangan.showAllRoom') }}" class="nav-item nav-link">Daftar Ruangan</a>
+                                @if(Auth::check())
                                 <a href="{{ route('peminjamanku.index') }}" class="nav-item nav-link">PeminjamanKu</a>
+                                @endif
                                 <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
                             </div>
                             <div class="me-3 me-lg-5">
