@@ -28,14 +28,14 @@
                                             Tanggal : {{$pbu->tgl_pinjam}} s/d {{$pbu->tgl_selesai}}<br/>
                                             Jam : {{$pbu->jam_mulai}} s/d {{$pbu->jam_selesai}} WIB
                                         </p>
-                                        <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary {{($pbu->status == 'Lunas') ? 'd-none':''}}" style="radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
+                                        <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary {{($pbu->status_pembayaran == 'Lunas') ? 'd-none':''}}" style="radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
                                             Upload Bukti Pembayaran
                                         </button>
                                     </div>
                                     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
-                                        @if ($pbu->status != null && $pbu->status == 'Lunas')
+                                        @if ($pbu->status_pembayaran != null && $pbu->status_pembayaran == 'Lunas')
                                         <h6 class="alert-success rounded-pill px-3 py-2 m-0">
-                                            {{$pbu->status}}
+                                            {{$pbu->status_pembayaran}}
                                         </h6>
                                         <a href="{{route('peminjamanku.invoice', $pbu->id)}}" class="btn btn-success rounded-pill ms-2">
                                             <i class="fas fa-print"></i>
@@ -43,7 +43,7 @@
                                         @else
                                         <div class="d-flex flex-column justify-content-center align-items-center">
                                             <h6 class="alert-danger rounded-pill px-3 py-2 m-0">
-                                                {{$pbu->status}}
+                                                {{$pbu->status_pembayaran}}
                                             </h6>
                                             <h3 class="text-white mt-1" id="countDown{{$i++}}">
                                             </h3>
@@ -144,7 +144,11 @@
                                     $(selector).html('<h6 class="alert-danger rounded-pill p-2 m-0">Waktu Habis</h6>');
                                     $(modalSelector).addClass('d-none');
                                 }else{
+                                    console.log(result);
                                     $(selector).html(result);
+                                    @if($peminjamanByUser[0]->status_pembayaran != null && $peminjamanByUser[0]->status_pembayaran == 'Lunas')
+                                    clearInterval(x);
+                                    @endif
                                 }
                             }, 1000);
                         });

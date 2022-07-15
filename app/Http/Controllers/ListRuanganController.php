@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-
+use SebastianBergmann\Diff\Diff;
 
 class ListRuanganController extends Controller
 {
@@ -27,6 +27,22 @@ class ListRuanganController extends Controller
         } else {
             return $val . ':00:00';
         }
+    }
+
+    public function selisih_waktu($dateFromReq, $format = false)
+    {
+        $diff = date_diff(date_create($dateFromReq), date_create(date('Y-m-d h:i:s')));
+        if ($format) {
+            return $diff->format($format);
+        }
+        return array(
+            'y' => $diff->y,
+            'm' => $diff->m,
+            'd' => $diff->d,
+            'h' => $diff->h,
+            'i' => $diff->i,
+            's' => $diff->s,
+        );
     }
 
     //METHOD PRIMARY
@@ -81,14 +97,16 @@ class ListRuanganController extends Controller
         }
 
         $booked_rooms = Peminjaman::join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')
+            ->join('pembayaran', 'peminjaman.pembayaran_id', '=', 'pembayaran.id')
             ->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')
+            ->where('ruangan_id', $ruangan->id)
+            ->where('status_pembayaran', 'Lunas')
+            ->where('waktu_peminjaman.tgl_pinjam', '>=', date('Y-m-d'))
             ->orderBy('waktu_peminjaman.tgl_pinjam', 'ASC')
             ->orderBy('waktu_peminjaman.jam_mulai', 'ASC')
-            ->where('ruangan_id', $ruangan->id)
-            ->where('waktu_peminjaman.tgl_pinjam', '>=', date('Y-m-d'))
-            ->get(['waktu_peminjaman.*', 'peminjaman.status', 'ruangan.nama_ruangan', 'ruangan.lantai']);
+            ->get(['waktu_peminjaman.*', 'pembayaran.status_pembayaran', 'ruangan.nama_ruangan', 'ruangan.lantai']);
 
-        // return dd($ruangan);
+        // return dd($booked_rooms);
         return view('list-ruangan.detailRoomById', compact('ruangan', 'all_r', 'booked_rooms'))->with(['i' => 1]);
     }
 
@@ -101,6 +119,11 @@ class ListRuanganController extends Controller
             'dokumen' => 'required|mimes:pdf|max:10000',
             'keperluan' => 'required',
         ]);
+        $dateAfterDurasi = date('Y-m-d H:i:s', strtotime($request->tgl_pinjam . '+ ' . $request->jam_mulai . ' hours'));
+        $diff = $this->selisih_waktu($dateAfterDurasi);
+        if ($diff['d'] < 1) {
+            return back()->with('toast_error', 'Maaf, waktu pemesanan ruangan harus 1 hari seblum acara berlangsung!');
+        }
 
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();

@@ -224,7 +224,7 @@
                                 <th>Tanggal Selesai</th>
                                 <th>Jam Mulai</th>
                                 <th>Jam Selesai</th>
-                                <th>Status</th>
+                                <th>Status Pembayaran</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -235,7 +235,7 @@
                                 <td>{{$br->tgl_selesai}}</td>
                                 <td>{{$br->jam_mulai}}</td>
                                 <td>{{$br->jam_selesai}}</td>
-                                <td>{{$br->status}}</td>
+                                <td>{{$br->status_pembayaran}}</td>
                             </tr>
                             @endforeach
                         </tbody>
