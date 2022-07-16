@@ -13,6 +13,7 @@ use App\Http\Controllers\ListRuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,11 @@ Route::get('kategoriRuanganpdf', [KategoriRuanganController::class, 'generatePDF
 Route::resource('ruangan', RuanganController::class)->middleware('checkRole:admin');
 Route::get('ruanganexcel', [RuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
 Route::get('ruanganpdf', [RuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
+
+//route feedback admin
+Route::resource('feedback', FeedbackController::class)->middleware('checkRole:admin');
+Route::get('feedbackexcel', [FeedbackController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('feedbackpdf', [FeedbackController::class, 'generatePDF'])->middleware('checkRole:admin');
 
 //route user admin
 Route::resource('user', UserController::class)->middleware('checkRole:admin');

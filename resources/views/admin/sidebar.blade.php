@@ -26,6 +26,11 @@
                         </a>
                     </li>
                     <li>
+                        <a class="font-weight-bold" href="{{ route('feedback.index') }}" aria-expanded="false">
+                            <i class="fa fa-exchange" aria-hidden="true"></i> <span class="nav-text">Feedback</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="font-weight-bold" href="{{ route('laporan.index') }}" aria-expanded="false">
                             <i class="fa fa-book" aria-hidden="true"></i> <span class="nav-text">Laporan</span>
                         </a>
