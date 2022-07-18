@@ -16,11 +16,10 @@ class LaporanController extends Controller
     {
         //
         $dataPeminjaman = Peminjaman::join('pembayaran', 'peminjaman.pembayaran_id', '=', 'pembayaran.id')
-            ->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')
-            ->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')
-            ->join('users', 'peminjaman.users_id', '=', 'users.id')
-            // ->select('peminjaman.*', 'pembayaran.*', 'waktu_peminjaman.*', 'ruangan.*', 'gedung.*', 'kategori_ruangan.*', 'fasilitas.*', 'user.*')
-            ->get();
+                        ->join('waktu_peminjaman as wp', 'peminjaman.id', '=', 'wp.peminjaman_id')
+                        ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
+                        ->join('users', 'peminjaman.users_id', '=', 'users.id')
+                        ->get();
         return view('admin-laporan.index', compact('dataPeminjaman'));
     }
 
