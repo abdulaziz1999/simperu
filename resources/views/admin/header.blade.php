@@ -151,6 +151,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="base_url" value="{{ url('') }}">
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
