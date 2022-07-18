@@ -59,8 +59,6 @@ Route::resource('laporan', LaporanController::class)->middleware('checkRole:admi
 //route profile
 Route::get('profile', [UserController::class, 'profile'])->middleware('checkRole:admin');
 
-
-
 //landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
@@ -73,6 +71,10 @@ Route::resource('list-gedung', LandingGedungController::class);
 //ficri
 // Fitur LIST-RUANGAN
 Route::get('list-ruangan', [
+    'uses' => 'App\Http\Controllers\ListRuanganController@showAllRoom',
+    'as' => 'list-ruangan.showAllRoom'
+]);
+Route::post('list-ruangan', [
     'uses' => 'App\Http\Controllers\ListRuanganController@showAllRoom',
     'as' => 'list-ruangan.showAllRoom'
 ]);
@@ -165,6 +167,7 @@ Route::get('/tes', function () {
 //     Route::get('home', 'HomeController@index');
 //    });
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('checkRole:admin');
+Route::get('/chart', [DashboardController::class, 'chart'])->middleware('checkRole:admin');
 
 Route::get('peminjam', function () {
     return view('penjual');

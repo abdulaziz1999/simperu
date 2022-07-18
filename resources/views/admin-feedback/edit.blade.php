@@ -49,7 +49,33 @@
                                             <label class="col-lg-2 col-form-label" for="val-kode">Keterangan <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="tel" class="form-control input-default" id="val-kode" name="keterangan" value="{{ $feedback->keterangan}}">
+                                                <input type="tel" class="form-control input-default" id="val-kode" name="keterangan_feedback" value="{{ $feedback->keterangan_feedback}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label" for="val-kode">Poin <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-10">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="poin" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">Buruk</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="poin" value="2">
+                                                    <label class="form-check-label" for="inlineRadio1">Tidak Terlalu Buruk</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="poin" value="3">
+                                                    <label class="form-check-label" for="inlineRadio1">Biasa Saja</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="poin" value="4">
+                                                    <label class="form-check-label" for="inlineRadio1">Bagus</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="poin" value="5">
+                                                    <label class="form-check-label" for="inlineRadio1">Bagus Banget</label>
+                                                </div>
                                             </div>
                                         </div>
 

@@ -26,7 +26,7 @@ class CheckRole
             }
         }
 
-        return redirect()->route('login');
+        // return redirect()->route('login');
         // foreach ($roles as $role) {
         //     if ($user == $role) {
         //         return $next($request);
@@ -34,5 +34,6 @@ class CheckRole
         // }
 
         // return redirect('/');
+        return redirect('/login');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\Ruangan;
+use App\Models\Gedung;
+use App\Models\KategoriRuangan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -45,17 +47,46 @@ class ListRuanganController extends Controller
     }
 
     //METHOD PRIMARY
-    public function showAllRoom()
+    public function showAllRoom(Request $request)
     {
-        // Nilai default adalah asc
-        $r_OrderByStatusAsc = Ruangan::orderBy('updated_at', 'desc')
+        // Kondisi apabila mempunya session gedung_id dan kategori_id
+        if ($request->session()->has('gedung_id') && $request->session()->has('kategori_id')) {
+            // Nilai dari pencarian
+            $gedung_id = $request->session()->get('gedung_id');
+            $kategori_id = $request->session()->get('kategori_id');
+        } else {
+            // Nilai pencarian
+            $gedung_id = $request->input('gedung_id');
+            $kategori_id = $request->input('kategori_id');
+        }
+
+        //query like data gedung dan data kategori ruangan
+        $r_OrderByStatusAsc = Ruangan::
+            // ->join('gedung as g', 'ruangan.gedung_id', 'g.id')
+            // ->join('kategori_ruangan as k', 'ruangan.kategori_ruangan_id', 'k.id')
+            where('ruangan.gedung_id', $gedung_id)
+            ->where('ruangan.kategori_ruangan_id', $kategori_id)
+            ->orderBy('ruangan.updated_at', 'desc')
             ->paginate(9);
+        // ->get();
+
         // Me-assign ulang data ke format rupiah
         foreach ($r_OrderByStatusAsc->items() as $item) {
             $item->harga = $this->formatRupiah($item->harga);
         }
 
-        return view('list-ruangan.showAllRoom', compact('r_OrderByStatusAsc'));
+        // Hapus Session
+        $request->session()->forget('gedung_id');
+        $request->session()->forget('kategori_id');
+
+        $data = [
+            'nama_gedung' => isset($r_OrderByStatusAsc->items()[0]->gedung->nama_gedung) ? $r_OrderByStatusAsc->items()[0]->gedung->nama_gedung : 'Ruangan Kosong',
+            'selectedGedung' => isset($gedung_id) ? $gedung_id : '',
+            'selectedKategori' => isset($kategori_id) ? $kategori_id : '',
+            'gedung' => Gedung::all(['nama_gedung', 'id']),
+            'kategori' => KategoriRuangan::all(['nama_kategori', 'id'])
+        ];
+        return view('list-ruangan.showAllRoom', compact('r_OrderByStatusAsc', 'data'));
     }
 
     public function detailRoomById(Request $request, Ruangan $ruangan)

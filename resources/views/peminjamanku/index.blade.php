@@ -65,7 +65,7 @@
                                         <h6 class="alert-success rounded-pill px-3 py-2 m-0">
                                             {{$pbu->status_pembayaran}}
                                         </h6>
-                                        <a href="{{route('peminjamanku.invoice', $pbu->id)}}" class="btn btn-success rounded-pill ms-2">
+                                        <a href="{{route('peminjamanku.invoice', $pbu->pembayaran_id)}}" class="btn btn-success rounded-pill ms-2">
                                             <i class="fas fa-print"></i>
                                         </a>
                                         @else

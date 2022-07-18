@@ -17,13 +17,13 @@ class PeminjamanController extends Controller
     public function index()
     {
         //
-        $dataPeminjaman = Peminjaman::join('pembayaran', 'peminjaman.pembayaran_id', '=', 'pembayaran.id')
-            ->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')
-            ->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')
-            ->join('users', 'peminjaman.peminjam_id', '=', 'users.id')
-            // ->select('peminjaman.*', 'pembayaran.*', 'waktu_peminjaman.*', 'ruangan.*', 'gedung.*', 'kategori_ruangan.*', 'fasilitas.*', 'user.*')
+        $dataPeminjaman = Peminjaman::join('pembayaran as pe', 'peminjaman.pembayaran_id', '=', 'pe.id')
+            ->join('waktu_peminjaman as wp', 'peminjaman.id', '=', 'wp.peminjaman_id')
+            ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
+            ->join('users', 'peminjaman.users_id', '=', 'users.id')
             ->get();
-        return view('admin-peminjaman.index',compact('dataPeminjaman'));
+        // dd($dataPeminjaman);
+        return view('admin-peminjaman.index', compact('dataPeminjaman'));
     }
 
     /**
@@ -67,6 +67,7 @@ class PeminjamanController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -78,7 +79,25 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request['status'] == 'diterima') :
+            $dataPeminjaman = Peminjaman::where('id', $id)->update([
+                'status_peminjaman' => 'Disetujui'
+            ]);
+            $row = Peminjaman::where('id', $id)->first();
+            $dataPembayaran = Pembayaran::where('id', $row->pembayaran_id)->update([
+                'status_pembayaran' => 'Lunas'
+            ]);
+            return redirect()->route('peminjaman.index')->with('success', 'Data Peminjaman Diterima');
+        elseif ($request['status'] == 'ditolak') :
+            $dataPeminjaman = Peminjaman::where('id', $id)->update([
+                'status_peminjaman' => 'Ditolak'
+            ]);
+            $row = Peminjaman::where('id', $id)->first();
+            $dataPembayaran = Pembayaran::where('id', $row->pembayaran_id)->update([
+                'status_pembayaran' => 'Belum Lunas'
+            ]);
+            return redirect()->route('peminjaman.index')->with('error', 'Data Peminjaman Ditolak');
+        endif;
     }
 
     /**

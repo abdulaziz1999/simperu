@@ -41,14 +41,18 @@
                                         </div>
                                         <thead>
                                             <tr>
+                                                <th>No</th>
                                                 <th>Keterangan</th>
+                                                <th>Poin</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($feedback as $f)
                                             <tr>
-                                                <td>{{ $f->keterangan }}</td>
+                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $f->keterangan_feedback }}</td>
+                                                <td>{{ $f->poin }}</td>
                                                 <td class="d-flex justify-content-center align-items-center">
                                                 <form action="{{ route('feedback.destroy',$f->id) }}" method="POST">
                                                         <div class="btn-group">

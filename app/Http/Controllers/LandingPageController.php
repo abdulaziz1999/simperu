@@ -42,22 +42,17 @@ class LandingPageController extends Controller
             'gedung.required' => 'Pilih gedung terlebih dahulu!',
             'kategori.required' => 'Pilih kategori terlebih dahulu!'
         ]);
-        // return dd($validator);
+
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->first());
         }
 
-        //query filter data gedung dan data kategori ruangan
-        $gedung = $request->input('gedung');
-        $kategori = $request->input('kategori');
+        //query filter data gedung dan data kategori ruangan ke dalam session
+        session([
+            'gedung_id' => $request->input('gedung'),
+            'kategori_id' => $request->input('kategori')
+        ]);
 
-        //query like data gedung dan data kategori ruangan
-        $data = Ruangan::join('gedung', 'ruangan.gedung_id', '=', 'gedung.id')
-            ->join('kategori_ruangan', 'ruangan.kategori_ruangan_id', '=', 'kategori_ruangan.id')
-            ->where('ruangan.gedung_id', $gedung)
-            ->where('ruangan.kategori_ruangan_id', $kategori)
-            ->get();
-
-        return view('layouts.list-search', compact('data'));
+        return redirect()->route('list-ruangan.showAllRoom');
     }
 }

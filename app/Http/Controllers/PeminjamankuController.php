@@ -137,6 +137,7 @@ class PeminjamankuController extends Controller
             ->join('pembayaran', 'peminjaman.pembayaran_id', '=', 'pembayaran.id')
             ->where('pembayaran.id', '=', $pembayaran->id)
             ->get();
+
         $invoiceData[0]->harga = $this->formatRupiah((float)$invoiceData[0]->harga);
         $invoiceData[0]->jumlah_transaksi = $this->formatRupiah((float)$invoiceData[0]->jumlah_transaksi);
 

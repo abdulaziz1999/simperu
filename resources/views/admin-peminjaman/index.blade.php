@@ -4,12 +4,11 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/admin')}}" class="text-primary">Dashboard</a></li>
-                        <li class="breadcrumb-item">User</li>
+                        <li class="breadcrumb-item">Peminjaman</li>
                     </ol>
                 </div>
             </div>
@@ -23,11 +22,11 @@
                                 <div class="table-responsive">
                                     <div class="d-flex justify-content-between align-content-center mr-4 ml-4">
                                         <span class="h3 font-weight-bold text-primary">Data Peminjaman</span>
-                                        <div class="btn-group">
+                                        <!-- <div class="btn-group">
                                             <a href="{{route('gedung.create')}}" class="btn btn-sm btn-primary font-weight-bold text-white mr-1 my-1"><i class="fa fa-plus"></i> Tambah Data</a>
                                             <a href="{{url('gedungpdf')}}" class="btn btn-sm btn-danger font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-pdf-o"></i> PDF</a>
                                             <a href="{{url('gedungexcel')}}" class="btn btn-sm btn-success font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-excel-o"></i> Excel</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
@@ -39,6 +38,7 @@
                                                 <th>Harga</th>
                                                 <th>Dokument</th>
                                                 <th>Bukti Bayar </th>
+                                                <th>Status </th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -49,20 +49,34 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px" src="{{ asset('storage/post-image/'.$row->foto) }}" alt="{{ $row->nama_ruangan  }}"></td>
                                                 <td>{{ $row->nama_ruangan }}</td>
-                                                <td>{{ $row->tgl_pinjam }} - {{ $row->tgl_pinjam }}</td>
+                                                <td>{{ $row->tgl_pinjam }} - {{ $row->tgl_selesai }}</td>
                                                 <td>{{ $row->harga }}</td>
                                                 <td>{{ $row->dokumen }}</td>
                                                 <td>{{ $row->bukti_pembayaran }}</td>
+                                                <td> 
+                                                    @if($row->status_peminjaman == 'Diajukan')
+                                                        <span class="badge badge-pill badge-info">Diajukan</span>
+                                                    @elseif($row->status_peminjaman == 'Disetujui')
+                                                        <span class="badge badge-pill badge-success">Diterima</span>
+                                                    @elseif($row->status_peminjaman == 'Ditolak')
+                                                        <span class="badge badge-pill badge-danger">Ditolak</span>
+                                                    @endif
+                                                </td>
                                                 <td>
-                                                <form class="d-flex justify-content-center align-items-center" action="{{ route('gedung.destroy',$row->id) }}" method="POST">
-                                                <div class="btn-group">
-                                                    <a class="btn btn-sm btn-info text-white font-weight-bold mr-1 my-1" href="{{ route('gedung.show',$row->id) }}"><i class="fa fa-eye"></i> Detail</a>
-                                                    <a class="btn btn-sm btn-warning text-white font-weight-bold mr-1 my-1" href="{{ route('gedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Ubah</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger text-white font-weight-bold mr-1 my-1"><i class="fa fa-trash"></i> Hapus</button>
-                                                </div>
-                                                </form>
+                                                    <div class="btn-group">
+                                                        <form  action="{{ route('peminjaman.update',$row->peminjaman_id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="diterima">
+                                                            <button class="btn btn-sm btn-success text-white font-weight-bold mr-1 my-1" type="submit"><i class="fa fa-eye"></i> Diterima</button>
+                                                        </form>
+                                                        <form  action="{{ route('peminjaman.update',$row->peminjaman_id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="ditolak">
+                                                            <button class="btn btn-sm btn-danger text-white font-weight-bold mr-1 my-1" type="submit"><i class="fa fa-pencil"></i> Ditolak</button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             @endforeach

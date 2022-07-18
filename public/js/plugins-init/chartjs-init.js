@@ -2,181 +2,152 @@
     "use strict";
 
     //Team chart
-    var ctx = document.getElementById("team-chart");
-    ctx.height = 150;
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016"],
-            type: 'line',
-            defaultFontFamily: 'Montserrat',
-            datasets: [{
-                data: [0, 15, 7, 12, 85, 10, 50],
-                label: "Saiful",
-                backgroundColor: '#4d7cff',
-                borderColor: '#4d7cff',
-                borderWidth: 0.5,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#4d7cff',
-            }, {
-                label: "Saikot",
-                data: [0, 30, 5, 3, 15, 5, 0],
-                backgroundColor: '#7571F9',
-                borderColor: '#7571F9',
-                borderWidth: 0.5,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#7571F9',
-            }]
-        },
-        options: {
-            responsive: true,
-            tooltips: {
-                mode: 'index',
-                titleFontSize: 12,
-                titleFontColor: '#000',
-                bodyFontColor: '#000',
-                backgroundColor: '#fff',
-                titleFontFamily: 'Montserrat',
-                bodyFontFamily: 'Montserrat',
-                cornerRadius: 3,
-                intersect: false,
-            },
-            legend: {
-                position: 'top',
-                labels: {
-                    usePointStyle: true,
-                    fontFamily: 'Montserrat',
-                },
+    // var ctx = document.getElementById("team-chart");
+    // ctx.height = 150;
+    // var myChart = new Chart(ctx, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016"],
+    //         type: 'line',
+    //         defaultFontFamily: 'Montserrat',
+    //         datasets: [{
+    //             data: [0, 15, 7, 12, 55, 10, 50],
+    //             label: "Saiful",
+    //             backgroundColor: '#4d7cff',
+    //             borderColor: '#4d7cff',
+    //             borderWidth: 0.5,
+    //             pointStyle: 'circle',
+    //             pointRadius: 5,
+    //             pointBorderColor: 'transparent',
+    //             pointBackgroundColor: '#4d7cff',
+    //         }, {
+    //             label: "Saikot",
+    //             data: [0, 30, 5, 3, 15, 5, 0],
+    //             backgroundColor: '#7571F9',
+    //             borderColor: '#7571F9',
+    //             borderWidth: 0.5,
+    //             pointStyle: 'circle',
+    //             pointRadius: 5,
+    //             pointBorderColor: 'transparent',
+    //             pointBackgroundColor: '#7571F9',
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         tooltips: {
+    //             mode: 'index',
+    //             titleFontSize: 12,
+    //             titleFontColor: '#000',
+    //             bodyFontColor: '#000',
+    //             backgroundColor: '#fff',
+    //             titleFontFamily: 'Montserrat',
+    //             bodyFontFamily: 'Montserrat',
+    //             cornerRadius: 3,
+    //             intersect: false,
+    //         },
+    //         legend: {
+    //             position: 'top',
+    //             labels: {
+    //                 usePointStyle: true,
+    //                 fontFamily: 'Montserrat',
+    //             },
 
 
-            },
-            scales: {
-                xAxes: [{
-                    display: true,
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    scaleLabel: {
-                        display: false,
-                        labelString: 'Month'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Value'
-                    }
-                }]
-            },
-            title: {
-                display: false,
-            }
-        }
-    });
+    //         },
+    //         scales: {
+    //             xAxes: [{
+    //                 display: true,
+    //                 gridLines: {
+    //                     display: false,
+    //                     drawBorder: false
+    //                 },
+    //                 scaleLabel: {
+    //                     display: false,
+    //                     labelString: 'Month'
+    //                 }
+    //             }],
+    //             yAxes: [{
+    //                 display: true,
+    //                 gridLines: {
+    //                     display: false,
+    //                     drawBorder: false
+    //                 },
+    //                 scaleLabel: {
+    //                     display: true,
+    //                     labelString: 'Value'
+    //                 }
+    //             }]
+    //         },
+    //         title: {
+    //             display: false,
+    //         }
+    //     }
+    // });
 
 
     //Sales chart
-    var ctx = document.getElementById("sales-chart");
-    ctx.height = 150;
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016"],
+    var base_url = document.getElementById("base_url").value;
+    $.ajax({
+        url: base_url+"/chart", 
+        type: "GET",
+        dataType: "json",
+        success: function(result){
+            var ctx = document.getElementById("sales-chart");
+            ctx.height = 80;
+            var myChart = new Chart(ctx, {
             type: 'line',
-            defaultFontFamily: 'Montserrat',
-            datasets: [{
-                label: "Clothes",
-                data: [0, 10, 20, 10, 25, 15, 150],
-                backgroundColor: 'transparent',
-                borderColor: '#7571F9',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#7571F9',
+            data: result,
+            options: {
+                responsive: true,
 
-            }, {
-                label: "Foods",
-                data: [0, 30, 10, 60, 50, 63, 10],
-                backgroundColor: 'transparent',
-                borderColor: '#4d7cff',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#4d7cff',
-            }, {
-                label: "Electronics",
-                data: [0, 50, 40, 20, 40, 79, 20],
-                backgroundColor: 'transparent',
-                borderColor: '#173e43',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#173e43',
-            }]
-        },
-        options: {
-            responsive: true,
-
-            tooltips: {
-                mode: 'index',
-                titleFontSize: 12,
-                titleFontColor: '#000',
-                bodyFontColor: '#000',
-                backgroundColor: '#fff',
-                titleFontFamily: 'Montserrat',
-                bodyFontFamily: 'Montserrat',
-                cornerRadius: 3,
-                intersect: false,
-            },
-            legend: {
-                labels: {
-                    usePointStyle: true,
-                    fontFamily: 'Montserrat',
+                tooltips: {
+                    mode: 'index',
+                    titleFontSize: 12,
+                    titleFontColor: '#000',
+                    bodyFontColor: '#000',
+                    backgroundColor: '#fff',
+                    titleFontFamily: 'Montserrat',
+                    bodyFontFamily: 'Montserrat',
+                    cornerRadius: 3,
+                    intersect: false,
                 },
-            },
-            scales: {
-                xAxes: [{
-                    display: true,
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
+                legend: {
+                    labels: {
+                        usePointStyle: true,
+                        fontFamily: 'Montserrat',
                     },
-                    scaleLabel: {
-                        display: false,
-                        labelString: 'Month'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    scaleLabel: {
+                },
+                scales: {
+                    xAxes: [{
                         display: true,
-                        labelString: 'Value'
-                    }
-                }]
-            },
-            title: {
-                display: false,
-                text: 'Normal Legend'
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        scaleLabel: {
+                            display: false,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Jumlah'
+                        }
+                    }]
+                },
+                title: {
+                    display: false,
+                    text: 'Normal Legend'
+                }
             }
-        }
-    });
+        });
+    }});
 
 
 
@@ -186,7 +157,7 @@
 
     //line chart
     var ctx = document.getElementById("lineChart");
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -226,7 +197,7 @@
 
     //bar chart
     var ctx = document.getElementById("barChart");
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -265,7 +236,7 @@
 
     //radar chart
     var ctx = document.getElementById("radarChart");
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart(ctx, {
         type: 'radar',
         data: {
@@ -302,7 +273,7 @@
 
     //pie chart
     var ctx = document.getElementById("pieChart");
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -335,7 +306,7 @@
 
     //doughut chart
     var ctx = document.getElementById("doughutChart");
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -369,7 +340,7 @@
 
     //polar chart
     var ctx = document.getElementById("polarChart");
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart(ctx, {
         type: 'polarArea',
         data: {
@@ -398,7 +369,7 @@
 
     // single bar chart
     var ctx = document.getElementById("singelBarChart");
-    ctx.height = 150;
+    // ctx.height = 150;
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {

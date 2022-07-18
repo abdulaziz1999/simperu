@@ -9,15 +9,15 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class FeedbackExport implements FromCollection,  WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        return Feedback::all(['id','keterangan']);
+        return Feedback::all(['id', 'keterangan_feedback', 'poin']);
     }
-     // ini untuk judul kolom di excel
-     public function headings(): array
+    // ini untuk judul kolom di excel
+    public function headings(): array
     {
-        return ['No', 'Keterangan'];
-     }
+        return ['No', 'Keterangan_feedback', 'poin'];
+    }
 }

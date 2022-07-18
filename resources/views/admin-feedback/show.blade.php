@@ -36,7 +36,15 @@
                                                 <span class="h4 font-weight-light text-black-50">Keterangan :</span>
                                             </div>
                                             <div class="col-md-10">
-                                                <span class="h4 font-weight-bold">{{ $feedback->keterangan }}</span>
+                                                <span class="h4 font-weight-bold">{{ $feedback->keterangan_feedback }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-6">
+                                            <div class="col-md-2">
+                                                <span class="h4 font-weight-light text-black-50">Poin :</span>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <span class="h4 font-weight-bold">{{ $feedback->poin }}</span>
                                             </div>
                                         </div>
                                     </div>

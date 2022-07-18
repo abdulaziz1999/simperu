@@ -42,8 +42,10 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'keterangan' => 'required',
+            'keterangan_feedback' => 'required',
+            'poin' => 'required',
         ]);
+
         Feedback::create($request->all());
         return redirect('/feedback')->with('success', 'Data Feedback Baru Berhasil Ditambahkan');
     }
@@ -54,7 +56,7 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function show(Feedback $feedback)
     {
         $feedback = Feedback::find($feedback->id);
@@ -83,7 +85,8 @@ class FeedbackController extends Controller
     public function update(Request $request, Feedback $feedback)
     {
         $request->validate([
-            'keterangan' => 'required',
+            'keterangan_feedback' => 'required',
+            'poin' => 'required',
         ]);
         $feedback->update($request->all());
         return redirect('/feedback')->with('success', 'Feedback Berhasil Diubah');
@@ -95,7 +98,7 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function destroy(Feedback $feedback)
     {
         $feedback->delete();
@@ -104,9 +107,9 @@ class FeedbackController extends Controller
 
     public function generatePDF()
     {
-        $data = Feedback::orderBy('id','desc')->get();
-        $pdf = PDF::loadView('admin-feedback/pdf', ['feedback' =>$data]);
-    
+        $data = Feedback::orderBy('id', 'desc')->get();
+        $pdf = PDF::loadView('admin-feedback/pdf', ['feedback' => $data]);
+
         return $pdf->download('feedback.pdf');
     }
 
@@ -114,5 +117,4 @@ class FeedbackController extends Controller
     {
         return Excel::download(new FeedbackExport, date('d-m-y') . '_feedback.xlsx');
     }
-
 }

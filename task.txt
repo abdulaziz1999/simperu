@@ -10,15 +10,15 @@ Sprint backlog Task SIMPERU:
 	- list-ruangan :
 		Membatasi detail sewa, hanya yang berstatus Lunas di Pembayaran yang masuk. [✔️]
 		Membatasi sewa hanya dapat dilakukan sehari sebelum peminjaman. [✔️]
-		Authentifikasi saat pemesanan, hanya pemnjam dan admin yang dapat melakukan pemesanan. [✔️] 
+		Authentifikasfi saat pemesanan, hanya pemnjam dan admin yang dapat melakukan pemesanan. [✔️] 
 	- Menu Navbar :
 		Menu Peminjamanku hanya dapat diakses ketika sudah login sebagai peminjam atau admin saja. [✔️]
 		Menghilangkan Notifikasi dan memindahkannya di peminjamanku [✔️]
 		Perapihan nama menu [✔️]
 	- Feedback :
-		Apabila peminjaman sudah selesai, peminjam dapat memberikan Feedback dan rating. [✔️]
+		Apabila peminjaman sudah selesai, peminjam dapat memberikan Feedback dan poin. [✔️]
 	- Home / Beranda :
-		section search, masih belum sempurna [] (abdulaziz)
+		section search, masih belum sempurna [✔️]
 		section testiomnial [✔️]
 		section fasilitas [✔️]
 		Contact, About Us, dll. []
@@ -28,5 +28,6 @@ Sprint backlog Task SIMPERU:
 	- Ruangan :
 		hapus head ruangan lainnya pada slider bawah [✔️]
 		membenarkan ukuran font agar tidak terlihat besar di slider [✔️]
+		menambahkan filter search, dan tersambung dari search depan [✔️]
 		
 
