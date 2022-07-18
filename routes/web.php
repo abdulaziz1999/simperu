@@ -59,8 +59,6 @@ Route::resource('laporan', LaporanController::class)->middleware('checkRole:admi
 //route profile
 Route::get('profile', [UserController::class, 'profile'])->middleware('checkRole:admin');
 
-
-
 //landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
@@ -112,6 +110,7 @@ Route::get('/tes', function () {
 //     Route::get('home', 'HomeController@index');
 //    });
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('checkRole:admin');
+Route::get('/chart', [DashboardController::class, 'chart'])->middleware('checkRole:admin');
 
 Route::get('peminjam', function () {return view('penjual');})->middleware(['checkRole:peminjam,admin']);
 Route::get('pembeli', function () {return view('pembeli');})->middleware(['checkRole:pembeli,admin']);
