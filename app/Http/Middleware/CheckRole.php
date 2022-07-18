@@ -27,6 +27,6 @@ class CheckRole
             }
         }
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
