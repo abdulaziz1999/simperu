@@ -4,8 +4,7 @@
         <div class="page-header mb-5 p-0" style="background-image: url({{ asset('img/carousel-1.jpg') }});"> {{-- background diambil dari foto gedung --}}
             <div class="container-fluid page-header-inner-gedung py-5">
                 <div class="container text-center pb-5">
-                    <h1 class="display-3 text-dark mb-3 animated slideInDown">Daftar Ruangan</h1> {{-- Nama sesuai dengan nama gedung --}}
-                    <p class="text-secondary px-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste provident dolores porro dolor quas velit sed molestiae impedit inventore voluptatibus?</p>
+                    <h1 class="display-3 text-dark mb-3 animated slideInDown">Ruangan</h1> {{-- Nama sesuai dengan nama gedung --}}
                 </div>
             </div>
         </div>
@@ -16,8 +15,8 @@
             <div class="container">
                 <div class="row g-4">
                     @if (count($r_OrderByStatusAsc)>0)
-                        @foreach ($r_OrderByStatusAsc as $r)
-                        <div class="col-lg-4 col-md-6 wow fadeInUp hvr-float" data-wow-delay="0.1s">
+                    @foreach ($r_OrderByStatusAsc as $r)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp hvr-float" data-wow-delay="0.{{substr($r->id,1,1)}}s">
                         <div class="p-0 shadow border h-100" style="border-radius: 1rem">
                             <a href="{{ route('list-ruangan.detailRoomById', [$r->id]) }}">
                                 <div class="position-relative">
@@ -29,13 +28,9 @@
                                         <h5 class="mb-0">{{ $r->nama_ruangan }}</h5>
                                         <div class="d-sm-none h6 bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$r->harga}}<span class="h6 text-primary fw-light">/ Jam</span></div>
                                     </div>
-                                    <p class="text-body mb-3">#catatan : tambahkan Field Keterangan</p>
+                                    <p class="text-body mb-3 fs-4">{{$r->kategoriRuangan->nama_kategori}}</p>
                                 </div>
-                            @if ($r->status == 'Dipinjam')
-                            </div>
-                            @else
                             </a>
-                            @endif
                         </div>
                     </div>        
                         @endforeach

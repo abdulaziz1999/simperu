@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use SebastianBergmann\Diff\Diff;
 
 class ListRuanganController extends Controller
 {
@@ -49,9 +48,7 @@ class ListRuanganController extends Controller
     public function showAllRoom()
     {
         // Nilai default adalah asc
-        $r_OrderByStatusAsc = DB::table('ruangan')
-            ->orderBy('status', 'asc')
-            ->latest()
+        $r_OrderByStatusAsc = Ruangan::orderBy('updated_at', 'desc')
             ->paginate(9);
         // Me-assign ulang data ke format rupiah
         foreach ($r_OrderByStatusAsc->items() as $item) {
@@ -119,7 +116,7 @@ class ListRuanganController extends Controller
             'dokumen' => 'required|mimes:pdf|max:10000',
             'keperluan' => 'required',
         ]);
-        $dateAfterDurasi = date('Y-m-d H:i:s', strtotime($request->tgl_pinjam . '+ ' . $request->jam_mulai . ' hours'));
+        $dateAfterDurasi = date('Y-m-d H:i:s', strtotime($request->tgl_pinjam . '+ ' . substr($request->jam_mulai, 0, 2) . ' hours'));
         $diff = $this->selisih_waktu($dateAfterDurasi);
         if ($diff['d'] < 1) {
             return back()->with('toast_error', 'Maaf, waktu pemesanan ruangan harus 1 hari seblum acara berlangsung!');

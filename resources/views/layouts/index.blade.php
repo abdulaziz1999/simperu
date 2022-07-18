@@ -120,8 +120,8 @@
                 </div>
 
                 <div class="row g-4">
-                    @if (count($kategoriRuangan)>0)
-                        @foreach ($kategoriRuangan as $kr)
+                    @if (count($kategori)>0)
+                        @foreach ($kategori as $kr)
                         <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
                             <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
                                 <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        {{$kr->nama_ruangan}}
+                                        {{$kr->nama_kategori}}
                                     </h3>
                                     <p class="text-body text-center">
                                         {{ $kr->keterangan }}
@@ -146,13 +146,13 @@
         
 
         <!-- Testimonial Start -->
-        <div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" style="margin-bottom: 90px;">
+        <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
             <div class="container">
                 <div class="owl-carousel testimonial-carousel py-5">
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-1.jpg') }}" style="width: 45px; height: 45px;">
+                            <img class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-1.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
                                 <h6 class="fw-bold mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -163,7 +163,7 @@
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}" style="width: 45px; height: 45px;">
+                            <img class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-2.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
                                 <h6 class="fw-bold mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -174,7 +174,7 @@
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-3.jpg') }}" style="width: 45px; height: 45px;">
+                            <img class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-3.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
                                 <h6 class="fw-bold mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -235,11 +235,10 @@
                             <a class="service-item bg-dark hvr-float shadow w-100 h-100" href="" style="border-radius: 1rem">
                                 <div class="service-icon bg-transparent p-1">
                                     <div class="rounded d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-wifi fa-2x text-primary"></i>
+                                        <img class="img-fluid" src="{{asset("storage/post-image/$f->foto")}}" alt="{{$f->nama_fasilitas}}">
                                     </div>
                                 </div>
                                 <h5 class="text-white mb-3">{{$f->nama_fasilitas}}</h5>
-                                <p class="text-white mb-0">{{$f->keterangan}}</p>
                             </a>
                         </div>
                         @endforeach

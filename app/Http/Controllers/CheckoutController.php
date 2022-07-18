@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\Ruangan;
@@ -22,7 +23,11 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
-        // return dd($request->nomer_tel);
+        //Table Feedback
+        $feedback = Feedback::create([
+            'poin' => 0,
+            'keterangan_feedback' => ''
+        ]);
         // Mengganti nilai nomer_telefon dari session peminjaman
         $request->session()->put('pembayaran.nomer_telefon', $request->nomer_tel);
 
@@ -31,14 +36,15 @@ class CheckoutController extends Controller
         $pembayaran = Pembayaran::create($request->session()->get('pembayaran'));
 
         // Table Peminjaman
-
         $request->session()->put('peminjaman.pembayaran_id', $pembayaran->id);
+        $request->session()->put('peminjaman.feedback_id', $feedback->id);
         $peminjaman = Peminjaman::create($request->session()->get('peminjaman'));
         // return dd([$request->session()->all(), $pembayaran, $peminjaman]);
 
         // Table Waktu_Peminjaman
         $request->session()->put('waktu_peminjaman.peminjaman_id', $peminjaman->id);
         $waktu_peminjaman = WaktuPeminjaman::create($request->session()->get('waktu_peminjaman'));
+
 
         return redirect()->route('checkout.payment', [$waktu_peminjaman->id]);
     }

@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                     <div class="chart-wrapper">
-                                        <canvas id="chart_widget_2"></canvas>
+                                        <canvas id="chart_widget_2"></canvas> 
                                     </div>
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">

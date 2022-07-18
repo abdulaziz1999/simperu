@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Fasilitas;
 use App\Models\Gedung;
 use App\Models\Ruangan;
@@ -19,34 +20,44 @@ class LandingPageController extends Controller
     public function index_landing_page()
     {
         //data Group by Fasilitas
-        $fasilitasGroup = Fasilitas::select('nama_fasilitas', 'keterangan')->groupBy('nama_fasilitas', 'keterangan')->get();
+        $fasilitasGroup = Fasilitas::select('nama_fasilitas', 'foto')->groupBy('nama_fasilitas', 'foto')->get();
         //data gedung dan data kategori ruangan
         $gedung = Gedung::all();
         //data gedung dan data kategori ruangan
         $kategoriRuangan = Ruangan::join('gedung', 'ruangan.gedung_id', '=', 'gedung.id')
-                            ->join('kategori_ruangan', 'ruangan.kategori_ruangan_id', '=', 'kategori_ruangan.id')
-                            ->leftJoin('fasilitas', 'ruangan.id', '=', 'fasilitas.ruangan_id')
-                            ->limit(6)
-                            ->get();
+            ->join('kategori_ruangan', 'ruangan.kategori_ruangan_id', '=', 'kategori_ruangan.id')
+            ->leftJoin('fasilitas', 'ruangan.id', '=', 'fasilitas.ruangan_id')
+            ->limit(6)
+            ->get();
         $kategori = KategoriRuangan::all();
-        // dd([$gedung, $kategoriRuangan]);
-        return view('layouts.index', compact('fasilitasGroup', 'gedung', 'kategoriRuangan','kategori'))->with('i');
+        return view('layouts.index', compact('fasilitasGroup', 'gedung', 'kategoriRuangan', 'kategori'))->with('i');
     }
 
     public function search(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'gedung' => 'required',
+            'kategori' => 'required'
+        ], [
+            'gedung.required' => 'Pilih gedung terlebih dahulu!',
+            'kategori.required' => 'Pilih kategori terlebih dahulu!'
+        ]);
+        // return dd($validator);
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->first());
+        }
+
         //query filter data gedung dan data kategori ruangan
         $gedung = $request->input('gedung');
         $kategori = $request->input('kategori');
-        
+
         //query like data gedung dan data kategori ruangan
         $data = Ruangan::join('gedung', 'ruangan.gedung_id', '=', 'gedung.id')
             ->join('kategori_ruangan', 'ruangan.kategori_ruangan_id', '=', 'kategori_ruangan.id')
-            ->where('ruangan.gedung_id', $gedung )
-            ->where('ruangan.kategori_ruangan_id',$kategori )
+            ->where('ruangan.gedung_id', $gedung)
+            ->where('ruangan.kategori_ruangan_id', $kategori)
             ->get();
-        // dd($data);
+
         return view('layouts.list-search', compact('data'));
     }
-    
 }

@@ -65,8 +65,7 @@
                                             <div class="d-flex align-items-center justify-content-center rounded-circle bg-dark" style="width: 70px; height: 70px;">
                                                 <img class="w-50" src="{{asset('storage/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
                                             </div>
-    
-                                            <div class="ms-3 d-flex align-items-center p-0">
+                                            <div class="ms-3 text-start d-flex align-items-center w-75">
                                                 <span class="h6 text-secondary">{{$f->nama_fasilitas}}</span>
                                             </div>
                                         </div>
@@ -84,7 +83,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="w-100 p-2 border shadow" style="border-radius: 1rem; height: 450px;">
-                                        <iframe class="w-100 h-100" src="{{ $ruangan->gedung->link_iframe_gmaps }}" allowfullscreen="yes" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="border-radius: 1rem"></iframe>
+                                        <iframe class="w-100 h-100" src="https://maps.google.com/maps?q=Jalan%20Daan%20Mogot%20KM.%2021,%20Komplek%20Ruko%20Batu%20Ceper%20Permai%20Blok%20V%20No.%2011,%20Tangerang&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border-radius: 1rem"></iframe>
+                                        {{-- <iframe class="w-100 h-100" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ $ruangan->gedung->link_iframe_gmaps }}" ></iframe> --}}
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +154,6 @@
             <div class="container">
                 <div class="text-start wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="mb-5">Ruangan Lainnya di <span class="text-primary">{{$ruangan->gedung->nama_gedung}}</span></h1>
-                    <h6 class="section-title text-start text-primary text-uppercase">Ruangan Lainnya</h6>
                 </div>
                 <div class="row d-flex justify-content-between align-items-center">
                     <div class="col-12">
@@ -162,13 +161,13 @@
                             @if (count($all_r)>0)
                             @foreach ($all_r as $ar)
                             <div class="py-3 hvr-float px-1 bgw-white">
-                                <a href="{{ url("/list-ruangan/detail/{$ar->id}-{$ar->nama_ruangan}")}}" class="border shadow d-block" style="border-radius: 1rem">
+                                <a href="{{ route('list-ruangan.detailRoomById', [$ar->id])}}" class="border shadow d-block" style="border-radius: 1rem">
                                     <div class="position-relative">
                                         <img class="img-fluid w-100" src="{{asset('storage/post-image/'.$ar->foto1)}}" alt="{{$ar->nama_ruangan}}" style="border-radius: 1rem">
-                                        <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$ar->harga}}<span class="h6 text-primary fw-light"> / Jam</span></div>
+                                        <div class="d-none d-sm-block h6 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$ar->harga}}<span class="h6 text-primary fw-light"> / Jam</span></div>
                                     </div>
                                     <div class="p-4 mt-3">
-                                        <p class="text-body mb-3">#catatan : tambahkan Field Keterangan</p>
+                                        <p class="text-body mb-3">{{$ar->kategoriRuangan->nama_kategori}}</p>
                                     </div>
                                 </a>
                             </div>

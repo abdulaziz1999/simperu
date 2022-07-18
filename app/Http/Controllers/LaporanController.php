@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Peminjaman;
 
 class LaporanController extends Controller
 {
@@ -14,6 +15,13 @@ class LaporanController extends Controller
     public function index()
     {
         //
+        $dataPeminjaman = Peminjaman::join('pembayaran', 'peminjaman.pembayaran_id', '=', 'pembayaran.id')
+            ->join('waktu_peminjaman', 'peminjaman.id', '=', 'waktu_peminjaman.peminjaman_id')
+            ->join('ruangan', 'peminjaman.ruangan_id', '=', 'ruangan.id')
+            ->join('users', 'peminjaman.peminjam_id', '=', 'users.id')
+            // ->select('peminjaman.*', 'pembayaran.*', 'waktu_peminjaman.*', 'ruangan.*', 'gedung.*', 'kategori_ruangan.*', 'fasilitas.*', 'user.*')
+            ->get();
+        return view('admin-laporan.index',compact('dataPeminjaman'));
     }
 
     /**

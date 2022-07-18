@@ -4,7 +4,7 @@
         <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ asset('img/carousel-1.jpg') }});"> {{-- background diambil dari foto gedung --}}
             <div class="container-fluid page-header-inner-gedung py-5">
                 <div class="container text-center pb-5">
-                    <h1 class="display-3 text-dark mb-3 animated slideInDown">Ruangan</h1> {{-- Nama sesuai dengan nama gedung --}}
+                    <h1 class="display-3 text-dark mb-3 animated slideInDown">Gedung {{$data[0]->nama_gedung}}</h1> {{-- Nama sesuai dengan nama gedung --}}
                     <p class="text-secondary px-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste provident dolores porro dolor quas velit sed molestiae impedit inventore voluptatibus?</p>
                 </div>
             </div>
@@ -15,8 +15,8 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="section-title text-center text-primary text-uppercase">Ruangan Kami</h6>
-                    <h1 class="mb-5"><span class="text-primary">Ruangan</span> Tersedia</h1>
+                    <h6 class="section-title text-center text-primary text-uppercase">Kategori</h6>
+                    <h1 class="mb-5">{{(isset($data[0]->nama_kategori))? $data[0]->nama_kategori : ''}}</h1>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp hvr-float" data-wow-delay="0.1s">

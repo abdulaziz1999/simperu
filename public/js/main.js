@@ -1,49 +1,5 @@
-$(function () {
-    let timeFirst = new Date().getTime();
-    let timeSecond = new Date(varSecond).getTime();
-    let distance = timeSecond - timeFirst;
-    let x = setInterval(function () {
-        let objTime = {
-            'days': Math.floor(distance / (1000 * 60 * 60 * 24)),
-            'hours': Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-            'minutes': Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-            'seconds': Math.floor((distance % (1000 * 60)) / 1000)
-        };
-        distance -= 1000;
-
-        let result = `${objTime.hours} : ${objTime.minutes} : ${objTime.seconds}`;
-        if (distance <= 0) {
-            clearInterval(x);
-            $('#countDown').html('Expired');
-        }
-        $('#countDown').html(result);
-    }, 1000);
-
-    function Sclass(time) {
-        let timeSecond = new Date(time).getTime();
-        let distance = timeSecond - timeFirst;
-        let x = setInterval(function () {
-            let objTime = {
-                'days': Math.floor(distance / (1000 * 60 * 60 * 24)),
-                'hours': Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                'minutes': Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                'seconds': Math.floor((distance % (1000 * 60)) / 1000)
-            };
-            distance -= 1000;
-
-            let result = `${objTime.hours} : ${objTime.minutes} : ${objTime.seconds}`;
-            if (distance <= 0) {
-                clearInterval(x);
-                $(this).html('Expired');
-            }
-            $(this).html(result);
-        }, 1000);
-    }
-});
-
 (function ($) {
     "use strict";
-
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -111,7 +67,24 @@ $(function () {
 
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
-
+        autoplay: true,
+        smartSpeed: 1000,
+        margin: 25,
+        dots: false,
+        loop: true,
+        nav: true,
+        navText: [
+            '<i class="fa fa-arrow-left text-primary"></i>',
+            '<i class="fa fa-arrow-right text-primary"></i>'
+        ],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            }
+        }
     });
 
     $('.owl-carousel').owlCarousel({

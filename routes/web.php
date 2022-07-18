@@ -11,9 +11,10 @@ use App\Http\Controllers\LandingGedungController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,17 +46,20 @@ Route::resource('ruangan', RuanganController::class)->middleware('checkRole:admi
 Route::get('ruanganexcel', [RuanganController::class, 'generateExcel'])->middleware('checkRole:admin');
 Route::get('ruanganpdf', [RuanganController::class, 'generatePDF'])->middleware('checkRole:admin');
 
+//route feedback admin
+Route::resource('feedback', FeedbackController::class)->middleware('checkRole:admin');
+Route::get('feedbackexcel', [FeedbackController::class, 'generateExcel'])->middleware('checkRole:admin');
+Route::get('feedbackpdf', [FeedbackController::class, 'generatePDF'])->middleware('checkRole:admin');
+
 //route user admin
 Route::resource('user', UserController::class)->middleware('checkRole:admin');
+Route::resource('peminjaman', PeminjamanController::class)->middleware('checkRole:admin');
+Route::resource('laporan', LaporanController::class)->middleware('checkRole:admin');
 
 //route profile
 Route::get('profile', [UserController::class, 'profile'])->middleware('checkRole:admin');
 
-//route peminjaman
-// Route::resource('peminjaman', [PeminjamanController::class])->middleware('checkRole:admin');
 
-//route laporan
-// Route::resource('laporan', [LaporanController::class])->middleware('checkRole:admin');
 
 //landing page root
 Route::get('/', [LandingPageController::class, 'index_landing_page']);
@@ -112,7 +116,7 @@ Route::group(['middleware' => ['checkRole:admin,peminjam']], function () {
         'uses' => 'App\Http\Controllers\PeminjamankuController@availableCountdown',
         'as' => 'peminjamanku.availableCountdown'
     ]);
-    Route::put('peminjamanku/{pembayaran:id}', [
+    Route::put('peminjamanku/{peminjaman:id}', [
         'uses' => 'App\Http\Controllers\PeminjamankuController@update',
         'as' => 'peminjamanku.update'
     ]);

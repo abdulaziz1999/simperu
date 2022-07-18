@@ -45,7 +45,26 @@
             </div>
         </div>
         <script>
-            // All Variabel
-            let varSecond = "{{$countDown['second']}}";
-        </script>
+            $(function () {
+                let timeFirst = new Date().getTime();
+                let timeSecond = new Date("{{$countDown['second']}}").getTime();
+                let distance = timeSecond - timeFirst;
+                let x = setInterval(function () {
+                    let objTime = {
+                        'days': Math.floor(distance / (1000 * 60 * 60 * 24)),
+                        'hours': Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                        'minutes': Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                        'seconds': Math.floor((distance % (1000 * 60)) / 1000)
+                    };
+                    distance -= 1000;
+                    let result = `${objTime.hours} : ${objTime.minutes} : ${objTime.seconds}`;
+                    if (distance <= 0) {
+                        clearInterval(x);
+                        $('#countDown').html('Expired');
+                    }
+                    $('#countDown').html(result);
+                }, 1000);
+            });
+            </script>
+            
  @endsection
