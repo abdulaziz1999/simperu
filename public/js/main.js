@@ -1,6 +1,5 @@
 (function ($) {
     "use strict";
-
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -68,7 +67,24 @@
 
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
-
+        autoplay: true,
+        smartSpeed: 1000,
+        margin: 25,
+        dots: false,
+        loop: true,
+        nav: true,
+        navText: [
+            '<i class="fa fa-arrow-left text-primary"></i>',
+            '<i class="fa fa-arrow-right text-primary"></i>'
+        ],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            }
+        }
     });
 
     $('.owl-carousel').owlCarousel({

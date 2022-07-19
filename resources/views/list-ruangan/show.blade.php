@@ -1,8 +1,5 @@
  @extends('layouts.layout')
  @section('content')
- @php
-    date_default_timezone_set('Asia/Jakarta');
- @endphp
  <!-- Page Header Start -->
         <div class="container-fluid page-header p-0"> {{-- background diambil dari foto gedung --}}
             <div class="container-fluid page-header-inner-gedung pt-5">
@@ -13,7 +10,7 @@
                             <div class="row wow fadeInUp d-flex align-items-center mb-3">
                                 {{-- button back and table available room --}}
                                 <div class="col-6 text-start mx-0 px-0">
-                                    <a class="fs-3 d-inline" href="{{url('/list-ruangan')}}"><i class="fas fa-arrow-left"></i></a>
+                                    <a class="fs-3 d-inline" href="{{ route('list-ruangan.index') }}"><i class="fas fa-arrow-left"></i></a>
                                 </div>
                                 <div class="col-6 text-end mx-0 px-0">
                                     <button class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#detail_sewa">Detail Sewa</button>
@@ -93,8 +90,9 @@
                             </div>
                         </div>
                         <div class="col-lg-4 pb-5 wow bounceInDown mt-3 mt-lg-0">
-                            <form action="{{ url('/checkout'.'/'.$ruangan->id) }}" method="post" class="shadow border p-3 sticky-top" style="border-radius: 1rem; top: 1rem;" enctype="multipart/form-data">
+                            <form action="{{ route('list-ruangan.store') }}" method="post" class="shadow border p-3 sticky-top" style="border-radius: 1rem; top: 1rem;" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="r_idx" value="{{$ruangan->id}}">
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 class="text-start text-primary" style="font-weight: 500">
@@ -257,13 +255,47 @@
                 });
             });
             
+            $(document ).ready(function() {
+                var arrbulan = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+                var date = new Date();
+                var hari = date.getDay();
+                var tanggal = date.getDate();
+                var bulan = date.getMonth();
+                var tahun = date.getFullYear();
+                var tgl_skrng = tahun+"-"+arrbulan[bulan]+"-"+tanggal;
+
+                get_json(tgl_skrng);
+
+                function get_json(tgl) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}",
+                        },
+                        dataType : 'json',
+                        url : "{{url('')}}/list-ruangan/{{ $ruangan->id }}/available_date/"+tgl,
+                        method : "POST",
+                        success: function(data){
+                            var jam = '<option disabled selected>Pilih Waktu</option>';
+                            data.forEach(element => {
+                                if (element['jam']<10) {
+                                    jam += '<option value="'+element['jam']+'">0'+element['jam']+':00 WIB</option>';
+                                } else {
+                                    jam += '<option value="'+element['jam']+'">'+element['jam']+':00 WIB</option>';
+                                }
+                            });
+                            $('#waktu_peminjaman').html(jam);
+                        }
+                    });
+                }
+            });
+
             $('#tgl_masuk').change(function(){
                 var id=$(this).val();
                 $.ajax({
                     headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                         },
-                    url : {{url('')}}+"/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
+                    url : "{{url('')}}/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
                     method : "POST",
                     data : {id: id},
                     async : false,
@@ -289,7 +321,7 @@
                     headers: {
                         'X-CSRF-TOKEN': "{{csrf_token()}}",
                     },
-                    url : {{url('')}}+"/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
+                    url : "{{url('')}}/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+id,
                     method : "POST",
                     data : {id: id},
                     async : false,
@@ -305,40 +337,6 @@
                 });
             });
 
-            $(document ).ready(function() {
-                var arrbulan = ["1","2","3","4","5","6","7","8","9","10","11","12"];
-                var date = new Date();
-                var hari = date.getDay();
-                var tanggal = date.getDate();
-                var bulan = date.getMonth();
-                var tahun = date.getFullYear();
-                var tgl_skrng = tahun+"-"+arrbulan[bulan]+"-"+tanggal;
-
-                get_json(tgl_skrng);
-                
-                function get_json(tgl) {
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': "{{csrf_token()}}",
-                        },
-                    url : {{url('')}}+"/list-ruangan/"+{{ $ruangan->id }}+"/available_date/"+tgl,
-                    method : "POST",
-                    data : {tgl: tgl},
-                    async : false,
-                    dataType : 'json',
-                    success: function(data){
-                        var jam = '<option disabled selected>Pilih Waktu</option>';
-                        data.forEach(element => {
-                            if (element['jam']<10) {
-                                jam += '<option value="'+element['jam']+'">0'+element['jam']+':00 WIB</option>';
-                            } else {
-                                jam += '<option value="'+element['jam']+'">'+element['jam']+':00 WIB</option>';
-                            }
-                        });
-                        $('#waktu_peminjaman').html(jam);
-                        }
-                    });
-                }
-            });
+            
         </script>
  @endsection

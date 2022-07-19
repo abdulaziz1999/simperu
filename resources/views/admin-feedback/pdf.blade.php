@@ -39,6 +39,7 @@
             <tr>
                 <th>No</th>
                 <th>Keterangan</th>
+                <th>Poin</th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +47,8 @@
             @foreach($feedback as $row)
             <tr>
                 <td>{{ $no++ }}</td>
-                <td>{{ $row->keterangan }}</td>
+                <td>{{ $row->keterangan_feedback }}</td>
+                <td>{{ $row->poin }}</td>
             </tr>
             @endforeach
         </tbody>

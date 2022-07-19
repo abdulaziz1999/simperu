@@ -10,6 +10,12 @@ use App\Models\KategoriRuangan;
 
 class LandingGedungController extends Controller
 {
+    // FORMATER
+    // Function formating ke rupiah
+    public function formatRupiah($val)
+    {
+        return 'Rp. ' . number_format($val, 0, '.', ',');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -52,9 +58,15 @@ class LandingGedungController extends Controller
     public function show(Request $request, $id)
     {
         $gedung = Gedung::find($id);
-        $list_ruangan = Ruangan::where('gedung_id',$id)->get();
-        // dd($list_ruangan);
-        return view('layouts.details-gedung', compact( 'gedung', 'list_ruangan'));
+        $list_ruangan = Ruangan::where('gedung_id', $id)
+            ->latest()
+            ->paginate(6);
+
+        foreach ($list_ruangan as $ls) {
+            $ls->harga = $this->formatRupiah($ls->harga);
+        }
+        // return dd($list_ruangan);
+        return view('layouts.details-gedung', compact('gedung', 'list_ruangan'));
     }
 
     /**

@@ -29,9 +29,8 @@
                 <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"></span>
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
                         </div>
-                        <!-- <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard"> -->
                         <div class="drop-down animated flipInX d-md-none">
                             <form action="#">
                                 <input type="text" class="form-control" placeholder="Search">
@@ -41,6 +40,7 @@
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
+<<<<<<< HEAD
                         {{-- massage --}}
                         <!-- <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                                 <i class="mdi mdi-email-outline"></i>
@@ -101,6 +101,8 @@
                         </li> -->
                         {{-- ./notification --}}
                         {{-- nama user --}}
+=======
+>>>>>>> b73cd5a4713321f175ab1eafd7e5fc296086a443
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
                                 <span class="font-weight-bold">

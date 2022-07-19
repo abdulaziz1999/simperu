@@ -20,10 +20,10 @@ class PeminjamanController extends Controller
         $dataPeminjaman = Peminjaman::join('pembayaran as pe', 'peminjaman.pembayaran_id', '=', 'pe.id')
             ->join('waktu_peminjaman as wp', 'peminjaman.id', '=', 'wp.peminjaman_id')
             ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
-            ->join('users', 'peminjaman.peminjam_id', '=', 'users.id')
+            ->join('users', 'peminjaman.users_id', '=', 'users.id')
             ->get();
-            // dd($dataPeminjaman);
-        return view('admin-peminjaman.index',compact('dataPeminjaman'));
+        // dd($dataPeminjaman);
+        return view('admin-peminjaman.index', compact('dataPeminjaman'));
     }
 
     /**
@@ -77,9 +77,9 @@ class PeminjamanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id )
+    public function update(Request $request, $id)
     {
-        if($request['status'] == 'diterima'):
+        if ($request['status'] == 'diterima') :
             $dataPeminjaman = Peminjaman::where('id', $id)->update([
                 'status_peminjaman' => 'Disetujui'
             ]);
@@ -88,14 +88,14 @@ class PeminjamanController extends Controller
                 'status_pembayaran' => 'Lunas'
             ]);
             return redirect()->route('peminjaman.index')->with('success', 'Data Peminjaman Diterima');
-        elseif($request['status'] == 'ditolak'):
+        elseif ($request['status'] == 'ditolak') :
             $dataPeminjaman = Peminjaman::where('id', $id)->update([
-                    'status_peminjaman' => 'Ditolak'
+                'status_peminjaman' => 'Ditolak'
             ]);
             $row = Peminjaman::where('id', $id)->first();
             $dataPembayaran = Pembayaran::where('id', $row->pembayaran_id)->update([
-                    'status_pembayaran' => 'Belum Lunas'
-                ]);
+                'status_pembayaran' => 'Belum Lunas'
+            ]);
             return redirect()->route('peminjaman.index')->with('error', 'Data Peminjaman Ditolak');
         endif;
     }
