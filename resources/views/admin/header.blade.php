@@ -29,9 +29,8 @@
                 <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
                         </div>
-                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
                         <div class="drop-down animated flipInX d-md-none">
                             <form action="#">
                                 <input type="text" class="form-control" placeholder="Search">
@@ -41,66 +40,6 @@
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
-                        {{-- massage --}}
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-email-outline"></i>
-                                <span class="badge badge-pill gradient-1">1</span>
-                            </a>
-                            <div class="drop-down animated fadeIn dropdown-menu">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">1 New Messages</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span class="badge badge-pill gradient-1">1</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li class="notification-unread">
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="{{ asset('images/avatar/1.jpg') }}" alt="">
-                                                <div class="notification-content">
-                                                    <div class="notification-heading">Saiful Islam</div>
-                                                    <div class="notification-timestamp">08 Hours ago</div>
-                                                    <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        {{-- ./massage --}}
-                        {{-- notification --}}
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-pill gradient-2">1</span>
-                            </a>
-                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">1 New Notifications</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span class="badge badge-pill gradient-2">1</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">Events near you</h6>
-                                                    <span class="notification-text">Within next 5 days</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        {{-- ./notification --}}
-                        {{-- nama user --}}
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
                                 <span class="font-weight-bold">

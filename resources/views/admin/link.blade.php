@@ -9,8 +9,7 @@
     <link href="{{ asset('css/style_admin.css') }}" rel="stylesheet">
 
     <!-- Custom Stylesheet -->
-    <link href="{{ asset('plugins/tables/css/datatable/dataTables.bootstrap4.min.css') }}"
-        rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 
 
         
