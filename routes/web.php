@@ -64,8 +64,6 @@ Route::get('/', [LandingPageController::class, 'index_landing_page']);
 Route::post('/search', [LandingPageController::class, 'search']);
 
 Route::resource('list-gedung', LandingGedungController::class);
-// Route::get('/list-gedung', [LandingGedungController::class, 'index']);
-// Route::get('/details-gedung/{id}', [LandingGedungController::class, 'show']);
 
 
 //ficri
@@ -127,6 +125,37 @@ Route::group(['middleware' => ['checkRole:admin,peminjam']], function () {
         'as' => 'peminjamanku.invoice'
     ]);
 });
+
+// fitur TENTANG KAMI
+Route::get('/tentang-kami', function () {
+    $data = [
+        'i' => 0,
+        'inspirasi' => [
+            ['image' => 'img/inspirasi-1.jpg', 'head' => 'Fleksibilitas', 'title' => 'Terinspirasi dari fleksibilitas industri penerbangan dalam menawarkan variasi harga dan pelayanan, Simperu ingin menghadirkan fleksibilitas harga dan pelayanan dengan konsep yang serupa pada proses sewa di industri properti yang dikenal kaku dan sangat tradisional.'],
+            ['image' => 'img/inspirasi-2.jpg', 'head' => 'Teknologi sebagai Manfaat Inti', 'title' => 'Industri mobil dan otomotif memberikan inspirasi bagaimana teknologi telah mengubah apa yang ditawarkan kepada konsumen. Dari fungsi dasar sebuah kendaraan, kini industri mobil menawarkan technology as core feature dalam menambah kenyamanan dan keselamatan pengendara.'],
+            ['image' => 'img/inspirasi-3.jpg', 'head' => 'Lingkungan', 'title' => 'Framework "15 minute neighbourhood" yang dicanangkan oleh Prof. Carlos Moreno di Paris mengedepankan akses pada 6 pilar aktivitas dalam 15 menit dengan berjalan kaki atau naik sepeda. Framework ini adalah solusi urban mobility dalam menghadapi pandemi dan issue global warming.'],
+        ],
+        'tim' => [
+            ['nama' => 'lorem1', 'jobdesk' => 'lorem1'],
+            ['nama' => 'lorem2', 'jobdesk' => 'lorem2'],
+            ['nama' => 'lorem3', 'jobdesk' => 'lorem3'],
+            ['nama' => 'lorem4', 'jobdesk' => 'lorem4'],
+            ['nama' => 'lorem5', 'jobdesk' => 'lorem5']
+        ]
+    ];
+    return view('layouts.tentang-kami', compact('data'));
+});
+
+// fitur KONTAK KAMI
+Route::get('/kontak-kami', function () {
+    $data = [
+        'i' => 0,
+        'form-select-tipe' => ['suggestion', 'aditional service', 'room / space overtime', 'inquiry', 'complain', 'home fixing', 'room cleaning']
+    ];
+    // return dd($data['form-select-tipe'][0]);
+    return view('layouts.kontak-kami', compact('data'));
+});
+
 
 // 
 Route::get('/redirects', function () {

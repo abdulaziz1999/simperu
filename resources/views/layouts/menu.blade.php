@@ -3,13 +3,13 @@
             <div class="row gx-0">
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
                     <a href="{{ url('/') }}" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                        <h1 class="m-0 text-primary text-uppercase">Simperu</h1>
+                        <img class="img-fluid w-50" src="{{asset('img/logo_navbar.svg')}}" alt="logo_navbar">
                     </a>
                 </div>
                 <div class="col-lg-9">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="{{ url('/') }}" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase">Simperu</h1>
+                            <img class="img-fluid w-50" src="{{asset('img/logo_navbar.svg')}}" alt="logo_navbar">
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
@@ -22,10 +22,12 @@
                                 <a href="{{ route('peminjamanku.index') }}" class="nav-item nav-link {{ (request()->is('peminjamanku') || request()->is('peminjamanku/*')) ? 'active' : '' }}">PeminjamanKu</a>
                                 @endif
                                 <div class="nav-item dropdown">
-                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle {{ (request()->is('tentang-kami') || request()->is('kontak-kami')) ? 'active' : '' }}" data-bs-toggle="dropdown">Lainnya</a>
                                     <ul class="dropdown-menu rounded-0 m-0 pe-0" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Kontak Kami</a></li>
-                                        <li><a class="dropdown-item" href="#">Tentang Kami</a></li>
+                                        <li class="fw-bold px-3" disabled aria-readonly="true">Properti</li>
+                                        <li ><a class="dropdown-item {{ (request()->is('tentang-kami')) ? 'active' : '' }}" href="{{url('/tentang-kami')}}">Tentang Kami</a></li>
+                                        <li class="fw-bold px-3" disabled aria-readonly="true">Bantuan</li>
+                                        <li><a class="dropdown-item {{ (request()->is('kontak-kami')) ? 'active' : '' }}" href="{{url('/kontak-kami')}}">Kontak Kami</a></li>
                                     </ul>
                                 </div>
                             </div>

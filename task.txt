@@ -21,7 +21,6 @@ Sprint backlog Task SIMPERU:
 		section search, masih belum sempurna [✔️]
 		section testiomnial [✔️]
 		section fasilitas [✔️]
-		Contact, About Us, dll. []
 	- Gedung :
 		memberikan pagination [✔️]
 		link ke list-ruangan [✔️]
@@ -29,5 +28,12 @@ Sprint backlog Task SIMPERU:
 		hapus head ruangan lainnya pada slider bawah [✔️]
 		membenarkan ukuran font agar tidak terlihat besar di slider [✔️]
 		menambahkan filter search, dan tersambung dari search depan [✔️]
+	- Tentang Kami :
+		buat page tentang kami [✔️]
+	- Kontak Kami :
+		buat page kontak kami [✔️]
+	- Perbaikan Footer :
+		buat logo simperu [✔️]
+
 		
 
