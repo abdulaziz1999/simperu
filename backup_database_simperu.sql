@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2022 at 10:59 AM
+-- Generation Time: Jul 19, 2022 at 02:41 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -58,13 +58,12 @@ CREATE TABLE `fasilitas` (
 --
 
 INSERT INTO `fasilitas` (`id`, `nama_fasilitas`, `foto`, `keterangan`, `ruangan_id`, `updated_at`, `created_at`) VALUES
-(19, 'Area Tanpa Asap Rokok', '20220624071221.no-smoking.svg', 'Area bebas asap rokok, untuk menjaga sirkulasi udara yang sehat dan lestari', 28, '2022-06-23 17:00:00', '2022-06-23 17:00:00'),
-(20, 'Gratis Wifi', '20220624071356.wifi-router.svg', 'Koneksi Wifi yang memadai', 28, '2022-06-23 17:00:00', '2022-06-23 17:00:00'),
-(21, 'Akses Listrik', '20220624071443.electric.svg', 'Akses Listrik yang memadai', 28, '2022-06-23 17:00:00', '2022-06-23 17:00:00'),
-(22, 'Papan Tulis dan Alat Tulis Lainnya', '20220624071607.blackboard.svg', 'Saat meeting dan brainstorming, biasanya, media untuk mencatat tidak hanya kertas dan pulpen saja, melainkan papan tulis dan spidol untuk menggambarkan konsep yang sedang dibahas untuk bisa disimak dan ditinjau bersama.', 28, '2022-06-23 17:00:00', '2022-06-23 17:00:00'),
-(23, 'Proyektor', '20220624071659.projector.svg', 'Bagaimana cara menyampaikan atau mempresentasikan sebuah materi jika tidak ada proyektor? Ya, proyektor juga merupakan salah satu fasilitas penting dalam sebuah meeting dan presentasi. Ada banyak jenis proyektor yang ada, namun alangkah baiknya jika kamu memilih jenis proyektor yang umum dan modern, yang bisa digunakan oleh segala jenis merk laptop, dan juga lengkap dengan kabelnya.', 28, '2022-06-23 17:00:00', '2022-06-23 17:00:00'),
-(24, 'Keamanan 100%', '20220624071753.cyber-security.svg', 'Fasilitas lainnya yang menjadi keprihatian masyarakat banyak adalah kenyaman yang terjamin. Umumnya, hal ini diperlukan jika kamu sering menyewakan meeting room untuk khalayak umum. Beberapa jenis penjagaan yang bisa diaplikasikan adalah pemasangan CCTV pada setiap sudut, pos penjagaan (Security Guide) pada pintu masuk, hingga petugas keamanan yang fungsinya memeriksa barang bawaan setiap pengunjung untuk memastikan bahwa siapa saja yang memasuki area kantor kamu terbebas dari segala pelanggaran hukum dan etika.', 28, '2022-06-23 17:00:00', '2022-06-23 17:00:00'),
-(25, 'Makanan dan Minuman', '20220624071835.fast-food.svg', 'Fasilitas meeting room terakhir yang perlu kamu siapkan selanjutnya adalah lokasinya yang strategis. Tempat umumnya adalah poin utama yang menjadi pertimbangan calon penyewa ruangan. Jika ruang meeting kamu berlokasi di jalan yang bebas aturan Ganjil Genap dan dekat dengan mall, maka tempat kamu akan menjadi pilihan utama bagi calon penyewa ruangan.', 28, '2022-06-23 17:00:00', '2022-06-23 17:00:00');
+(26, 'Wifi', '20220718080607.wifi-router.svg', 'Wifi', 31, '2022-07-18 01:06:07', '2022-07-17 17:44:47'),
+(27, 'Bebas Asap Rokok', '20220718080619.no-smoking.svg', 'Bebas Asap Rokok', 31, '2022-07-18 01:06:19', '2022-07-17 17:45:48'),
+(28, 'Proyektor Gratis', '20220718080637.projector.svg', 'Proyektor Gratis', 31, '2022-07-18 01:06:37', '2022-07-17 17:46:55'),
+(29, 'Gratis Makan dan Minum', '20220718080658.fast-food.svg', 'Gratis Makan dan Minum', 31, '2022-07-18 01:06:58', '2022-07-17 17:47:39'),
+(30, 'Keamanan 1 x 24 Jam', '20220718080716.cyber-security.svg', 'Keamanan 1 x 24 Jam', 31, '2022-07-18 01:07:16', '2022-07-17 17:48:20'),
+(31, 'Gratis Papan Tulis dan Alat Tulis Lainnya', '20220718080727.blackboard.svg', 'Gratis Papan Tulis dan Alat Tulis Lainnya', 31, '2022-07-18 01:07:27', '2022-07-17 17:49:18');
 
 -- --------------------------------------------------------
 
@@ -74,8 +73,18 @@ INSERT INTO `fasilitas` (`id`, `nama_fasilitas`, `foto`, `keterangan`, `ruangan_
 
 CREATE TABLE `feedback` (
   `id` int(11) NOT NULL,
-  `keterangan` varchar(100) NOT NULL
+  `keterangan_feedback` text NOT NULL,
+  `poin` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `keterangan_feedback`, `poin`, `updated_at`, `created_at`) VALUES
+(4, 'Kerenn euyyyy!', 4, '2022-07-18 07:45:15', '2022-07-18 04:56:38');
 
 -- --------------------------------------------------------
 
@@ -100,9 +109,9 @@ CREATE TABLE `gedung` (
 --
 
 INSERT INTO `gedung` (`id`, `kode`, `nama_gedung`, `foto`, `alamat`, `link_gmaps`, `link_iframe_gmaps`, `updated_at`, `created_at`) VALUES
-(1, '14045', 'Antam', '1.jpg', 'Jl. Jabon Raya, Kel. Abadijaya, Kec. Sukmajaya, Kota Depok, Jawa Barat 16417', 'https://goo.gl/maps/EzbdSHhX18NRXqWN8', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.9982193600576!2d106.84486671474787!3d-6.39422979537336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eb93c3feaac3%3A0xfdd098d1bdb5159e!2sJl.%20Jabon%20Raya%2C%20Abadijaya%2C%20Kec.%20Sukmajaya%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016417!5e0!3m2!1sid!2sid!4v1655817914951!5m2!1sid!2sid', '2022-06-14 17:00:00', '2022-06-14 17:00:00'),
-(5, '45124', 'Gedung BSD CASA DE PARCO', 'gedung_3.jpg', 'Ruko Casa De Parco No. 20 BSD City, Tangerang 15345', NULL, NULL, '2022-06-14 17:00:00', '2022-06-14 17:00:00'),
-(6, '01121', 'Social Hub', 'gedung_4.jpg', 'Jl. Sosial No.52, RT.4/RW.2, Wijaya Kusuma, Grogol petamburan, West Jakarta City, Jakarta 11460', NULL, NULL, '2022-06-15 17:00:00', '2022-06-15 17:00:00');
+(9, '00001', 'Mutiara Batu Ceper', '20220717140716.g_mutiara_batu_ceper.jpg', 'Jalan Daan Mogot KM. 21, Komplek Ruko Batu Ceper Permai Blok V No. 11, Tangerang', 'https://goo.gl/maps/s7pbKzGdNNFKqem79', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7601716045197!2d106.66532871476888!3d-6.162865195538095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f8f4e7bfffff%3A0x2e4dc2788b66b357!2sMutiara%20Batu%20Ceper%20by%20TwoSpaces%20(Syariah)!5e0!3m2!1sid!2sid!4v1658119943472!5m2!1sid!2sid', '2022-07-17 07:07:16', '2022-07-17 07:07:16'),
+(10, '00002', 'Mutiara Bintaro', '20220717140837.g_mutiara_bintaro.jpg', 'Jl. Utama I No.67, kavling deplu. Mutiara Residence V no 6. Pd. Karya Pd. Aren, Pondok Karya, Larangan, South Tangerang City, Banten 15155', 'https://goo.gl/maps/CiGvuSRibgHYbnGS9', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.071503656095!2d106.73909331476928!3d-6.254310095472953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f08c20f6c1a5%3A0xcc9fe71df0328b06!2sMutiara%20Bintaro%20by%20TwoSpaces!5e0!3m2!1sid!2sid!4v1658042176938!5m2!1sid!2sid', '2022-07-17 07:08:37', '2022-07-17 07:08:37'),
+(11, '00003', 'BSD XIV', '20220717141155.g_two_spaces.jpg', 'Ruko Casa De Parco No. 20 BSD City, Tangerang 15345', 'https://g.page/apartemen-casa-de-parco?share', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.6806576578642!2d106.6496680147696!3d-6.305621095436409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e54b65211bb7%3A0x80b5fdbbd16250ca!2sApartemen%20Casa%20de%20Parco!5e0!3m2!1sid!2sid!4v1658042292391!5m2!1sid!2sid', '2022-07-17 07:11:55', '2022-07-17 07:11:55');
 
 -- --------------------------------------------------------
 
@@ -123,11 +132,12 @@ CREATE TABLE `kategori_ruangan` (
 --
 
 INSERT INTO `kategori_ruangan` (`id`, `nama_kategori`, `keterangan`, `updated_at`, `created_at`) VALUES
-(1, 'Test1', 'test1', '2022-06-15 17:00:00', '2022-06-14 17:00:00'),
-(3, 'kategori_1', 'kategori_1', '2022-06-15 17:00:00', '2022-06-15 17:00:00'),
-(4, 'kategori_2', 'kategori_2', '2022-06-15 17:00:00', '2022-06-15 17:00:00'),
-(5, 'kategori_4', 'kategori_4', '2022-06-15 17:00:00', '2022-06-15 17:00:00'),
-(7, 'kategori_5', 'kategori_5', '2022-06-15 17:00:00', '2022-06-15 17:00:00');
+(9, 'Hot Desk', 'Meja kerja bersama yang dapat disewa untuk keperluan pribadi dan dapat dipesan per 5 jam, harian, bulanan, atau bahkan tahunan.', '2022-07-17 06:56:53', '2022-07-17 06:56:53'),
+(10, 'Shared Desk', 'Shared desk merupakan tempat kerja berbagi di mana satu workstation dapat ditempati oleh lebih dari satu orang. Nikmati efektifitas bekerja dalam kelompok dan tim anda lewat kolaborasi di shared desk yang dapat disewa bulanan.', '2022-07-17 06:57:29', '2022-07-17 06:57:29'),
+(11, 'Meeting Room', 'Ruang meeting kami dapat digunakan untuk bertemu dan berdiskusi dengan kolega anda. Lokasinya menyebar di Jakarta dan Tangerang. Dapatkan berbagai pilihan ruangan sesuai dengan jumlah peserta meeting.', '2022-07-17 06:58:16', '2022-07-17 06:58:16'),
+(12, 'Private Office', 'Untuk kebutuhan ruang kerja dengan privasi, Anda bisa menyewa ruang kantor pribadi atau private office. Temukan harga terbaik untuk kantor Anda sesuai dengan kapasitas yang dibutuhkan, di lokasi paling nyaman untuk anda dan team, yang dapat dipesan harian maupun bulanan.', '2022-07-17 06:58:35', '2022-07-17 06:58:35'),
+(13, 'Event Space', 'Manfaatkan ruang serbaguna kami untuk berbagai acara kantor ataupun organisasi anda. Service ini dapat dipesan berikut dengan makan siang dan/ coffee break.', '2022-07-17 06:58:52', '2022-07-17 06:58:52'),
+(14, 'Training Space', 'Sewa ruang co-training kami untuk pelatihan dan webinar dengan fasilitas terbaik sangat cocok bagi Anda yang menjadi host webinar. Event dan acara Anda otomatis akan dipromosikan di aplikasi dan media sosial kami.', '2022-07-17 06:59:12', '2022-07-17 06:59:12');
 
 -- --------------------------------------------------------
 
@@ -186,16 +196,7 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id`, `bukti_pembayaran`, `status_pembayaran`, `nomer_telefon`, `jumlah_transaksi`, `updated_at`, `created_at`) VALUES
-(15, '14194622.Ilfordlabmon.jpg', 'Lunas', '08998077521', 250000, '2022-07-14 12:46:22', '2022-07-14 12:13:19'),
-(16, '14191639.Ilfordlabmon.jpg', 'Lunas', '08998545454', 9000000, '2022-07-14 12:16:39', '2022-07-14 12:14:39'),
-(17, '14195149.Struktur Organisasi NF Com.jpg', 'Lunas', '08998077520', 125000, '2022-07-14 12:51:49', '2022-07-14 12:50:04'),
-(18, '14195113.Ilfordlabmon.jpg', 'Lunas', '08998077521', 9990000, '2022-07-14 12:51:13', '2022-07-14 12:50:51'),
-(19, '14200130.Ilfordlabmon.jpg', 'Lunas', '08998545454', 375000, '2022-07-14 13:01:30', '2022-07-14 13:01:01'),
-(20, '15084726.Ilfordlabmon.jpg', 'Lunas', '0877805521', 125000, '2022-07-15 01:47:26', '2022-07-15 01:42:56'),
-(21, '15085249.Ilfordlabmon.jpg', 'Lunas', '08998077520', 125000, '2022-07-15 01:52:49', '2022-07-15 01:51:39'),
-(22, '15085327.Ilfordlabmon.jpg', 'Lunas', '08998077520', 125000, '2022-07-15 01:53:27', '2022-07-15 01:52:12'),
-(23, '15092026.Ilfordlabmon.jpg', 'Lunas', '08998077520', 125000, '2022-07-15 02:20:26', '2022-07-15 02:15:44'),
-(24, '15104026.Ilfordlabmon.jpg', 'Lunas', '08998077520', 125000, '2022-07-15 03:40:26', '2022-07-15 03:40:09');
+(27, '18115800.Struktur Organisasi NF Com.jpg', 'Lunas', '082211201', 180000, '2022-07-18 07:25:00', '2022-07-18 04:56:38');
 
 -- --------------------------------------------------------
 
@@ -206,11 +207,12 @@ INSERT INTO `pembayaran` (`id`, `bukti_pembayaran`, `status_pembayaran`, `nomer_
 CREATE TABLE `peminjaman` (
   `id` int(11) NOT NULL,
   `keperluan` text NOT NULL,
-  `status` enum('Diajukan','Disetujui','Ditolak') NOT NULL DEFAULT 'Diajukan',
+  `status_peminjaman` enum('Diajukan','Disetujui','Ditolak') NOT NULL DEFAULT 'Diajukan',
   `dokumen` varchar(45) DEFAULT NULL,
-  `users_id` int(11) NOT NULL,
+  `users_id` bigint(20) UNSIGNED NOT NULL,
   `ruangan_id` int(11) NOT NULL,
   `pembayaran_id` int(11) NOT NULL,
+  `feedback_id` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -219,17 +221,8 @@ CREATE TABLE `peminjaman` (
 -- Dumping data for table `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id`, `keperluan`, `status`, `dokumen`, `users_id`, `ruangan_id`, `pembayaran_id`, `updated_at`, `created_at`) VALUES
-(13, 'Test', 'Diajukan', '14191308.Lorem_ipsum.pdf', 1, 28, 15, '2022-07-14 12:13:19', '2022-07-14 12:13:19'),
-(14, 'test', 'Diajukan', '14191427.Lorem_ipsum.pdf', 1, 29, 16, '2022-07-14 12:14:39', '2022-07-14 12:14:39'),
-(15, 'A', 'Diajukan', '14194959.Lorem_ipsum.pdf', 1, 28, 17, '2022-07-14 12:50:04', '2022-07-14 12:50:04'),
-(16, 'test', 'Diajukan', '14195042.Lorem_ipsum.pdf', 1, 2, 18, '2022-07-14 12:50:51', '2022-07-14 12:50:51'),
-(17, 'A', 'Diajukan', '14200051.Lorem_ipsum.pdf', 1, 28, 19, '2022-07-14 13:01:01', '2022-07-14 13:01:01'),
-(18, 'Test', 'Diajukan', '15084250.Lorem_ipsum.pdf', 1, 28, 20, '2022-07-15 01:42:56', '2022-07-15 01:42:56'),
-(19, 'a', 'Diajukan', '15085134.Lorem_ipsum.pdf', 1, 28, 21, '2022-07-15 01:51:39', '2022-07-15 01:51:39'),
-(20, 'B', 'Diajukan', '15085206.Lorem_ipsum.pdf', 1, 28, 22, '2022-07-15 01:52:12', '2022-07-15 01:52:12'),
-(21, 'c', 'Diajukan', '15091538.invoice-booking-17.pdf', 1, 28, 23, '2022-07-15 02:15:44', '2022-07-15 02:15:44'),
-(22, 'AAAA', 'Diajukan', '15103944.invoice-booking-17.pdf', 1, 28, 24, '2022-07-15 03:40:09', '2022-07-15 03:40:09');
+INSERT INTO `peminjaman` (`id`, `keperluan`, `status_peminjaman`, `dokumen`, `users_id`, `ruangan_id`, `pembayaran_id`, `feedback_id`, `updated_at`, `created_at`) VALUES
+(25, 'Keperluan ke - 1', 'Disetujui', '18115610.invoice-booking-17.pdf', 1, 35, 27, 4, '2022-07-18 07:25:00', '2022-07-18 04:56:38');
 
 -- --------------------------------------------------------
 
@@ -277,14 +270,9 @@ CREATE TABLE `ruangan` (
 --
 
 INSERT INTO `ruangan` (`id`, `nama_ruangan`, `lantai`, `status`, `foto1`, `foto2`, `foto3`, `harga`, `kapasitas`, `keterangan`, `gedung_id`, `kategori_ruangan_id`, `updated_at`, `created_at`) VALUES
-(1, 'test', 12, 'Tersedia', 'carousel-2.jpg', 'carousel-1.jpg', '', '125000', 0, NULL, 1, 1, '2022-06-14 17:00:00', '2022-06-14 17:00:00'),
-(2, 'test2', 123, 'Tersedia', NULL, NULL, NULL, '999000 ', 0, NULL, 1, 1, '2022-06-14 17:00:00', '2022-06-14 17:00:00'),
-(15, 'test', 12, 'Tersedia', 'carousel-2.jpg', 'carousel-1.jpg', '', '125000', 0, NULL, 1, 1, '2022-06-14 17:00:00', '2022-06-14 17:00:00'),
-(16, 'test2', 123, 'Tersedia', NULL, NULL, NULL, '999000 ', 0, NULL, 1, 1, '2022-06-14 17:00:00', '2022-06-14 17:00:00'),
-(26, 'Testing2', 45, 'Tersedia', '20220623194128.jpg', '20220623194128.jpg', '20220623194128.jpg', '250000', 42, 'loremipsum', 5, 3, '2022-06-22 17:00:00', '2022-06-22 17:00:00'),
-(27, 'Ruangan ASli Ahoy', 13, 'Dipinjam', '20220623194255.raungan_1.jpg', '20220623194255.ruangan_2.jpg', '20220623194255.default.png', '123123', 123, 'lorem asdalsmdlmssmdkaskdas', 1, 3, '2022-06-22 17:00:00', '2022-06-22 17:00:00'),
-(28, 'Harmoni 5', 10, 'Tersedia', '20220624024555.raungan_1.jpg', '20220624024555.ruangan_2.jpg', '20220624024555.Color Hunt Palette 990000ff5b00d4d925ffee63.png', '125000', 12, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 5, 5, '2022-06-23 17:00:00', '2022-06-23 17:00:00'),
-(29, 'tes', 3, 'Tersedia', '20220628013654.ae.png', '20220628013654.at.png', '20220628013654.aw.png', '1500000', 50, 'tes', 1, 3, '2022-06-27 17:00:00', '2022-06-27 17:00:00');
+(31, 'R-001', 2, 'Tersedia', '20220717142929.r_ mba_hot_desk.jpeg', '20220717142929.r_ mba_hot_desk.jpeg', '20220717142929.r_ mba_hot_desk.jpeg', '124000', 25, 'Rasakan pengalaman yang menghadirkan nuansa alam dan warna earthy di tengah padatnya area di Batu Ceper.', 9, 9, '2022-07-17 07:29:29', '2022-07-17 07:29:29'),
+(32, 'R-002', 12, 'Tersedia', '20220717143036.r_ mba_hot_desk.jpeg', '20220717143036.r_ mba_hot_desk.jpeg', '20220717143036.r_ mba_hot_desk.jpeg', '127800', 45, 'Rasakan pengalaman yang menghadirkan nuansa alam dan warna earthy di tengah padatnya area di Batu Ceper.', 10, 10, '2022-07-17 07:30:36', '2022-07-17 07:30:36'),
+(35, 'R-003', 14, 'Tersedia', '20220718093415.r-2_r-003.jpg', '20220718093415.r_ mba_hot_desk.jpeg', '20220718093415.r-1_r-003.jpg', '180000', 15, 'Rasakan pengalaman yang menghadirkan nuansa alam dan warna earthy di tengah padatnya area di Batu Ceper.', 9, 10, '2022-07-18 02:34:15', '2022-07-18 02:34:15');
 
 -- --------------------------------------------------------
 
@@ -306,7 +294,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('j8FD4Dx2wZ9NZ2ANx5ha3sJJGkSmHYTAPNFLwDXT', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUUdIaXJOS0lxZWQ0bDNUTWgwRjFMY3RCVW9aRlJ5WXhGa1cyR0I4UyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9saXN0LXJ1YW5nYW4vMjgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoiYXV0aCI7YToxOntzOjIxOiJwYXNzd29yZF9jb25maXJtZWRfYXQiO2k6MTY1Nzg0OTMxNjt9czo1OiJhbGVydCI7YTowOnt9fQ==', 1657856457);
+('spZ8L9kr5vNLkaBSTzK9sH3cJeL17H1hxUFUISAB', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidEsxWlI4RGQzZWJNQjZZN0Jrd0VVTmgzajVpZ1NxNnpjVWp5T3lEZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9rb250YWsta2FtaSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NToiYWxlcnQiO2E6MDp7fX0=', 1658218884);
 
 -- --------------------------------------------------------
 
@@ -358,16 +346,7 @@ CREATE TABLE `waktu_peminjaman` (
 --
 
 INSERT INTO `waktu_peminjaman` (`id`, `tgl_pinjam`, `tgl_selesai`, `jam_mulai`, `jam_selesai`, `peminjaman_id`, `updated_at`, `created_at`) VALUES
-(24, '2022-07-14', '2022-07-14', '07:00:00', '09:00:00', 13, '2022-07-14 12:13:19', '2022-07-14 12:13:19'),
-(25, '2022-07-14', '2022-07-14', '07:00:00', '13:00:00', 14, '2022-07-14 12:14:39', '2022-07-14 12:14:39'),
-(26, '2022-07-14', '2022-07-14', '09:00:00', '10:00:00', 15, '2022-07-14 12:50:04', '2022-07-14 12:50:04'),
-(27, '2022-07-14', '2022-07-14', '07:00:00', '17:00:00', 16, '2022-07-14 12:50:51', '2022-07-14 12:50:51'),
-(28, '2022-07-14', '2022-07-14', '10:00:00', '13:00:00', 17, '2022-07-14 13:01:01', '2022-07-14 13:01:01'),
-(29, '2022-07-15', '2022-07-15', '07:00:00', '08:00:00', 18, '2022-07-15 01:42:56', '2022-07-15 01:42:56'),
-(30, '2022-07-15', '2022-07-15', '08:00:00', '09:00:00', 19, '2022-07-15 01:51:39', '2022-07-15 01:51:39'),
-(31, '2022-07-15', '2022-07-15', '09:00:00', '10:00:00', 20, '2022-07-15 01:52:12', '2022-07-15 01:52:12'),
-(32, '2022-07-15', '2022-07-15', '10:00:00', '11:00:00', 21, '2022-07-15 02:15:44', '2022-07-15 02:15:44'),
-(33, '2022-07-16', '2022-07-16', '11:00:00', '12:00:00', 22, '2022-07-15 03:40:09', '2022-07-15 03:40:09');
+(36, '2022-07-17', '2022-07-17', '12:00:00', '13:00:00', 25, '2022-07-18 04:56:38', '2022-07-18 04:56:38');
 
 --
 -- Indexes for dumped tables
@@ -432,7 +411,9 @@ ALTER TABLE `pembayaran`
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_peminjaman_ruangan1` (`ruangan_id`),
-  ADD KEY `fk_peminjaman_pembayaran1` (`pembayaran_id`);
+  ADD KEY `fk_peminjaman_pembayaran1` (`pembayaran_id`),
+  ADD KEY `fk_peminjaman_feedback1` (`feedback_id`),
+  ADD KEY `fk_peminjaman_users1` (`users_id`);
 
 --
 -- Indexes for table `personal_access_tokens`
@@ -486,25 +467,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `fasilitas`
 --
 ALTER TABLE `fasilitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `gedung`
 --
 ALTER TABLE `gedung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `kategori_ruangan`
 --
 ALTER TABLE `kategori_ruangan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -516,13 +497,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -534,7 +515,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `ruangan`
 --
 ALTER TABLE `ruangan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -546,7 +527,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `waktu_peminjaman`
 --
 ALTER TABLE `waktu_peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
@@ -562,8 +543,10 @@ ALTER TABLE `fasilitas`
 -- Constraints for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
+  ADD CONSTRAINT `fk_peminjaman_feedback1` FOREIGN KEY (`feedback_id`) REFERENCES `feedback` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_peminjaman_pembayaran1` FOREIGN KEY (`pembayaran_id`) REFERENCES `pembayaran` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_peminjaman_ruangan1` FOREIGN KEY (`ruangan_id`) REFERENCES `ruangan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_peminjaman_ruangan1` FOREIGN KEY (`ruangan_id`) REFERENCES `ruangan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_peminjaman_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `ruangan`
