@@ -21,7 +21,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered zero-configuration">
+                                    <table class="table table-striped zero-configuration">
                                         <div class="d-flex justify-content-between align-content-center mr-4 ml-4">
                                             <span class="h3 font-weight-bold text-primary">Daftar Ruangan </span>
                                             <div class="btn-group">

@@ -31,10 +31,10 @@
 
 
     <!-- <script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script> -->
-
+ 
     {{-- plugins datatable --}}
-    <script src="{{ asset('plugins/tables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('plugins/tables/js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('plugins/tables/js/datatable-init/datatable-basic.min.js') }}"></script>
     {{-- ./plugins datatable --}}
 
