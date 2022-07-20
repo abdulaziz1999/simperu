@@ -93,7 +93,7 @@
                                         <img width="35" src="{{ asset('images/avatar/1.jpg') }}" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>{{$row->nama_ruangan}}</h5>
-                                            <p class="mb-0">Peminjam : {{$row->name}},</p>
+                                            <p class="mb-0"><strong>Peminjam :</strong> {{$row->name}}</p>
                                         </div><span class="text-muted "> @tgl($row->created_at)</span>
                                     </div>
                                     @endforeach
@@ -113,7 +113,8 @@
                                     @foreach($feedback as $f)
                                     <div class="media border-bottom-1 pt-3 pb-3">
                                         <div class="media-body">
-                                            <p class="mb-0">{{$f->keterangan}}</p>
+                                            <p class="mb-0"><strong>Feedback :</strong> <br/>{{$f->keterangan_feedback}}</p>
+                                            <p class="mb-0"><strong>Poin :</strong>  <br/>{{$f->poin}}</p>
                                         </div>
                                     </div>
                                 @endforeach

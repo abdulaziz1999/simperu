@@ -47,7 +47,7 @@
                                             @foreach($dataPeminjaman as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px" src="{{ asset('storage/post-image/'.$row->foto) }}" alt="{{ $row->nama_ruangan  }}"></td>
+                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ asset('storage/post-image/'.$row->foto1) }}" alt="{{ $row->nama_ruangan  }}"></td>
                                                 <td>{{ $row->nama_ruangan }}</td>
                                                 <td>{{ $row->tgl_pinjam }} - {{ $row->tgl_selesai }}</td>
                                                 <td>{{ $row->harga }}</td>

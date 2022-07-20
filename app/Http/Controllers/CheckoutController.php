@@ -8,10 +8,6 @@ use App\Models\Peminjaman;
 use App\Models\Ruangan;
 use App\Models\WaktuPeminjaman;
 use App\Models\Pembayaran;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 
 class CheckoutController extends Controller

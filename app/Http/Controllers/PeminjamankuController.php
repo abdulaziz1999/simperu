@@ -95,7 +95,7 @@ class PeminjamankuController extends Controller
                 $pembayaran->bukti_pembayaran = $profileBp;
             }
 
-            $pembayaran->status_pembayaran = 'Lunas';
+            // $pembayaran->status_pembayaran = 'Lunas';
             $pembayaran->update();
 
             return redirect()->route('peminjamanku.index')->with('toast_success', 'Berhasil Upload Bukti Pembayaran');

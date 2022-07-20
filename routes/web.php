@@ -136,11 +136,11 @@ Route::get('/tentang-kami', function () {
             ['image' => 'img/inspirasi-3.jpg', 'head' => 'Lingkungan', 'title' => 'Framework "15 minute neighbourhood" yang dicanangkan oleh Prof. Carlos Moreno di Paris mengedepankan akses pada 6 pilar aktivitas dalam 15 menit dengan berjalan kaki atau naik sepeda. Framework ini adalah solusi urban mobility dalam menghadapi pandemi dan issue global warming.'],
         ],
         'tim' => [
-            ['nama' => 'lorem1', 'jobdesk' => 'lorem1'],
-            ['nama' => 'lorem2', 'jobdesk' => 'lorem2'],
-            ['nama' => 'lorem3', 'jobdesk' => 'lorem3'],
-            ['nama' => 'lorem4', 'jobdesk' => 'lorem4'],
-            ['nama' => 'lorem5', 'jobdesk' => 'lorem5']
+            ['nama' => 'Abdul Aziz', 'jobdesk' => 'Project Manager, Beckend Developer', 'link-profile-ig' => ''],
+            ['nama' => 'Ahmad Hafid F', 'jobdesk' => 'UI/UX', 'link-profile-ig' => 'https://cdn.inflact.com/media/285913551_1382255525613404_2934192229411735561_n.jpg?url=https%3A%2F%2Fscontent.cdninstagram.com%2Fv%2Ft51.2885-19%2F285913551_1382255525613404_2934192229411735561_n.jpg%3Fstp%3Ddst-jpg_s320x320%26_nc_ht%3Dinstagram.fcfc2-1.fna.fbcdn.net%26_nc_cat%3D108%26_nc_ohc%3Do7udChWg9EkAX843TD8%26edm%3DAAWvnRQBAAAA%26ccb%3D7-5%26oh%3D00_AT8IhGVzX07ik_TlMJevfo16t0OZFQ0ge4955dXydga4Gw%26oe%3D62DE5C19%26_nc_sid%3De7738c&time=1658314800&key=342bf0ccd0027fd5c61032bb04e66a5d'],
+            ['nama' => 'Ayu Widya N', 'jobdesk' => 'Analisis Bisnis Proses', 'link-profile-ig' => 'https://cdn.inflact.com/media/283516161_519854499693406_2514515185744214607_n.jpg?url=https%3A%2F%2Fscontent.cdninstagram.com%2Fv%2Ft51.2885-19%2F283516161_519854499693406_2514515185744214607_n.jpg%3Fstp%3Ddst-jpg_s320x320%26_nc_ht%3Dinstagram.fbpn2-1.fna.fbcdn.net%26_nc_cat%3D110%26_nc_ohc%3DjxjWhAjrudgAX-Z9j3I%26edm%3DAAWvnRQBAAAA%26ccb%3D7-5%26oh%3D00_AT_rvDtfHMMm7OxOEOmd8WQ_pln_OsOuL6C8h19qVM-nYA%26oe%3D62DF18D2%26_nc_sid%3De7738c&time=1658314800&key=66ddc5045bece3b5e1a551c5b9db0efd'],
+            ['nama' => 'Derren Dwi S', 'jobdesk' => 'Dokumentasi & PPT', 'link-profile-ig' => 'https://cdn.inflact.com/media/274385837_253476633641758_7970455290471442522_n.jpg?url=https%3A%2F%2Fscontent.cdninstagram.com%2Fv%2Ft51.2885-19%2F274385837_253476633641758_7970455290471442522_n.jpg%3Fstp%3Ddst-jpg_s320x320%26_nc_ht%3Dscontent-prg1-1.cdninstagram.com%26_nc_cat%3D110%26_nc_ohc%3Dyfm6z7MQC-cAX9BboB6%26edm%3DAAWvnRQBAAAA%26ccb%3D7-5%26oh%3D00_AT9ts5dkdPDMSraO2MEijY_Er0fgbWyuQz_YjbcfkQHPCw%26oe%3D62DF78D2%26_nc_sid%3De7738c&time=1658314800&key=c6bee8557a44d742a2252027ecb53b65https://cdn.inflact.com/media/274385837_253476633641758_7970455290471442522_n.jpg?url=https%3A%2F%2Fscontent.cdninstagram.com%2Fv%2Ft51.2885-19%2F274385837_253476633641758_7970455290471442522_n.jpg%3Fstp%3Ddst-jpg_s320x320%26_nc_ht%3Dscontent-prg1-1.cdninstagram.com%26_nc_cat%3D110%26_nc_ohc%3Dyfm6z7MQC-cAX9BboB6%26edm%3DAAWvnRQBAAAA%26ccb%3D7-5%26oh%3D00_AT9ts5dkdPDMSraO2MEijY_Er0fgbWyuQz_YjbcfkQHPCw%26oe%3D62DF78D2%26_nc_sid%3De7738c&time=1658314800&key=c6bee8557a44d742a2252027ecb53b65'],
+            ['nama' => 'Ficri Hanip', 'jobdesk' => 'Frontend Developer', 'link-profile-ig' => 'https://cdn.inflact.com/media/290247515_1866279330236562_4592455839549479891_n.jpg?url=https%3A%2F%2Fscontent.cdninstagram.com%2Fv%2Ft51.2885-19%2F290247515_1866279330236562_4592455839549479891_n.jpg%3Fstp%3Ddst-jpg_s320x320%26_nc_ht%3Dinstagram.fhan2-1.fna.fbcdn.net%26_nc_cat%3D106%26_nc_ohc%3DZ0kxQZUdXmIAX9zWU7P%26edm%3DAAWvnRQBAAAA%26ccb%3D7-5%26oh%3D00_AT9Yc219xBrjFMkc0tr3_MO3rOQUf518WADby_nlvu0-1Q%26oe%3D62DF0F2F%26_nc_sid%3De7738c&time=1658314800&key=bbf5780c64345d72e43d85ecc631bb59']
         ]
     ];
     return view('layouts.tentang-kami', compact('data'));
@@ -195,6 +195,7 @@ Route::get('/tes', function () {
 // Route::group(['checkRole' => ['admin']], function () {
 //     Route::get('home', 'HomeController@index');
 //    });
+
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('checkRole:admin');
 Route::get('/chart', [DashboardController::class, 'chart'])->middleware('checkRole:admin');
 

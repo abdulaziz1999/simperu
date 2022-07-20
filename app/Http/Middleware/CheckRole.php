@@ -17,23 +17,14 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
+        $user = isset(Auth::user()->role) ? Auth::user()->role : '';
 
         foreach ($roles as $r) {
-            // if ($request->user()->hasRole($r)) {
-            $user = isset(Auth::user()->role) ? Auth::user()->role : '';
             if ($user == $r) {
                 return $next($request);
             }
         }
 
-        // return redirect()->route('login');
-        // foreach ($roles as $role) {
-        //     if ($user == $role) {
-        //         return $next($request);
-        //     }
-        // }
-
-        // return redirect('/');
-        return redirect('/login');
+        return redirect('/');
     }
 }

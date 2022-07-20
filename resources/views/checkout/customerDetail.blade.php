@@ -5,7 +5,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-6 d-flex justify-content-end">
-                    <div class="w-75 border">
+                    <div class="w-75">
                         {{-- button back and table available room --}}
                         <div class="col-12 text-start mx-0 px-0 mb-3">
                             {{-- <a class="fs-3 d-inline" href="{{url('/list-ruangan/detail/'.$ruangan->id.'-'.$ruangan->nama_ruangan)}}"><i class="fas fa-arrow-left"></i></a> --}}
@@ -22,8 +22,8 @@
                         <div class="col-12 mt-3 text-start">
                             <h5 class="text-dark mb-3">Informasi Peminjam</h5>
                         </div>
-                        <div class="col-12 border">
-                            <form  method="post" action="{{ route('checkout.store') }}" class="text-start border">
+                        <div class="col-12">
+                            <form  method="post" action="{{ route('checkout.store') }}" class="text-start">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="text-start mx-0 px-0">Nama Peminjam</label>

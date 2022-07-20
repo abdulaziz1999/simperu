@@ -34,9 +34,9 @@
                                             Berikan Penilaian
                                         </button>
                                         @if ($pbu->keterangan_feedback != '')
-                                            <h6 class="alert-success rounded-pill px-3 py-2 m-0">
+                                            <span class="badge rounded-pill alert-success border border-3 border-success px-3 py-2 my-2">
                                                 Feedback Terkirim
-                                            </h6>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -60,21 +60,23 @@
                                             Upload Bukti Pembayaran
                                         </button>
                                     </div>
-                                    <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
+                                    <div class="col-12 col-md-4 d-flex align-items-center justify-content-center flex-column">
+                                        <span class="badge rounded-pill {{ ($pbu->status_peminjaman == 'Diajukan') ? 'alert-info border border-3 border-info': (($pbu->status_peminjaman == 'Disetujui')? 'alert-success border border-3 border-success' : 'alert-danger border border-3 border-danger');}} px-3 py-2 my-1">
+                                            {{$pbu->status_peminjaman}}
+                                        </span>
                                         @if ($pbu->status_pembayaran != null && $pbu->status_pembayaran == 'Lunas')
-                                        <h6 class="alert-success rounded-pill px-3 py-2 m-0">
+                                        <span class="{{($pbu->status_peminjaman != 'Disetujui')? 'd-none' : ''}} badge rounded-pill alert-success border border-3 border-success px-3 py-2  my-1">
                                             {{$pbu->status_pembayaran}}
-                                        </h6>
-                                        <a href="{{route('peminjamanku.invoice', $pbu->pembayaran_id)}}" class="btn btn-success rounded-pill ms-2">
+                                        </span>
+                                        <a href="{{route('peminjamanku.invoice', $pbu->pembayaran_id)}}" class="{{($pbu->status_peminjaman != 'Disetujui')? 'd-none' : ''}} btn btn-success rounded-pill ms-2">
                                             <i class="fas fa-print"></i>
                                         </a>
                                         @else
                                         <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <h6 class="alert-danger rounded-pill px-3 py-2 m-0">
+                                            <span class="border border-3 border-danger badge rounded-pill alert-danger px-3 py-2  my-1">
                                                 {{$pbu->status_pembayaran}}
-                                            </h6>
-                                            <h3 class="text-white mt-1" id="countDown{{$i++}}">
-                                            </h3>
+                                            </span>
+                                            <h3 class="text-white mt-1" id="countDown{{$i++}}"></h3>
                                         </div>
                                         @endif
                                     </div>
@@ -228,7 +230,7 @@
                                 let result = `${objTime.hours} : ${objTime.minutes} : ${objTime.seconds}`;
                                 if (distance <= 0) {
                                     clearInterval(x);
-                                    $(selector).html('<h6 class="alert-danger rounded-pill p-2 m-0">Waktu Habis</h6>');
+                                    $(selector).html('<span class="badge rounded-pill alert-success border border-3 border-success px-3 py-2 my-2">Waktu Habis</span>');
                                     $(modalSelector).addClass('d-none');
                                 }else{
                                     if ('{{isset($peminjamanByUser[0]->status_pembayaran)? $peminjamanByUser[0]->status_pembayaran:''}}' == 'Lunas') {

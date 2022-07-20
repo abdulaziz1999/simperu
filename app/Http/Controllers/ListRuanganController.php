@@ -61,14 +61,10 @@ class ListRuanganController extends Controller
         }
 
         //query like data gedung dan data kategori ruangan
-        $r_OrderByStatusAsc = Ruangan::
-            // ->join('gedung as g', 'ruangan.gedung_id', 'g.id')
-            // ->join('kategori_ruangan as k', 'ruangan.kategori_ruangan_id', 'k.id')
-            where('ruangan.gedung_id', $gedung_id)
+        $r_OrderByStatusAsc = Ruangan::where('ruangan.gedung_id', $gedung_id)
             ->where('ruangan.kategori_ruangan_id', $kategori_id)
             ->orderBy('ruangan.updated_at', 'desc')
             ->paginate(9);
-        // ->get();
 
         // Me-assign ulang data ke format rupiah
         foreach ($r_OrderByStatusAsc->items() as $item) {
@@ -146,9 +142,17 @@ class ListRuanganController extends Controller
             'durasi' => 'required',
             'dokumen' => 'required|mimes:pdf|max:10000',
             'keperluan' => 'required',
+        ], [
+            'tgl_pinjam.required' => 'Tanggal tidak boleh kosong!',
+            'jam_mulai.required' => 'Jam tidak boleh kosong!',
+            'durasi.required' => 'Durasi tidak boleh kosong!',
+            'dokumen.required' => 'Dokumen PDF tidak boleh kosong!',
+            'keperluan.required' => 'Keperluan tidak boleh kosong!',
         ]);
+
         $dateAfterDurasi = date('Y-m-d H:i:s', strtotime($request->tgl_pinjam . '+ ' . substr($request->jam_mulai, 0, 2) . ' hours'));
         $diff = $this->selisih_waktu($dateAfterDurasi);
+
         if ($diff['d'] < 1) {
             return back()->with('toast_error', 'Maaf, waktu pemesanan ruangan harus 1 hari seblum acara berlangsung!');
         }

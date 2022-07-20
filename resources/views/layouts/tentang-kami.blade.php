@@ -92,10 +92,10 @@ Melalui framework 15min Neighborhood ini, Simperu juga memiliki misi untuk menga
                         @php $data['i'] = 0 @endphp
                         @if(count($data['tim'])>0)
                         @foreach ($data['tim'] as $value)
-                        <div class="col-md-6 col-lg-2 d-flex justify-content-center animated wow fadeIn slideInUp" data-wow-delay="0.{{++$data['i']}}s">
-                            <div class="card w-75" style="border: none;">
-                                <div class="card-header p-0" style="border-radius: 50%;">
-                                    <img class="img-fluid w-100 rounded-pill" src="{{ asset('img/testimonial-1.jpg')}}" alt="testimonial-1" style="border-radius: .8rem;">
+                        <div class="col-md-6 col-lg-4 d-flex justify-content-center animated wow fadeIn slideInUp" data-wow-delay="0.{{++$data['i']}}s">
+                            <div class="card w-75 d-flex justify-content-center align-items-center" style="border: none;">
+                                <div class="card-header p-0" style="border-radius: 50%; max-width: 150px; width: 100%;">
+                                    <img src="{{$value['link-profile-ig']}}" class="img-fluid w-100 rounded-pill" alt="foto-{{$value['nama']}}" style="border-radius: .8rem;">
                                 </div>
                                 <div class="card-body">
                                     <h6 class="mb-1">{{$value['nama']}}</h6>
