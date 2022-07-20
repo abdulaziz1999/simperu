@@ -28,7 +28,7 @@
                                             <a href="{{url('gedungexcel')}}" class="btn btn-sm btn-success font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-excel-o"></i> Excel</a>
                                         </div> -->
                                     </div>
-                                    <table class="table table-striped table-bordered zero-configuration">
+                                    <table class="table table-striped zero-configuration">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
