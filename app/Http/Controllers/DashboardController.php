@@ -21,11 +21,12 @@ class DashboardController extends Controller
         $ruangan = Ruangan::all();
         $fasilitas = Fasilitas::all();
         $kategoriRuangan = KategoriRuangan::all();
-        $feedback = Feedback::all();
+        $feedback = Feedback::select('*')->limit(5)->orderBy('id','desc')->get();
         $peminjaman = Peminjaman::join('pembayaran as pe', 'peminjaman.pembayaran_id', '=', 'pe.id')
             ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
             ->join('users', 'peminjaman.users_id', '=', 'users.id')
             ->limit(5)
+            ->orderBy('peminjaman.id','desc')
             ->get();
         $sumProfit = Peminjaman::join('pembayaran as pe', 'peminjaman.pembayaran_id', '=', 'pe.id')
             ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
