@@ -16,11 +16,13 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
+                                <a href="{{ url('/')}}" class="nav-item nav-link {{ (request()->is('/')) ? 'active' : '' }}">Beranda</a>
                                 <a href="{{ route('list-gedung.index')}}" class="nav-item nav-link {{ (request()->is('list-gedung') || request()->is('list-gedung/*')) ? 'active' : '' }}">Gedung</a>
                                 <a href="{{ route('list-ruangan.showAllRoom') }}" class="nav-item nav-link {{ (request()->is('list-ruangan') || request()->is('list-ruangan/*')) ? 'active' : '' }}">Ruangan</a>
                                 @if(Auth::check())
                                 <a href="{{ route('peminjamanku.index') }}" class="nav-item nav-link {{ (request()->is('peminjamanku') || request()->is('peminjamanku/*')) ? 'active' : '' }}">PeminjamanKu</a>
                                 @endif
+                                @if(Auth::check())
                                 <div class="nav-item dropdown">
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle {{ (request()->is('tentang-kami') || request()->is('kontak-kami')) ? 'active' : '' }}" data-bs-toggle="dropdown">Lainnya</a>
                                     <ul class="dropdown-menu rounded-0 m-0 pe-0" aria-labelledby="dropdownMenuButton1">
@@ -30,6 +32,10 @@
                                         <li><a class="dropdown-item {{ (request()->is('kontak-kami')) ? 'active' : '' }}" href="{{url('/kontak-kami')}}">Kontak Kami</a></li>
                                     </ul>
                                 </div>
+                                @else
+                                <a class="nav-item nav-link {{ (request()->is('tentang-kami')) ? 'active' : '' }}" href="{{url('/tentang-kami')}}">Tentang Kami</a>
+                                <a class="nav-item nav-link {{ (request()->is('kontak-kami')) ? 'active' : '' }}" href="{{url('/kontak-kami')}}">Kontak Kami</a></li>
+                                @endif
                             </div>
                             <div class="me-0 me-lg-5">
                                 @guest
