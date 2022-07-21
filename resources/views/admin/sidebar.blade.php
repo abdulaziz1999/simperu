@@ -14,10 +14,10 @@
                             <i class="fa fa-tachometer" aria-hidden="true"></i> <span class="nav-text">Master Data</span>
                         </a>
                         <ul aria-expanded="true">
-                            <li><a class="font-weight-bold" href="{{route('gedung.index')}}" ><i class="fa fa-table" aria-hidden="true"></i> Daftar Gedung</a></li>
-                            <li><a class="font-weight-bold" href="{{ route('ruangan.index') }}"><i class="fa fa-table" aria-hidden="true"></i> Daftar Ruangan</a></li>
-                            <li><a class="font-weight-bold" href="{{ route('fasilitas.index') }}"><i class="fa fa-table" aria-hidden="true"></i> Daftar Fasilitas</a></li>
-                            <li><a class="font-weight-bold" href="{{ route('kategoriRuangan.index')}}"><i class="fa fa-table" aria-hidden="true"></i> Kategori Ruangan </a></li>
+                            <li><a class="font-weight-bold" href="{{route('gedung.index')}}" ><i class="fa fa-table" aria-hidden="true"></i> Data Gedung</a></li>
+                            <li><a class="font-weight-bold" href="{{ route('ruangan.index') }}"><i class="fa fa-table" aria-hidden="true"></i> Data Ruangan</a></li>
+                            <li><a class="font-weight-bold" href="{{ route('fasilitas.index') }}"><i class="fa fa-table" aria-hidden="true"></i> Data Fasilitas</a></li>
+                            <li><a class="font-weight-bold" href="{{ route('kategoriRuangan.index')}}"><i class="fa fa-table" aria-hidden="true"></i> Data Kategori Ruangan </a></li>
                         </ul>
                     </li>
                     <li>
@@ -26,13 +26,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="font-weight-bold" href="{{ route('feedback.index') }}" aria-expanded="false">
-                            <i class="fa fa-exchange" aria-hidden="true"></i> <span class="nav-text">Feedback</span>
+                        <a class="font-weight-bold" href="{{ route('laporan.index') }}" aria-expanded="false">
+                            <i class="fa fa-book" aria-hidden="true"></i> <span class="nav-text">Laporan</span>
                         </a>
                     </li>
                     <li>
-                        <a class="font-weight-bold" href="{{ route('laporan.index') }}" aria-expanded="false">
-                            <i class="fa fa-book" aria-hidden="true"></i> <span class="nav-text">Laporan</span>
+                        <a class="font-weight-bold" href="{{ route('feedback.index') }}" aria-expanded="false">
+                            <i class="fa fa-exchange" aria-hidden="true"></i> <span class="nav-text">Feedback</span>
                         </a>
                     </li>
                     <li>
