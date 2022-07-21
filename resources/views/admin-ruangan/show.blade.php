@@ -28,18 +28,14 @@
                                     </div>
                                 </div>
                                 <div class="row mb-5">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <img class="img-fluid w-50 py-2 px-2 shadow border" src="/img/ruangan/{{ $ruangan->foto1 }}" width="500px">
+                                    <div class="col-md-4 d-flex justify-content-center">
+                                        <img class="img-fluid shadow border rounded" src="{{ asset('storage/post-image/'.$ruangan->foto1)}}" width="500px">
                                     </div>
-                                </div>
-                                <div class="row mb-5">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <img class="img-fluid w-50 py-2 px-2 shadow border" src="/img/ruangan/{{ $ruangan->foto2}}" width="500px">
+                                    <div class="col-md-4 d-flex justify-content-center">
+                                        <img class="img-fluid shadow border rounded" src="{{ asset('storage/post-image/'.$ruangan->foto2)}}" width="500px">
                                     </div>
-                                </div>
-                                <div class="row mb-5">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <img class="img-fluid w-50 py-2 px-2 shadow border" src="/img/ruangan/{{ $ruangan->foto3 }}" width="500px">
+                                    <div class="col-md-4 d-flex justify-content-center">
+                                        <img class="img-fluid shadow border rounded" src="{{ asset('storage/post-image/'.$ruangan->foto3)}}" width="500px">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

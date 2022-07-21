@@ -22,7 +22,7 @@ class PeminjamanController extends Controller
             ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
             ->join('users', 'peminjaman.users_id', '=', 'users.id')
             ->get();
-        // dd($dataPeminjaman);
+        // dd($dataPeminjaman[0]->name);
         return view('admin-peminjaman.index', compact('dataPeminjaman'));
     }
 

@@ -88,9 +88,8 @@ class ListRuanganController extends Controller
     public function detailRoomById(Request $request, Ruangan $ruangan)
     {
         //Mengecek session, jika ada maka dihapus
-        // dd($request->session()->all());
         if ($request->session()->has('peminjaman')) {
-            $oldDocs = 'post-docs/' . $request->session()->get('peminjaman')->dokumen;
+            $oldDocs = 'post-docs/' . $request->session()->get('peminjaman.dokumen');
             Storage::delete($oldDocs);
         }
 
@@ -99,6 +98,7 @@ class ListRuanganController extends Controller
                 $request->session()->forget($item);
             }
         }
+        // return dd($request->session()->all());
 
         //Meng-set default gambar ruangan
         foreach ([$ruangan->foto1, $ruangan->foto2, $ruangan->foto3] as $foto) {

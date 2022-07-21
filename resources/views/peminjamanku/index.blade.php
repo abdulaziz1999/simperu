@@ -15,7 +15,7 @@
                         @if (count($peminjamanByUser)>0)
                         @foreach ($peminjamanByUser as $pbu)
                         {{-- FEEDBACK --}}
-                        @if (date('Y-m-d H:i:s') > date('Y-m-d H:i:s', strtotime($pbu->tgl_selesai . '+ ' . substr($pbu->jam_selesai, 0, 2) . ' hours')))
+                        @if ((date('Y-m-d H:i:s') > date('Y-m-d H:i:s', strtotime($pbu->tgl_selesai . '+ ' . substr($pbu->jam_selesai, 0, 2) . ' hours'))) && $pbu->status_peminjaman == 'Disetujui')
                         <div class="col-sm-12 m-0">
                             <div class="p-3 mx-5 my-2 bg-primary" style="border-radius: 1rem; border: 1px dashed white;">
                                 <div class="row">

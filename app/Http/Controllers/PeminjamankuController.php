@@ -53,7 +53,7 @@ class PeminjamankuController extends Controller
             ->join('pembayaran', 'peminjaman.pembayaran_id', '=', 'pembayaran.id')
             ->join('feedback', 'peminjaman.feedback_id', '=', 'feedback.id')
             ->orderBy('peminjaman.created_at', 'DESC')
-            ->paginate(5);
+            ->paginate(3);
 
         return view('peminjamanku.index', compact('peminjamanByUser'))->with(['i' => 0, 'btnShowOrNot' => 0, 'modalBsTarget' => 0, 'modalId' => 0, 'modalAriaLabelledBy' => 0, 'modalTitleId' => 0, 'fbIncre' => [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0]]);
     }
