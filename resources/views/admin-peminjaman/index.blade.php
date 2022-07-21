@@ -32,7 +32,8 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Foto </th>
+                                                <th>Nama Peminjam</th>
+                                                {{-- <th>Foto </th> --}}
                                                 <th>Nama Ruangan</th>
                                                 <th>Waktu Peminjaman</th>
                                                 <th>Harga</th>
@@ -47,12 +48,14 @@
                                             @foreach($dataPeminjaman as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ asset('storage/post-image/'.$row->foto1) }}" alt="{{ $row->nama_ruangan  }}"></td>
+                                                <td>{{$row->name}}</td>
+                                                {{-- <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ asset('storage/post-image/'.$row->foto1) }}" alt="{{ $row->nama_ruangan  }}"></td> --}}
                                                 <td>{{ $row->nama_ruangan }}</td>
                                                 <td>{{ $row->tgl_pinjam }} - {{ $row->tgl_selesai }}</td>
                                                 <td>{{ $row->harga }}</td>
                                                 <td>{{ $row->dokumen }}</td>
-                                                <td>{{ $row->bukti_pembayaran }}</td>
+                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ asset('storage/post-payment/'.$row->bukti_pembayaran) }}" alt="{{ $row->bukti_pembayaran}}"></td>
+                                                {{-- <td>{{ $row->bukti_pembayaran }}</td> --}}
                                                 <td> 
                                                     @if($row->status_peminjaman == 'Diajukan')
                                                         <span class="badge badge-pill badge-info">Diajukan</span>

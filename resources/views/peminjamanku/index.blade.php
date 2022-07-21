@@ -15,7 +15,7 @@
                         @if (count($peminjamanByUser)>0)
                         @foreach ($peminjamanByUser as $pbu)
                         {{-- FEEDBACK --}}
-                        @if (date('Y-m-d H:i:s') > date('Y-m-d H:i:s', strtotime($pbu->tgl_selesai . '+ ' . substr($pbu->jam_selesai, 0, 2) . ' hours')))
+                        @if ((date('Y-m-d H:i:s') > date('Y-m-d H:i:s', strtotime($pbu->tgl_selesai . '+ ' . substr($pbu->jam_selesai, 0, 2) . ' hours'))) && $pbu->status_peminjaman == 'Disetujui')
                         <div class="col-sm-12 m-0">
                             <div class="p-3 mx-5 my-2 bg-primary" style="border-radius: 1rem; border: 1px dashed white;">
                                 <div class="row">
@@ -56,7 +56,7 @@
                                             Tanggal : {{$pbu->tgl_pinjam}} s/d {{$pbu->tgl_selesai}}<br/>
                                             Jam : {{$pbu->jam_mulai}} s/d {{$pbu->jam_selesai}} WIB
                                         </p>
-                                        <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary {{($pbu->status_pembayaran == 'Lunas') ? 'd-none':''}}" style="border-radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
+                                        <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary {{($pbu->bukti_pembayaran != '') ? 'd-none':''}}" style="border-radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
                                             Upload Bukti Pembayaran
                                         </button>
                                     </div>
@@ -64,7 +64,7 @@
                                         <span class="badge rounded-pill {{ ($pbu->status_peminjaman == 'Diajukan') ? 'alert-info border border-3 border-info': (($pbu->status_peminjaman == 'Disetujui')? 'alert-success border border-3 border-success' : 'alert-danger border border-3 border-danger');}} px-3 py-2 my-1">
                                             {{$pbu->status_peminjaman}}
                                         </span>
-                                        @if ($pbu->status_pembayaran != null && $pbu->status_pembayaran == 'Lunas')
+                                        @if ($pbu->bukti_pembayaran != null && $pbu->bukti_pembayaran != '')
                                         <span class="{{($pbu->status_peminjaman != 'Disetujui')? 'd-none' : ''}} badge rounded-pill alert-success border border-3 border-success px-3 py-2  my-1">
                                             {{$pbu->status_pembayaran}}
                                         </span>
@@ -233,7 +233,7 @@
                                     $(selector).html('<span class="badge rounded-pill alert-success border border-3 border-success px-3 py-2 my-2">Waktu Habis</span>');
                                     $(modalSelector).addClass('d-none');
                                 }else{
-                                    if ('{{isset($peminjamanByUser[0]->status_pembayaran)? $peminjamanByUser[0]->status_pembayaran:''}}' == 'Lunas') {
+                                    if ('{{isset($peminjamanByUser[0]->bukti_pembayaran)? $peminjamanByUser[0]->bukti_pembayaran:''}}' != '') {
                                         clearInterval(x);
                                     } else {
                                         $(selector).html(result);
