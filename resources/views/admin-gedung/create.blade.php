@@ -64,7 +64,7 @@
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Link Google Maps <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="tel" class="form-control input-default" id="val-kode" name="link_gmaps" >
+                                                <input type="text" class="form-control input-default" id="val-kode" name="link_gmaps" >
                                             </div>
                                         </div>
                                         <div class="form-group row">

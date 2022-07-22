@@ -15,6 +15,8 @@ class Gedung extends Model
         'nama_gedung',
         'foto',
         'alamat',
+        'link_gmaps',
+        'link_iframe_gmaps',
     ];
 
     // Relasi ane to many

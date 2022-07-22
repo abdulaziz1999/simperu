@@ -56,14 +56,14 @@
                                             <label class="col-lg-2 col-form-label" for="val-kode">Link Gmaps <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="tel" class="form-control input-default" id="val-kode" name="link_gmaps" value="{{ $gedung->link_gmaps }}">
+                                                <input type="text" class="form-control input-default" id="val-kode" name="link_gmaps" value="{{ $gedung->link_gmaps }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-kode">Link Frame Gmaps <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="tel" class="form-control input-default" id="val-kode" name="link_iframe_gmaps" value="{{ $gedung->link_gmaps }}">
+                                                <input type="text" class="form-control input-default" id="val-kode" name="link_iframe_gmaps" value="{{ $gedung->link_iframe_gmaps }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
