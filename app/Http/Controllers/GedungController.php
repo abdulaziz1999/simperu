@@ -105,7 +105,9 @@ class GedungController extends Controller
             'kode' => 'required',
             'nama_gedung' => 'required',
             // 'foto' => 'required|image|file|max:1024',
-            'alamat' => 'required'
+            'alamat' => 'required',
+            'link_gmaps' => 'required',
+            'link_iframe_gmaps' => 'required',
         ]);
 
          // 1. Mengambil semua nilai request
