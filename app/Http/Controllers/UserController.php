@@ -31,6 +31,8 @@ class UserController extends Controller
     public function create()
     {
         //
+
+        return view('admin-user.create');
     }
 
     /**
@@ -42,6 +44,22 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'role' => 'required'
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role
+        ]);
+
+        return redirect()->route('user.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -53,6 +71,9 @@ class UserController extends Controller
     public function show($id)
     {
         //
+
+        $user = User::find($id);
+        return view('admin-user.show', compact('user'));
     }
 
     /**
@@ -64,6 +85,9 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+
+        $user = User::find($id);
+        return view('admin-user.edit', compact('user'));
     }
 
     /**
@@ -76,6 +100,22 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'required|min:6',
+            'role' => 'required'
+        ]);
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect()->route('user.index')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -87,5 +127,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'Data berhasil dihapus');
     }
 }

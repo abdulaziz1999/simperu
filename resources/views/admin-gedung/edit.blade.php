@@ -22,7 +22,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form  action="{{route('gedung.update',$gedung->id)}}" method="post" autocomplete="off">
+                                    <form  action="{{route('gedung.update',$gedung->id)}}" method="post" autocomplete="off" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="id" value="{{$gedung->id}}">
@@ -59,7 +59,7 @@
                                             <img src="{{asset('storage/post-image/'.$gedung->foto)}}" class="img-preview img-fluid mb-3">
                                             </div>
                                             <div class="col-lg-5">
-                                                <input type="file" class="form-control input-default" id="val-kode" name="foto" value="{{ $gedung->foto }}" placeholder="Enter a username..">
+                                            <input class="form-control input-default" type="file" value="{{ $gedung->foto }}" id="foto" name="foto" onchange="previewImage()" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -79,6 +79,19 @@
         <!--**********************************
             Content body end
         ***********************************-->    
+        <script>
+            function previewImage() {
+                const image = document.querySelector('#foto');
+                const imgPreview = document.querySelector('.img-preview');
 
+                imgPreview.style.display = 'block';
+
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+                oFReader.onload = function (oFREvent) {
+                    imgPreview.src = oFREvent.target.result;
+                }
+            }
+        </script>
 
 @endsection

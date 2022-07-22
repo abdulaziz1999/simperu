@@ -39,7 +39,6 @@
                                                 <th>Harga</th>
                                                 <th>Dokument</th>
                                                 <th>Bukti Bayar </th>
-                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -53,17 +52,6 @@
                                                 <td>{{ $row->harga }}</td>
                                                 <td>{{ $row->dokumen }}</td>
                                                 <td>{{ $row->bukti_pembayaran }}</td>
-                                                <td>
-                                                <form class="d-flex justify-content-center align-items-center" action="{{ route('gedung.destroy',$row->id) }}" method="POST">
-                                                <div class="btn-group">
-                                                    <a class="btn btn-sm btn-info text-white font-weight-bold mr-1 my-1" href="{{ route('gedung.show',$row->id) }}"><i class="fa fa-eye"></i> Detail</a>
-                                                    <a class="btn btn-sm btn-warning text-white font-weight-bold mr-1 my-1" href="{{ route('gedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Ubah</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger text-white font-weight-bold mr-1 my-1"><i class="fa fa-trash"></i> Hapus</button>
-                                                </div>
-                                                </form>
-                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
