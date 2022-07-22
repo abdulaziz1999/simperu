@@ -21,7 +21,7 @@
                     </a>
                     <img class="img-fluid" src="{{ asset('img/cs-kontak-kami.png') }}" alt="cs-kontak-kami.png">
                 </div>
-                <div class="col-lg-8 text-start wow fadeIn animated slideInUp" data-wow-delay="0.{{++$data['i']}}s">
+                <div class="d-none col-lg-8 text-start wow fadeIn animated slideInUp" data-wow-delay="0.{{++$data['i']}}s">
                     <form action="{{ url('/kontak-kami')}}" method="get" class="border p-5" style="border-radius: .5rem;">
                         <div class="row mb-3">
                             <label class="col-form-label">Nama <span class="text-danger">*</span></label>
