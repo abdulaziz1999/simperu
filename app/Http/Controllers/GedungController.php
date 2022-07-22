@@ -119,7 +119,7 @@ class GedungController extends Controller
              // 4. Membuat profil nama untuk foto
              $profileImage = date('YmdHis') . "." . $image;
              // 5. Hapus foto lama
-             $oldFoto = 'post-image/' . $input['old-image'];
+             $oldFoto = 'post-image/' . $gedung->foto;
              Storage::delete($oldFoto);
              // 5. Mengupload ke lokal public/storage/post-image
              $request->file('foto')->storeAs('post-image', $profileImage);
