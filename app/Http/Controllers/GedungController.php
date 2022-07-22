@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gedung;
+use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use PDF;
@@ -47,9 +48,10 @@ class GedungController extends Controller
             'nama_gedung' => 'required',
             'foto' => 'required|image|file|max:1024',
             'alamat' => 'required',
+            'link_gmaps' => 'required',
+            'link_iframe_gmaps' => 'required',
         ]);
 
-        try{
             $data = Gedung::create($request->all());
     
             if ($request->hasFile('foto')) {
@@ -65,10 +67,6 @@ class GedungController extends Controller
                 $data->save();
             }
             return redirect()->route('gedung.index')->with('success', 'Data Gedung Baru Berhasil Ditambahkan');
-        }catch (\Exception $e){
-            //return redirect()->back()
-            return redirect()->route('gedung.index')->with('error', 'Error during the creation!');
-        }    
     }
 
     /**
@@ -106,14 +104,14 @@ class GedungController extends Controller
         $request->validate([
             'kode' => 'required',
             'nama_gedung' => 'required',
-            'foto' => 'required|image|file|max:1024',
+            // 'foto' => 'required|image|file|max:1024',
             'alamat' => 'required'
         ]);
 
          // 1. Mengambil semua nilai request
          $input = $request->all();
          // 2. Mengecek apabila ada file dengan name 'foto'
-         if ($request->hasFile('foto')) {
+         if($request->hasFile('foto')) {
              // 3. Mengambil nama dari foto
              $image = $request->file('foto')->getClientOriginalName();
              // 4. Membuat profil nama untuk foto
@@ -138,11 +136,12 @@ class GedungController extends Controller
      * @param  \App\Models\Gedung  $gedung
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gedung $gedung)
+    public function destroy(Gedung $gedung, Ruangan $ruangan)
     {
         $oldFoto = 'post-image/' . $gedung->foto;
         Storage::delete($oldFoto);
 
+        Ruangan::where('gedung_id', $gedung->id)->delete();
         $gedung->delete();
 
         return redirect()->route('gedung.index')->with('success', 'Data Gedung Berhasil Dihapus');

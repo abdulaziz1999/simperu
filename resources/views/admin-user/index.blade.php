@@ -24,9 +24,9 @@
                                     <div class="d-flex justify-content-between align-content-center mr-4 ml-4">
                                         <span class="h3 font-weight-bold text-primary">Daftar User </span>
                                         <div class="btn-group">
-                                            <a href="{{route('gedung.create')}}" class="btn btn-sm btn-primary font-weight-bold text-white mr-1 my-1"><i class="fa fa-plus"></i> Tambah Data</a>
-                                            <a href="{{url('gedungpdf')}}" class="btn btn-sm btn-danger font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-pdf-o"></i> PDF</a>
-                                            <a href="{{url('gedungexcel')}}" class="btn btn-sm btn-success font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-excel-o"></i> Excel</a>
+                                            <a href="{{route('user.create')}}" class="btn btn-sm btn-primary font-weight-bold text-white mr-1 my-1"><i class="fa fa-plus"></i> Tambah Data</a>
+                                            <!-- <a href="{{url('gedungpdf')}}" class="btn btn-sm btn-danger font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                                            <a href="{{url('gedungexcel')}}" class="btn btn-sm btn-success font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-excel-o"></i> Excel</a> -->
                                         </div>
                                     </div>
                                     <table class="table table-striped zero-configuration">
@@ -49,10 +49,10 @@
                                                 <td>{{ $row->role }}</td>
                                                 <!-- <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px" src="{{ asset('storage/post-image/'.$row->foto) }}" alt="{{ $row->nama_gedung }}"></td> -->
                                                 <td>
-                                                <form class="d-flex justify-content-center align-items-center" action="{{ route('gedung.destroy',$row->id) }}" method="POST">
+                                                <form class="d-flex justify-content-center align-items-center" action="{{ route('user.destroy',$row->id) }}" method="POST">
                                                 <div class="btn-group">
-                                                    <a class="btn btn-sm btn-info text-white font-weight-bold mr-1 my-1" href="{{ route('gedung.show',$row->id) }}"><i class="fa fa-eye"></i> Detail</a>
-                                                    <a class="btn btn-sm btn-warning text-white font-weight-bold mr-1 my-1" href="{{ route('gedung.edit',$row->id) }}"><i class="fa fa-pencil"></i> Ubah</a>
+                                                    <a class="btn btn-sm btn-info text-white font-weight-bold mr-1 my-1" href="{{ route('user.show',$row->id) }}"><i class="fa fa-eye"></i> Detail</a>
+                                                    <a class="btn btn-sm btn-warning text-white font-weight-bold mr-1 my-1" href="{{ route('user.edit',$row->id) }}"><i class="fa fa-pencil"></i> Ubah</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')" class="btn btn-sm btn-danger text-white font-weight-bold mr-1 my-1"><i class="fa fa-trash"></i> Hapus</button>

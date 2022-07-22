@@ -25,11 +25,11 @@
                             <i class="fa fa-exchange" aria-hidden="true"></i> <span class="nav-text">Peminjaman</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="font-weight-bold" href="{{ route('laporan.index') }}" aria-expanded="false">
                             <i class="fa fa-book" aria-hidden="true"></i> <span class="nav-text">Laporan</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="font-weight-bold" href="{{ route('feedback.index') }}" aria-expanded="false">
                             <i class="fa fa-exchange" aria-hidden="true"></i> <span class="nav-text">Feedback</span>
@@ -41,7 +41,7 @@
                         </a>
                         <ul aria-expanded="true">
                             <li class=""><a href="{{route('user.index')}}" ><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
-                            <li class=""><a href="{{ url('profile') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
+                            <!-- <li class=""><a href="{{ url('profile') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li> -->
                         </ul>
                     </li>
                 </ul>
