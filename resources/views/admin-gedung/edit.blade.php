@@ -26,6 +26,7 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="id" value="{{$gedung->id}}">
+                                    <input type="hidden" name="olg-image" value="{{$gedung->foto}}">
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-between">
                                                 <span class="h3 font-weight-bold">Edit Data Gedung</span>
