@@ -35,8 +35,8 @@ SIMPERU Merupakan aplikasi berbasis web yang memudahkan user dalam meminjam sebu
 - Derren Dwi Syukrillah (Dokumentasi).
 - Ficri Hanip (Frontend Developer).
 
-### Premium Partners
+<!-- ### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
+- **[Vehikl](https://vehikl.com/)** -->
 
 
