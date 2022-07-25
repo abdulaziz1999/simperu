@@ -322,7 +322,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'bangef', 'bangef@gmail.com', NULL, '$2y$10$IqLr5uP7mytogLyP2wLAiuuTsfNRDgeuor8A46ZYM4ZGU9qzaXywO', NULL, NULL, NULL, 'admin', NULL, '2022-07-12 23:07:32', '2022-07-12 23:07:32');
+(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$WPNqpSosf7/kQPjz5uW8fu1T9Y7Fi7IA4rzIVVEB/JtXOuIVI4iqm', NULL, NULL, NULL, 'admin', NULL, '2022-07-12 23:07:32', '2022-07-12 23:07:32');
 
 -- --------------------------------------------------------
 
