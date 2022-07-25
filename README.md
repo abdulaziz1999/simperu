@@ -12,11 +12,12 @@
 SIMPERU Merupakan aplikasi berbasis web yang memudahkan user dalam meminjam sebuah ruangan dan memudahkan admin dalam mengelola sebuah ruangan. Ruangan yang ada di dalam simperu yaitu ruangan-ruangan yang dapat digunakan secara gratis maupun berbayar.
 
 ## DB Simperu
-
+- **[DB_SIMPERU](https://github.com/abdulaziz1999/simperu/blob/abdulaziz/db_simperu.sql)**
 
 ## ERD Simperu
-
-
+<p align="center">
+<a href="https://raw.githubusercontent.com/abdulaziz1999/simperu/abdulaziz/erd_simperu.png"><img src="https://raw.githubusercontent.com/abdulaziz1999/simperu/abdulaziz/erd_simperu.png" alt="Build Status"></a>
+</p>
 
 ## Requirement Aplikasi SIMPERU
 ### `git clone {url_simpeu}`
