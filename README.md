@@ -11,6 +11,12 @@
 
 SIMPERU Merupakan aplikasi berbasis web yang memudahkan user dalam meminjam sebuah ruangan dan memudahkan admin dalam mengelola sebuah ruangan. Ruangan yang ada di dalam simperu yaitu ruangan-ruangan yang dapat digunakan secara gratis maupun berbayar.
 
+## User Account
+- Admin
+* username : admin@gmail.com
+* password : admin123
+
+
 ## DB Simperu
 - **[DB_SIMPERU](https://github.com/abdulaziz1999/simperu/blob/abdulaziz/db_simperu.sql)**
 
