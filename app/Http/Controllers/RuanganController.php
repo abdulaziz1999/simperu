@@ -124,8 +124,8 @@ class RuanganController extends Controller
             'harga' => 'required|numeric',
         ]);
 
-        $input = $request->all();
-
+        // $input = $request->all();
+        $input = Ruangan::update($request->all());
         // if ($request->hasFile('foto1')) {
             # code...
         // }
@@ -138,7 +138,6 @@ class RuanganController extends Controller
         $input->foto1 = $this->upload_foto($request, 'foto1');
         $input->foto2 = $this->upload_foto($request, 'foto2');
         $input->foto3 = $this->upload_foto($request, 'foto3');
-        $input->save();
 
         $ruangan->update($input);
         return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Diubah');
