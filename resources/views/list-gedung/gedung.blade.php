@@ -4,7 +4,12 @@
         <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ url('public/img/bg-detail.jpg') }});">
             <div class="container-fluid page-header-inner-gedung py-5">
                 <div class="container text-center pb-5">
-                    <h1 class="display-3 mb-5 animated slideInDown text-dark">Gedung</h1>
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 class="section-title text-center text-primary text-uppercase">
+                            CARI GEDUNG SESUAI KEBUTUHANMU
+                        </h6>
+                        <h1 class="mb-5"><span class="text-primary">Gedung</span> Kami</h1>
+                    </div>
                     <p class="text-secondary px-5">
                         Serangkaian Lingkungan yang dikuratori dengan baik untuk Anda. Menghadirkan lingkungan yang terintegerasi secara nyata dan digital dengan orisinalitas jalanan dan desain tematik. Memberikan Kemudahan untuk Bekerja Lebih Banyak dengan beragam pilihan tempat dan fleksibilitas pembayaran. Temukan pengalaman sewa tempat terbaik hanya di Simperu.
                     </p>
