@@ -24,7 +24,7 @@
     
 </head>
 
-<body class="h-100" style="background: url({{ asset('img/bg.jpeg') }}); background-repeat: no-repeat; background-size: cover;">
+<body class="h-100" style="background: url({{ asset('img/bg.jpg') }}); background-repeat: no-repeat; background-size: cover;">
     
     <!--*******************
         Preloader start
