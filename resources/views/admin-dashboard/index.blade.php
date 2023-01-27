@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6">
+                    <div class="col-xl-6 col-lg-6 col-sm-6 col-xxl-6">
                         <div class="card">
                             <div class="social-graph-wrapper widget-twitter">
                                 <h4 class="card-title mt-4 text-white">Peminjaman Hari ini</h4>
@@ -90,7 +90,7 @@
                                 @if(count($peminjaman)>0)
                                     @foreach($peminjaman as $row)
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="{{ asset('images/avatar/1.jpg') }}" class="mr-3 rounded-circle">
+                                        <img width="35" src="{{ url('public/images/avatar/1.jpg') }}" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>{{$row->nama_ruangan}}</h5>
                                             <p class="mb-0"><strong>Peminjam :</strong> {{$row->name}}</p>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6">
+                    <div class="col-xl-6 col-lg-6 col-sm-6 col-xxl-6">
                         <div class="card">
                             <div class="social-graph-wrapper widget-twitter">
                                 <h4 class="card-title mt-4 text-white">Feedback </h4>
