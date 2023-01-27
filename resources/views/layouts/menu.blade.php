@@ -3,13 +3,13 @@
             <div class="row gx-0">
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
                     <a href="{{ url('/') }}" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                        <img class="img-fluid w-50" src="{{url('public/img/logo_navbar.svg')}}" alt="logo_navbar">
+                        <img class="img-fluid w-50" src="{{url('public/img/logo_navbar.png')}}" alt="logo_navbar">
                     </a>
                 </div>
                 <div class="col-lg-9">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="{{ url('/') }}" class="navbar-brand d-block d-lg-none">
-                            <img class="img-fluid w-50" src="{{url('public/img/logo_navbar.svg')}}" alt="logo_navbar">
+                            <img class="img-fluid w-50" src="{{url('public/img/logo_navbar.png')}}" alt="logo_navbar">
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
@@ -40,9 +40,9 @@
                             <div class="me-0 me-lg-5">
                                 @guest
                                     <div class="btn-group">
-                                        @if (Route::has('register'))
+                                        <!-- @if (Route::has('register'))
                                             <a href="{{ route('register') }}" class="btn btn-outline-primary rounded-3 me-lg-2 me-5 py-lg-2 px-lg-2">Sign-up</a>
-                                        @endif
+                                        @endif -->
                                         @if (Route::has('login'))
                                             <a href="{{ route('login') }}" class="btn btn-primary rounded-3 py-lg-2 px-lg-2"><i class="fa fa-sign-in"></i> Login</a>
                                         @endif
