@@ -25,7 +25,7 @@ class LandingGedungController extends Controller
     {
 
         $gedung = Gedung::latest()->paginate(6);
-        return view('layouts.gedung', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('list-gedung.gedung', compact('gedung'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -66,7 +66,7 @@ class LandingGedungController extends Controller
             $ls->harga = $this->formatRupiah($ls->harga);
         }
         // return dd($list_ruangan);
-        return view('layouts.details-gedung', compact('gedung', 'list_ruangan'));
+        return view('list-gedung.details-gedung', compact('gedung', 'list_ruangan'));
     }
 
     /**
