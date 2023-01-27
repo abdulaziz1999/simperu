@@ -1,7 +1,7 @@
  @extends('layouts.layout')
  @section('content')
  <!-- Page Header Start -->
-        <div class="page-header mb-5 p-0" style="background-image: url({{ asset('img/carousel-1.jpg') }});">
+        <div class="page-header mb-5 p-0" style="background-image: url({{ url('public/img/bg-detail2.jpg') }});">
             <div class="container-fluid page-header-inner-gedung py-5">
                 <div class="container text-center pb-5">
                     <h1 class="display-3 text-dark mb-3 animated slideInDown">{{$data['nama_gedung']}}</h1> {{-- Nama sesuai dengan nama gedung --}}
