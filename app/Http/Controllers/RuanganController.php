@@ -124,8 +124,8 @@ class RuanganController extends Controller
             'harga' => 'required|numeric',
         ]);
 
-        // $input = $request->all();
-        $input = Ruangan::update($request->all());
+        $input = $request->all();
+        // $input = Ruangan::update($request->all());
         // if ($request->hasFile('foto1')) {
             # code...
         // }
@@ -135,9 +135,9 @@ class RuanganController extends Controller
         // $oldFoto3 = 'post-image/' . $input['oldimage3']->foto3;
         // 2. Mengahapus file di lokal
         // Storage::delete([$oldFoto1, $oldFoto2, $oldFoto3]);
-        $input->foto1 = $this->upload_foto($request, 'foto1');
-        $input->foto2 = $this->upload_foto($request, 'foto2');
-        $input->foto3 = $this->upload_foto($request, 'foto3');
+        $input['foto1'] = $this->upload_foto($request, 'foto1');
+        $input['foto2'] = $this->upload_foto($request, 'foto2');
+        $input['foto3'] = $this->upload_foto($request, 'foto3');
 
         $ruangan->update($input);
         return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Diubah');
