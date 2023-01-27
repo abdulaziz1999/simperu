@@ -34,12 +34,12 @@
                             </div>
                             <div class="row mb-5  wow fadeInUp">
                                 <div class="col-lg-9 shadow border px-0 mb-3 mb-lg-0" style="border-radius: 1rem; height: 400px;">
-                                    <img id="img-view" class="img-fluid w-100 h-100" src="{{ asset('storage/post-image/'.$ruangan->foto1) }}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 100%;">
+                                    <img id="img-view" class="img-fluid w-100 h-100" src="{{ url('storage/app/post-image/'.$ruangan->foto1) }}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 100%;">
                                 </div>
                                 <div class="col-lg-3 d-flex flex-row flex-lg-column justify-content-between px-0 px-lg-1">
-                                    <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto1)}}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 128px;">
-                                    <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto2)}}" alt="{{ $ruangan->foto2 }}" style="border-radius: 1rem; height: 128px;">
-                                    <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto3)}}" alt="{{ $ruangan->foto3 }}" style="border-radius: 1rem; height: 128px;">
+                                    <img class="img-fluid img-pass" src="{{ url('storage/app/post-image/'.$ruangan->foto1)}}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 128px;">
+                                    <img class="img-fluid img-pass" src="{{ url('storage/app/post-image/'.$ruangan->foto2)}}" alt="{{ $ruangan->foto2 }}" style="border-radius: 1rem; height: 128px;">
+                                    <img class="img-fluid img-pass" src="{{ url('storage/app/post-image/'.$ruangan->foto3)}}" alt="{{ $ruangan->foto3 }}" style="border-radius: 1rem; height: 128px;">
                                 </div>
                             </div>
                             <hr/>

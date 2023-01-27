@@ -61,7 +61,7 @@
                                 <div class="p-0 shadow border h-100" style="border-radius: 1rem">
                                     <a href="{{ route('list-ruangan.detailRoomById', [$r->id]) }}">
                                         <div class="position-relative">
-                                            <img class="img-fluid w-100" src="{{asset('storage/post-image/'.$r->foto1)}}" alt="{{$r->nama_ruangan}}" style="border-radius: 1rem">
+                                            <img class="img-fluid w-100" src="{{url('storage/app/post-image/'.$r->foto1)}}" alt="{{$r->nama_ruangan}}" style="border-radius: 1rem">
                                             <div class="d-none d-sm-block h5 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$r->harga}}<span class="h6 text-primary fw-light"> / Jam</span></div>
                                         </div>
                                         <div class="p-4 mt-3">
