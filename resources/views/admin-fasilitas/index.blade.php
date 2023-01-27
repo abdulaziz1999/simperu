@@ -54,7 +54,7 @@
                                                 <td>{{ ++$i }}</td>
                                                 <td>{{ $fas->nama_fasilitas }}</td>
                                                 <td>{{ $fas->ruangan->nama_ruangan }}</td>
-                                                <td class="d-flex justify-content-center"><img class="border p-2 shadow" style="min-width: 70px;width: 100%; max-height: 100px" src="{{ asset('storage/post-image/'.$fas->foto) }}" alt="{{ $fas->nama_failitas }}"></td>
+                                                <td class="d-flex justify-content-center"><img class="border p-2 shadow" style="min-width: 70px;width: 100%; max-height: 100px" src="{{ url('storage/app/post-image/'.$fas->foto) }}" alt="{{ $fas->nama_failitas }}"></td>
                                                     <td>
                                                     <form class="d-flex justify-content-center align-items-center" action="{{ route('fasilitas.destroy',$fas->id) }}" method="POST">
                                                         <div class="btn-group">

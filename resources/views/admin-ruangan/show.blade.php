@@ -29,13 +29,13 @@
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col-md-4 d-flex justify-content-center">
-                                        <img class="img-fluid shadow border rounded" src="{{ asset('storage/post-image/'.$ruangan->foto1)}}" width="500px">
+                                        <img class="img-fluid shadow border rounded" src="{{ url('storage/app/post-image/'.$ruangan->foto1)}}" width="500px">
                                     </div>
                                     <div class="col-md-4 d-flex justify-content-center">
-                                        <img class="img-fluid shadow border rounded" src="{{ asset('storage/post-image/'.$ruangan->foto2)}}" width="500px">
+                                        <img class="img-fluid shadow border rounded" src="{{ url('storage/app/post-image/'.$ruangan->foto2)}}" width="500px">
                                     </div>
                                     <div class="col-md-4 d-flex justify-content-center">
-                                        <img class="img-fluid shadow border rounded" src="{{ asset('storage/post-image/'.$ruangan->foto3)}}" width="500px">
+                                        <img class="img-fluid shadow border rounded" src="{{ url('storage/app/post-image/'.$ruangan->foto3)}}" width="500px">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

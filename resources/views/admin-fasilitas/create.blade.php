@@ -53,7 +53,7 @@
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-4">
-                                                <img src="{{asset('storage/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
+                                                <img src="{{url('storage/app/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
                                                 <input class="form-control input-default" type="file" id="foto" name="foto" onchange="previewImage()">
                                             </div>
                                         </div>

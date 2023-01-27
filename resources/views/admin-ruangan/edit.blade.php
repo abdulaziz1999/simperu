@@ -131,7 +131,7 @@
                                         <label class="col-lg-2 col-form-label" for="val-suggestions">Foto1<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-4">
-                                            <img alt="{{$ruangan->foto1}}" src="{{asset('storage/post-image/'.$ruangan->foto1)}}" id="foto1" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                            <img alt="{{$ruangan->foto1}}" src="{{url('storage/app/post-image/'.$ruangan->foto1)}}" id="foto1" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
                                             <input class="foto form-control input-default" type="file" name="foto1">
                                         </div>
                                         </div>
@@ -139,7 +139,7 @@
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto2
                                             </label>
                                             <div class="col-lg-4">
-                                                <img alt="{{$ruangan->foto2}}" src="{{asset('storage/post-image/'.$ruangan->foto2)}}" id="foto2" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                                <img alt="{{$ruangan->foto2}}" src="{{url('storage/app/post-image/'.$ruangan->foto2)}}" id="foto2" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
                                                 <input class="foto form-control input-default" type="file" name="foto2">
                                             </div>
                                             </div>
@@ -147,7 +147,7 @@
                                                 <label class="col-lg-2 col-form-label" for="val-suggestions">Foto3
                                                 </label>
                                                 <div class="col-lg-4">
-                                                    <img alt="{{$ruangan->foto3}}" src="{{asset('storage/post-image/'.$ruangan->foto3)}}" id="foto3" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                                    <img alt="{{$ruangan->foto3}}" src="{{url('storage/app/post-image/'.$ruangan->foto3)}}" id="foto3" class="img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
                                                     <input class="foto form-control input-default" type="file" name="foto3">
                                                 </div>
                                                 </div>
