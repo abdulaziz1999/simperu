@@ -10,11 +10,11 @@
     <meta property="og:url" content="{{url('/')}}}}">
     <meta property="og:title" content="SIMPERU PROPERTIES">
     <meta property="og:description" content="Temukan ruangan nyaman dan fleksibel hanya di SIMPERU PROPERTIES">
-    <meta property="og:image" content="{{ asset('img/seo.jpg')}}">
+    <meta property="og:image" content="{{ url('public/img/seo.jpg')}}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{url('/')}}}}">
     <meta property="twitter:title" content="SIMPERU PROPERTIES">
     <meta property="twitter:description" content="Temukan ruangan nyaman dan fleksibel hanya di SIMPERU PROPERTIES">
-    <meta property="twitter:image" content="{{ asset('img/seo.jpg')}}">
+    <meta property="twitter:image" content="{{ url('public/img/seo.jpg')}}">

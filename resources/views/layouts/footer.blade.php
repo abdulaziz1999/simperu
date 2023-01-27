@@ -3,7 +3,7 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-4">
                         <div class="bg-primary rounded p-2">
-                            <a href="{{ url('/')}}"><img class="img-fluid w-50" src="{{asset('img/logo_footer.svg')}}" alt="logo_navbar"></a>
+                            <a href="{{ url('/')}}"><img class="img-fluid w-50" src="{{url('public/img/logo_footer.svg')}}" alt="logo_navbar"></a>
 
                         </div>
                     </div>

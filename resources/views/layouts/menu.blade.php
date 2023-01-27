@@ -3,13 +3,13 @@
             <div class="row gx-0">
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
                     <a href="{{ url('/') }}" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                        <img class="img-fluid w-50" src="{{asset('img/logo_navbar.svg')}}" alt="logo_navbar">
+                        <img class="img-fluid w-50" src="{{url('public/img/logo_navbar.svg')}}" alt="logo_navbar">
                     </a>
                 </div>
                 <div class="col-lg-9">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="{{ url('/') }}" class="navbar-brand d-block d-lg-none">
-                            <img class="img-fluid w-50" src="{{asset('img/logo_navbar.svg')}}" alt="logo_navbar">
+                            <img class="img-fluid w-50" src="{{url('public/img/logo_navbar.svg')}}" alt="logo_navbar">
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
