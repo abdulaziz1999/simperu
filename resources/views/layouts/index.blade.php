@@ -152,7 +152,7 @@
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-1.jpg')}}" style="width: 45px; height: 45px;">
+                            <img loading="lazy" class=" loading="lazy"-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-1.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
                                 <h6 class="fw-bold mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -163,7 +163,7 @@
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-2.jpg')}}" style="width: 45px; height: 45px;">
+                            <img loading="lazy" class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-2.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
                                 <h6 class="fw-bold mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -174,7 +174,7 @@
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-3.jpg')}}" style="width: 45px; height: 45px;">
+                            <img loading="lazy" class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-3.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
                                 <h6 class="fw-bold mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -202,7 +202,7 @@
                         <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
                             <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
                                 <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
-                                    <img class="img-fluid w-100" src="{{ url('storage/app/post-image/'.$g->foto)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
+                                    <img loading="lazy" class="img-fluid w-100" src="{{ url('storage/app/post-image/'.$g->foto)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
@@ -235,7 +235,7 @@
                             <a class="service-item bg-dark hvr-float shadow w-100 h-100" href="" style="border-radius: 1rem">
                                 <div class="service-icon bg-transparent p-1">
                                     <div class="rounded d-flex align-items-center justify-content-center">
-                                        <img class="img-fluid" src="{{url('storage/app/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
+                                        <img loading="lazy" class="img-fluid" src="{{url('storage/app/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
                                     </div>
                                 </div>
                                 <h5 class="text-white mb-3">{{$f->nama_fasilitas}}</h5>
