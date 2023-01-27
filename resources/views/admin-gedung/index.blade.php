@@ -48,7 +48,7 @@
                                                 <td>{{ $row->kode }}</td>
                                                 <td>{{ $row->nama_gedung }}</td>
                                                 <td>{{ $row->alamat }}</td>
-                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px" src="{{ asset('storage/post-image/'.$row->foto) }}" alt="{{ $row->nama_gedung }}"></td>
+                                                <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px" src="{{ url('storage/app/post-image/'.$row->foto) }}" alt="{{ $row->nama_gedung }}"></td>
                                                 <td>
                                                 <form class="d-flex justify-content-center align-items-center" action="{{ route('gedung.destroy',$row->id) }}" method="POST">
                                                 <div class="btn-group">
