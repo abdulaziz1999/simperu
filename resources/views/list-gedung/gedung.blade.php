@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
             <!-- Page Header Start -->
-        <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ url('img/bg-detail.jpg') }});">
+        <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ url('public/img/bg-detail.jpg') }});">
             <div class="container-fluid page-header-inner-gedung py-5">
                 <div class="container text-center pb-5">
                     <h1 class="display-3 mb-5 animated slideInDown text-dark">Gedung</h1>
