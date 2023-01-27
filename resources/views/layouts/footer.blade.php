@@ -2,8 +2,8 @@
             <div class="container pb-5">
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-4">
-                        <div class="bg-primary rounded p-2">
-                            <a href="{{ url('/')}}"><img class="img-fluid w-50" src="{{url('public/img/logo_footer.svg')}}" alt="logo_navbar"></a>
+                        <div class="bg-white rounded p-2">
+                            <a href="{{ url('/')}}"><img class="img-fluid w-50" src="{{url('public/img/logo_navbar.png')}}" alt="logo_navbar"></a>
 
                         </div>
                     </div>
@@ -47,4 +47,4 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fas fa-arrow-up"></i></a>
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" style="border-radius:90px"><i class="fas fa-arrow-up"></i></a>
