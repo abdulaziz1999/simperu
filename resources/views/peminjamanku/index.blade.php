@@ -86,7 +86,7 @@
                         @endforeach
                         @else
                         <div class="col-12 d-flex align-items-center justify-content-center">
-                            <span class="d-block text-secondary h1 font-weight-bold p-5">Belum Ada Peminjaman</span>
+                            <span class="d-block text-white h1 font-weight-bold p-5">Belum Ada Peminjaman</span>
                         </div>
                         @endif
                         <div class="col-12 d-flex justify-content-center align-items-center">
