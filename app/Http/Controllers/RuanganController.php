@@ -23,9 +23,11 @@ class RuanganController extends Controller
      */
     public function index()
     {
-        $ruangan = Ruangan::latest()->paginate(5);
-        return view('admin-ruangan.index', compact('ruangan'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        // $ruangan = Ruangan::latest()->paginate(5);
+        $ruangan = Ruangan::all();
+        // return view('admin-ruangan.index', compact('ruangan'))
+        //     ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin-ruangan.index', compact('ruangan'));
     }
 
     /**

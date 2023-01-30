@@ -43,9 +43,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $i = 1;
+                                            @endphp
                                             @foreach($ruangan as $r)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $i++ }}</td>
                                                 <td>{{ $r->nama_ruangan }}</td>
                                                 <td>{{ $r->kategoriRuangan->nama_kategori}}</td>
                                                 <td>{{ $r->gedung->nama_gedung}}</td>
