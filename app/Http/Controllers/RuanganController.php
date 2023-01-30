@@ -23,10 +23,7 @@ class RuanganController extends Controller
      */
     public function index()
     {
-        // $ruangan = Ruangan::latest()->paginate(5);
         $ruangan = Ruangan::all();
-        // return view('admin-ruangan.index', compact('ruangan'))
-        //     ->with('i', (request()->input('page', 1) - 1) * 5);
         return view('admin-ruangan.index', compact('ruangan'));
     }
 
@@ -179,6 +176,10 @@ class RuanganController extends Controller
         Storage::delete([$oldFoto1, $oldFoto2, $oldFoto3]);
         // 3. Menghapus data di database
         $ruangan->delete();
+        //delete data fasilitas ruangan
+        $fasilitasRuangan = FasilitasRuangan::where('id_ruangan', $ruangan->id);
+        $fasilitasRuangan->delete();
+
         return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Dihapus');
     }
 
