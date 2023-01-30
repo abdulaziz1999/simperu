@@ -111,6 +111,20 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label" for="val-suggestions">Fasilitas
+                                            </label>
+                                            <div class="col-lg-10">
+                                                @foreach($fasilitas as $f)
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="fasilitas[]" value="{{$f->id}}">{{$f->nama_fasilitas}}
+                                                    </label>
+                                                    &nbsp;
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                         <label class="col-lg-2 col-form-label" for="val-suggestions">Foto1<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-4">

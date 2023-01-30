@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Ruangan;
 use App\Models\KategoriRuangan;
 use App\Models\Gedung;
+use App\Models\Fasilitas;
+use App\Models\FasilitasRuangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use PDF;
@@ -36,7 +38,8 @@ class RuanganController extends Controller
         $kategoriRuangan = KategoriRuangan::all();
         $gedung = Gedung::all();
         $ruangan = Ruangan::all();
-        return view('admin-ruangan.create', compact('kategoriRuangan', 'gedung', 'ruangan'));
+        $fasilitas = Fasilitas::all();
+        return view('admin-ruangan.create', compact('kategoriRuangan', 'gedung', 'ruangan', 'fasilitas'));
     }
 
     /**
@@ -63,11 +66,26 @@ class RuanganController extends Controller
         $data = Ruangan::create($request->all());
 
         // return dd($data);
-
-        $data->foto1 = $this->upload_foto($request, 'foto1');
-        $data->foto2 = $this->upload_foto($request, 'foto2');
-        $data->foto3 = $this->upload_foto($request, 'foto3');
+        if($data->foto1 != null && $data->foto2 != null && $data->foto3 != null){
+            $data->foto1 = $this->upload_foto($request, 'foto1');
+            $data->foto2 = $this->upload_foto($request, 'foto2');
+            $data->foto3 = $this->upload_foto($request, 'foto3');
+        }else if($data->foto1 != null && $data->foto2 != null){
+            $data->foto1 = $this->upload_foto($request, 'foto1');
+            $data->foto2 = $this->upload_foto($request, 'foto2');
+        }else if($data->foto1 != null){
+            $data->foto1 = $this->upload_foto($request, 'foto1');
+        }
         $data->save();
+
+        //foreach request fasilitas dan insert ke table fasilitas_ruangan
+        foreach ($request->fasilitas as $fasilitas) {
+            //insert ke table fasilitas_ruangan
+            FasilitasRuangan::create([
+                'id_ruangan' => $data->id,
+                'id_fasilitas' => $fasilitas,
+            ]);
+        }
 
         // return dd($data);
         return redirect()->route('ruangan.index')
