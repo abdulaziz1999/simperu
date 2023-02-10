@@ -71,6 +71,11 @@ class ListRuanganController extends Controller
             ->paginate(9);
 
         // Me-assign ulang data ke format rupiah
+        foreach ($all_OrderByStatusAsc->items() as $item) {
+            $item->harga = $this->formatRupiah($item->harga);
+        }
+        
+        // Me-assign ulang data ke format rupiah
         foreach ($r_OrderByStatusAsc->items() as $item) {
             $item->harga = $this->formatRupiah($item->harga);
         }
