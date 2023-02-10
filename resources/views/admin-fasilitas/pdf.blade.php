@@ -19,7 +19,7 @@
                                                 <td>{{ $fas->nama_fasilitas }}</td>
                                                 <td>{{ $fas->ruangan->nama_ruangan }}</td>
                                                 <td class="d-flex justify-content-center"><img class="border p-2 shadow" style="min-width: 70px;width: 100%; max-height: 100px" src="{{ asset('storage/post-image/'.$fas->foto) }}" alt="{{ $fas->nama_failitas }}"></td>
-                                                    <td>
+                                                <td>
                                                     <form class="d-flex justify-content-center align-items-center" action="{{ route('fasilitas.destroy',$fas->id) }}" method="POST">
                                                         <a class="btn btn-sm btn-info text-white font-weight-bold mx-1 my-1" href="{{ route('fasilitas.show',$fas->id) }}"><i class="fa fa-eye"></i> Detail</a>
                                                         <a class="btn btn-sm btn-warning text-white font-weight-bold mx-1 my-1" href="{{ route('fasilitas.edit',$fas->id) }}"><i class="fa fa-pencil"></i> Ubah</a>

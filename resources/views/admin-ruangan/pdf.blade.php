@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,32 +8,37 @@
     <title>Document</title>
 </head>
 <style>
-<style>
-#gedung {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+    #gedung {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-#gedung td, #gedung th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+    #gedung td,
+    #gedung th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
-#gedung tr:nth-child(even){background-color: #f2f2f2;}
+    #gedung tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-#gedung tr:hover {background-color: #ddd;}
+    #gedung tr:hover {
+        background-color: #ddd;
+    }
 
-#gedung th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
+    #gedung th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
 </style>
 </style>
-<body >
+
+<body>
     <h3 align="center">Data Ruangan</h3>
     <table id="gedung" align="center" width="100%">
         <thead>
@@ -62,4 +68,5 @@
         </tbody>
     </table>
 </body>
+
 </html>

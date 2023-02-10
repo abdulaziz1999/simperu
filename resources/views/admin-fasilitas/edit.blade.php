@@ -50,11 +50,16 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label">Foto <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <img src="{{ url('storage/app/post-image/'.$fasilita->foto) }}" class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                            <label class="col-lg-2 col-form-label">Foto <span class="text-danger">*</span></label>
+                                            <div class="col-lg-10">
                                                 <input class="form-control input-default" type="file" value="{{ $fasilita->foto }}" id="foto" name="foto" onchange="previewImage()" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label">
+                                            </label>
+                                            <div class="col-lg-10">
+                                                <img src="{{ url('storage/app/post-image/'.$fasilita->foto) }}" class="img-preview img-thumbnail img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -64,25 +69,12 @@
                                                 <textarea class="form-control input-default" name="keterangan" rows="5">{{ $fasilita->keterangan}}</textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label">Ruangan <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <select class="form-control form-select" aria-label="Default select example" name="ruangan_id">
-                                                    <option disabled>Pilih Ruangan </option>
-                                                    @foreach ($ruangan as $r)
-                                                        @php $selectedValue = $r->id == $fasilita->ruangan_id ? 'selected' : '' @endphp
-                                                        <option value="{{$r->id}}" {{$selectedValue}} > {{$r->nama_ruangan}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
                                         <div class="form-group row mt-5">
                                             <div class="col-lg-2">
                                                 {{-- spasi --}}
                                             </div>
                                             <div class="col-lg-10 d-flex justify-content-center justify-content-lg-start">
-                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold">Simpan</button>
+                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold py-2 px-3"> <i class="fa fa-pencil"></i> Ubah</button>
                                             </div>
                                         </div>
                                     </form>

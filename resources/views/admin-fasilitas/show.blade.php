@@ -5,7 +5,7 @@
         ***********************************-->
         <div class="content-body">
             <div class="row page-titles mx-0 d-flex align-items-center">
-                <div class="col-md-2">
+                <div class="col-md-2 mr--5">
                     <a href="{{ route('fasilitas.index') }}" class="btn" style="font-size: 1.2rem"><i class="fa fa-arrow-left"></i></a>
                 </div>
                 <div class="col-md-10 p-md-0">
@@ -30,40 +30,37 @@
                                     </div>
                                 </div>
                                 {{-- keterangan --}}
-                                <div class="row mb-5 d-flex align-items-md-center">
-                                    <div class="col-md-6">
-                                        <div class="row mb-3">
-                                            <div class="col-md-5">
-                                                <span class="h4 font-weight-light text-black-50">Nama Fasilitas : </span>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <span class="h4 font-weight-bold">{{ $fasilita->nama_fasilitas}}</span>
-                                            </div>
+                                <div class="row">
+                                        <div class="col-md-6 ">
+                                            <!-- table -->
+                                            <table class="table table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="font-weight-bold">Kode Fasilitas</td>
+                                                        <td class="font-weight-bold">:</td>
+                                                        <td class="font-weight-bold">{{ $fasilita->id}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="font-weight-bold">Nama Fasilitas</td>
+                                                        <td class="font-weight-bold">:</td>
+                                                        <td class="font-weight-bold">{{ $fasilita->nama_fasilitas}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="font-weight-bold">Ruangan</td>
+                                                        <td class="font-weight-bold">:</td>
+                                                        <td class="font-weight-bold">{{ $fasilita->ruangan->nama_ruangan}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="font-weight-bold">Keterangan</td>
+                                                        <td class="font-weight-bold">:</td>
+                                                        <td class="font-weight-bold">{{ $fasilita->keterangan}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-5">
-                                                <span class="h4 font-weight-light text-black-50">Ruangan :</span>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <span class="h4 font-weight-bold">{{ $fasilita->ruangan->nama_ruangan}}</span>
-                                            </div>
+                                        <div class="col-md-6">
+                                            <img class="img-fluid w-50 py-2 px-2 shadow border" src="{{ url('storage/app/post-image/'.$fasilita->foto) }}" alt="{{ $fasilita->nama_fasilitas}}">
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-5">
-                                                <span class="h4 font-weight-light text-black-50">Keterangan :</span>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <span class="h4 font-weight-bold">{{ $fasilita->keterangan}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 d-flex justify-content-center border" style="background-image: url('{{ asset('storage/post-image/'.$fasilita->foto) }}');
-                                        background-repeat: repeat;
-                                        background-size: cover;
-                                        height: 250px;
-                                        ">
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

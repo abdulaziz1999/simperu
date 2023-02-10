@@ -4,12 +4,12 @@
 <head>
     @include('admin.meta')
     <title>DASHBOARD SIMPERU</title>
-    @include('admin.link')    
+    @include('admin.link')
 </head>
 
 <body>
     @include('sweetalert::alert')
-    
+
     <!--*******************
         Preloader start
     ********************-->
@@ -18,7 +18,7 @@
         Preloader end
     ********************-->
 
-    
+
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -45,8 +45,8 @@
         <!--**********************************
             Content body end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Footer start
         ***********************************-->

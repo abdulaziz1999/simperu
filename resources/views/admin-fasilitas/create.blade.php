@@ -52,9 +52,15 @@
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-4">
-                                                <img src="{{url('storage/app/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
+                                            <div class="col-lg-10">
                                                 <input class="form-control input-default" type="file" id="foto" name="foto" onchange="previewImage()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label" for="val-suggestions">
+                                            </label>
+                                            <div class="col-lg-10">
+                                                <img src="{{url('storage/app/post-image/default.jpg')}}" class="img-preview img-thumbnail img-fluid mb-3" style="display: none; max-height: 300px; max-width: 200px; ">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -65,23 +71,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label">Ruangan <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-10">
-                                                <select class="form-control form-select" aria-label="Default select example" name="ruangan_id">
-                                                    <option selected disabled>Pilih Ruangan</option>
-                                                    @foreach ($ruangan as $r)
-                                                        <option value="{{$r->id}}">{{$r->nama_ruangan}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mt-5">
                                             <div class="col-lg-2">
                                                 {{-- spasi --}}
                                             </div>
                                             <div class="col-lg-10 d-flex justify-content-center justify-content-lg-start">
-                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold">Simpan</button>
+                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold py-2 px-3"> <i class="fa fa-save"></i> Simpan</button>
                                             </div>
                                         </div>
                                     </form>
