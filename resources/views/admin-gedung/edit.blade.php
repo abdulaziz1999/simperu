@@ -83,7 +83,7 @@
                                         <div class="form-group row">
                                             <div class="col-2"></div>
                                             <div class="col-5 d-flex justify-content-start">
-                                                <button type="submit" class="btn btn-primary btn-md text-white font-weight-bold py-3 px-4"> <i class="fa fa-pencil"></i>&nbsp; Edit</button>
+                                                <button type="submit" class="btn btn-primary btn-md text-white font-weight-bold py-2 px-3"> <i class="fa fa-pencil"></i>&nbsp; Edit</button>
                                             </div>
                                         </div>
                                     </form>

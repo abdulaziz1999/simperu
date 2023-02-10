@@ -91,7 +91,7 @@
                                         <div class="form-group row">
                                             <div class="col-2"></div>
                                             <div class="col-5 d-flex justify-content-start">
-                                                <button type="submit" class="btn btn-md btn-primary btn-round text-white font-weight-bold py-3 px-4 "> <i class="fa fa-save" ></i>&nbsp; Simpan</button>
+                                                <button type="submit" class="btn btn-md btn-primary btn-round text-white font-weight-bold py-2 px-3"> <i class="fa fa-save" ></i>&nbsp; Simpan</button>
                                             </div>
                                         </div>
                                     </form>
