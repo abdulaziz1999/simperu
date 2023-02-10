@@ -22,9 +22,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row mb-5">
-                                    <div class="col-12 d-flex justify-content-between flex-row-reverse align-content-center">
-                                        <span class="h3 font-weight-bold">Detail Data Gedung</span>
-                                        <a href="{{ route('gedung.index')}}" class="btn btn-lg btn-danger font-weight-bold"><i class="fa fa-arrow-circle-left "></i> Kembali</a>
+                                    <div class="col-12 d-flex justify-content-between align-content-center">
+                                        <span class="h3 font-weight-bold text-info">Detail Data Gedung</span>
+                                        <!-- <a href="{{ route('gedung.index')}}" class="btn btn-lg btn-danger font-weight-bold"><i class="fa fa-arrow-circle-left "></i> Kembali</a> -->
                                     </div>
                                 </div>
                                 <div class="row mb-5">
@@ -32,35 +32,27 @@
                                         <img class="img-fluid w-50 py-2 px-2 shadow border" src="{{ asset('storage/post-image/'.$gedung->foto) }}" alt="{{ $gedung->nama_gedung}}">
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <span class="h3 font-weight-light text-black-50">
-                                            Kode Gedung:
-                                        </span>
-                                        <span class="h3 font-weight-bold">
-                                            {{ $gedung->kode}}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <span class="h3 font-weight-light text-black-50">
-                                            Nama Gedung :
-                                        </span>
-                                        <span class="h3 font-weight-bold">
-                                            {{ $gedung->nama_gedung}}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <span class="h3 font-weight-light text-black-50">
-                                            Alamat Gedung :
-                                        </span><br />
-                                        <span class="h3 font-weight-bold">
-                                            {{ $gedung->alamat}}
-                                        </span>
-                                    </div>
+                                <div class="row mb-12">
+                                    <!-- Table -->
+                                    <div class="col-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <thead >
+                                                    <tr class="bg-info text-white" >
+                                                        <th scope="col">Kode Gedung</th>
+                                                        <th scope="col">Nama Gedung</th>
+                                                        <th scope="col">Alamat</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="font-weight-bold">{{ $gedung->kode}}</td>
+                                                        <td class="font-weight-bold">{{ $gedung->nama_gedung}}</td>
+                                                        <td class="font-weight-bold">{{ $gedung->alamat}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                 </div>
                             </div>
                         </div>

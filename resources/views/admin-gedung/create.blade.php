@@ -36,7 +36,7 @@
                                     @csrf
                                         <div class="form-group row">
                                             <div class="col-12 d-flex justify-content-start align-content-center">
-                                                <span class="h3 font-weight-bold">Tambah Data Gedung</span>
+                                                <span class="h3 font-weight-bold text-info">Tambah Data Gedung</span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -75,16 +75,23 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                        <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-4">
-                                            <img src="{{url('storage/app/post-image/default.jpg')}}" class="img-preview img-fluid mb-3" style="display: none; max-height: 300px; max-width: 100px; ">
-                                            <input class="form-control input-default" type="file" id="foto" name="foto" onchange="previewImage()">
+                                            <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control input-default" type="file" id="foto" name="foto" onchange="previewImage()">
+                                            </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label" for="val-suggestions">
+                                            </label>
+                                            <div class="col-lg-10">
+                                            <img src="{{url('storage/app/post-image/default.jpg')}}" class="img-preview img-thumbnail img-fluid mb-3" style="display: none; max-height: 300px; max-width: 200px; ">
+                                            </div>
                                         </div>
-                                        <div class="form-group row mt-5">
-                                            <div class="col-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-md btn-primary text-white font-weight-bold py-3 px-5">Simpan</button>
+                                        <div class="form-group row">
+                                            <div class="col-2"></div>
+                                            <div class="col-5 d-flex justify-content-start">
+                                                <button type="submit" class="btn btn-md btn-primary btn-round text-white font-weight-bold py-3 px-4 "> <i class="fa fa-save" ></i>&nbsp; Simpan</button>
                                             </div>
                                         </div>
                                     </form>

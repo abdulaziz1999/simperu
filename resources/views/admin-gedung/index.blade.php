@@ -21,8 +21,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <div class="d-flex justify-content-between align-content-center mr-4 ml-4">
-                                        <span class="h3 font-weight-bold text-primary">Daftar Gedung </span>
+                                    <div class="d-flex justify-content-between align-content-center">
+                                        <span class="h3 font-weight-bold text-info">Daftar Gedung </span>
                                         <div class="btn-group">
                                             <a href="{{route('gedung.create')}}" class="btn btn-sm btn-primary font-weight-bold text-white mr-1 my-1"><i class="fa fa-plus"></i> Tambah Data</a>
                                             <a href="{{url('gedungpdf')}}" class="btn btn-sm btn-danger font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-pdf-o"></i> PDF</a>

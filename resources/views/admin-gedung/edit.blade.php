@@ -69,16 +69,21 @@
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="val-suggestions">Foto <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-5">
-                                            <img src="{{url('storage/app/post-image/'.$gedung->foto)}}" class="img-preview img-fluid mb-3">
-                                            </div>
-                                            <div class="col-lg-5">
-                                            <input class="form-control input-default" type="file" value="{{ $gedung->foto }}" id="foto" name="foto" onchange="previewImage()" >
+                                            <div class="col-lg-10">
+                                                <input class="form-control input-default" type="file" value="{{ $gedung->foto }}" id="foto" name="foto" onchange="previewImage()" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-primary btn-md text-white font-weight-bold">Edit</button>
+                                            <label class="col-lg-2 col-form-label" for="val-suggestions">
+                                            </label>
+                                            <div class="col-lg-10">
+                                                <img src="{{ asset('storage/'.$gedung->foto) }}" alt="" width="200px" class="img-preview img-thumbnail">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-2"></div>
+                                            <div class="col-5 d-flex justify-content-start">
+                                                <button type="submit" class="btn btn-primary btn-md text-white font-weight-bold py-3 px-4"> <i class="fa fa-pencil"></i>&nbsp; Edit</button>
                                             </div>
                                         </div>
                                     </form>
