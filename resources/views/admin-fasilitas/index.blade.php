@@ -52,7 +52,7 @@
                                             <tr>
                                                 <td>{{ ++$i }}</td>
                                                 <td>{{ $fas->nama_fasilitas }}</td>
-                                                <td class="d-flex justify-content-center"><img class="border p-2 shadow" style="min-width: 70px;width: 70%; max-height: 70%" src="{{ url('storage/app/post-image/'.$fas->foto) }}" alt="{{ $fas->nama_failitas }}"></td>
+                                                <td class="d-flex justify-content-center"><img class="border p-2 shadow" style="min-width: 70px;width: 30%; max-height: 50%" src="{{ url('storage/app/post-image/'.$fas->foto) }}" alt="{{ $fas->nama_failitas }}"></td>
                                                     <td>
                                                     <form class="d-flex justify-content-center align-items-center" action="{{ route('fasilitas.destroy',$fas->id) }}" method="POST">
                                                         <div class="btn-group">
