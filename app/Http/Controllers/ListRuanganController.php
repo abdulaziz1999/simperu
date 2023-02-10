@@ -66,6 +66,10 @@ class ListRuanganController extends Controller
             ->orderBy('ruangan.updated_at', 'desc')
             ->paginate(9);
 
+        //query all data gedung dan data kategori ruangan
+        $all_OrderByStatusAsc = Ruangan::orderBy('ruangan.updated_at', 'desc')
+            ->paginate(9);
+
         // Me-assign ulang data ke format rupiah
         foreach ($r_OrderByStatusAsc->items() as $item) {
             $item->harga = $this->formatRupiah($item->harga);
@@ -76,13 +80,13 @@ class ListRuanganController extends Controller
         $request->session()->forget('kategori_id');
 
         $data = [
-            'nama_gedung' => isset($r_OrderByStatusAsc->items()[0]->gedung->nama_gedung) ? $r_OrderByStatusAsc->items()[0]->gedung->nama_gedung : 'Ruangan Kosong',
+            'nama_gedung' => isset($r_OrderByStatusAsc->items()[0]->gedung->nama_gedung) ? $r_OrderByStatusAsc->items()[0]->gedung->nama_gedung : 'Semua Ruangan',
             'selectedGedung' => isset($gedung_id) ? $gedung_id : '',
             'selectedKategori' => isset($kategori_id) ? $kategori_id : '',
             'gedung' => Gedung::all(['nama_gedung', 'id']),
-            'kategori' => KategoriRuangan::all(['nama_kategori', 'id'])
+            'kategori' => KategoriRuangan::all(['nama_kategori', 'id']) 
         ];
-        return view('list-ruangan.showAllRoom', compact('r_OrderByStatusAsc', 'data'));
+        return view('list-ruangan.showAllRoom', compact('r_OrderByStatusAsc','all_OrderByStatusAsc', 'data'));
     }
 
     public function detailRoomById(Request $request, Ruangan $ruangan)
