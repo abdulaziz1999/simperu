@@ -2,7 +2,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <div class="brand-logo">
+            <div class="brand-logo bg-info">
                 <a href="{{ url('/admin')}}">
                     <b class="logo-abbr"><img src="{{ url('public/images/logo.png') }}" alt=""> </b>
                     <span class="logo-compact"><img src="{{ url('public/images/logo-compact.png') }}" alt=""></span>
@@ -40,6 +40,14 @@
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
+                        <!-- Menu Website icon globe -->
+                        <li class="icons d-none d-md-flex">
+                            <a href="{{ url('/') }}" class="log-user">
+                                <span class="font-weight-bold">
+                                    <i class="fa fa-globe text-primary mt-3" style="font-size: 2.5rem;"></i>
+                                </span>
+                            </a>
+                        </li>
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
                                 <span class="font-weight-bold">
