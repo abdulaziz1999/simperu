@@ -48,8 +48,7 @@ class FasilitasController extends Controller
         $request->validate([
             'nama_fasilitas' => 'required',
             'foto' => 'required|image|file|max:1024',
-            'keterangan' => 'required',
-            'ruangan_id' => 'required'
+            'keterangan' => 'required'
         ]);
 
         $data = Fasilitas::create($request->all());
@@ -78,11 +77,6 @@ class FasilitasController extends Controller
      */
     public function show(Fasilitas $fasilita)
     {
-        // Catatan : Larvel secara langsung merubah param dari yang belakangnya 's', menjadi dihilangkan. Dan apabila 'ies' menjadi 'y'.
-        // https://stackoverflow.com/questions/60074365/laravel-5-8-edit-function-returns-connection-null-and-table-null-when-i-dump
-        // Disini saya mengganti 'fasilitas' dengan 'fasilita'
-        // Untuk mengetahuinya bisa me-list route dengan command 
-        // php artisan route:list
         return view('admin-fasilitas.show', compact('fasilita'));
     }
 
@@ -111,8 +105,7 @@ class FasilitasController extends Controller
         $request->validate([
             'nama_fasilitas' => 'required',
             // 'foto' => 'required|image|file|max:1024',
-            'keterangan' => 'required',
-            'ruangan_id' => 'required'
+            'keterangan' => 'required'
         ]);
         // 1. Mengambil semua nilai request
         $input = $request->all();
@@ -154,10 +147,11 @@ class FasilitasController extends Controller
         return redirect()->route('fasilitas.index')->with('success', 'Data fasilitas Berhasil Dihapus');
     }
 
-    public function generatePdf(){
+    public function generatePdf()
+    {
         $data = Fasilitas::all();
-        $pdf = PDF::loadView('admin-fasilitas/pdf', ['fasilitas' =>$data]);
-    
+        $pdf = PDF::loadView('admin-fasilitas/pdf', ['fasilitas' => $data]);
+
         return $pdf->download('fasilitas.pdf');
     }
 
@@ -165,6 +159,4 @@ class FasilitasController extends Controller
     {
         return Excel::download(new FasilitasExport, date('d-m-y') . '_fasilitas.xlsx');
     }
-
-
 }
