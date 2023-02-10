@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col-12 d-flex justify-content-center">
-                                        <img class="img-fluid w-50 py-2 px-2 shadow border" src="{{ url('storage/post-image/'.$gedung->foto) }}" alt="{{ $gedung->nama_gedung}}">
+                                        <img class="img-fluid w-50 py-2 px-2 shadow border" src="{{ url('storage/app/post-image/'.$gedung->foto) }}" alt="{{ $gedung->nama_gedung}}">
                                     </div>
                                 </div>
                                 <div class="row mb-12">
