@@ -24,7 +24,7 @@
                             <div class="d-flex justify-content-between align-content-center">
                                 <span class="h3 font-weight-bold text-info">Daftar Gedung </span>
                                 <div class="btn-group">
-                                    <a href="{{route('gedung.create')}}" class="btn btn-sm btn-primary font-weight-bold text-white mr-1 my-1"><i class="fa fa-plus"></i> Tambah Data</a>
+                                    <a href="{{route('gedung.create')}}" class="btn btn-sm btn-info font-weight-bold text-white mr-1 my-1"><i class="fa fa-plus"></i> Tambah Data</a>
                                     <a href="{{url('gedungpdf')}}" class="btn btn-sm btn-danger font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-pdf-o"></i> PDF</a>
                                     <a href="{{url('gedungexcel')}}" class="btn btn-sm btn-success font-weight-bold text-white mr-1 my-1"><i class="fa fa-file-excel-o"></i> Excel</a>
                                 </div>
