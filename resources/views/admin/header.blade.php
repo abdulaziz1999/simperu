@@ -7,7 +7,7 @@
                     <b class="logo-abbr"><img src="{{ url('public/img/logo_navbar.png') }}" alt=""> </b>
                     <span class="logo-compact"><img src="{{ url('public/images/logo-compact.png') }}" alt=""></span>
                     <span class="brand-title">
-                        <img class="w-75" src="{{ url('public/img/logo_navbar.svg') }}">
+                        <img class="w-75" src="{{ url('public/img/logo_navbar.png') }}">
                     </span>
                 </a>
             </div>
