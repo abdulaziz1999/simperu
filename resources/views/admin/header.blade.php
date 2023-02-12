@@ -4,7 +4,7 @@
         <div class="nav-header">
             <div class="brand-logo bg-info">
                 <a href="{{ url('/admin')}}">
-                    <b class="logo-abbr"><img src="{{ url('public/images/logo_navbar.png') }}" alt=""> </b>
+                    <b class="logo-abbr"><img src="{{ url('public/img/logo_navbar.png') }}" alt=""> </b>
                     <span class="logo-compact"><img src="{{ url('public/images/logo-compact.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img class="w-75" src="{{ url('public/img/logo_navbar.svg') }}">
