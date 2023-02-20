@@ -5,9 +5,10 @@ namespace App\Exports;
 use App\Models\Fasilitas;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Support\Facades\DB;
 
 
-class FasilitasExport implements FromCollection WithHeadings
+class FasilitasExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
