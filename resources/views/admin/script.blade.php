@@ -1,23 +1,23 @@
 <!--**********************************
         Scripts
     ***********************************-->
-<script src="{{ asset('plugins/common/common.min.js') }}"></script>
-<script src="{{ asset('js/custom.min.js') }}"></script>
-<script src="{{ asset('js/settings.js') }}"></script>
-<script src="{{ asset('js/gleek.js') }}"></script>
-<script src="{{ asset('js/styleSwitcher.js') }}"></script>
+<script src="{{ url('public/plugins/common/common.min.js') }}"></script>
+<script src="{{ url('public/js/custom.min.js') }}"></script>
+<script src="{{ url('public/js/settings.js') }}"></script>
+<script src="{{ url('public/js/gleek.js') }}"></script>
+<script src="{{ url('public/js/styleSwitcher.js') }}"></script>
 
 @if(Request::segment(1) == 'admin')
 <!-- Chartjs -->
-<script src="{{ asset('plugins/chart.js/Chart.bundle.min.js') }}"></script>
-<script src="{{ asset('js/plugins-init/chartjs-init.js') }}"></script>
+<script src="{{ url('public/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+<script src="{{ url('public/js/plugins-init/chartjs-init.js') }}"></script>
 @endif
 <!-- Circle progress -->
-<script src="{{ asset('plugins/circle-progress/circle-progress.min.js') }}"></script>
+<script src="{{ url('public/plugins/circle-progress/circle-progress.min.js') }}"></script>
 {{-- plugins datatable --}}
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('plugins/tables/js/datatable-init/datatable-basic.min.js') }}"></script>
+<script src="{{ url('public/plugins/tables/js/datatable-init/datatable-basic.min.js') }}"></script>
 {{-- ./plugins datatable --}}
 
 {{-- plugins form-val --}}
