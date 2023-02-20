@@ -3,8 +3,8 @@
 <!-- Page Header Start -->
 <div class="page-header mb-5 p-0" style="background-image: url({{ url('storage/app/post-image/'.$gedung->foto) }});"> 
     <div class="container-fluid page-header-inner-gedung py-5">
-        <div class="container text-center pb-5">
-            <h1 class="display-3 text-dark mb-3 animated slideInDown">{{$gedung->nama_gedung}}</h1> {{-- Nama sesuai dengan nama gedung --}}
+        <div class="container text-center">
+            <h1 class="display-3 mb-3 animated slideInDown text-primary">{{$gedung->nama_gedung}}</h1> 
             <p class="text-secondary px-5">Rasakan pengalaman yang menghadirkan nuansa alam dan warna earthy di tengah padatnya area di {{$gedung->nama_gedung}}.</p>
         </div>
     </div>
@@ -12,7 +12,7 @@
 <!-- Page Header End -->
 
 <!-- Room Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl mb-5">
     <div class="container">
         <div class="row g-4">
             @if (count($list_ruangan)>0)
