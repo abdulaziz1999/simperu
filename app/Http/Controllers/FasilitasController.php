@@ -31,7 +31,7 @@ class FasilitasController extends Controller
      */
     public function create()
     {
-        return view('admin-fasilitas.create', compact('ruangan'));
+        return view('admin-fasilitas.create');
     }
 
     /**
