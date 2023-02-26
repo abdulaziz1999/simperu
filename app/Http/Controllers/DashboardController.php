@@ -8,6 +8,7 @@ use App\Models\KategoriRuangan;
 use App\Models\WaktuPeminjaman;
 use App\Models\Peminjaman;
 use App\Models\Fasilitas;
+use App\Models\FasilitasRuangan;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use DB;
@@ -17,11 +18,11 @@ class DashboardController extends Controller
     public function index()
     {
         //get all data gedung order by id desc
-        $gedung = Gedung::all();
-        $ruangan = Ruangan::all();
-        $fasilitas = Fasilitas::all();
-        $kategoriRuangan = KategoriRuangan::all();
-        $feedback = Feedback::select('*')->limit(5)->orderBy('id','desc')->get();
+        $gedung             = Gedung::all();
+        $ruangan            = Ruangan::all();
+        $fasilitas          = FasilitasRuangan::all();
+        $kategoriRuangan    = KategoriRuangan::all();
+        $feedback           = Feedback::select('*')->limit(5)->orderBy('id','desc')->get();
         $peminjaman = Peminjaman::join('pembayaran as pe', 'peminjaman.pembayaran_id', '=', 'pe.id')
             ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
             ->join('users', 'peminjaman.users_id', '=', 'users.id')
@@ -32,6 +33,7 @@ class DashboardController extends Controller
             ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
             ->where('pe.status_pembayaran', '=', 'Lunas')
             ->sum('ru.harga');
+        
         return view('admin-dashboard.index', compact('gedung', 'ruangan', 'kategoriRuangan', 'fasilitas', 'feedback', 'sumProfit', 'peminjaman'));
     }
 

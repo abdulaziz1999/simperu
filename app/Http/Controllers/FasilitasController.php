@@ -101,8 +101,7 @@ class FasilitasController extends Controller
         //
         $request->validate([
             'nama_fasilitas' => 'required',
-            // 'foto' => 'required|image|file|max:1024',
-            'keterangan' => 'required'
+            'keterangan'     => 'required'
         ]);
         // 1. Mengambil semua nilai request
         $input = $request->all();

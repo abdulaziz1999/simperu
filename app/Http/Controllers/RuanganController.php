@@ -50,16 +50,16 @@ class RuanganController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_ruangan' => 'required',
-            'kategori_ruangan_id' => 'required',
-            'gedung_id' => 'required',
-            'kapasitas' => 'required|numeric',
-            'lantai' => 'required|numeric',
-            'foto1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'foto2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'foto3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
-            'harga' => 'required|numeric',
+            'nama_ruangan'          => 'required',
+            'kategori_ruangan_id'   => 'required',
+            'gedung_id'             => 'required',
+            'kapasitas'             => 'required|numeric',
+            'lantai'                => 'required|numeric',
+            'foto1'                 => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto2'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto3'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status'                => 'required',
+            'harga'                 => 'required|numeric',
         ]);
 
         $data = Ruangan::create($request->all());
@@ -80,9 +80,9 @@ class RuanganController extends Controller
         //foreach request fasilitas dan insert ke table fasilitas_ruangan
         foreach ($request->fasilitas as $fasilitas) {
             //insert ke table fasilitas_ruangan
-            FasilitasRuangan::create([
-                'id_ruangan' => $data->id,
-                'id_fasilitas' => $fasilitas,
+            Fasilitas::create([
+                'ruangan_id' => $data->id,
+                'fasilitas_id' => $fasilitas,
             ]);
         }
 
@@ -129,16 +129,16 @@ class RuanganController extends Controller
     public function update(Request $request, Ruangan $ruangan)
     {
         $request->validate([
-            'nama_ruangan' => 'required',
-            'kategori_ruangan_id' => 'required',
-            'gedung_id' => 'required',
-            'kapasitas' => 'required|numeric',
-            'lantai' => 'required|numeric',
-            'foto1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'foto2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'foto3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
-            'harga' => 'required|numeric',
+            'nama_ruangan'          => 'required',
+            'kategori_ruangan_id'   => 'required',
+            'gedung_id'             => 'required',
+            'kapasitas'             => 'required|numeric',
+            'lantai'                => 'required|numeric',
+            'foto1'                 => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto2'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto3'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status'                => 'required',
+            'harga'                 => 'required|numeric',
         ]);
 
         $input = $request->all();

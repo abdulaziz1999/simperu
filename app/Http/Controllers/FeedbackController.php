@@ -43,7 +43,7 @@ class FeedbackController extends Controller
     {
         $request->validate([
             'keterangan_feedback' => 'required',
-            'poin' => 'required',
+            'poin'                => 'required',
         ]);
 
         Feedback::create($request->all());

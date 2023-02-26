@@ -44,12 +44,12 @@ class GedungController extends Controller
     {
         //
         $request->validate([
-            'kode' => 'required',
-            'nama_gedung' => 'required',
-            'foto' => 'required|image|file|max:1024',
-            'alamat' => 'required',
-            'link_gmaps' => 'required',
-            'link_iframe_gmaps' => 'required',
+            'kode'                  => 'required',
+            'nama_gedung'           => 'required',
+            'foto'                  => 'required|image|file|max:1024',
+            'alamat'                => 'required',
+            'link_gmaps'            => 'required',
+            'link_iframe_gmaps'     => 'required',
         ]);
 
         $data = Gedung::create($request->all());
@@ -102,12 +102,12 @@ class GedungController extends Controller
     {
         //
         $request->validate([
-            'kode' => 'required',
-            'nama_gedung' => 'required',
+            'kode'                  => 'required',
+            'nama_gedung'           => 'required',
             // 'foto' => 'required|image|file|max:1024',
-            'alamat' => 'required',
-            'link_gmaps' => 'required',
-            'link_iframe_gmaps' => 'required',
+            'alamat'                => 'required',
+            'link_gmaps'            => 'required',
+            'link_iframe_gmaps'     => 'required',
         ]);
 
          // 1. Mengambil semua nilai request

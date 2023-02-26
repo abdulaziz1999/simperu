@@ -42,7 +42,7 @@ class KategoriRuanganController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required',
-            'keterangan' => 'required',
+            'keterangan'    => 'required',
         ]);
         KategoriRuangan::create($request->all());
         return redirect('/kategoriRuangan')->with('success', 'Data Kategori Ruangan Baru Berhasil Ditambahkan');
@@ -83,7 +83,7 @@ class KategoriRuanganController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required',
-            'keterangan' => 'required',
+            'keterangan'    => 'required',
         ]);
         $kategoriRuangan->update($request->all());
         return redirect('/kategoriRuangan')->with('success', 'Kategori Ruangan Berhasil Diubah');
