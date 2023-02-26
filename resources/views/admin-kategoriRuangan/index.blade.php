@@ -32,14 +32,19 @@
                                         </div>
                                         <thead>
                                             <tr>
+                                                <th>No</th>
                                                 <th>Nama kategori Ruangan</th>
                                                 <th>Keterangan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $no = 1;
+                                            @endphp
                                             @foreach($kategoriRuangan as $k)
                                             <tr>
+                                                <td>{{ $no++ }}</td>
                                                 <td>{{ $k->nama_kategori }}</td>
                                                 <td>{{ $k->keterangan }}</td>
                                                 <td class="d-flex justify-content-center align-items-center">

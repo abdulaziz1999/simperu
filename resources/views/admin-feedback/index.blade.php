@@ -39,6 +39,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $i = 0;
+                                            @endphp
                                             @foreach($feedback as $f)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
