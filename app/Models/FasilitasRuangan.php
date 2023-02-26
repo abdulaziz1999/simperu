@@ -14,8 +14,8 @@ class FasilitasRuangan extends Model
 
     // Relasi many to one
     // banyak fasilitas dimemiliki satu ruangan
-    public function ruangan()
-    {
-        return $this->belongsTo(Ruangan::class);
-    }
+    // public function ruangan()
+    // {
+    //     return $this->belongsTo(Ruangan::class);
+    // }
 }
