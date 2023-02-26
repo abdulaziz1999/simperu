@@ -46,11 +46,6 @@
                                                         <td class="font-weight-bold">{{ $fasilita->nama_fasilitas}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="font-weight-bold">Ruangan</td>
-                                                        <td class="font-weight-bold">:</td>
-                                                        <td class="font-weight-bold">{{ $fasilita->ruangan->nama_ruangan}}</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td class="font-weight-bold">Keterangan</td>
                                                         <td class="font-weight-bold">:</td>
                                                         <td class="font-weight-bold">{{ $fasilita->keterangan}}</td>
