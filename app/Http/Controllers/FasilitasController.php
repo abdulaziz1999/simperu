@@ -123,7 +123,7 @@ class FasilitasController extends Controller
         // 7. lalu update;
         $fasilita->update($input);
 
-        // return redirect('/fasilitas')->with('success', 'Data fasilitas Berhasil Diubah');
+        return redirect('/fasilitas')->with('success', 'Data fasilitas Berhasil Diubah');
     }
 
     /**
