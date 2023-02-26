@@ -19,7 +19,7 @@ class KategoriRuanganController extends Controller
     public function index()
     {
         $kategoriRuangan = KategoriRuangan::latest()->paginate(5);
-        return view('admin-kategoriRuangan.index', compact('kategoriRuangan'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin-kategoriRuangan.index', compact('kategoriRuangan'));
     }
 
     /**

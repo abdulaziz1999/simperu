@@ -20,7 +20,7 @@ class FeedbackController extends Controller
     public function index()
     {
         $feedback = Feedback::latest()->paginate(5);
-        return view('admin-feedback.index', compact('feedback'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin-feedback.index', compact('feedback'));
     }
 
     /**
