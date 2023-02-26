@@ -163,11 +163,11 @@ class ListRuanganController extends Controller
         $diff = $this->selisih_waktu($dateAfterDurasi);
 
         if ($diff['d'] < 1) {
-            return back()->with('toast_error', 'Maaf, waktu pemesanan ruangan harus 1 hari seblum acara berlangsung!');
+            return redirect()->back()->with('toast_error', 'Maaf, waktu pemesanan ruangan harus 1 hari sebelum acara berlangsung!');
         }
 
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            return redirect()->back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         }
 
         // kumpulin data pembayaran
