@@ -103,8 +103,12 @@ class RuanganController extends Controller
         $kategoriRuangan    = KategoriRuangan::find($ruangan->kategori_ruangan_id);
         $gedung             = Gedung::find($ruangan->gedung_id);
         $ruangan            = Ruangan::find($ruangan->id);
-        
-        return view('admin-ruangan.show', compact('kategoriRuangan', 'gedung', 'ruangan'));
+        $fasilitas          = FasilitasRuangan::join('fasilitas', 'fasilitas_ruangan.id', '=', 'fasilitas.fasilitas_id')
+                                            ->where('fasilitas.ruangan_id', $ruangan->id)
+                                            ->select('fasilitas_ruangan.nama_fasilitas')
+                                            ->get();
+        // dd($fasilitas);
+        return view('admin-ruangan.show', compact('kategoriRuangan', 'gedung', 'ruangan','fasilitas'));
     }
 
     /**
@@ -115,7 +119,7 @@ class RuanganController extends Controller
      */
     public function edit(Ruangan $ruangan)
     {
-        $fasilitas          = Fasilitas::find($ruangan->id);
+        $fasilitas          = FasilitasRuangan::find($ruangan->id);
         $ruangan            = Ruangan::find($ruangan->id);
         $gedung             = Gedung::all();
         $kategoriRuangan    = KategoriRuangan::all();

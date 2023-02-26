@@ -38,84 +38,46 @@
                                 <img class="img-fluid shadow border rounded" src="{{ url('storage/app/post-image/'.$ruangan->foto3)}}" width="500px">
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Nama Ruangan :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $ruangan->nama_ruangan}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Kategori Ruangan :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $kategoriRuangan->nama_kategori}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Gedung :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $gedung->nama_gedung}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Kapasitas :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $ruangan->kapasitas}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Lantai :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $ruangan->lantai}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Status :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $ruangan->status}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Harga :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $ruangan->harga}}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <span class="h4 font-weight-light text-black-50">
-                                    Keterangan :
-                                </span>
-                                <span class="h4 font-weight-bold">
-                                    {{ $ruangan->keterangan}}
-                                </span>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr class="bg-info text-white">
+                                                <th scope="col">Nama Ruangan</th>
+                                                <th scope="col">Kategori Ruangan</th>
+                                                <th scope="col">Gedung</th>
+                                                <th scope="col">Kapasitas</th>
+                                                <th scope="col">Lantai</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Harga</th>
+                                                <th scope="col">Fasilitas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-weight-bold">{{ $ruangan->nama_ruangan}}</td>
+                                                <td class="font-weight-bold">{{ $kategoriRuangan->nama_kategori}}</td>
+                                                <td class="font-weight-bold">{{ $gedung->nama_gedung}}</td>
+                                                <td class="font-weight-bold">{{ $ruangan->kapasitas}}</td>
+                                                <td class="font-weight-bold">{{ $ruangan->lantai}}</td>
+                                                <td class="font-weight-bold">{{ $ruangan->status}}</td>
+                                                <td class="font-weight-bold">{{ $ruangan->harga}}</td>
+                                                <td class="font-weight-bold">
+                                                    <ul>
+                                                        @if($fasilitas == null || $fasilitas == '' || $fasilitas == '[]')
+                                                            <li>Fasilitas Belum Ditambahakan</li>
+                                                        @else
+                                                            @foreach($fasilitas as $fasilitas)
+                                                            <li> - {{ $fasilitas->nama_fasilitas}}</li>
+                                                            @endforeach
+                                                        @endif
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
 
