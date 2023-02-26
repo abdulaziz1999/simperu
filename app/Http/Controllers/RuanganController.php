@@ -24,6 +24,7 @@ class RuanganController extends Controller
     public function index()
     {
         $ruangan = Ruangan::all();
+        
         return view('admin-ruangan.index', compact('ruangan'));
     }
 
@@ -34,10 +35,11 @@ class RuanganController extends Controller
      */
     public function create()
     {
-        $kategoriRuangan = KategoriRuangan::all();
-        $gedung = Gedung::all();
-        $ruangan = Ruangan::all();
-        $fasilitas = FasilitasRuangan::all();
+        $gedung             = Gedung::all();
+        $ruangan            = Ruangan::all();
+        $fasilitas          = FasilitasRuangan::all();
+        $kategoriRuangan    = KategoriRuangan::all();
+
         return view('admin-ruangan.create', compact('kategoriRuangan', 'gedung', 'ruangan', 'fasilitas'));
     }
 
@@ -87,8 +89,7 @@ class RuanganController extends Controller
         }
 
         // return dd($data);
-        return redirect()->route('ruangan.index')
-            ->with('success', 'Ruangan created successfully.');
+        return redirect()->route('ruangan.index')->with('success', 'Ruangan created successfully.');
     }
 
     /**
@@ -99,9 +100,10 @@ class RuanganController extends Controller
      */
     public function show(Ruangan $ruangan)
     {
-        $kategoriRuangan = KategoriRuangan::find($ruangan->kategori_ruangan_id);
-        $gedung = Gedung::find($ruangan->gedung_id);
-        $ruangan = Ruangan::find($ruangan->id);
+        $kategoriRuangan    = KategoriRuangan::find($ruangan->kategori_ruangan_id);
+        $gedung             = Gedung::find($ruangan->gedung_id);
+        $ruangan            = Ruangan::find($ruangan->id);
+        
         return view('admin-ruangan.show', compact('kategoriRuangan', 'gedung', 'ruangan'));
     }
 
@@ -113,9 +115,11 @@ class RuanganController extends Controller
      */
     public function edit(Ruangan $ruangan)
     {
-        $kategoriRuangan = KategoriRuangan::all();
-        $gedung = Gedung::all();
-        $ruangan = Ruangan::find($ruangan->id);
+        $fasilitas          = Fasilitas::find($ruangan->id);
+        $ruangan            = Ruangan::find($ruangan->id);
+        $gedung             = Gedung::all();
+        $kategoriRuangan    = KategoriRuangan::all();
+
         return view('admin-ruangan.edit', compact('ruangan', 'kategoriRuangan', 'gedung'));
     }
 
@@ -134,7 +138,7 @@ class RuanganController extends Controller
             'gedung_id'             => 'required',
             'kapasitas'             => 'required|numeric',
             'lantai'                => 'required|numeric',
-            'foto1'                 => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto1'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'foto2'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'foto3'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status'                => 'required',
@@ -143,20 +147,44 @@ class RuanganController extends Controller
 
         $input = $request->all();
         // $input = Ruangan::update($request->all());
-        // if ($request->hasFile('foto1')) {
+        if ($request->hasFile('foto1')) {
             # code...
-        // }
-        // hapus foto lama.
-        // $oldFoto1 = 'post-image/' . $input['oldimage1']->foto1;
-        // $oldFoto2 = 'post-image/' . $input['oldimage2']->foto2;
-        // $oldFoto3 = 'post-image/' . $input['oldimage3']->foto3;
-        // 2. Mengahapus file di lokal
-        // Storage::delete([$oldFoto1, $oldFoto2, $oldFoto3]);
-        $input['foto1'] = $this->upload_foto($request, 'foto1');
-        $input['foto2'] = $this->upload_foto($request, 'foto2');
-        $input['foto3'] = $this->upload_foto($request, 'foto3');
+            // hapus foto lama.
+            // $oldFoto1 = 'post-image/' . $input['oldimage1']->foto1;
+            // $oldFoto2 = 'post-image/' . $input['oldimage2']->foto2;
+            // $oldFoto3 = 'post-image/' . $input['oldimage3']->foto3;
+            // 2. Mengahapus file di lokal
+            // Storage::delete([$oldFoto1, $oldFoto2, $oldFoto3]);
+            $input['foto1'] = $this->upload_foto($request, 'foto1');
+            $input['foto2'] = $this->upload_foto($request, 'foto2');
+            $input['foto3'] = $this->upload_foto($request, 'foto3');
+        }
 
         $ruangan->update($input);
+
+        //jika ada fasilitas yang di unchecked maka hapus dari table fasilitas dan jika ada fasilitas yang di checked maka tambahkan ke table fasilitas
+        $fasilitas = Fasilitas::where('ruangan_id', $ruangan->id)->get();
+        $fasilitas_id = [];
+        foreach ($fasilitas as $fasilitas) {
+            $fasilitas_id[] = $fasilitas->fasilitas_id;
+        }
+        $fasilitas_checked = $request->fasilitas;
+        $fasilitas_unchecked = array_diff($fasilitas_id, $fasilitas_checked);
+        $fasilitas_checked = array_diff($fasilitas_checked, $fasilitas_id);
+
+        //hapus fasilitas yang di unchecked
+        foreach ($fasilitas_unchecked as $fasilitas) {
+            Fasilitas::where('ruangan_id', $ruangan->id)->where('fasilitas_id', $fasilitas)->delete();
+        }
+
+        //tambah fasilitas yang di checked
+        foreach ($fasilitas_checked as $fasilitas) {
+            Fasilitas::create([
+                'ruangan_id' => $ruangan->id,
+                'fasilitas_id' => $fasilitas,
+            ]);
+        }
+
         return redirect()->route('ruangan.index')->with('success', 'Data Ruangan Berhasil Diubah');
     }
 
