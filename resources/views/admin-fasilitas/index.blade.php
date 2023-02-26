@@ -48,6 +48,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        @php $no=1; @endphp
                                             @foreach($fasilitas as $fas)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
