@@ -51,7 +51,7 @@
                                         @php $no=1; @endphp
                                             @foreach($fasilitas as $fas)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $no++ }}</td>
                                                 <td>{{ $fas->nama_fasilitas }}</td>
                                                 <td class="d-flex justify-content-center"><img class="border p-2 shadow" style="min-width: 70px;width: 30%; max-height: 50%" src="{{ url('storage/app/post-image/'.$fas->foto) }}" alt="{{ $fas->nama_failitas }}"></td>
                                                     <td>
