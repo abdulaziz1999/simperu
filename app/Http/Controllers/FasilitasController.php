@@ -139,6 +139,10 @@ class FasilitasController extends Controller
         Storage::delete($oldFoto);
         // 3. Menghapus data di database
         $fasilita->delete();
+        //fasilitas ruangan delete where fasilitas_id = fasilitas_id
+        $fasilitas = Fasilitas::where('fasilitas_id', $fasilita->id);
+        $fasilitas->delete();
+        
 
         return redirect()->route('fasilitas.index')->with('success', 'Data fasilitas Berhasil Dihapus');
     }
