@@ -128,6 +128,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-lg-2 col-form-label" for="val-skill">Fasilitas<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-10">
+                                        @foreach($fasilitas as $f)
+                                        @php $checked = in_array($f->id, $ruangan->fasilitas()->pluck('fasilitas_id')->toArray()) ? 'checked' : '' @endphp
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="fasilitas[]" value="{{$f->id}}" {{$checked}} >{{$f->nama_fasilitas}}
+                                            </label>
+                                            &nbsp;
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-lg-2 col-form-label" for="val-suggestions">Foto1<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-4">
@@ -151,10 +166,10 @@
                                         <input class="foto form-control input-default" type="file" name="foto3">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-success text-white font-weight-bold py-3 px-5">Simpan</button>
+                                    <div class="col-2"></div>
+                                    <div class="col-5 d-flex justify-content-start">
+                                        <button type="submit" class="btn btn-primary btn-md text-white font-weight-bold py-2 px-3"> <i class="fa fa-pencil"></i>&nbsp; Edit</button>
                                     </div>
                                 </div>
                             </form>
