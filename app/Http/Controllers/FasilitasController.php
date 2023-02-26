@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fasilitas;
+use App\Models\FasilitasRuangan;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,9 +20,8 @@ class FasilitasController extends Controller
      */
     public function index()
     {
-        $fasilitas = Fasilitas::all();
-        $ruangan = Ruangan::all();
-        return view('admin-fasilitas.index', compact('fasilitas', 'ruangan'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $fasilitas = FasilitasRuangan::all();
+        return view('admin-fasilitas.index', compact('fasilitas'));
     }
 
     /**
@@ -31,8 +31,6 @@ class FasilitasController extends Controller
      */
     public function create()
     {
-        //
-        $ruangan = Ruangan::all();
         return view('admin-fasilitas.create', compact('ruangan'));
     }
 
@@ -47,11 +45,11 @@ class FasilitasController extends Controller
         //
         $request->validate([
             'nama_fasilitas' => 'required',
-            'foto' => 'required|image|file|max:1024',
-            'keterangan' => 'required'
+            'foto'           => 'required|image|file|max:1024',
+            'keterangan'     => 'required'
         ]);
 
-        $data = Fasilitas::create($request->all());
+        $data = FasilitasRuangan::create($request->all());
 
         if ($request->hasFile('foto')) {
             // 1. Mengambil nama dari foto
@@ -75,7 +73,7 @@ class FasilitasController extends Controller
      * @param  \App\Models\Fasilitas  $fasilitas
      * @return \Illuminate\Http\Response
      */
-    public function show(Fasilitas $fasilita)
+    public function show(FasilitasRuangan $fasilita)
     {
         return view('admin-fasilitas.show', compact('fasilita'));
     }
@@ -86,10 +84,9 @@ class FasilitasController extends Controller
      * @param  \App\Models\Fasilitas  $fasilitas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fasilitas $fasilita)
+    public function edit(FasilitasRuangan $fasilita)
     {
-        $ruangan = Ruangan::all();
-        return view('admin-fasilitas.edit', compact('fasilita', 'ruangan'));
+        return view('admin-fasilitas.edit', compact('fasilita'));
     }
 
     /**
@@ -99,7 +96,7 @@ class FasilitasController extends Controller
      * @param  \App\Models\Fasilitas  $fasilitas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fasilitas $fasilita)
+    public function update(Request $request, FasilitasRuangan $fasilita)
     {
         //
         $request->validate([
@@ -135,7 +132,7 @@ class FasilitasController extends Controller
      * @param  \App\Models\Fasilitas  $fasilitas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fasilitas $fasilita)
+    public function destroy(FasilitasRuangan $fasilita)
     {
         // 1. Membuat path+namafoto sebagai pathnya.
         $oldFoto = 'post-image/' . $fasilita->foto;
@@ -149,7 +146,7 @@ class FasilitasController extends Controller
 
     public function generatePdf()
     {
-        $data = Fasilitas::all();
+        $data = FasilitasRuangan::all();
         $pdf = PDF::loadView('admin-fasilitas/pdf', ['fasilitas' => $data]);
 
         return $pdf->download('fasilitas.pdf');
