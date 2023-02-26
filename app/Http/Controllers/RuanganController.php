@@ -37,7 +37,7 @@ class RuanganController extends Controller
         $kategoriRuangan = KategoriRuangan::all();
         $gedung = Gedung::all();
         $ruangan = Ruangan::all();
-        $fasilitas = Fasilitas::all();
+        $fasilitas = FasilitasRuangan::all();
         return view('admin-ruangan.create', compact('kategoriRuangan', 'gedung', 'ruangan', 'fasilitas'));
     }
 
