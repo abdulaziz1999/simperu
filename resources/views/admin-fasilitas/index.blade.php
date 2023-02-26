@@ -16,7 +16,7 @@
             <!-- row -->
 
             <div class="container-fluid">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-12">
                         @if ($message = Session::get('success'))
                         <div class="alert alert-success m-2">
@@ -24,7 +24,7 @@
                         </div>
                         @endif
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
