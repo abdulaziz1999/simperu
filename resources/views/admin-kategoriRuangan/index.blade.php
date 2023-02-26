@@ -18,15 +18,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success m-2">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
