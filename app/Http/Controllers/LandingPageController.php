@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Fasilitas;
+use App\Models\FasilitasRuangan;
 use App\Models\Gedung;
 use App\Models\Ruangan;
 use App\Models\KategoriRuangan;
@@ -20,7 +21,7 @@ class LandingPageController extends Controller
     public function index_landing_page()
     {
         //data Group by Fasilitas
-        $fasilitasGroup = Fasilitas::select('nama_fasilitas', 'foto')->groupBy('nama_fasilitas', 'foto')->get();
+        $fasilitasGroup = FasilitasRuangan::select('nama_fasilitas', 'foto')->groupBy('nama_fasilitas', 'foto')->get();
         //data gedung dan data kategori ruangan
         $gedung = Gedung::all();
         //data gedung dan data kategori ruangan
