@@ -120,25 +120,28 @@
                 </div>
 
                 <div class="row g-4">
-                    @if (count($kategori)>0)
-                        @foreach ($kategori as $kr)
+                    @if (count($ruangan)>0)
+                        @foreach ($ruangan as $r)
                         <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
                             <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
                                 <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
-                                    <img class="img-fluid w-100" src="{{ asset('img/fasilitas_'.++$i.'.jpg')}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
+                                    <img class="img-fluid w-100" src="{{ url('storage/app/post-image/'.$r->foto1)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
-                                        {{$kr->nama_kategori}}
+                                        {{$r->nama_ruangan}}
                                     </h3>
                                     <p class="text-body text-center">
-                                        {{ $kr->keterangan }}
+                                        {{ $r->status }}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         @endforeach
                     @endif
+                    </div>
+                    <div class="text-center mt-5">
+                        <a href="{{url('list-ruangan')}}"> <i class="fa fa-arrow-right text-primary"></i> Lihat Semua</a>
                     </div>
                 </div>
             </div>
@@ -150,12 +153,12 @@
             <div class="container">
                 <div class="owl-carousel testimonial-carousel py-5">
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
+                        <p>Aplikasi ini Sangat Bagus agar data peminjaman bisa lebih terdata dengan baik, dan dari segi peminjam pun bisa melihat ruangan di gunakan kapan saja</p>
                         <div class="d-flex align-items-center">
-                            <img loading="lazy" class=" loading="lazy"-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-1.jpg')}}" style="width: 45px; height: 45px;">
+                            <img loading="lazy" class="img-fluid flex-shrink-0 rounded" loading="lazy" src="{{asset('img/testimonial-2.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                <h6 class="fw-bold mb-1">Client Name</h6>
-                                <small>Profession</small>
+                                <h6 class="fw-bold mb-1">Ilham</h6>
+                                <small>Admin LABKOM</small>
                             </div>
                         </div>
                         <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
@@ -163,7 +166,7 @@
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
                         <div class="d-flex align-items-center">
-                            <img loading="lazy" class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-2.jpg')}}" style="width: 45px; height: 45px;">
+                            <img loading="lazy" class="img-fluid flex-shrink-0 rounded" src="{{asset('img/testimonial-1.jpg')}}" style="width: 45px; height: 45px;">
                             <div class="ps-3">
                                 <h6 class="fw-bold mb-1">Client Name</h6>
                                 <small>Profession</small>
@@ -216,6 +219,10 @@
                         </div>
                         @endforeach
                     @endif
+                    </div>
+                    <!-- load more icon panah -->
+                    <div class="text-center mt-5">
+                        <a href="{{url('list-gedung')}}"> <i class="fa fa-arrow-right text-primary"></i> Lihat Semua</a>
                     </div>
                 </div>
             </div>
