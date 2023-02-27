@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\Ruangan;
 use App\Models\Gedung;
+use App\Models\FasilitasRuangan;
 use App\Models\KategoriRuangan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -139,8 +140,11 @@ class ListRuanganController extends Controller
             ->orderBy('waktu_peminjaman.jam_mulai', 'ASC')
             ->get(['waktu_peminjaman.*', 'pembayaran.status_pembayaran', 'ruangan.nama_ruangan', 'ruangan.lantai']);
 
-        // return dd($booked_rooms);
-        return view('list-ruangan.detailRoomById', compact('ruangan', 'all_r', 'booked_rooms'))->with(['i' => 1]);
+        $fasilitas = FasilitasRuangan::join('fasilitas', 'fasilitas_ruangan.id', '=', 'fasilitas.fasilitas_id')
+            ->where('fasilitas.ruangan_id', $ruangan->id)
+            ->get(['nama_fasilitas','foto']);
+
+        return view('list-ruangan.detailRoomById', compact('ruangan', 'all_r', 'booked_rooms', 'fasilitas'))->with(['i' => 1]);
     }
 
     public function store(Request $request, Ruangan $ruangan)

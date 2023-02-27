@@ -58,17 +58,15 @@
                                  Fasilitas
                              </h1>
                          </div>
-                         @if (count($ruangan->fasilitas)>0)
-                         @foreach ($ruangan->fasilitas as $f)
-                         <!-- Get fasilitas_ruangan Where by $f->fasilitas_id -->
-                        @php $fasilitas = App\Models\FasilitasRuangan::where('id', $f->fasilitas_id)->first(); @endphp
+                         @if (count($fasilitas)>0)
+                         @foreach ($fasilitas as $f)
                          <div class="col-lg-6 py-2">
                              <div class="d-flex">
                                  <div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 70px; height: 70px; background-color: #07246f !important;">
-                                     <img class="w-50" src="{{url('storage/app/post-image/'.$fasilitas->foto)}}" alt="{{$fasilitas->nama_fasilitas}}">
+                                     <img class="w-50" src="{{url('storage/app/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
                                  </div>
                                  <div class="ms-3 text-start d-flex align-items-center w-75">
-                                     <span class="h6 text-secondary">{{$fasilitas->nama_fasilitas}}</span>
+                                     <span class="h6 text-secondary">{{$f->nama_fasilitas}}</span>
                                  </div>
                              </div>
                          </div>
