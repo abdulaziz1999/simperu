@@ -13,7 +13,7 @@
                              <a class="fs-3 d-inline" href="{{ route('list-ruangan.showAllRoom') }}"><i class="fas fa-arrow-left"></i></a>
                          </div>
                          <div class="col-6 text-end mx-0 px-0">
-                             <button class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#detail_sewa">Detail Sewa</button>
+                             <button class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#detail_sewa"><i class="fas fa-eye"></i> Detail Peminjaman</button>
                          </div>
                      </div>
 
@@ -60,13 +60,15 @@
                          </div>
                          @if (count($ruangan->fasilitas)>0)
                          @foreach ($ruangan->fasilitas as $f)
+                         <!-- Get fasilitas_ruangan Where by $f->fasilitas_id -->
+                        @php $fasilitas = App\Models\FasilitasRuangan::where('id', $f->fasilitas_id)->first(); @endphp
                          <div class="col-lg-6 py-2">
                              <div class="d-flex">
                                  <div class="d-flex align-items-center justify-content-center rounded-circle bg-dark" style="width: 70px; height: 70px;">
-                                     <img class="w-50" src="{{asset('storage/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
+                                     <img class="w-50" src="{{asset('storage/post-image/'.$fasilitas->foto)}}" alt="{{$fasilitas->nama_fasilitas}}">
                                  </div>
                                  <div class="ms-3 text-start d-flex align-items-center w-75">
-                                     <span class="h6 text-secondary">{{$f->nama_fasilitas}}</span>
+                                     <span class="h6 text-secondary">{{$fasilitas->nama_fasilitas}}</span>
                                  </div>
                              </div>
                          </div>
