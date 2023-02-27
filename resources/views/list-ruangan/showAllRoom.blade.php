@@ -57,7 +57,7 @@
                  <div class="col-12">
                      @if (count($r_OrderByStatusAsc)>0)
                      @foreach ($r_OrderByStatusAsc as $r)
-                     <div class="col-md-3 wow fadeInUp hvr-float" data-wow-delay="0.{{substr($r->id,1,1)}}s">
+                     <div class="col-md-3 wow fadeInUp hvr-float mb5" data-wow-delay="0.{{substr($r->id,1,1)}}s">
                          <div class="p-0 shadow border h-100" style="border-radius: 1rem">
                              <a href="{{ route('list-ruangan.detailRoomById', [$r->id]) }}">
                                  <div class="position-relative">
