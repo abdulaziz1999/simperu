@@ -65,7 +65,7 @@
                          <div class="col-lg-6 py-2">
                              <div class="d-flex">
                                  <div class="d-flex align-items-center justify-content-center rounded-circle bg-dark" style="width: 70px; height: 70px;">
-                                     <img class="w-50" src="{{asset('storage/post-image/'.$fasilitas->foto)}}" alt="{{$fasilitas->nama_fasilitas}}">
+                                     <img class="w-50" src="{{url('storage/app/post-image/'.$fasilitas->foto)}}" alt="{{$fasilitas->nama_fasilitas}}">
                                  </div>
                                  <div class="ms-3 text-start d-flex align-items-center w-75">
                                      <span class="h6 text-secondary">{{$fasilitas->nama_fasilitas}}</span>
