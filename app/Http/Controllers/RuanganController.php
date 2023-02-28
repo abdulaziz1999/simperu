@@ -147,6 +147,9 @@ class RuanganController extends Controller
             'foto1'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'foto2'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'foto3'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'oldimage1'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'oldimage2'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'oldimage3'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status'                => 'required',
             'harga'                 => 'required|numeric',
         ]);
@@ -171,7 +174,7 @@ class RuanganController extends Controller
             Storage::delete('post-image/' . $input['oldimage3']->foto3);
             $input['foto3'] = $this->upload_foto($request, 'foto3');
         }
-        
+
         $ruangan->update($input);
 
         //jika ada fasilitas yang di unchecked maka hapus dari table fasilitas dan jika ada fasilitas yang di checked maka tambahkan ke table fasilitas
