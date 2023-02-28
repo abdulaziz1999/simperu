@@ -236,8 +236,8 @@
                     <h1 class="mb-5"><span class="text-primary">Fasilitas</span> Kami</h1>
                 </div>
                 <div class="row g-4">
-                    @if (count($fasilitasGroup)> 0 )
-                        @foreach ($fasilitasGroup as $f)
+                    @if (count($fasilitas)> 0 )
+                        @foreach ($fasilitas as $f)
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <a class="service-item bg-dark hvr-float shadow w-100 h-100" href="" style="border-radius: 1rem">
                                 <div class="service-icon bg-transparent p-1">
