@@ -159,19 +159,19 @@ class RuanganController extends Controller
         if ($request->hasFile('foto1')) {
             # code...
             // hapus foto lama.
-            $oldFoto1 = 'post-image/' . $input['oldimage1']->foto1;
+            // $oldFoto1 = 'post-image/' . $input['oldimage1']->foto1;
             // $oldFoto2 = 'post-image/' . $input['oldimage2']->foto2;
             // $oldFoto3 = 'post-image/' . $input['oldimage3']->foto3;
             // 2. Mengahapus file di lokal
-            Storage::delete([$oldFoto1]);
+            // Storage::delete([$oldFoto1]);
             $input['foto1'] = $this->upload_foto($request, 'foto1');
         }
         if ($request->hasFile('foto2')) {
-            Storage::delete('post-image/' . $input['oldimage2']->foto2);
+            // Storage::delete('post-image/' . $input['oldimage2']->foto2);
             $input['foto2'] = $this->upload_foto($request, 'foto2');
         }
         if ($request->hasFile('foto3')) {
-            Storage::delete('post-image/' . $input['oldimage3']->foto3);
+            // Storage::delete('post-image/' . $input['oldimage3']->foto3);
             $input['foto3'] = $this->upload_foto($request, 'foto3');
         }
 
