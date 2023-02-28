@@ -166,6 +166,9 @@
                                         <input class="foto form-control input-default" type="file" name="foto3">
                                     </div>
                                 </div>
+                                <input type="hidden" name="oldimage1" value="$ruangan->foto1">
+                                <input type="hidden" name="oldimage2" value="$ruangan->foto2">
+                                <input type="hidden" name="oldimage3" value="$ruangan->foto3">
                                 <div class="form-group row">
                                     <div class="col-2"></div>
                                     <div class="col-5 d-flex justify-content-start">
