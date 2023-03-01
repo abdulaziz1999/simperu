@@ -14,7 +14,11 @@ class CheckoutController extends Controller
 {
     public function customerDetail(Request $request)
     {
-        return view('checkout.customerDetail', compact('request'));
+        if($request->session()->get('ruangan')){
+            return view('checkout.customerDetail', compact('request'));
+        }else{
+            return redirect()->back()->with('toast_error', 'Silahkan pilih ruangan terlebih dahulu');
+        }
     }
 
     public function store(Request $request)
@@ -40,9 +44,16 @@ class CheckoutController extends Controller
         // Table Waktu_Peminjaman
         $request->session()->put('waktu_peminjaman.peminjaman_id', $peminjaman->id);
         $waktu_peminjaman = WaktuPeminjaman::create($request->session()->get('waktu_peminjaman'));
-
-
-        return redirect()->route('checkout.payment', [$waktu_peminjaman->id]);
+        if($request->session()->get('harga_ruangan') == 'Rp. 0'){
+            foreach (['ruangan', 'pembayaran', 'peminjaman', 'waktu_peminjaman', 'harga_ruangan', 'total_harga_ruangan', 'durasi'] as $item) {
+                if ($request->session()->has($item)) {
+                    $request->session()->forget($item);
+                }
+            }
+            return redirect()->route('peminjamanku.index');
+        }else{
+            return redirect()->route('checkout.payment', [$waktu_peminjaman->id]);
+        }
     }
 
     public function payment(Request $request, WaktuPeminjaman $waktu_peminjaman)
