@@ -62,6 +62,23 @@ class ListRuanganController extends Controller
         }
 
         //query like data gedung dan data kategori ruangan
+        if($gedung_id){
+            $r_OrderByStatusAsc = Ruangan::where('ruangan.gedung_id', $gedung_id)
+                ->orderBy('ruangan.updated_at', 'desc')
+                ->paginate(9);
+        }elseif($kategori_id){
+            $r_OrderByStatusAsc = Ruangan::where('ruangan.kategori_ruangan_id', $kategori_id)
+                ->orderBy('ruangan.updated_at', 'desc')
+                ->paginate(9);
+        }elseif($gedung_id && $kategori_id){
+            $r_OrderByStatusAsc = Ruangan::where('ruangan.gedung_id', $gedung_id)
+                ->where('ruangan.kategori_ruangan_id', $kategori_id)
+                ->orderBy('ruangan.updated_at', 'desc')
+                ->paginate(9);
+        }else{
+            $r_OrderByStatusAsc = Ruangan::orderBy('ruangan.updated_at', 'desc')
+            ->paginate(9);
+        }
         $r_OrderByStatusAsc = Ruangan::where('ruangan.gedung_id', $gedung_id)
             ->where('ruangan.kategori_ruangan_id', $kategori_id)
             ->orderBy('ruangan.updated_at', 'desc')
@@ -81,16 +98,22 @@ class ListRuanganController extends Controller
             $item->harga = $this->formatRupiah($item->harga);
         }
 
+        if($gedung_id){
+            $nama_gedung = Gedung::where('id', $gedung_id)->first()->nama_gedung;
+        }else{
+            $nama_gedung = 'Semua Ruangan';
+        }
+
         // Hapus Session
         $request->session()->forget('gedung_id');
         $request->session()->forget('kategori_id');
 
         $data = [
-            'nama_gedung' => isset($r_OrderByStatusAsc->items()[0]->gedung->nama_gedung) ? $r_OrderByStatusAsc->items()[0]->gedung->nama_gedung : 'Semua Ruangan',
-            'selectedGedung' => isset($gedung_id) ? $gedung_id : '',
-            'selectedKategori' => isset($kategori_id) ? $kategori_id : '',
-            'gedung' => Gedung::all(['nama_gedung', 'id']),
-            'kategori' => KategoriRuangan::all(['nama_kategori', 'id']) 
+            'nama_gedung'       => $nama_gedung,
+            'selectedGedung'    => isset($gedung_id) ? $gedung_id : '',
+            'selectedKategori'  => isset($kategori_id) ? $kategori_id : '',
+            'gedung'            => Gedung::all(['nama_gedung', 'id']),
+            'kategori'          => KategoriRuangan::all(['nama_kategori', 'id']) 
         ];
         return view('list-ruangan.showAllRoom', compact('r_OrderByStatusAsc','all_OrderByStatusAsc', 'data'));
     }
@@ -119,11 +142,7 @@ class ListRuanganController extends Controller
         $ruangan->harga = $this->formatRupiah($ruangan->harga);
 
         // Mencari semua ruangan yang ada di gedung tersebut dan yang  masih tersedia
-        $all_r = Ruangan::where(
-            'gedung_id',
-            '=',
-            $ruangan->gedung_id
-        )->get();
+        $all_r = Ruangan::where('gedung_id','=',$ruangan->gedung_id)->get();
 
         // Me-assign ulang data ke format rupiah
         foreach ($all_r as $item) {

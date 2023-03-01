@@ -4,7 +4,7 @@
  <div class="page-header mb-5 p-0" style="background-image: url({{ url('public/img/bg-detail2.jpg') }});">
      <div class="container-fluid page-header-inner-gedung py-5">
          <div class="container text-center">
-             <h1 class="display-3 text-dark mb-3 animated slideInDown">{{$data['nama_gedung']}}</h1> {{-- Nama sesuai dengan nama gedung --}}
+             <h1 class="display-3 text-dark mb-3 animated slideInDown">{{$data['nama_gedung']}}</h1>
          </div>
      </div>
  </div>
@@ -52,10 +52,10 @@
              </div>
              <div class="col-md-9">
                  <div class="col-12">
-                     <p class="text-secondary">Jumlah Ruangan : {{count($r_OrderByStatusAsc)>0 ? $r_OrderByStatusAsc->total() : $all_OrderByStatusAsc->total() }}</p>
+                     <p class="text-secondary">Jumlah Ruangan : {{ (count($r_OrderByStatusAsc)>0 || $data['selectedGedung'] != null || $data['selectedKategori'] != null)  ? $r_OrderByStatusAsc->total() : $all_OrderByStatusAsc->total() }}</p>
                  </div>
                  <div class="col-12">
-                     @if (count($r_OrderByStatusAsc)>0)
+                     @if (count($r_OrderByStatusAsc)>0 || $data['selectedGedung'] != null || $data['selectedKategori'] != null)
                      @foreach ($r_OrderByStatusAsc as $r)
                      <div class="col-md-3 wow fadeInUp hvr-float mb5" data-wow-delay="0.{{substr($r->id,1,1)}}s">
                          <div class="p-0 shadow border h-100" style="border-radius: 1rem">
