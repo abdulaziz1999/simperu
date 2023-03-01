@@ -56,6 +56,16 @@
                  </div>
                  <div class="col-12">
                      @if (count($r_OrderByStatusAsc)>0 || $data['selectedGedung'] != null || $data['selectedKategori'] != null)
+                     @if(count($r_OrderByStatusAsc) == 0)
+                         <div class="col-8">
+                             <div class="alert alert-danger" role="alert">
+                                 <h4 class="alert-heading">Maaf!</h4>
+                                 <p>Maaf, ruangan yang anda cari tidak ditemukan.</p>
+                                 <hr>
+                                 <p class="mb-0">Silahkan cari ruangan lainnya.</p>
+                             </div>
+                         </div>
+                     @endif
                      @foreach ($r_OrderByStatusAsc as $r)
                      <div class="col-md-3 wow fadeInUp hvr-float mb5" data-wow-delay="0.{{substr($r->id,1,1)}}s">
                          <div class="p-0 shadow border h-100" style="border-radius: 1rem">
