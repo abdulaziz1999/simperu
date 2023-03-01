@@ -58,7 +58,7 @@
                      @if (count($r_OrderByStatusAsc)>0 || $data['selectedGedung'] != null || $data['selectedKategori'] != null)
                      @if(count($r_OrderByStatusAsc) == 0)
                          <div class="col-8">
-                             <div class="alert alert-danger" role="alert">
+                             <div class="alert alert-danger" style="border-radius:25px" role="alert">
                                  <h4 class="alert-heading">Maaf!</h4>
                                  <p>Maaf, ruangan yang anda cari tidak ditemukan.</p>
                                  <hr>
