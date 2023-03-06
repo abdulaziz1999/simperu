@@ -34,12 +34,12 @@
                      </div>
                      <div class="row mb-5  wow fadeInUp">
                          <div class="col-lg-9 shadow border px-0 mb-3 mb-lg-0" style="border-radius: 1rem; height: 400px;">
-                             <img id="img-view" class="img-fluid w-100 h-100" src="{{ url('storage/app/post-image/'.$ruangan->foto1) }}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 100%;">
+                             <img id="img-view" class="img-fluid w-100 h-100" src="{{ asset('storage/post-image/'.$ruangan->foto1) }}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 100%;">
                          </div>
                          <div class="col-lg-3 d-flex flex-row flex-lg-column justify-content-between px-0 px-lg-1">
-                             <img class="img-fluid img-pass" src="{{ url('storage/app/post-image/'.$ruangan->foto1)}}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 128px;">
-                             <img class="img-fluid img-pass" src="{{ url('storage/app/post-image/'.$ruangan->foto2)}}" alt="{{ $ruangan->foto2 }}" style="border-radius: 1rem; height: 128px;">
-                             <img class="img-fluid img-pass" src="{{ url('storage/app/post-image/'.$ruangan->foto3)}}" alt="{{ $ruangan->foto3 }}" style="border-radius: 1rem; height: 128px;">
+                             <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto1)}}" alt="{{ $ruangan->foto1 }}" style="border-radius: 1rem; height: 128px;">
+                             <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto2)}}" alt="{{ $ruangan->foto2 }}" style="border-radius: 1rem; height: 128px;">
+                             <img class="img-fluid img-pass" src="{{ asset('storage/post-image/'.$ruangan->foto3)}}" alt="{{ $ruangan->foto3 }}" style="border-radius: 1rem; height: 128px;">
                          </div>
                      </div>
                      <hr />
@@ -63,7 +63,7 @@
                          <div class="col-lg-6 py-2">
                              <div class="d-flex">
                                  <div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 70px; height: 70px; background-color: #07246f !important;">
-                                     <img class="w-50" src="{{url('storage/app/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
+                                     <img class="w-50" src="{{asset('storage/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
                                  </div>
                                  <div class="ms-3 text-start d-flex align-items-center w-75">
                                      <span class="h6 text-secondary">{{$f->nama_fasilitas}}</span>
@@ -163,7 +163,7 @@
                      <div class="py-3 hvr-float px-1 bgw-white">
                          <a href="{{ route('list-ruangan.detailRoomById', [$ar->id])}}" class="border shadow d-block" style="border-radius: 1rem">
                              <div class="position-relative">
-                                 <img class="img-fluid w-100" src="{{url('storage/app/post-image/'.$ar->foto1)}}" alt="{{$ar->nama_ruangan}}" style="border-radius: 1rem">
+                                 <img class="img-fluid w-100" src="{{asset('storage/post-image/'.$ar->foto1)}}" alt="{{$ar->nama_ruangan}}" style="border-radius: 1rem">
                                  <div class="d-none d-sm-block h6 position-absolute start-0 top-100 translate-middle-y bg-dark text-white rounded py-2 px-4 ms-3 rounded-pill">{{$ar->harga}}<span class="h6 text-primary fw-light"> / Jam</span></div>
                              </div>
                              <div class="p-4 mt-3">

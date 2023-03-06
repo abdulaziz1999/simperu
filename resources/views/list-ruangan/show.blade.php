@@ -13,7 +13,7 @@
                                     <a class="fs-3 d-inline" href="{{ route('list-ruangan.index') }}"><i class="fas fa-arrow-left"></i></a>
                                 </div>
                                 <div class="col-6 text-end mx-0 px-0">
-                                    <button class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#detail_sewa">Detail Sewa</button>
+                                    <button class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#detail_sewa">Detail Peminjama</button>
                                 </div>
                             </div>
                             
