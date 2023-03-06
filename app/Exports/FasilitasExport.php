@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Fasilitas;
+use App\Models\FasilitasRuangan;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Illuminate\Support\Facades\DB;
