@@ -46,7 +46,7 @@ Melalui framework 15min Neighborhood ini, Simperu juga memiliki misi untuk menga
 </div>
 
 {{-- visi-misi --}}
-<div class="page-header my-3 py-5 bg-dark">
+<!-- <div class="page-header my-3 py-5 bg-dark">
     <div class="container-fluid">
         <div class="container text-center pb-5">
             <div class="row d-flex justify-content-start justify-content-lg-end align-items-center">
@@ -76,11 +76,11 @@ Melalui framework 15min Neighborhood ini, Simperu juga memiliki misi untuk menga
             </div>
         </div>
     </div>
-</div>
+</div> -->
 {{-- ./visi-misi --}}
 
 {{-- our-team --}}
-<div class="page-header my-3 py-5">
+<!-- <div class="page-header my-3 py-5">
     <div class="container-fluid page-header-inner-gedung">
         <div class="container text-center pb-5">
             <div class="row d-flex justify-content-start justify-content-lg-end align-items-center">
@@ -110,6 +110,6 @@ Melalui framework 15min Neighborhood ini, Simperu juga memiliki misi untuk menga
             </div>
         </div>
     </div>
-</div>
+</div> -->
 {{-- ./our-team --}}
 @endsection

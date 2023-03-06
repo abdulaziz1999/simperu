@@ -23,7 +23,7 @@
                         <div class="card p-0 shadow border h-100" style="border-radius: 1rem">
                             <a href="{{ route('list-gedung.show', $g->id) }}">
                                 <div class="card-header p-0 border-0">
-                                    <img class="img-fluid" src="{{ url('storage/app/post-image/'.$g->foto)}}" alt="{{$g->nama_gedung}}" style="border-radius: 1rem">
+                                    <img class="img-fluid" src="{{ asset('storage/post-image/'.$g->foto)}}" alt="{{$g->nama_gedung}}" style="border-radius: 1rem">
                                 </div>
                                 <div class="card-body">
                                     <h4 class="font-weight-bold mb-3">

@@ -125,7 +125,7 @@
                         <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
                             <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
                                 <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
-                                    <img class="img-fluid w-100" src="{{ url('storage/app/post-image/'.$r->foto1)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
+                                    <img class="img-fluid w-100" src="{{ asset('storage/post-image/'.$r->foto1)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
@@ -205,7 +205,7 @@
                         <div class="col-md-6 col-lg-4 wow zoomIn hvr-float">
                             <div class="card p-0 shadow border h-100" style="border-radius: 1rem;">
                                 <div class="card-header p-0 border-0 mx-0" style="border-radius: 1rem;">
-                                    <img loading="lazy" class="img-fluid w-100" src="{{ url('storage/app/post-image/'.$g->foto)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
+                                    <img loading="lazy" class="img-fluid w-100" src="{{ asset('storage/post-image/'.$g->foto)}}" alt=""style="border-radius: 1rem 1rem 2rem 2rem;">
                                 </div>
                                 <div class="card-body">
                                     <h3 class="font-weight-bold text-center mb-3">
@@ -242,7 +242,7 @@
                             <a class="service-item bg-dark hvr-float shadow w-100 h-100" href="" style="border-radius: 1rem">
                                 <div class="service-icon bg-transparent p-1">
                                     <div class="rounded d-flex align-items-center justify-content-center">
-                                        <img loading="lazy" class="img-fluid" src="{{url('storage/app/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
+                                        <img loading="lazy" class="img-fluid" src="{{asset('storage/post-image/'.$f->foto)}}" alt="{{$f->nama_fasilitas}}">
                                     </div>
                                 </div>
                                 <h5 class="text-white mb-3">{{$f->nama_fasilitas}}</h5>

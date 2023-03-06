@@ -3,13 +3,13 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-4">
                         <div class="bg-white rounded p-2">
-                            <a href="{{ url('/')}}"><img class="img-fluid w-50" src="{{url('public/img/logo_navbar.png')}}" alt="logo_navbar"></a>
+                            <a href="{{ url('/')}}"><img class="img-fluid w-50" src="{{asset('img/logo_navbar.png')}}" alt="logo_navbar"></a>
 
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h6 class="section-title text-start text-primary text-uppercase mb-4">Kontak Kami</h6>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jalan Lenteng Agung Raya No.20 RT.5/RW.1 Lenteng Agung, Kelurahan, RT.4/RW.1, Srengseng Sawah, Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12640</p>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Raya Puspiptek Jl. Pembangunan Raya, Pabuaran, Kec. Gn. Sindur, Kabupaten Bogor, Jawa Barat 16340</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 8998077524</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>sp@simperu.com</p>
                         <div class="d-flex pt-2">
