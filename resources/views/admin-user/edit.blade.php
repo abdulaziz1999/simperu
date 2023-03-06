@@ -62,7 +62,7 @@
                                     <label class="col-lg-2 col-form-label" for="val-password">Password<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-10">
-                                        <input type="password" class="form-control input-default" id="val-password" name="password" placeholder="Password" value="{{$user->password}}">
+                                        <input type="password" class="form-control input-default" id="val-password" name="password" placeholder="Password" value="">
                                     </div>
                                 </div>
                                 <div class="form-group row">

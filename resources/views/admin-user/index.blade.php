@@ -52,6 +52,7 @@
                                             <form class="d-flex justify-content-center align-items-center" action="{{ route('user.destroy',$row->id) }}" method="POST">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-info text-white font-weight-bold mr-1 my-1" href="{{ route('user.show',$row->id) }}"><i class="fa fa-eye"></i> Detail</a>
+                                                    <!-- <a class="btn btn-sm btn-warning text-white font-weight-bold mr-1 my-1" href="{{ url('user.resetPassword',$row->id) }}"><i class="fa fa-key"></i> Reset Password</a> -->
                                                     <a class="btn btn-sm btn-warning text-white font-weight-bold mr-1 my-1" href="{{ route('user.edit',$row->id) }}"><i class="fa fa-pencil"></i> Ubah</a>
                                                     @csrf
                                                     @method('DELETE')
