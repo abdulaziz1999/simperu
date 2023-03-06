@@ -49,12 +49,12 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{$row->name}}</td>
-                                        {{-- <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ url('storage/app/post-image/'.$row->foto1) }}" alt="{{ $row->nama_ruangan  }}"></td> --}}
+                                        {{-- <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ asset('storage/post-image/'.$row->foto1) }}" alt="{{ $row->nama_ruangan  }}"></td> --}}
                                         <td>{{ $row->nama_ruangan }}</td>
                                         <td>{{ $row->tgl_pinjam }} - {{ $row->tgl_selesai }}</td>
                                         <td>{{ $row->harga }}</td>
                                         <td>{{ $row->dokumen }}</td>
-                                        <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ url('storage/app/post-payment/'.$row->bukti_pembayaran) }}" alt="{{ $row->bukti_pembayaran}}"></td>
+                                        <td><img class="img-fluid border p-2 shadow" style="max-width: 300px; max-height: 300px;" src="{{ asset('storage/post-payment/'.$row->bukti_pembayaran) }}" alt="{{ $row->bukti_pembayaran}}"></td>
                                         {{-- <td>{{ $row->bukti_pembayaran }}</td> --}}
                                         <td>
                                             @if($row->status_peminjaman == 'Diajukan')
