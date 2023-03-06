@@ -17,7 +17,7 @@
                             <h4 class="text-primary my-3">
                                 Bank Central Asia
                             </h4>
-                            <img src="{{ url('public/img/bca.svg')}}" class="img-fluid px-2 mb-5" alt="bca-bank-logo" style="max-width: 250px; width: 100%;">
+                            <img src="{{ asset('img/bca.svg')}}" class="img-fluid px-2 mb-5" alt="bca-bank-logo" style="max-width: 250px; width: 100%;">
                             <h4 class="text-primary">
                                 Nomer Rekening <br> <span class="h1 my-1 d-block text-white">5410425787</span>
                             </h4>

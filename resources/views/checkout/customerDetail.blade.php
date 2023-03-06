@@ -52,7 +52,7 @@
                 <div class="col-lg-6 d-flex justify-content-start align-items-center">
                     <div class="card w-75 shadow bg-body" style="border-radius: 1rem">
                         <div class="card-header p-0" style="border-radius: 1rem">
-                            <img class="img-fluid w-100" src="{{ url('storage/app/post-image/'.$request->session()->get('ruangan')->foto1) }}" alt="{{$request->session()->get('ruangan')->foto1}}" style="border-radius: 1rem">
+                            <img class="img-fluid w-100" src="{{ asset('storage/post-image/'.$request->session()->get('ruangan')->foto1) }}" alt="{{$request->session()->get('ruangan')->foto1}}" style="border-radius: 1rem">
                         </div>
                         <div class="card-body">
                             <div class="text-start py-2">
