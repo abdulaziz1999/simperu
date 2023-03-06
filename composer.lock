@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "288e6ff03f1a4204bff4d23df35fc3c3",
+    "content-hash": "7488fb8b5fdc88985c025075b1f9bb40",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -672,6 +672,47 @@
             "time": "2022-01-18T15:43:28+00:00"
         },
         {
+            "name": "duitkupg/duitku-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/duitkupg/duitku-php.git",
+                "reference": "983001aefdce35f2d994bfa1e84825169c1b930f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/duitkupg/duitku-php/zipball/983001aefdce35f2d994bfa1e84825169c1b930f",
+                "reference": "983001aefdce35f2d994bfa1e84825169c1b930f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Duitku\\": "Duitku/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Duitku PHP",
+            "homepage": "https://duitku.com",
+            "support": {
+                "issues": "https://github.com/duitkupg/duitku-php/issues",
+                "source": "https://github.com/duitkupg/duitku-php/tree/master"
+            },
+            "time": "2022-07-08T08:06:12+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "2.1.25",
             "source": {
@@ -1253,6 +1294,74 @@
                 }
             ],
             "time": "2022-06-20T21:43:11+00:00"
+        },
+        {
+            "name": "illuminated/db-profiler",
+            "version": "8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dmitry-ivanov/laravel-db-profiler.git",
+                "reference": "36cf8ec7ba4a17322fc46be211da37097e19f02e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dmitry-ivanov/laravel-db-profiler/zipball/36cf8ec7ba4a17322fc46be211da37097e19f02e",
+                "reference": "36cf8ec7ba4a17322fc46be211da37097e19f02e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "illuminated/helper-functions": "^8.0",
+                "illuminated/testing-tools": "^8.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^8.4|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Illuminated\\Database\\DbProfilerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminated\\Database\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Ivanov",
+                    "email": "dmitry.g.ivanov@gmail.com"
+                }
+            ],
+            "description": "Database Profiler for Laravel Web and Console Applications.",
+            "keywords": [
+                "console-profiling",
+                "database",
+                "db",
+                "laravel",
+                "mysql",
+                "profiler",
+                "profiling",
+                "query",
+                "sql",
+                "web-profiling"
+            ],
+            "support": {
+                "issues": "https://github.com/dmitry-ivanov/laravel-db-profiler/issues",
+                "source": "https://github.com/dmitry-ivanov/laravel-db-profiler"
+            },
+            "time": "2020-12-21T18:14:57+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -9427,7 +9536,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "duitkupg/duitku-php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
