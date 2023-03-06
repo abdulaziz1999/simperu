@@ -4,10 +4,10 @@
         <div class="nav-header">
             <div class="brand-logo bg-info">
                 <a href="{{ url('/admin')}}">
-                    <b class="logo-abbr"><img src="{{ url('public/img/logo_navbar.png') }}" alt=""> </b>
-                    <span class="logo-compact"><img src="{{ url('public/images/logo-compact.png') }}" alt=""></span>
+                    <b class="logo-abbr"><img src="{{ asset('img/logo_navbar.png') }}" alt=""> </b>
+                    <span class="logo-compact"><img src="{{ asset('images/logo-compact.png') }}" alt=""></span>
                     <span class="brand-title">
-                        <img class="w-75" src="{{ url('public/img/logo_navbar.png') }}">
+                        <img class="w-75" src="{{ asset('img/logo_navbar.png') }}">
                     </span>
                 </a>
             </div>
@@ -63,13 +63,13 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="{{ url('public/images/user/1.png') }}" height="40" width="40" alt="">
+                                <img src="{{ asset('images/user/1.png') }}" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                            <a href="{{url('profile')}}"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
                                         <!-- <li>
                                             <a href="javascript:void()">

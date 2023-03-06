@@ -14,7 +14,7 @@
                     <i class="fa fa-tachometer" aria-hidden="true"></i> <span class="nav-text">Master Data</span>
                 </a>
                 <ul aria-expanded="true">
-                    <li><a class="font-weight-bold" href="{{route('gedung.index')}}"><i class="fa fa-table" aria-hidden="true"></i> Data Gedung</a></li>
+                    <li><a class="font-weight-bold" href="{{ route('gedung.index')}}"><i class="fa fa-table" aria-hidden="true"></i> Data Gedung</a></li>
                     <li><a class="font-weight-bold" href="{{ route('ruangan.index') }}"><i class="fa fa-table" aria-hidden="true"></i> Data Ruangan</a></li>
                     <li><a class="font-weight-bold" href="{{ route('fasilitas.index') }}"><i class="fa fa-table" aria-hidden="true"></i> Data Fasilitas</a></li>
                     <li><a class="font-weight-bold" href="{{ route('kategoriRuangan.index')}}"><i class="fa fa-table" aria-hidden="true"></i> Data Kategori Ruangan </a></li>
