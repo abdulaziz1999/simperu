@@ -55,8 +55,6 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
     Route::get('feedbackpdf', [FeedbackController::class, 'generatePDF']);
 
     //route user admin
-    Route::put('resetPassword/{user:id}',
-['uses' => 'App\Http\Controllers\UserController@resetPassword', 'as' => 'user.resetPassword']);
     Route::resource('user', UserController::class);
     Route::resource('peminjaman', PeminjamanController::class);
     Route::resource('laporan', LaporanController::class);
