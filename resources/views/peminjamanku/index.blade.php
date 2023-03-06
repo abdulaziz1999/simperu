@@ -16,7 +16,7 @@
                         @foreach ($peminjamanByUser as $pbu)
                         {{-- FEEDBACK --}}
                         @if ((date('Y-m-d H:i:s') > date('Y-m-d H:i:s', strtotime($pbu->tgl_selesai . '+ ' . substr($pbu->jam_selesai, 0, 2) . ' hours'))) && $pbu->status_peminjaman == 'Disetujui')
-                        <div class="col-sm-12 m-0">
+                        <!-- <div class="col-sm-12 m-0">
                             <div class="p-3 mx-5 my-2 bg-primary" style="border-radius: 1rem; border: 1px dashed white;">
                                 <div class="row">
                                     <div class="col-12 col-md-8 text-start">
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         @endif
                         {{-- BUKTI PEMBAYARAN --}}
                         <div class="col-sm-12 m-0">
@@ -56,9 +56,23 @@
                                             Tanggal : {{$pbu->tgl_pinjam}} s/d {{$pbu->tgl_selesai}}<br/>
                                             Jam : {{$pbu->jam_mulai}} s/d {{$pbu->jam_selesai}} WIB
                                         </p>
-                                        <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary {{($pbu->bukti_pembayaran != '') ? 'd-none':''}}" style="border-radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
-                                            Upload Bukti Pembayaran
-                                        </button>
+                                        <div class="row">
+                                            <div class="{{($pbu->bukti_pembayaran != '' || $pbu->harga == '0') ? 'd-none':'col-lg-6'}} ">
+                                                <button id="btnShowOrNot{{$btnShowOrNot++}}" class="btn btn-primary {{($pbu->bukti_pembayaran != '') ? 'd-none':''}}" style="border-radius: .5rem" data-bs-toggle="modal" data-bs-target="#modalBsTarget{{$modalBsTarget++}}">
+                                                   <i class="fa fa-upload"></i> Upload Bukti Pembayaran
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button id="fb{{$fbIncre[0]++}}" class="btn btn-dark {{($pbu->keterangan_feedback != '') ? 'd-none':''}}" style="border-radius: .5rem" data-bs-toggle="modal" data-bs-target="#fbBsTarget{{$fbIncre[1]++}}">
+                                                   <i class="fa fa-award"></i> Berikan Penilaian
+                                                </button>
+                                                @if ($pbu->keterangan_feedback != '')
+                                                    <span class="badge rounded-pill alert-success border border-3 border-success px-3 py-2 my-2">
+                                                       <i class="fa fa-check"></i> Feedback Terkirim
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center flex-column">
                                         <span class="badge rounded-pill {{ ($pbu->status_peminjaman == 'Diajukan') ? 'alert-info border border-3 border-info': (($pbu->status_peminjaman == 'Disetujui')? 'alert-success border border-3 border-success' : 'alert-danger border border-3 border-danger');}} px-3 py-2 my-1">
@@ -73,10 +87,10 @@
                                         </a>
                                         @else
                                         <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <span class="border border-3 border-danger badge rounded-pill alert-danger px-3 py-2  my-1">
+                                            <span class="border border-3 border-danger badge rounded-pill alert-danger px-3 py-2  my-1 {{($pbu->harga == '0') ? 'd-none':''}}">
                                                 {{$pbu->status_pembayaran}}
                                             </span>
-                                            <h3 class="text-white mt-1" id="countDown{{$i++}}"></h3>
+                                            <h3 class="text-white mt-1 {{($pbu->harga == '0') ? 'd-none':''}}" id="countDown{{$i++}}"></h3>
                                         </div>
                                         @endif
                                     </div>
