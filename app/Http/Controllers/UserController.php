@@ -105,12 +105,15 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
+        if($request->password){
+            $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         return redirect()->route('user.index')->with('success', 'Data berhasil diubah');
     }
 
-    public function resetPassword($id){
+    public function resetPassword(Request $request, $id){
         $user = User::find($id);
         $user->password = bcrypt('123456');
         $user->save();
