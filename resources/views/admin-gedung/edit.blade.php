@@ -78,7 +78,7 @@
                                     <label class="col-lg-2 col-form-label" for="val-suggestions">
                                     </label>
                                     <div class="col-lg-10">
-                                        <img src="{{ asset('storage/'.$gedung->foto) }}" alt="" width="200px" class="img-preview img-thumbnail">
+                                        <img src="{{ asset('storage/post-image/'.$gedung->foto) }}" alt="" width="200px" class="img-preview img-thumbnail">
                                     </div>
                                 </div>
                                 <div class="form-group row">

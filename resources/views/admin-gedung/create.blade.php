@@ -87,7 +87,7 @@
                                     <label class="col-lg-2 col-form-label" for="val-suggestions">
                                     </label>
                                     <div class="col-lg-10">
-                                        <img src="{{url('storage/app/post-image/default.jpg')}}" class="img-preview img-thumbnail img-fluid mb-3" style="display: none; max-height: 300px; max-width: 200px; ">
+                                        <img src="{{asset('public/img/default.png')}}" class="img-preview img-thumbnail img-fluid mb-3" style="display: none; max-height: 300px; max-width: 200px; ">
                                     </div>
                                 </div>
                                 <div class="form-group row">
