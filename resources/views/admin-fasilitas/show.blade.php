@@ -54,7 +54,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <img class="img-fluid w-50 py-2 px-2 shadow border" src="{{ url('storage/app/post-image/'.$fasilita->foto) }}" alt="{{ $fasilita->nama_fasilitas}}">
+                                            <img class="img-fluid w-50 py-2 px-2 shadow border" src="{{ asset('storage/post-image/'.$fasilita->foto) }}" alt="{{ $fasilita->nama_fasilitas}}">
                                         </div>
                                 </div>
                             </div>

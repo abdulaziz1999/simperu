@@ -59,7 +59,7 @@
                                             <label class="col-lg-2 col-form-label">
                                             </label>
                                             <div class="col-lg-10">
-                                                <img src="{{ url('storage/app/post-image/'.$fasilita->foto) }}" class="img-preview img-thumbnail img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
+                                                <img src="{{ asset('storage/post-image/'.$fasilita->foto) }}" class="img-preview img-thumbnail img-fluid mb-3" style="max-height: 300px; max-width: 100px; ">
                                             </div>
                                         </div>
                                         <div class="form-group row">
