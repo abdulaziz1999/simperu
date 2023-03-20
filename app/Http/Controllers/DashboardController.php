@@ -17,24 +17,40 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        //get all data gedung order by id desc
-        $gedung             = Gedung::all();
-        $ruangan            = Ruangan::all();
-        $fasilitas          = FasilitasRuangan::all();
-        $kategoriRuangan    = KategoriRuangan::all();
-        $feedback           = Feedback::select('*')->limit(5)->orderBy('id','desc')->get();
+        $gedung                 = Gedung::all();
+        $ruangan                = Ruangan::all();
+        $fasilitas              = FasilitasRuangan::all();
+        $kategoriRuangan        = KategoriRuangan::all();
+        $feedback               = Feedback::select('*')->limit(5)->orderBy('id','desc')->get();
+        $peminjaman_diterima    = Peminjaman::where('status_peminjaman', '=', 'Diterima')->count();
+        $peminjaman_hari_ini    = Peminjaman::whereDate('created_at', date('Y-m-d'))->count();
+        $peminjaman_ditolak     = Peminjaman::where('status_peminjaman', '=', 'Ditolak')->count();
+        $peminjaman_all         = Peminjaman::count();
         $peminjaman = Peminjaman::join('pembayaran as pe', 'peminjaman.pembayaran_id', '=', 'pe.id')
-            ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
-            ->join('users', 'peminjaman.users_id', '=', 'users.id')
-            ->limit(5)
-            ->orderBy('peminjaman.id','desc')
-            ->get();
+                                ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
+                                ->join('users', 'peminjaman.users_id', '=', 'users.id')
+                                ->limit(5)
+                                ->orderBy('peminjaman.id','desc')
+                                ->get();
         $sumProfit = Peminjaman::join('pembayaran as pe', 'peminjaman.pembayaran_id', '=', 'pe.id')
-            ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
-            ->where('pe.status_pembayaran', '=', 'Lunas')
-            ->sum('ru.harga');
+                                ->join('ruangan as ru', 'peminjaman.ruangan_id', '=', 'ru.id')
+                                ->where('pe.status_pembayaran', '=', 'Lunas')
+                                ->sum('ru.harga');
+        $data = [
+            'gedung'                => $gedung,
+            'ruangan'               => $ruangan,
+            'fasilitas'             => $fasilitas,
+            'kategoriRuangan'       => $kategoriRuangan,
+            'feedback'              => $feedback,
+            'peminjaman_diterima'   => $peminjaman_diterima,
+            'peminjaman_hari_ini'   => $peminjaman_hari_ini,
+            'peminjaman_ditolak'    => $peminjaman_ditolak,
+            'peminjaman_all'        => $peminjaman_all,
+            'peminjaman'            => $peminjaman,
+            'sumProfit'              => $sumProfit
+        ];
         
-        return view('admin-dashboard.index', compact('gedung', 'ruangan', 'kategoriRuangan', 'fasilitas', 'feedback', 'sumProfit', 'peminjaman'));
+        return view('admin-dashboard.index', $data);
     }
 
     public function chart()

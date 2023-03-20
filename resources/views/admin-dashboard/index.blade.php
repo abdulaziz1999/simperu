@@ -61,8 +61,8 @@
                                 <div class="media">
                                     <span class="card-widget__icon"><i class="icon-home"></i></span>
                                     <div class="media-body">
-                                        <h2 class="card-widget__title">520</h2>
-                                        <h5 class="card-widget__subtitle">All Properties</h5>
+                                        <h2 class="card-widget__title">{{$peminjaman_all}}</h2>
+                                        <h5 class="card-widget__subtitle">Semua Peminjaman</h5>
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +75,8 @@
                                 <div class="media">
                                     <span class="card-widget__icon"><i class="icon-tag"></i></span>
                                     <div class="media-body">
-                                        <h2 class="card-widget__title">720</h2>
-                                        <h5 class="card-widget__subtitle">Open Tickets</h5>
+                                        <h2 class="card-widget__title">{{$peminjaman_ditolak}}</h2>
+                                        <h5 class="card-widget__subtitle">Peminjaman ditolak</h5>
                                     </div>
                                 </div>
                             </div>
@@ -89,8 +89,8 @@
                                 <div class="media">
                                     <span class="card-widget__icon"><i class="icon-emotsmile"></i></span>
                                     <div class="media-body">
-                                        <h2 class="card-widget__title">1002</h2>
-                                        <h5 class="card-widget__subtitle">Task Completed</h5>
+                                        <h2 class="card-widget__title">{{$peminjaman_diterima}}</h2>
+                                        <h5 class="card-widget__subtitle">Peminjaman diterima</h5>
                                     </div>
                                 </div>
                             </div>
@@ -103,8 +103,8 @@
                                 <div class="media">
                                     <span class="card-widget__icon"><i class="icon-ghost"></i></span>
                                     <div class="media-body">
-                                        <h2 class="card-widget__title">420</h2>
-                                        <h5 class="card-widget__subtitle">Threats</h5>
+                                        <h2 class="card-widget__title">{{$peminjaman_hari_ini}}</h2>
+                                        <h5 class="card-widget__subtitle">Peminjaman Hari ini</h5>
                                     </div>
                                 </div>
                             </div>
