@@ -102,6 +102,11 @@
                                      {{ $ruangan->harga }} <span class="h6 text-secondary" style="font-weight: 500">/ Jam</span>
                                  </h3>
                                  <hr />
+                                 <!-- alert danger -->
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="danger_notice" style="display:none">
+                                        <div id="text-alert"></div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
                              </div>
                          </div>
                          <div class="row my-2">
@@ -279,6 +284,12 @@
                      async: false,
                      dataType: 'json',
                      success: function(data) {
+                        if(data.length == 0){
+                            $('#danger_notice').css('display', 'block');
+                            $('#text-alert').html('<strong>Perhatian</strong> Maaf, Ruangan ini tidak tersedia pada tanggal tersebut');
+                        }else{
+                            $('#danger_notice').css('display', 'none');
+                        }
                          var jam = '<option disabled selected>Pilih Waktu</option>';
                          data.forEach(element => {
                              if (element['jam'] < 10) {
@@ -307,6 +318,12 @@
                  async: false,
                  dataType: 'json',
                  success: function(data) {
+                    if(data.length == 0){
+                        $('#danger_notice').css('display', 'block');
+                        $('#text-alert').html('<strong>Perhatian</strong> Maaf, Ruangan ini tidak tersedia pada tanggal tersebut');
+                    }else{
+                        $('#danger_notice').css('display', 'none');
+                    }
                      var jam = '<option disabled selected>Pilih Waktu</option>';
                      data.forEach(element => {
                          if (element['jam'] < 10) {
