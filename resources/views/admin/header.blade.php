@@ -49,54 +49,42 @@
                             </a>
                         </li>
                         <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-pill gradient-2">3</span>
+                                <i class="mdi mdi-bell-outline fa-shake"></i>
+                                    @php
+                                        $today = date('Y-m-d');
+                                        $count = DB::table('peminjaman')->whereDate('created_at', $today);
+                                    @endphp
+                                <span class="badge badge-pill gradient-2">{{$count->count()}}</span>
                             </a>
                             <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
                                 <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">2 New Notifications</span>  
+                                    @if($count->count() == 0)
+                                    <span class="">Tidak ada peminjaman hari ini</span>
+                                    @else
+                                    <span class="">{{$count->count()}} New Notifications</span> 
+                                    @endif 
                                     <a href="javascript:void()" class="d-inline-block">
-                                        <span class="badge badge-pill gradient-2">5</span>
+                                        <span class="badge badge-pill gradient-2">{{$count->count()}}</span>
                                     </a>
                                 </div>
                                 <div class="dropdown-content-body">
                                     <ul>
+                                        @if($count->count()> 0)
+                                        @foreach($count->get() as $data)
                                         <li>
                                             <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="fa fa-bell"></i></span>
                                                 <div class="notification-content">
-                                                    <h6 class="notification-heading">Events near you</h6>
-                                                    <span class="notification-text">Within next 5 days</span> 
+                                                    @php
+                                                        $ruangan = DB::table('ruangan')->where('id', $data->ruangan_id)->first();
+                                                    @endphp
+                                                    <h6 class="notification-heading">{{$ruangan->nama_ruangan}}</h6>
+                                                    <span class="notification-text"></span>  <p> <strong class="text-warning">{{$data->status_peminjaman}}</strong> | ({{date('d-m-Y',strtotime($data->created_at))}})</p>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">Event Started</h6>
-                                                    <span class="notification-text">One hour ago</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">Event Ended Successfully</h6>
-                                                    <span class="notification-text">One hour ago</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">Events to Join</h6>
-                                                    <span class="notification-text">After two days</span> 
-                                                </div>
-                                            </a>
-                                        </li>
+                                        @endforeach
+                                        @endif
                                     </ul>
                                     
                                 </div>
