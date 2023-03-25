@@ -55,61 +55,6 @@
                     </div>
                 </div>
             </div>
-                    <!-- <div class="col-6">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-3">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-home"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">{{$peminjaman_all}}</h2>
-                                        <h5 class="card-widget__subtitle">Semua Peminjaman</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="col-3">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-4">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-tag"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">{{$peminjaman_ditolak}}</h2>
-                                        <h5 class="card-widget__subtitle">Peminjaman ditolak</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="col-6">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-4">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-emotsmile"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">{{$peminjaman_diterima}}</h2>
-                                        <h5 class="card-widget__subtitle">Peminjaman diterima</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-9">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-ghost"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">{{$peminjaman_hari_ini}}</h2>
-                                        <h5 class="card-widget__subtitle">Peminjaman Hari ini</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
         </div>
 
         <div class="row">
