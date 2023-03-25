@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-                    <div class="col-3">
+                    <!-- <div class="col-6">
                         <div class="card card-widget">
                             <div class="card-body gradient-3">
                                 <div class="media">
@@ -67,9 +67,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-3">
+                    <!-- <div class="col-3">
                         <div class="card card-widget">
                             <div class="card-body gradient-4">
                                 <div class="media">
@@ -81,9 +81,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-3">
+                    <!-- <div class="col-6">
                         <div class="card card-widget">
                             <div class="card-body gradient-4">
                                 <div class="media">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-6">
                         <div class="card card-widget">
                             <div class="card-body gradient-9">
                                 <div class="media">
@@ -109,13 +109,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
         </div>
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-9">
                         <div class="card">
                             <div class="card-body pb-0 d-flex justify-content-between">
                                 <div>
@@ -130,6 +130,39 @@
                             <div class="card-body">
                             </div>
                         </div>
+                    </div>
+                    <div class="col-3">
+                            <div class="card card-widget">
+                                <div class="card-body">
+                                    <h5 class="text-primary"><a class="text-primary" href="{{url('peminjaman')}}">Peminjaman <span class="pull-right"><i class="fa fa-eye"></i></span></a> </h5>
+                                    <h3 class="mt-4 text-primary">{{$peminjaman_hari_ini}}</h3>
+                                    <span class="text-primary">Peminjaman Hari ini</span>
+                                    <div class="mt-2">
+                                        <h4>{{$peminjaman_diterima}}</h4>
+                                        <h6>Peminjaman disetujui<span class="pull-right">{{$peminjaman_diterima*100/100}}%</span></h6>
+                                        <div class="progress mb-3" style="height: 7px">
+                                            <div class="progress-bar bg-primary" style="width: {{$peminjaman_diterima*100/100}}%;" role="progressbar"><span class="sr-only">30% Order</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <h4>{{$peminjaman_diajukan}}</h4>
+                                        <h6 >Peminjaman Diajukan <span class="pull-right">{{$peminjaman_diajukan*100/100}}%</span></h6>
+                                        <div class="progress mb-3" style="height: 7px">
+                                            <div class="progress-bar bg-success" style="width: {{$peminjaman_diajukan*100/100}}%;" role="progressbar"><span class="sr-only">50% Order</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <h4>{{$peminjaman_diterima}}</h4>
+                                        <h6 >Peminjaman Diterima <span class="pull-right">{{$peminjaman_diterima*100/100}}%</span></h6>
+                                        <div class="progress mb-3" style="height: 7px">
+                                            <div class="progress-bar bg-warning" style="width: {{$peminjaman_diterima*100/100}}%;" role="progressbar"><span class="sr-only">20% Order</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

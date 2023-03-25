@@ -22,7 +22,8 @@ class DashboardController extends Controller
         $fasilitas              = FasilitasRuangan::all();
         $kategoriRuangan        = KategoriRuangan::all();
         $feedback               = Feedback::select('*')->limit(5)->orderBy('id','desc')->get();
-        $peminjaman_diterima    = Peminjaman::where('status_peminjaman', '=', 'Diterima')->count();
+        $peminjaman_diterima    = Peminjaman::where('status_peminjaman', '=', 'Disetujui')->count();
+        $peminjaman_diajukan    = Peminjaman::where('status_peminjaman', '=', 'Diajukan')->count();
         $peminjaman_hari_ini    = Peminjaman::whereDate('created_at', date('Y-m-d'))->count();
         $peminjaman_ditolak     = Peminjaman::where('status_peminjaman', '=', 'Ditolak')->count();
         $peminjaman_all         = Peminjaman::count();
@@ -43,11 +44,12 @@ class DashboardController extends Controller
             'kategoriRuangan'       => $kategoriRuangan,
             'feedback'              => $feedback,
             'peminjaman_diterima'   => $peminjaman_diterima,
+            'peminjaman_diajukan'   => $peminjaman_diajukan,
             'peminjaman_hari_ini'   => $peminjaman_hari_ini,
             'peminjaman_ditolak'    => $peminjaman_ditolak,
             'peminjaman_all'        => $peminjaman_all,
             'peminjaman'            => $peminjaman,
-            'sumProfit'              => $sumProfit
+            'sumProfit'             => $sumProfit
         ];
         
         return view('admin-dashboard.index', $data);
